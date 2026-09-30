@@ -163,7 +163,7 @@
     "devHelp": "The age at which a typical child has reached as many milestones in that subject. Actual age: {{age}}.",
     "devAge": "Developmental age",
     "actualAge": "actual age",
-    "devNote": "Counts achieved and probably-achieved milestones. It stops being informative once all milestones of a subject are achieved (around 5–6 years).",
+    "devNote": "Counts achieved and probably-achieved milestones. “≥” means all the milestones we track in that subject are achieved, so the real value is higher and unknown.",
     "goalsTitle": "Learning goals for this age",
     "goalsHelp": "Share of learning goals (school-type skills) starting at or before the current age that are achieved. Never a verdict: these depend on teaching.",
     "goalsDone": "Achieved"

@@ -18,6 +18,7 @@ const toChild = (r: Row): Child => ({
   birthDate: r.birth_date as string,
   gestationalWeeks: (r.gestational_weeks as number | null) ?? null,
   homeLanguages: (r.home_languages as Locale[]) ?? [],
+  seedVersion: (r.seed_version as number | null) ?? 1,
 });
 const toObservation = (r: Row): Observation => ({
   id: r.id as string,
@@ -82,6 +83,7 @@ export class SupabaseRepo implements Repo {
         birth_date: c.birthDate,
         gestational_weeks: c.gestationalWeeks ?? null,
         home_languages: c.homeLanguages,
+        seed_version: c.seedVersion ?? 1,
       }),
     );
   }

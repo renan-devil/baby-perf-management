@@ -54,10 +54,13 @@ export function ProgressPage() {
       .map((s) => {
         const ms = milestones.filter((m) => m.subjectId === s.id);
         const count = ms.filter((m) => progress.done(m.id)).length;
-        const d = developmentalAge(ms, count, 96);
-        return { id: s.id, name: tr(s.name, locale), n: ms.length, count, dev: d };
+        // Cap at the last milestone we track: beyond it, "developmental age" is unknown, not higher.
+        const ceiling = Math.max(0, ...ms.map((m) => m.percentiles!.p90));
+        const d = developmentalAge(ms, count, ceiling);
+        return { id: s.id, name: tr(s.name, locale), n: ms.length, count, dev: d, capped: d !== undefined && d >= ceiling - 0.05 };
       })
-      .filter((x) => x.dev !== undefined);
+      .filter((x) => x.dev !== undefined)
+      .map((x) => ({ ...x, label: `${x.capped ? '≥ ' : ''}${Math.round(x.dev!)} m` }));
 
     const years = Math.floor(progress.ageMonths / 12);
     const goals = subjectsOrdered
@@ -111,7 +114,7 @@ export function ProgressPage() {
               <Area dataKey={(d: { low: number; high: number }) => [d.low, d.high]} name={t('progress.band')} fill={ink.band} fillOpacity={0.14} stroke="none" isAnimationActive={false} />
               <Line dataKey="expected" name={t('progress.expected')} stroke={ink.text} strokeDasharray="5 4" strokeWidth={2} dot={false} isAnimationActive={false} />
               <Line dataKey="child" name={child!.firstName} stroke={ink.series} strokeWidth={2} dot={false} connectNulls={false} isAnimationActive={false} />
-              <ReferenceLine x={age} stroke={ink.text} strokeDasharray="2 3" label={{ value: t('progress.today'), fill: ink.text, fontSize: 12, position: 'top' }} />
+              <ReferenceLine x={age} stroke={ink.text} strokeDasharray="2 3" label={{ value: t('progress.today'), fill: ink.text, fontSize: 12, position: 'insideTopLeft' }} />
             </ComposedChart>
           </ResponsiveContainer>
         </div>
@@ -150,13 +153,13 @@ export function ProgressPage() {
         <p className="muted small">{t('progress.devHelp', { age: monthsText(Math.floor(progress.ageMonths), t) })}</p>
         <div className="chart">
           <ResponsiveContainer width="100%" height={Math.max(160, data.dev.length * 40)}>
-            <BarChart data={data.dev} layout="vertical" margin={{ top: 24, right: 48, bottom: 8, left: 8 }}>
+            <BarChart data={data.dev} layout="vertical" margin={{ top: 24, right: 72, bottom: 8, left: 8 }}>
               <CartesianGrid stroke={ink.grid} horizontal={false} />
               <XAxis type="number" tick={{ fill: ink.text, fontSize: 12 }} domain={[0, (max: number) => Math.ceil(Math.max(max, progress.ageMonths + 6) / 12) * 12]} allowDecimals={false} tickFormatter={(v) => String(Math.round(Number(v)))} />
               <YAxis type="category" dataKey="name" width={150} tick={{ fill: ink.text, fontSize: 12 }} />
               <Tooltip formatter={(v) => [monthsText(Number(v), t), t('progress.devAge')]} />
               <Bar dataKey="dev" name={t('progress.devAge')} fill={ink.series} radius={[0, 4, 4, 0]} barSize={18} isAnimationActive={false}>
-                <LabelList dataKey="dev" position="right" fill={ink.text} fontSize={12} formatter={(v) => `${Math.round(Number(v))} m`} />
+                <LabelList dataKey="label" position="right" fill={ink.text} fontSize={12} />
               </Bar>
               <ReferenceLine x={age} stroke={ink.text} strokeDasharray="4 3" label={{ value: t('progress.actualAge'), fill: ink.text, fontSize: 12, position: 'top' }} />
             </BarChart>

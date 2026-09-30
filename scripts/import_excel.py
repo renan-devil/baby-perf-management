@@ -5,6 +5,7 @@ reviewable in catalog/seed/excel-mapping.tsv) and writes catalog/seed/constance.
 observations dated birth date + m months, flagged as approximate.
 When several Excel rows map to the same skill, the earliest month is kept.
 Run: python3 scripts/import_excel.py   (needs: pip install openpyxl)
+Then re-run scripts/fill_typical_ages.py to add the typical-age skills again.
 """
 import csv
 import json

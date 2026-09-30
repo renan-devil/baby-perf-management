@@ -163,7 +163,7 @@
     "devHelp": "A idade em que uma criança típica atingiu o mesmo número de marcos nessa área. Idade real: {{age}}.",
     "devAge": "Idade de desenvolvimento",
     "actualAge": "idade real",
-    "devNote": "Conta marcos adquiridos e provavelmente adquiridos. Deixa de ser informativo quando todos os marcos de uma área estão adquiridos (por volta dos 5–6 anos).",
+    "devNote": "Conta marcos adquiridos e provavelmente adquiridos. «≥» significa que todos os marcos acompanhados nessa área estão adquiridos: o valor real é mais alto e desconhecido.",
     "goalsTitle": "Objetivos de aprendizagem para esta idade",
     "goalsHelp": "Percentagem dos objetivos de aprendizagem (tipo escola) que começam na idade atual ou antes e estão adquiridos. Nunca um veredito: dependem do ensino.",
     "goalsDone": "Adquirido"

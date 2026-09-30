@@ -60,6 +60,55 @@
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
   },
   {
+   "skillId": "com.makes_sounds",
+   "status": "achieved",
+   "observedOn": "2022-03-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.opens_hands",
+   "status": "achieved",
+   "observedOn": "2022-03-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.moves_limbs",
+   "status": "achieved",
+   "observedOn": "2022-03-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.calms",
+   "status": "achieved",
+   "observedOn": "2022-03-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.happy_to_see",
+   "status": "achieved",
+   "observedOn": "2022-03-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.looks_face",
+   "status": "achieved",
+   "observedOn": "2022-03-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.looks_toy",
+   "status": "achieved",
+   "observedOn": "2022-03-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
    "skillId": "hand.holds_toy",
    "status": "achieved",
    "observedOn": "2022-04-04",
@@ -144,6 +193,62 @@
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
   },
   {
+   "skillId": "auto.opens_mouth",
+   "status": "achieved",
+   "observedOn": "2022-05-22",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.sounds_back",
+   "status": "achieved",
+   "observedOn": "2022-05-22",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.hands_to_mouth",
+   "status": "achieved",
+   "observedOn": "2022-05-22",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.swings_at_toys",
+   "status": "achieved",
+   "observedOn": "2022-05-22",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.elbows_tummy",
+   "status": "achieved",
+   "observedOn": "2022-05-22",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.chuckles",
+   "status": "achieved",
+   "observedOn": "2022-05-22",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.smiles_attention",
+   "status": "achieved",
+   "observedOn": "2022-05-22",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.looks_hands",
+   "status": "achieved",
+   "observedOn": "2022-05-22",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
    "skillId": "com.responds_name",
    "status": "achieved",
    "observedOn": "2022-06-04",
@@ -177,6 +282,27 @@
    "observedOn": "2022-07-04",
    "approximate": true,
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
+  },
+  {
+   "skillId": "auto.closes_lips",
+   "status": "achieved",
+   "observedOn": "2022-07-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.squeals",
+   "status": "achieved",
+   "observedOn": "2022-07-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.turn_taking_sounds",
+   "status": "achieved",
+   "observedOn": "2022-07-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
   },
   {
    "skillId": "lit.looks_pages",
@@ -221,11 +347,60 @@
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
   },
   {
+   "skillId": "com.arms_up",
+   "status": "achieved",
+   "observedOn": "2022-09-29",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.rake",
+   "status": "achieved",
+   "observedOn": "2022-09-29",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.sit_up_alone",
+   "status": "achieved",
+   "observedOn": "2022-09-29",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.facial_expressions",
+   "status": "achieved",
+   "observedOn": "2022-09-29",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.reacts_leave",
+   "status": "achieved",
+   "observedOn": "2022-09-29",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.object_permanence",
+   "status": "achieved",
+   "observedOn": "2022-09-29",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
    "skillId": "hand.pincer",
    "status": "achieved",
    "observedOn": "2022-10-04",
    "approximate": true,
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
+  },
+  {
+   "skillId": "mob.cruise",
+   "status": "achieved",
+   "observedOn": "2022-11-11",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
   },
   {
    "skillId": "com.first_words",
@@ -247,6 +422,41 @@
    "observedOn": "2022-12-04",
    "approximate": true,
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
+  },
+  {
+   "skillId": "com.mama_dada",
+   "status": "achieved",
+   "observedOn": "2022-12-18",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.container",
+   "status": "achieved",
+   "observedOn": "2022-12-18",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.pull_to_stand",
+   "status": "achieved",
+   "observedOn": "2022-12-18",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.finds_hidden",
+   "status": "achieved",
+   "observedOn": "2022-12-18",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.stand_alone",
+   "status": "achieved",
+   "observedOn": "2022-12-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
   },
   {
    "skillId": "auto.cup_held",
@@ -333,6 +543,27 @@
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
   },
   {
+   "skillId": "com.looks_named_object",
+   "status": "achieved",
+   "observedOn": "2023-03-10",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.claps_excited",
+   "status": "achieved",
+   "observedOn": "2023-03-10",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.shows_object",
+   "status": "achieved",
+   "observedOn": "2023-03-10",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
    "skillId": "auto.tries_spoon",
    "status": "achieved",
    "observedOn": "2023-04-04",
@@ -396,6 +627,62 @@
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
   },
   {
+   "skillId": "auto.cup_alone",
+   "status": "achieved",
+   "observedOn": "2023-05-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "auto.hands_wash",
+   "status": "achieved",
+   "observedOn": "2023-05-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "auto.helps_dress",
+   "status": "achieved",
+   "observedOn": "2023-05-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.points_show",
+   "status": "achieved",
+   "observedOn": "2023-05-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.three_words",
+   "status": "achieved",
+   "observedOn": "2023-05-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.climb_couch",
+   "status": "achieved",
+   "observedOn": "2023-05-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.plays_simple",
+   "status": "achieved",
+   "observedOn": "2023-05-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.copies_chores",
+   "status": "achieved",
+   "observedOn": "2023-05-28",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
    "skillId": "com.names_in_book",
    "status": "achieved",
    "observedOn": "2023-07-04",
@@ -450,6 +737,55 @@
    "observedOn": "2023-10-04",
    "approximate": true,
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
+  },
+  {
+   "skillId": "auto.spoon",
+   "status": "achieved",
+   "observedOn": "2023-11-02",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.gestures",
+   "status": "achieved",
+   "observedOn": "2023-11-02",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.two_hands",
+   "status": "achieved",
+   "observedOn": "2023-11-02",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.stairs_up",
+   "status": "achieved",
+   "observedOn": "2023-11-02",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.several_toys",
+   "status": "achieved",
+   "observedOn": "2023-11-02",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.social_referencing",
+   "status": "achieved",
+   "observedOn": "2023-11-02",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.toy_switches",
+   "status": "achieved",
+   "observedOn": "2023-11-02",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
   },
   {
    "skillId": "auto.undress",
@@ -592,6 +928,13 @@
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
   },
   {
+   "skillId": "mob.tiptoe",
+   "status": "achieved",
+   "observedOn": "2024-02-04",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
    "skillId": "com.points_book",
    "status": "achieved",
    "observedOn": "2024-03-04",
@@ -648,6 +991,41 @@
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
   },
   {
+   "skillId": "com.fifty_words",
+   "status": "achieved",
+   "observedOn": "2024-04-08",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.twist",
+   "status": "achieved",
+   "observedOn": "2024-04-08",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.look_at_me",
+   "status": "achieved",
+   "observedOn": "2024-04-08",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.routines",
+   "status": "achieved",
+   "observedOn": "2024-04-08",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.problem_solving",
+   "status": "achieved",
+   "observedOn": "2024-04-08",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
    "skillId": "com.sentences_4",
    "status": "achieved",
    "observedOn": "2024-06-04",
@@ -674,6 +1052,308 @@
    "observedOn": "2024-07-04",
    "approximate": true,
    "note": "Imported from BabyPerfMGT.xlsx (month precision)"
+  },
+  {
+   "skillId": "auto.toilet_day",
+   "status": "achieved",
+   "observedOn": "2024-08-05",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "math.one_many",
+   "status": "achieved",
+   "observedOn": "2024-08-05",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "auto.dress_some",
+   "status": "achieved",
+   "observedOn": "2024-09-14",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.conversation_2",
+   "status": "achieved",
+   "observedOn": "2024-09-14",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.describes_action",
+   "status": "achieved",
+   "observedOn": "2024-09-14",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.first_name",
+   "status": "achieved",
+   "observedOn": "2024-09-14",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.beads",
+   "status": "achieved",
+   "observedOn": "2024-09-14",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.calms_dropoff",
+   "status": "achieved",
+   "observedOn": "2024-09-14",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.hot_warning",
+   "status": "achieved",
+   "observedOn": "2024-09-14",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.stairs_alternate",
+   "status": "achieved",
+   "observedOn": "2025-02-04",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.affection_friends",
+   "status": "achieved",
+   "observedOn": "2025-02-04",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "auto.serves_self",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "auto.unbuttons",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.tells_day",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.what_for",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.person_3",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.tripod",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "lit.next_in_story",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.catch_big_ball",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.adapts_place",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.asks_play",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.avoids_danger",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.comforts",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.helper",
+   "status": "achieved",
+   "observedOn": "2025-07-30",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.cross",
+   "status": "achieved",
+   "observedOn": "2025-08-05",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "math.give_n",
+   "status": "achieved",
+   "observedOn": "2025-08-05",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "math.shapes_3",
+   "status": "achieved",
+   "observedOn": "2025-08-05",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "math.subitize_3",
+   "status": "achieved",
+   "observedOn": "2025-08-05",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "lit.recognises_name",
+   "status": "achieved",
+   "observedOn": "2026-02-04",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "math.same_different",
+   "status": "achieved",
+   "observedOn": "2026-02-04",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.names_emotions",
+   "status": "achieved",
+   "observedOn": "2026-02-04",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.square",
+   "status": "achieved",
+   "observedOn": "2026-06-06",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "auto.buttons",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "auto.chores",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.conversation_3",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "com.story_2_events",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "hand.letters_name",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "lit.answers_story",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "lit.letter_names",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "lit.rhymes",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "mob.hop",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "soc.performs",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
+  },
+  {
+   "skillId": "think.attention_5_10",
+   "status": "achieved",
+   "observedOn": "2026-06-12",
+   "approximate": true,
+   "note": "Assumed at the typical age (filled up to 3 months before 2026-09-30)"
   }
- ]
+ ],
+ "version": 2
 }

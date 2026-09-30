@@ -30,8 +30,10 @@ create table if not exists public.child (
   first_name text not null,
   birth_date date not null,
   gestational_weeks int,
-  home_languages text[] not null default '{}'
+  home_languages text[] not null default '{}',
+  seed_version int not null default 1
 );
+alter table public.child add column if not exists seed_version int not null default 1;
 
 create table if not exists public.observation (
   id uuid primary key default gen_random_uuid(),
