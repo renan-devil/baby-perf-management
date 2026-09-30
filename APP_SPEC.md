@@ -1,5 +1,7 @@
-# Constance's Development Tracker: App Specification (v0.3, draft to amend)
+# Constance's Development Tracker: App Specification (v1.0, agreed; amend any time)
 
+> **v1.0:** all open decisions answered (see §10). This version is the basis for the build.
+>
 > **v0.3 changes:** the app is **private, for Constance only**, not commercial and not
 > open to other families. It is still online and shared between devices, by invitation only.
 > Birth date confirmed: **4 February 2022**. §1, §3.7, §6 and §8–10 are simplified.
@@ -14,7 +16,7 @@
 >   family devices (§6.3), and the interface is in **FR / EN / PT** (§6.5).
 
 > **How to use this document.** This is a working draft. Amend anything directly.
-> Items marked **🟡 DECISION** need your call before we build. Items marked
+> Items marked **✅ DECIDED** record your choices. Items marked
 > **⚠️ NOTE** are things I found in the Excel file that we should fix.
 
 ---
@@ -187,8 +189,7 @@ than **maturational**. So each skill has a `kind`:
 **Constance is 4 years 7 months today**, so the useful part for her right now is the end of A
 plus the 4–7 year part of Marble.
 
-🟡 **DECISION 1: which Marble subjects to include?** *Recommendation:* import all 8 subjects
-but show only topics whose age range starts ≤ the child's age + 2 years. For Constance (4.6 y)
+✅ **DECIDED: all 8 Marble subjects** are imported. The app shows only topics whose age range starts ≤ the child's age + 2 years. For Constance (4.6 y)
 that means 426 Marble topics (age range starting at 4, 5 or 6), which is manageable, and the list grows as she grows.
 
 ### 3.5 Three languages at home (EN / FR / PT)
@@ -208,8 +209,9 @@ What research says, and what the app does about it:
   French and Portuguese will use our own items, because Marble has no equivalent.
 - **Mathematics, science and social skills** are language-neutral and shared.
 
-🟡 **DECISION 2:** which language will school reading be taught in (probably French)? That
-language's literacy track comes first.
+✅ **DECIDED: school reading is in French**, so the French literacy track is built first
+(our own items for sounds and letters, following the French *maternelle* / CP progression).
+English uses Marble's items. Portuguese is added later.
 
 ### 3.6 Links between skills (dependencies)
 
@@ -299,7 +301,7 @@ hundreds of earlier ones, which you can then correct.
 Growth curves (WHO), sleep and feeding logs, vaccination record, AI-generated activity
 suggestions, a public social feed or profiles, and school or teacher accounts.
 
-🟡 **DECISION 3:** confirm this list.
+✅ **DECIDED:** list confirmed.
 
 ---
 
@@ -447,7 +449,7 @@ Notes:
   words per language for Marble alone. Machine translation plus human review of the **4–7 year** range first
   (~430 Marble topics + our 3–5 y items) keeps this manageable.
 
-🟡 **DECISION 4: Portuguese variant**: European (pt-PT) or Brazilian (pt-BR)?
+✅ **DECIDED: European Portuguese (pt-PT).**
 
 ### 6.6 Repository layout
 ```
@@ -511,7 +513,6 @@ We validate with you after steps 1, 4 and 5.
 
 ## 10. Decisions
 
-### Answered
 | Question | Your answer |
 |---|---|
 | Birth date | **4 February 2022** (confirmed), so 4 y 7 m today |
@@ -521,11 +522,11 @@ We validate with you after steps 1, 4 and 5.
 | Interface | FR / EN / PT (§6.5) |
 | Subjects, timeline beyond 36 m, dependencies + visualisation | Included (§3.2–3.6, §4.1, §5.5–5.6), inspired by the Marble taxonomy |
 
-### Still open
-| # | Question | My recommendation |
-|---|---|---|
-| 1 | Which Marble subjects to include | All 8, filtered by age |
-| 2 | Language of school reading | Probably French, so that literacy track first |
-| 3 | Out-of-scope list for v1 (§4.3) | As listed |
-| 4 | Portuguese variant | pt-PT or pt-BR |
-| 5 | Gestational age at birth (for corrected age) | Only if Constance was born before 37 weeks |
+| Marble subjects | All 8, filtered by age (§3.4) |
+| School reading language | French: its literacy track comes first (§3.5) |
+| Out-of-scope list for v1 | Confirmed (§4.3) |
+| Portuguese variant | European, pt-PT (§6.5) |
+| Premature birth | No, so corrected age is not used for Constance (the field stays optional) |
+
+No decisions are open. Next is **build step 1** (§8): catalogue A, the bridge links to
+Marble, and the Excel mapping table, for your review.
