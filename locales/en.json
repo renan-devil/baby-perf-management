@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "Development tracker",
+    "readOnly": "Read-only"
+  },
+  "common": {
+    "close": "Close",
+    "delete": "Delete",
+    "loading": "Loading…",
+    "notTranslated": "Not translated yet (shown in English)",
+    "save": "Save"
+  },
+  "nav": {
+    "today": "Today",
+    "skills": "Skills",
+    "map": "Map",
+    "progress": "Progress",
+    "journal": "Journal"
+  },
+  "age": {
+    "full": "{{y}} y {{m}} m {{d}} d",
+    "months_one": "{{count}} month",
+    "months_other": "{{count}} months",
+    "years_one": "{{count}} year",
+    "years_other": "{{count}} years",
+    "yearsMonths": "{{y}} y {{m}} m"
+  },
+  "status": {
+    "early": "Early",
+    "in_window": "In the normal window",
+    "later": "Later than most (achieved)",
+    "not_expected_yet": "Not expected yet",
+    "in_window_pending": "In its window",
+    "discuss": "Worth discussing with the pediatrician",
+    "regression": "Lost skill: discuss soon",
+    "not_yet": "Not yet",
+    "ready": "Ready to learn",
+    "emerging": "Emerging",
+    "achieved": "Achieved",
+    "implied": "Probably achieved",
+    "observed": "Observed",
+    "unlogged": "Not logged (probably acquired long ago)",
+    "not_observed": "Not observed"
+  },
+  "obs": {
+    "achieved": "Achieved",
+    "emerging": "Emerging",
+    "not_yet": "Not yet",
+    "lost": "Lost"
+  },
+  "lang": {
+    "fr": "French",
+    "en": "English",
+    "pt": "Portuguese"
+  },
+  "role": {
+    "owner": "Owner",
+    "editor": "Editor",
+    "viewer": "Viewer"
+  },
+  "link": {
+    "hard": "required first",
+    "soft": "usually comes first"
+  },
+  "today": {
+    "log": "Log a skill",
+    "alerts_one": "{{count}} milestone worth discussing with the pediatrician",
+    "alerts_other": "{{count}} milestones worth discussing with the pediatrician",
+    "upNext": "Up next",
+    "upNextHelp": "Skills whose prerequisites are done and that fit the current age.",
+    "unlocks_one": "Unlocks {{count}} skill",
+    "unlocks_other": "Unlocks {{count}} skills",
+    "timely": "Timely for this age",
+    "nothingNext": "Nothing to suggest right now.",
+    "checkin": "Quick check-in: what can she do today?",
+    "recent": "Recently logged",
+    "noRecent": "Nothing logged yet."
+  },
+  "log": {
+    "title": "Log a skill",
+    "search": "Search a skill…",
+    "noResult": "No skill found.",
+    "change": "Change",
+    "status": "Status",
+    "date": "Date",
+    "languages": "In which language(s)?",
+    "note": "Note (optional)"
+  },
+  "skills": {
+    "title": "Skills",
+    "search": "Search…",
+    "allSubjects": "All",
+    "age": "Age",
+    "aroundAge": "Up to 18 months ahead",
+    "allAges": "All ages",
+    "status": "Status",
+    "allStatus": "All statuses",
+    "todo": "To do",
+    "done": "Achieved",
+    "count_one": "{{count}} skill",
+    "count_other": "{{count}} skills",
+    "none": "No skill matches these filters.",
+    "more": "Show more"
+  },
+  "skill": {
+    "notFound": "Skill not found.",
+    "achievedToday": "Achieved today",
+    "logOther": "Log…",
+    "onMap": "See on the map",
+    "evidence": "What counts",
+    "ask": "Ask yourself:",
+    "activities": "Activities that help",
+    "reference": "Reference",
+    "window": "Normal window: {{from}} to {{to}}",
+    "ageRange": "Typical age: {{from}}–{{to}} years",
+    "median": "half of children by {{age}}",
+    "measured": "measured (WHO)",
+    "estimated": "estimated",
+    "learningGoalNote": "A learning goal: it depends on teaching and exposure, so it is never marked as late.",
+    "percentile": "Achieved at about the {{p}}th percentile (earlier than about {{rest}}% of children).",
+    "source": "Source",
+    "prerequisites_one": "Comes after ({{count}})",
+    "prerequisites_other": "Comes after ({{count}})",
+    "unlocks_one": "Opens the way to ({{count}} in total)",
+    "unlocks_other": "Opens the way to ({{count}} in total)",
+    "history": "History",
+    "noHistory": "Nothing logged yet.",
+    "approximate": "approximate date",
+    "confirmDelete": "Delete this entry?"
+  },
+  "map": {
+    "title": "Skill map",
+    "focus": "Focus",
+    "subject": "By subject",
+    "whole": "Whole map",
+    "legendDone": "Achieved",
+    "legendProgress": "In progress / ready",
+    "searchFocus": "Centre the map on a skill…",
+    "openSkill": "Open",
+    "focusHelp": "Above: what comes before. Below: what it opens. Tap a skill to move the focus.",
+    "ahead": "How far ahead",
+    "aheadN_one": "Up to {{count}} year ahead",
+    "aheadN_other": "Up to {{count}} years ahead",
+    "subjectHelp": "Arrows point from a skill to the ones it opens. Tap a skill to focus on it.",
+    "tooMany": "Showing the {{shown}} closest to the current age out of {{total}}.",
+    "wholeHelp": "{{done}} of {{total}} skills achieved (bright dots). Tap a dot to open it in focus."
+  },
+  "progress": {
+    "title": "Progress",
+    "milestonesDone": "milestones achieved (of {{total}})",
+    "expectedNow": "expected on average at this age",
+    "toDiscuss": "to discuss with the pediatrician",
+    "curveTitle": "Milestones over time",
+    "curveHelp": "Cumulative number of milestones reached by each age, compared with a typical child (dashed) and the usual range (shaded band, about the 10th to 90th percentile).",
+    "ageMonths": "Age (months)",
+    "band": "Usual range",
+    "expected": "Typical child",
+    "today": "today",
+    "curveNote": "Based on {{dated}} dated milestones; the line stops at the last one logged. The band is approximate: milestones are not independent, so the real range is wider.",
+    "showTable": "Show as table",
+    "hideTable": "Hide table",
+    "devTitle": "Developmental age by subject",
+    "devHelp": "The age at which a typical child has reached as many milestones in that subject. Actual age: {{age}}.",
+    "devAge": "Developmental age",
+    "actualAge": "actual age",
+    "devNote": "Counts achieved and probably-achieved milestones. It stops being informative once all milestones of a subject are achieved (around 5–6 years).",
+    "goalsTitle": "Learning goals for this age",
+    "goalsHelp": "Share of learning goals (school-type skills) starting at or before the current age that are achieved. Never a verdict: these depend on teaching.",
+    "goalsDone": "Achieved"
+  },
+  "journal": {
+    "title": "Journal",
+    "placeholder": "What did {{name}} do today?",
+    "photo": "Photo",
+    "linkSkill": "Link a skill (optional)…",
+    "add": "Add to journal",
+    "empty": "No entries yet.",
+    "confirmDelete": "Delete this entry?"
+  },
+  "alerts": {
+    "title": "To discuss",
+    "explain": "These milestones are past the age by which 90% of children have them, or a skill was lost. This is not a diagnosis: children vary a lot. Mention them at the next check-up; a lost skill is worth mentioning soon.",
+    "none": "Nothing to discuss."
+  },
+  "checkin": {
+    "title": "Quick check-in",
+    "help": "Tick what she can do today. Earlier skills that are required first are then counted as probably achieved.",
+    "none": "Nothing to check in this subject around this age.",
+    "note": "Quick check-in",
+    "save_one": "Save {{count}} skill",
+    "save_other": "Save {{count}} skills"
+  },
+  "setup": {
+    "title": "Welcome",
+    "importTitle": "Constance's history",
+    "importHelp": "Create Constance's profile (born 4 February 2022) and import {{count}} milestones from the Excel file.",
+    "import": "Import Constance's history",
+    "or": "or",
+    "newTitle": "Start with an empty profile",
+    "create": "Create"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Interface language",
+    "child": "Child",
+    "firstName": "First name",
+    "birthDate": "Birth date",
+    "gestationalWeeks": "Weeks of pregnancy at birth (only if premature)",
+    "homeLanguages": "Languages at home",
+    "saved": "Saved.",
+    "storage": "Storage",
+    "localMode": "Data is stored only in this browser. To share it between the family's phones, set up the online database (see README).",
+    "family": "Family",
+    "familyHelp": "People you invite can sign in with their email once their account exists in Supabase (Authentication → Users → Invite).",
+    "pending": "pending",
+    "invite": "Invite",
+    "share": "Read-only link",
+    "shareHelp": "For example for the pediatrician. Valid 30 days, can be revoked.",
+    "createLink": "Create a link",
+    "revokeLinks": "Revoke all links",
+    "data": "Data",
+    "export": "Export everything (JSON)",
+    "importFile": "Restore from an export",
+    "importExcel": "Import the Excel history ({{count}} milestones)",
+    "imported": "Imported.",
+    "confirmReplace": "Replace all current data with this file?",
+    "deleteAll": "Delete all data",
+    "confirmDeleteAll": "Delete the profile, all observations and the journal? This cannot be undone.",
+    "signOut": "Sign out"
+  },
+  "about": {
+    "title": "About & credits",
+    "intro": "A private family app to follow a child's skills against scientifically sourced reference ages, and to suggest what to work on next.",
+    "notMedical": "This is not a medical or diagnostic tool. Children vary a lot; when in doubt, talk to your pediatrician.",
+    "thanks": "Thank you, Marble",
+    "marble": "The {{count}} school-age skills and their prerequisite links (ages 4 to 13) come from the Marble Skill Taxonomy, an open dataset made by our friends at Marble. Thank you!",
+    "sources": "Scientific sources",
+    "ownCatalog": "The {{count}} early-development skills (birth to 6 years) were compiled from:",
+    "estimates": "Where a source gives a single age (e.g. CDC's 75th percentile), the other percentiles are estimated and marked as such.",
+    "licence": "Licence",
+    "mit": "The app code and our own catalogue are under the MIT licence. Marble's data keeps its own licences (ODbL 1.0 and CC BY-SA 4.0)."
+  },
+  "login": {
+    "help": "Sign in with the email address you were invited with. You will receive a 6-digit code.",
+    "send": "Send me a code",
+    "sent": "Check your email and type the code (or tap the link in the email).",
+    "verify": "Sign in",
+    "error": "Could not sign in: {{message}}"
+  },
+  "share": {
+    "invalid": "This link is invalid or has expired."
+  }
+}

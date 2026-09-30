@@ -1,0 +1,34 @@
+type	id	parent	color	order	name_en	name_fr	name_pt
+subject	mobility		#2a78d6	1	Mobility	Motricité	Mobilidade
+subject	hands		#eb6834	2	Hand skills	Habileté manuelle	Motricidade fina
+subject	communication		#1baf7a	3	Communication	Communication	Comunicação
+subject	literacy		#eda100	4	Literacy	Lecture et écriture	Leitura e escrita
+subject	mathematics		#e87ba4	5	Mathematics	Mathématiques	Matemática
+subject	thinking		#008300	6	Thinking & discovery	Réflexion et découverte	Pensamento e descoberta
+subject	social		#4a3aa7	7	Personal & social development	Développement personnel et social	Desenvolvimento pessoal e social
+subject	autonomy		#e34948	8	Autonomy & life skills	Autonomie et vie pratique	Autonomia e vida prática
+subject	history		#8a8984	9	History	Histoire	História
+subject	computing		#8a8984	10	Computing	Informatique	Informática
+domain	mob.posture	mobility		1	Posture & moving around	Posture et déplacements	Postura e deslocação
+domain	mob.balance	mobility		2	Balance, jumping & ball games	Équilibre, sauts et jeux de ballon	Equilíbrio, saltos e jogos com bola
+domain	hand.grasp	hands		1	Grasping & handling objects	Préhension et manipulation	Preensão e manipulação
+domain	hand.draw	hands		2	Drawing & handwriting	Dessin et graphisme	Desenho e grafismo
+domain	hand.tools	hands		3	Using tools	Utiliser des outils	Usar ferramentas
+domain	com.understand	communication		1	Understanding language	Compréhension du langage	Compreensão da linguagem
+domain	com.speak	communication		2	Speaking	Expression orale	Expressão oral
+domain	com.conversation	communication		3	Conversation & storytelling	Conversation et récit	Conversa e narração
+domain	lit.books	literacy		1	Books, stories & print	Livres, histoires et écrit	Livros, histórias e escrita
+domain	lit.fr.sounds	literacy		2	French: sounds of words	Français : les sons des mots	Francês: os sons das palavras
+domain	lit.fr.letters	literacy		3	French: letters & writing	Français : lettres et écriture	Francês: letras e escrita
+domain	lit.fr.reading	literacy		4	French: reading	Français : lecture	Francês: leitura
+domain	math.number	mathematics		1	Quantities & counting	Quantités et dénombrement	Quantidades e contagem
+domain	math.shapes	mathematics		2	Shapes, space & patterns	Formes, espace et algorithmes	Formas, espaço e padrões
+domain	math.measure	mathematics		3	Sizes & comparing	Grandeurs et comparaisons	Grandezas e comparações
+domain	think.problem	thinking		1	Exploring & problem solving	Exploration et résolution de problèmes	Exploração e resolução de problemas
+domain	think.world	thinking		2	Knowledge of the world	Connaissance du monde	Conhecimento do mundo
+domain	soc.relations	social		1	Relationships & play	Relations et jeu	Relações e brincadeira
+domain	soc.emotions	social		2	Emotions & self-regulation	Émotions et régulation	Emoções e autorregulação
+domain	soc.observations	social		3	Observations (not scored)	Observations (non notées)	Observações (sem pontuação)
+domain	auto.eating	autonomy		1	Eating & drinking	Manger et boire	Comer e beber
+domain	auto.dressing	autonomy		2	Dressing	S'habiller	Vestir-se
+domain	auto.hygiene	autonomy		3	Hygiene, toilet & safety	Hygiène, propreté et sécurité	Higiene, bacio e segurança

@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "Suivi du développement",
+    "readOnly": "Lecture seule"
+  },
+  "common": {
+    "close": "Fermer",
+    "delete": "Supprimer",
+    "loading": "Chargement…",
+    "notTranslated": "Pas encore traduit (affiché en anglais)",
+    "save": "Enregistrer"
+  },
+  "nav": {
+    "today": "Aujourd'hui",
+    "skills": "Compétences",
+    "map": "Carte",
+    "progress": "Progrès",
+    "journal": "Journal"
+  },
+  "age": {
+    "full": "{{y}} ans {{m}} mois {{d}} jours",
+    "months_one": "{{count}} mois",
+    "months_other": "{{count}} mois",
+    "years_one": "{{count}} an",
+    "years_other": "{{count}} ans",
+    "yearsMonths": "{{y}} ans {{m}} mois"
+  },
+  "status": {
+    "early": "Précoce",
+    "in_window": "Dans la fenêtre normale",
+    "later": "Plus tard que la moyenne (acquis)",
+    "not_expected_yet": "Pas encore attendu",
+    "in_window_pending": "Dans sa fenêtre",
+    "discuss": "À évoquer avec le pédiatre",
+    "regression": "Compétence perdue : à évoquer rapidement",
+    "not_yet": "Pas encore",
+    "ready": "Prêt à apprendre",
+    "emerging": "En cours",
+    "achieved": "Acquis",
+    "implied": "Probablement acquis",
+    "observed": "Observé",
+    "unlogged": "Non noté (sans doute acquis depuis longtemps)",
+    "not_observed": "Non observé"
+  },
+  "obs": {
+    "achieved": "Acquis",
+    "emerging": "En cours",
+    "not_yet": "Pas encore",
+    "lost": "Perdu"
+  },
+  "lang": {
+    "fr": "Français",
+    "en": "Anglais",
+    "pt": "Portugais"
+  },
+  "role": {
+    "owner": "Propriétaire",
+    "editor": "Éditeur",
+    "viewer": "Lecteur"
+  },
+  "link": {
+    "hard": "prérequis indispensable",
+    "soft": "vient généralement avant"
+  },
+  "today": {
+    "log": "Noter une compétence",
+    "alerts_one": "{{count}} étape à évoquer avec le pédiatre",
+    "alerts_other": "{{count}} étapes à évoquer avec le pédiatre",
+    "upNext": "À travailler maintenant",
+    "upNextHelp": "Compétences dont les prérequis sont acquis et adaptées à l'âge actuel.",
+    "unlocks_one": "Ouvre la voie à {{count}} compétence",
+    "unlocks_other": "Ouvre la voie à {{count}} compétences",
+    "timely": "D'actualité à cet âge",
+    "nothingNext": "Rien à suggérer pour le moment.",
+    "checkin": "Point rapide : que sait-elle faire aujourd'hui ?",
+    "recent": "Notés récemment",
+    "noRecent": "Rien de noté pour l'instant."
+  },
+  "log": {
+    "title": "Noter une compétence",
+    "search": "Chercher une compétence…",
+    "noResult": "Aucune compétence trouvée.",
+    "change": "Changer",
+    "status": "Statut",
+    "date": "Date",
+    "languages": "Dans quelle(s) langue(s) ?",
+    "note": "Note (facultatif)"
+  },
+  "skills": {
+    "title": "Compétences",
+    "search": "Rechercher…",
+    "allSubjects": "Toutes",
+    "age": "Âge",
+    "aroundAge": "Jusqu'à 18 mois d'avance",
+    "allAges": "Tous âges",
+    "status": "Statut",
+    "allStatus": "Tous statuts",
+    "todo": "À venir",
+    "done": "Acquises",
+    "count_one": "{{count}} compétence",
+    "count_other": "{{count}} compétences",
+    "none": "Aucune compétence ne correspond.",
+    "more": "Afficher plus"
+  },
+  "skill": {
+    "notFound": "Compétence introuvable.",
+    "achievedToday": "Acquis aujourd'hui",
+    "logOther": "Noter…",
+    "onMap": "Voir sur la carte",
+    "evidence": "Ce qui compte",
+    "ask": "Question à se poser :",
+    "activities": "Activités qui aident",
+    "reference": "Référence",
+    "window": "Fenêtre normale : de {{from}} à {{to}}",
+    "ageRange": "Âge typique : {{from}}–{{to}} ans",
+    "median": "la moitié des enfants à {{age}}",
+    "measured": "mesuré (OMS)",
+    "estimated": "estimé",
+    "learningGoalNote": "Un objectif d'apprentissage : il dépend de l'enseignement et de l'exposition, il n'est donc jamais marqué « en retard ».",
+    "percentile": "Acquis vers le {{p}}e percentile (plus tôt qu'environ {{rest}} % des enfants).",
+    "source": "Source",
+    "prerequisites_one": "Vient après ({{count}})",
+    "prerequisites_other": "Vient après ({{count}})",
+    "unlocks_one": "Ouvre la voie à ({{count}} au total)",
+    "unlocks_other": "Ouvre la voie à ({{count}} au total)",
+    "history": "Historique",
+    "noHistory": "Rien de noté.",
+    "approximate": "date approximative",
+    "confirmDelete": "Supprimer cette entrée ?"
+  },
+  "map": {
+    "title": "Carte des compétences",
+    "focus": "Zoom",
+    "subject": "Par matière",
+    "whole": "Carte complète",
+    "legendDone": "Acquis",
+    "legendProgress": "En cours / prêt",
+    "searchFocus": "Centrer la carte sur une compétence…",
+    "openSkill": "Ouvrir",
+    "focusHelp": "Au-dessus : ce qui vient avant. En dessous : ce que cela ouvre. Touchez une compétence pour recentrer.",
+    "ahead": "Jusqu'à quel âge",
+    "aheadN_one": "Jusqu'à {{count}} an d'avance",
+    "aheadN_other": "Jusqu'à {{count}} ans d'avance",
+    "subjectHelp": "Les flèches vont d'une compétence vers celles qu'elle ouvre. Touchez une compétence pour zoomer dessus.",
+    "tooMany": "Affichage des {{shown}} plus proches de l'âge actuel sur {{total}}.",
+    "wholeHelp": "{{done}} compétences acquises sur {{total}} (points vifs). Touchez un point pour zoomer dessus."
+  },
+  "progress": {
+    "title": "Progrès",
+    "milestonesDone": "étapes acquises (sur {{total}})",
+    "expectedNow": "attendues en moyenne à cet âge",
+    "toDiscuss": "à évoquer avec le pédiatre",
+    "curveTitle": "Étapes au fil du temps",
+    "curveHelp": "Nombre cumulé d'étapes atteintes à chaque âge, comparé à un enfant typique (pointillés) et à la fourchette habituelle (bande, environ 10e–90e percentile).",
+    "ageMonths": "Âge (mois)",
+    "band": "Fourchette habituelle",
+    "expected": "Enfant typique",
+    "today": "aujourd'hui",
+    "curveNote": "Basé sur {{dated}} étapes datées. La bande est approximative : les étapes ne sont pas indépendantes, la vraie fourchette est plus large.",
+    "showTable": "Afficher en tableau",
+    "hideTable": "Masquer le tableau",
+    "devTitle": "Âge de développement par matière",
+    "devHelp": "L'âge auquel un enfant typique a atteint autant d'étapes dans cette matière. Âge réel : {{age}}.",
+    "devAge": "Âge de développement",
+    "actualAge": "âge réel",
+    "devNote": "Compte les étapes acquises et probablement acquises. Devient peu informatif quand toutes les étapes d'une matière sont acquises (vers 5–6 ans).",
+    "goalsTitle": "Objectifs d'apprentissage pour cet âge",
+    "goalsHelp": "Part des objectifs d'apprentissage (type école) commençant à l'âge actuel ou avant qui sont acquis. Jamais un verdict : cela dépend de l'enseignement.",
+    "goalsDone": "Acquis"
+  },
+  "journal": {
+    "title": "Journal",
+    "placeholder": "Qu'a fait {{name}} aujourd'hui ?",
+    "photo": "Photo",
+    "linkSkill": "Lier une compétence (facultatif)…",
+    "add": "Ajouter au journal",
+    "empty": "Aucune entrée pour l'instant.",
+    "confirmDelete": "Supprimer cette entrée ?"
+  },
+  "alerts": {
+    "title": "À évoquer",
+    "explain": "Ces étapes dépassent l'âge auquel 90 % des enfants les ont, ou une compétence a été perdue. Ce n'est pas un diagnostic : les enfants varient beaucoup. Parlez-en au prochain rendez-vous ; une compétence perdue mérite d'être signalée rapidement.",
+    "none": "Rien à signaler."
+  },
+  "checkin": {
+    "title": "Point rapide",
+    "help": "Cochez ce qu'elle sait faire aujourd'hui. Les compétences indispensables avant seront alors comptées comme probablement acquises.",
+    "none": "Rien à vérifier dans cette matière autour de cet âge.",
+    "note": "Point rapide",
+    "save_one": "Enregistrer {{count}} compétence",
+    "save_other": "Enregistrer {{count}} compétences"
+  },
+  "setup": {
+    "title": "Bienvenue",
+    "importTitle": "Historique de Constance",
+    "importHelp": "Créer le profil de Constance (née le 4 février 2022) et importer {{count}} étapes du fichier Excel.",
+    "import": "Importer l'historique de Constance",
+    "or": "ou",
+    "newTitle": "Commencer avec un profil vide",
+    "create": "Créer"
+  },
+  "settings": {
+    "title": "Réglages",
+    "language": "Langue de l'interface",
+    "child": "Enfant",
+    "firstName": "Prénom",
+    "birthDate": "Date de naissance",
+    "gestationalWeeks": "Semaines de grossesse à la naissance (seulement si prématuré)",
+    "homeLanguages": "Langues à la maison",
+    "saved": "Enregistré.",
+    "storage": "Stockage",
+    "localMode": "Les données sont stockées uniquement dans ce navigateur. Pour les partager entre les téléphones de la famille, configurez la base en ligne (voir README).",
+    "family": "Famille",
+    "familyHelp": "Les personnes invitées peuvent se connecter avec leur email une fois leur compte créé dans Supabase (Authentication → Users → Invite).",
+    "pending": "en attente",
+    "invite": "Inviter",
+    "share": "Lien en lecture seule",
+    "shareHelp": "Par exemple pour le pédiatre. Valable 30 jours, révocable.",
+    "createLink": "Créer un lien",
+    "revokeLinks": "Révoquer tous les liens",
+    "data": "Données",
+    "export": "Tout exporter (JSON)",
+    "importFile": "Restaurer depuis un export",
+    "importExcel": "Importer l'historique Excel ({{count}} étapes)",
+    "imported": "Importé.",
+    "confirmReplace": "Remplacer toutes les données actuelles par ce fichier ?",
+    "deleteAll": "Supprimer toutes les données",
+    "confirmDeleteAll": "Supprimer le profil, toutes les observations et le journal ? C'est irréversible.",
+    "signOut": "Se déconnecter"
+  },
+  "about": {
+    "title": "À propos et remerciements",
+    "intro": "Une application familiale privée pour suivre les compétences d'un enfant par rapport à des âges de référence scientifiques, et suggérer quoi travailler ensuite.",
+    "notMedical": "Ce n'est pas un outil médical ni de diagnostic. Les enfants varient beaucoup ; en cas de doute, parlez-en à votre pédiatre.",
+    "thanks": "Merci à Marble",
+    "marble": "Les {{count}} compétences d'âge scolaire et leurs liens de prérequis (4 à 13 ans) viennent de la Marble Skill Taxonomy, un jeu de données ouvert créé par nos amis de Marble. Merci !",
+    "sources": "Sources scientifiques",
+    "ownCatalog": "Les {{count}} compétences du jeune enfant (naissance à 6 ans) ont été compilées à partir de :",
+    "estimates": "Quand une source ne donne qu'un âge (par ex. le 75e percentile du CDC), les autres percentiles sont estimés et signalés comme tels.",
+    "licence": "Licence",
+    "mit": "Le code de l'application et notre propre catalogue sont sous licence MIT. Les données de Marble gardent leurs propres licences (ODbL 1.0 et CC BY-SA 4.0)."
+  },
+  "login": {
+    "help": "Connectez-vous avec l'adresse email invitée. Vous recevrez un code à 6 chiffres.",
+    "send": "Recevoir un code",
+    "sent": "Consultez vos emails et saisissez le code (ou touchez le lien de l'email).",
+    "verify": "Se connecter",
+    "error": "Connexion impossible : {{message}}"
+  },
+  "share": {
+    "invalid": "Ce lien est invalide ou a expiré."
+  }
+}
