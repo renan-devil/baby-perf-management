@@ -1,4 +1,13 @@
-# Constance Development Tracker: App Specification (v0.1, draft to amend)
+# Child Development Tracker: App Specification (v0.2, draft to amend)
+
+> **v0.2 changes:**
+> - Skills are grouped by **subject → domain** (§3.3).
+> - The timeline goes **beyond 36 months**, by joining our early catalogue with the open
+>   **Marble Skill Taxonomy** (ages 4–13, §3.2, §3.4).
+> - Skills are **linked by dependencies** (§3.6) and shown on a **skill map** (§4.1, §5.5–5.6).
+> - Your answers are included: Constance was born on **4 February 2022**, she hears
+>   **three languages** (EN / FR / PT, §3.5), the app is **shared and public-facing**
+>   (several families, §6.3), and the interface is in **FR / EN / PT** (§6.5).
 
 > **How to use this document.** This is a working draft. Amend anything directly.
 > Items marked **🟡 DECISION** need your call before we build. Items marked
@@ -8,8 +17,9 @@
 
 ## 1. Purpose
 
-Track Constance's developmental milestones (motor, language, cognitive, social,
-self-care) from birth to about 6 years old, compare her progress with **scientifically
+Track a child's skills, grouped by subject (mobility, language, social skills,
+mathematics, …), from birth to the early school years. Constance is the first user,
+and other families can use the app too. The app compares each child's progress with **scientifically
 sourced reference ages**, and suggest **what to do next** to support the skills
 she is currently developing.
 
@@ -20,7 +30,7 @@ she already had (regression) is always flagged, because that is a recognised war
 ### Goals, in priority order
 1. **Log** quickly: "Constance did X today", from a phone, in under 10 seconds.
 2. **Compare**: is she inside the normal window for each milestone? Where is she
-   ahead or behind, by domain?
+   ahead or behind, by subject?
 3. **Guide**: which skills are "up next" for her age, and which activities help.
 4. **Remember**: keep a dated history (with optional notes and photos) as a family record.
 
@@ -45,7 +55,10 @@ and how many has Constance reached?"* It is a good core idea and we keep it (imp
 
 ### 2.2 Current data snapshot
 - 135 milestones in 14 age bands (0-1 m … 36 m). One row is empty (row 73).
-- Constance has 122 of 135 recorded. The latest entries are at 29 months, so she is probably about 29-30 months old now.
+- Constance has 122 of 135 recorded. The latest entries are at 29 months (about July 2024).
+  With her birth date (4 Feb 2022), she is now **4 years 7 months (≈ 55.9 months)**. So the
+  Excel is about two years out of date, and most of the "36 months" items she hasn't got are
+  probably just not logged. The catalogue must extend well beyond 36 months (§3.3).
 - She is **earlier than the reference for 110 of 122**, the same for 11, later for 1.
   Average difference: **3.4 months earlier**.
 
@@ -73,7 +86,7 @@ and how many has Constance reached?"* It is a good core idea and we keep it (imp
    Keep them as *observations* if you like, but they should not count as "performance".
 5. **Some items are not standard milestones at that age:** "Recites the alphabet" or
    "Recognizes familiar written words" at 3 years depend on exposure, not development norms.
-6. **No domain** (motor / language / …), so no per-domain view.
+6. **No subject** (motor / language / …), so no per-subject view.
 7. **Only month precision** and no dates, so we cannot see progress within a month.
 8. **The data is stored as text inside one cell** and split with formulas. Fragile, but
    easy to migrate (I have parsed it already).
@@ -82,6 +95,8 @@ and how many has Constance reached?"* It is a good core idea and we keep it (imp
 
 ## 3. Scientific basis (the reference data)
 
+### 3.1 Sources
+
 Principle: every reference age in the app comes from a **named source**, and
 wherever possible it is a **distribution** (percentiles), not a single number.
 
@@ -89,7 +104,7 @@ wherever possible it is a **distribution** (percentiles), not a single number.
 |---|---|---|
 | **WHO Motor Development Study** (Multicentre Growth Reference Study, 2006) | 6 gross motor milestones with 1st / 50th / 99th percentile windows, measured on ~800 children in 5 countries | Gold standard for motor: sitting, crawling, standing with help, walking with help, standing alone, walking alone |
 | **CDC / AAP "Learn the Signs. Act Early."** (revised 2022) | Checklists at 2, 4, 6, 9, 12, 15, 18 m, 2, 3, 4, 5 years. Each item is something **75% of children** do by that age | Main catalogue for social, language, cognitive, motor. Also "when to talk to your doctor" flags |
-| **Denver II** (Frankenburg et al.) | Ages at which 25%, 50%, 75%, 90% of children pass each item | Best for percentile curves where available (item details are licensed, so use carefully) |
+| **Denver II** (Frankenburg et al.) | Ages at which 25%, 50%, 75%, 90% of children pass each item | **Internal calibration only.** The item content is copyrighted, so it cannot be published in a public app |
 | **French health booklet** (*carnet de santé*, 2018 edition), optional | Milestones checked at the mandatory check-ups (9 m, 24 m, …) | Aligns the app with what your pediatrician checks |
 
 **Reference model for each milestone:** a small set of percentile points, for example
@@ -100,180 +115,371 @@ any age *t*, the fraction of children who have acquired the skill by age *t*:
 When a source gives only one number (e.g. CDC's 75th percentile), we store it as
 `p75` and mark the other percentiles as estimates, with the confidence shown in the UI.
 
-🟡 **DECISION 1: age range.** 0 to 36 months (what the Excel covers), or extend to
-5 or 6 years now? *Recommendation:* 0 to 6 years in the catalogue, because Constance is
-already about 2.5 and CDC data exists up to 5 years.
+### 3.2 Two catalogues joined into one skill graph
 
-🟡 **DECISION 2: bilingual?** If Constance hears two languages (e.g. French and English),
-science says bilingual children reach language milestones on time **when you count
-words in both languages together**. The app would then count vocabulary across languages.
+The app combines **two complementary catalogues** into a single graph of skills:
+
+| | **A. Early development** (we build it) | **B. Marble Skill Taxonomy v1** (your friends' open dataset) |
+|---|---|---|
+| Ages | 0 to about 5 years | 4 to 13 years (41 topics start at 4, 256 at 5, the rest later) |
+| Content | Maturational milestones: sitting, walking, first words, pretend play, … | School learning: 1,590 "micro-topics" in 8 subjects (Mathematics 503, Science 547, English 286, Personal & Social Development 88, History 90, Life Skills 37, Computing 21, Learning to Learn 18) |
+| Reference age | **Percentiles** (p25 / p50 / p75 / p90) from CDC / WHO | **Age range** in whole years (`ageRangeStart`–`ageRangeEnd`) |
+| Links | We write them (~300 expected) | 3,221 prerequisite edges, tagged `hard` / `soft`, each with a one-line reason |
+| Source | §3.1 | github.com/withmarbleapp/os-taxonomy |
+
+The two meet around **4 to 5 years**, which is exactly Constance's age now. **Bridge links**
+connect the end of A to the start of B. For example:
+- *Counts to 3* → Marble *One-to-one counting* → *How many in total?*
+- *Pincer grasp* → *Holds a crayon* → Marble *Sitting and holding a pencil*
+- *Rhymes and songs* → Marble *Rhyming words* → *Onsets & rimes*
+- *Names emotions* → Marble *Emotional literacy* topics
+
+**What we take from Marble, besides the data** (so both catalogues share one format):
+- **Same fields**: `id`, `type` (conceptual / procedural / representational / language / meta),
+  `subject`, `domain`, `name`, `description`, `evidence` (observable signs of mastery),
+  `assessmentPrompt` (a question for the parent, with `{{name}}`), age range, `standards`.
+- **Same link format**: `topicId` depends on `prerequisiteId`, `strength` = `hard` / `soft`,
+  plus `reason`.
+- **The idea of "evidence"**: every skill lists concrete things you can observe. This fixes
+  the "loose definitions" issue found in the Excel (§2.3).
+- **Parent-friendly summaries** per subject, domain and age (Marble "clusters").
+
+### 3.3 Subjects
+
+Two levels, as in Marble: **subject → domain**. Every skill belongs to exactly one domain.
+
+| Subject | Domains (examples) | Catalogue |
+|---|---|---|
+| **Mobility** | Gross motor: head control, sitting, crawling, walking, jumping, hopping, bike | A |
+| **Hand skills** | Grasp, stacking, drawing, scissors, handwriting | A, then Marble *Handwriting & Transcription* |
+| **Communication** | Understanding, Speaking, Conversation | A, then Marble *Speaking & Listening* |
+| **Literacy** | Books & print, Sounds (phonological awareness), Letters, Reading, Writing | A, then Marble *English* (see the language caveat in §3.5) |
+| **Mathematics** | Quantities, Counting & cardinality, Shapes, Measurement, then all Marble maths domains | A, then Marble |
+| **Thinking & discovery** | Object permanence, cause and effect, sorting, puzzles, then Marble *Science* and *Learning to Learn* | A, then Marble |
+| **Personal & social development** | Emotions, Self-regulation, Friendship & cooperation, Empathy (Marble's domain names) | A, then Marble |
+| **Autonomy & life skills** | Eating, dressing, toilet, hygiene, then Marble *Money*, *Entrepreneurship* | A, then Marble |
+| **History, Computing** | As in Marble | Marble only (ages 6+) |
+
+Subjects and domains are **data** (`catalog/subjects.csv`), so you can rename or reorganise
+them without changing code. When a skill touches two subjects (e.g. "counts to 10 aloud" is
+maths *and* speaking), it gets one main subject and a **link** expresses the other (§3.6),
+so no skill is counted twice.
+
+### 3.4 Extending the timeline beyond 36 months
+
+| Age | Main sources | Nature of the reference |
+|---|---|---|
+| 0–5 years | CDC / AAP 2022 (up to 5 years), WHO motor study | **Developmental norms** (percentiles) |
+| 3–6 years | French *école maternelle* programme (cycle 1, *attendus de fin de cycle*) for items Marble lacks | **Learning goals** |
+| 4–13 years | **Marble Skill Taxonomy** (aligned to the UK National Curriculum, Common Core, NGSS, …) | **Learning goals** with age ranges |
+
+After about 4 years, most skills are **learned** (they depend on teaching and exposure) rather
+than **maturational**. So each skill has a `kind`:
+- `milestone`: developmental norm with percentiles. Scored as "in the window / ahead / to discuss".
+- `learning_goal`: curriculum-based, with an age range. Shown as "typical age", **never flagged
+  as late**, because it depends on schooling. This covers all Marble topics.
+- `behaviour`: an observation such as "stranger anxiety". Logged, never scored.
+
+**Constance is 4 years 7 months today**, so the useful part for her right now is the end of A
+plus the 4–7 year part of Marble.
+
+🟡 **DECISION 1: which Marble subjects to include?** *Recommendation:* import all 8 subjects
+but show only topics whose age range starts ≤ the child's age + 2 years. For Constance (4.6 y)
+that means 426 Marble topics (age range starting at 4, 5 or 6), which is manageable, and the list grows as she grows.
+
+### 3.5 Three languages at home (EN / FR / PT)
+
+What research says, and what the app does about it:
+- **Multilingual children reach language milestones (first words, combining words) in the same
+  age windows as monolingual children, when you count all languages together.** In each
+  single language, their vocabulary may be smaller, and that is normal. Mixing languages in
+  one sentence is also normal, not a sign of confusion.
+- So **speaking and understanding** milestones are logged once, with a tag for which
+  language(s) were used. Vocabulary-type items are counted **across all three languages**
+  (total conceptual vocabulary).
+- **Literacy is language-specific.** Marble's *English* subject (phonics, digraphs, spelling,
+  grammar) is built for English. Learning to read French or Portuguese follows different
+  sound–letter rules. So literacy skills have a `language` field, and the app lets you track
+  reading in each language separately. At first, the "sounds" and "letters" domains in
+  French and Portuguese will use our own items, because Marble has no equivalent.
+- **Mathematics, science and social skills** are language-neutral and shared.
+
+🟡 **DECISION 2:** which language will school reading be taught in (probably French)? That
+language's literacy track comes first.
+
+### 3.6 Links between skills (dependencies)
+
+Skills form a **directed acyclic graph** (arrows, no loops): an arrow A → B means "B depends
+on A". We use Marble's two strengths:
+
+| Strength | Meaning | Example | Effect in the app |
+|---|---|---|---|
+| **hard** | B practically cannot happen without A | head control → sits without support; one-to-one counting → how many in total | B is not suggested as "up next" before A |
+| **soft** | A normally comes first or helps, but it can be skipped or reversed | crawls → walks (some children never crawl); babbling → first words; counting aloud → counting objects | Shown on the map as a dashed line; B can still be suggested |
+
+Rules, checked automatically (§5.5):
+- **No cycles.** A skill can never depend on itself, directly or indirectly.
+- **Ages must agree.** If B hard-depends on A, A's typical age must not be later than B's.
+  If it is, the link or the age is flagged for review.
+- **Every link has a `reason`** (as in Marble), so it can be challenged.
+- Links may cross subjects and cross catalogues (the bridge links of §3.2).
+
+### 3.7 Licences (important because the app is public)
+
+| Source | Licence | What it means for us |
+|---|---|---|
+| **Marble taxonomy**: database | ODbL 1.0 | Free, **commercial use allowed**, **attribution required**. If we publish an improved *version of the taxonomy* (e.g. our catalogue A plus bridge links merged into it), that dataset must also be ODbL. The **app itself** stays ours. |
+| **Marble texts** (descriptions, evidence, reasons) | CC BY-SA 4.0 | Attribution plus share-alike. Our **FR / PT translations** of these texts must also be CC BY-SA. |
+| Marble `curriculum-standards.json` | Each source's own licence (e.g. Common Core is purpose-limited, NGSS restricted for commercial use) | We keep only the standard codes, as Marble does, or we leave this file out. |
+| CDC "Learn the Signs. Act Early." | US government work, generally public domain | OK to reuse. We cite it. |
+| WHO motor study | Numbers (facts) cited from the publication | We cite the source. We do not copy WHO documents (CC BY-NC-SA, non-commercial). |
+| Denver II | Copyrighted test | **Not used** in the public app. |
+
+*Recommendation:* publish our catalogue A and the bridge links **as open data under ODbL**,
+compatible with Marble and credited to them. It costs nothing, it satisfies share-alike without
+ambiguity, and it is a natural contribution back to your friends. The app code and the
+families' data stay private. Get a lawyer's short check before any commercial launch.
 
 ---
 
 ## 4. Functional description
 
 ### 4.1 Screens
-1. **Today** (home)
-   - Constance's age (years, months, days), plus corrected age if she was premature.
-   - **"Up next"**: 3 to 5 milestones she is likely working on now, each with 1 or 2
-     activities ("How to train"). A milestone is "up next" if it is not achieved and
-     her age is between its `p25` and `p90`.
-   - Big **"+ Log a milestone"** button.
-2. **Milestones** (the catalogue)
-   - Filter by domain and age. Each milestone shows: definition (what exactly counts),
-     normal window, source, activities, and Constance's status.
-   - Status choices: *Not yet*, *Emerging* (sometimes / with help), *Achieved* (with date).
-3. **Progress** (the dashboard, successor of the Excel chart)
-   - Chart A: cumulative curve with a normal band (see §5.1).
-   - Chart B: developmental age by domain vs actual age (see §5.2).
-   - Chart C: timeline of each milestone, showing where Constance's date falls in its window.
-4. **Journal**: dated notes and photos ("first sentence: *encore gâteau*").
-5. **Alerts**: milestones past `p90` and not achieved ("mention at next check-up"),
-   and any skill marked as lost.
-6. **Settings**: child profile (name, birth date, due date if premature), languages,
-   export / import (CSV and JSON), family members who can log.
+1. **Today** (home, for the selected child)
+   - Age in years, months and days, plus corrected age if born premature (until 2 years).
+   - **"Up next"**: 3 to 5 skills to work on now, with activities (§5.6 explains how they are chosen).
+   - A big **"+ Log a skill"** button, with search and the child's language tags.
+2. **Skills** (catalogue): browse by subject → domain → skill. Each skill shows its
+   description, evidence, parent question, typical age, source, prerequisites and what it
+   unlocks, activities, and the child's history.
+3. **Skill map** (graph visualisation, new):
+   - **Focus view** (default): pick a skill and see its prerequisites (upstream) and what
+     it unlocks (downstream), 2 levels each way. Nodes are coloured by status
+     (achieved / emerging / ready / not yet), solid arrows are hard links, dashed are soft.
+   - **Subject view**: one subject laid out left to right **by typical age**, in rows by domain.
+     You can see where the child's "frontier" is.
+   - **Whole map**: all ~1,900 skills as a zoomable network, coloured by subject, with the
+     child's achieved skills lit up (similar in spirit to Marble's 3D view).
+4. **Progress** (dashboards): chart A (cumulative curve vs normal band, §5.1) for `milestone`
+   skills, chart B (developmental age per subject, §5.2), chart C (share of the child's
+   current-age skills achieved per subject, for `learning_goal` skills).
+5. **Journal**: dated notes and photos, linked to skills.
+6. **Alerts**: milestones past p90 and not achieved, and any lost skill (regression).
+7. **Family & settings**: children, caregivers and invitations, languages at home, interface
+   language, export / delete all data.
 
-### 4.2 Status logic per milestone (simple and explainable)
-Let *t* be Constance's age (corrected if premature, until 24 months).
+### 4.2 Status logic per skill
+Let *t* be the child's age (corrected if premature, until 24 months).
+
+For **milestones** (percentiles known):
 
 | Situation | Label | Colour |
 |---|---|---|
 | Achieved at age *a* < p25 | Early | blue |
 | Achieved at p25 ≤ *a* ≤ p90 | In the normal window | green |
-| Achieved at *a* > p90 | Later than most (still achieved) | grey |
+| Achieved at *a* > p90 | Later than most (achieved) | grey |
 | Not achieved, *t* < p25 | Not expected yet | none |
-| Not achieved, p25 ≤ *t* ≤ p90 | Up next | yellow |
+| Not achieved, p25 ≤ *t* ≤ p90 | In its window | yellow |
 | Not achieved, *t* > p90 | Worth discussing with the pediatrician | orange |
 | Marked as lost | Regression: discuss soon | red |
 
-### 4.3 Out of scope for v1 (can add later)
-Growth curves (weight / height / head circumference, WHO charts), sleep and feeding logs,
-vaccination record, multiple children, and AI-generated activity suggestions.
+For **learning goals** (Marble and school items): *Not yet*, *Ready* (all hard prerequisites
+achieved), *Emerging*, *Achieved*. There is no "late" label.
 
-🟡 **DECISION 3:** confirm the out-of-scope list. Growth curves are cheap to add later
-since WHO publishes the tables openly.
+**Implied skills:** if a child has achieved B, every **hard** prerequisite of B is shown as
+"implied achieved" (lighter colour) unless recorded otherwise. This matters for onboarding:
+for a 4½-year-old like Constance, you tick a few advanced skills and the app fills in the
+hundreds of earlier ones, which you can then correct.
+
+### 4.3 Out of scope for v1 (can add later)
+Growth curves (WHO), sleep and feeding logs, vaccination record, AI-generated activity
+suggestions, a public social feed or profiles, and school or teacher accounts.
+
+🟡 **DECISION 3:** confirm this list.
 
 ---
 
 ## 5. The maths (computations)
 
 ### 5.1 Cumulative curve with a normal band (improved Excel chart)
-For each age *t* (in months, step 0.25):
-- **Constance:** `C(t)` = number of milestones she achieved by age *t* (same as the Excel `COUNTIF`).
-- **Expected count:** `E(t) = Σ_i F_i(t)`, the sum over all milestones of the probability
-  that a typical child has it by age *t*. This replaces the "lower bound" step curve by a
-  smooth, unbiased expected value.
-- **Band:** the normal range of the count. Assuming milestones are independent,
-  the variance is `V(t) = Σ_i F_i(t)·(1 − F_i(t))`, and we show `E(t) ± 1.28·√V(t)`
-  (roughly the 10th to 90th percentile).
-  *Caveat:* milestones are positively correlated (a child ahead in motor is often ahead in
-  other motor items), so the true band is **wider**. v1 shows this band labelled as
-  "approximate". v2 could calibrate it by simulation.
+Milestones only. For each age *t* (step 0.25 month):
+- **Child:** `C(t)` = number of milestones achieved by age *t* (the Excel's `COUNTIF`).
+- **Expected:** `E(t) = Σ_i F_i(t)`, where `F_i` is milestone *i*'s CDF, interpolated
+  linearly between its percentile points.
+- **Band:** `E(t) ± 1.28·√V(t)` with `V(t) = Σ_i F_i(t)(1 − F_i(t))` (about the 10th to
+  90th percentile if milestones were independent). They are positively correlated, so the
+  real band is wider. It is labelled "approximate" and can be calibrated by simulation later.
 
-### 5.2 Developmental age and developmental quotient (per domain)
-For domain *d* (e.g. language), Constance's **developmental age** is the age *t\** at which
-a typical child has reached as many milestones in that domain as she has:
-`E_d(t*) = C_d(today)`. Solve by bisection, since `E_d` is increasing.
-
-**Developmental quotient:** `DQ_d = 100 × t* / actual age`. 100 = exactly typical,
-above 100 = ahead. This concept is used in standard developmental scales (e.g. Griffiths).
-We display it with a range, not as a precise score.
+### 5.2 Developmental age and developmental quotient (per subject)
+For subject *s*, the developmental age `t*` solves `E_s(t*) = C_s(today)`. We solve it by
+bisection, since `E_s` only increases. `DQ_s = 100 × t* / age`, where 100 means typical.
+It is shown with a range, not as a precise score. Computed only where enough `milestone`
+items exist.
 
 ### 5.3 Percentile of each achievement
-For an achieved milestone at age *a*: percentile = `F_i(a) × 100`. Example: walking alone
-at 10 months is around the 15th to 20th percentile (earlier than about 80% of children).
-The average of these percentiles by domain gives a simple, readable "ahead / on track" summary.
+Achieved at age *a* → percentile `F_i(a) × 100`. Example: walking alone at 10 months is
+about the 15th–20th percentile (earlier than roughly 80% of children).
 
 ### 5.4 Corrected age
-If born before 37 weeks: `corrected age = age − (40 − gestational weeks at birth)`,
-used until 24 months (standard pediatric practice).
+Born before 37 weeks: `corrected age = age − (40 − gestational weeks)`, used until 24 months.
+
+### 5.5 Graph checks (run on every catalogue change, in tests)
+- **Cycle detection and ordering:** Kahn's topological sort, O(V + E). About 1,900 nodes and
+  3,500 edges take milliseconds. If the sort cannot finish, there is a cycle, and it is reported.
+- **Age consistency:** for each hard edge A → B, `typical_age(A) ≤ typical_age(B)` + tolerance,
+  where typical age = p50, or `ageRangeStart` for Marble items.
+- **Transitive reduction for display:** if A → B → C and A → C, the direct A → C arrow is
+  hidden on the map (the dependency is still used). This keeps the drawings readable.
+- **Orphans:** skills with no link at all are listed for review.
+
+### 5.6 Choosing "Up next" (the frontier)
+Candidates are skills that are not achieved, have **all hard prerequisites achieved or
+implied**, and have a typical age ≤ age + 6 months (milestones) or `ageRangeStart` ≤ age
+(learning goals). Candidates are ranked by:
+1. **Unlock value**: how many skills it opens downstream (number of descendants in the graph;
+   Marble's `centrality` is used as a tie-breaker).
+2. **Timeliness**: milestones close to their p75 come first.
+3. **Balance**: at most 2 per subject, so suggestions cover several areas.
+
+It is a simple, explainable scoring. Each suggestion says *why* ("unlocks 12 skills in
+mathematics").
 
 ---
 
 ## 6. Architecture (simple and sound)
 
 ### 6.1 Principles
-1. **Content separate from code.** The milestone catalogue is a plain data file
-   (`catalog/milestones.csv` or `.json`) in the repo. You can amend it without touching code.
-2. **Computations are pure functions** (§5), unit tested, in one file. Easy to check the maths.
+1. **Content separate from code.** The catalogue (subjects, skills, links, translations) is
+   plain data files in the repo, validated by tests.
+2. **Computations are pure functions** (§5), unit tested, in one module.
 3. **Few moving parts.** One web app, one managed database, no custom servers.
-4. **Private by default.** Login required, no ads, no third-party analytics.
+4. **Private by default, even though the app is public**: anyone can sign up, but each
+   family sees only its own data.
 
 ### 6.2 Recommended stack
 | Layer | Choice | Why |
 |---|---|---|
-| App | **Web app installable on the phone (PWA)** in React + TypeScript (Vite) | One code base for iPhone, Android and computer. No App Store needed. |
-| Charts | Recharts | Simple, standard |
-| Database + login | **Supabase** (managed PostgreSQL + authentication + photo storage), EU region | Both parents see the same data on their phones. Free tier is enough for one family. |
-| Hosting | **Vercel** (or Netlify) | Free tier, deploys automatically from GitHub |
-| Tests | Vitest for the maths | Checks the formulas of §5 |
+| App | **PWA** (web app installable on phones) in React + TypeScript (Vite) | One code base for iPhone, Android and computer. No App Store fees or review at first. |
+| Translations | i18next (FR / EN / PT) | Standard, simple |
+| Charts | Recharts | Simple |
+| Skill map | **React Flow + ELK layout** (focus and subject views); **react-force-graph** (whole map, WebGL) | React Flow handles readable diagrams of up to a few hundred nodes; WebGL is needed to draw ~1,900 nodes smoothly |
+| Database + login + photos | **Supabase** (PostgreSQL, authentication, storage), **EU region** | Multi-family with row-level security, backups included |
+| Hosting | **Vercel** | Deploys automatically from GitHub |
+| Tests | Vitest | Maths and graph checks |
 
-**Expected cost:** €0/month on free tiers. About €25/month only if we ever outgrow them
-(e.g. many photos). Custom domain name optional (~€10/year).
-
-```
- Phone / laptop (PWA)                    Cloud (managed, no servers to maintain)
- ┌──────────────────────────────┐        ┌──────────────────────────────┐
- │ UI: Today, Milestones,       │        │ Supabase (EU)                │
- │     Progress, Journal        │  HTTPS │  - Auth (family accounts)    │
- │ Logic: status, curves, DQ ◄──┼────────┼─►- Postgres: child,          │
- │ Catalogue (bundled data)     │        │    observations, journal     │
- │ Offline cache                │        │  - Storage: photos           │
- └──────────────────────────────┘        └──────────────────────────────┘
-          ▲ built & deployed by Vercel from GitHub
-```
-
-🟡 **DECISION 4: sync vs local only.**
-- **Option A (recommended): Supabase.** Several devices and parents, data backed up.
-- **Option B: local only.** Data stays on one device's browser, with manual export.
-  Simpler and 100% private, but data can be lost if the browser is cleared, and no sharing.
-
-🟡 **DECISION 5: languages of the interface.** English only, French only, or both?
-
-### 6.3 Data model
+**Expected cost:** €0/month at launch on free tiers. Around €45/month (Supabase Pro €25 +
+Vercel Pro ~€20) once public with real users, mainly for backups, uptime and photo storage.
+Plus a domain (~€10/year).
 
 ```
-Child           id, first_name, birth_date, gestational_weeks (nullable), languages[]
-Milestone       id, domain, title, definition, activities[], age_band_label,
-  (catalogue)   p25, p50, p75, p90 (months, nullable), source, source_ref,
-                confidence (measured | estimated), kind (skill | behaviour), min_age_display
-Observation     id, child_id, milestone_id, status (not_yet | emerging | achieved | lost),
-                observed_on (date), note, photo_url, logged_by, created_at
-JournalEntry    id, child_id, date, text, photo_url, milestone_ids[]
-FamilyMember    id, user_id, child_id, role (parent | viewer)
+ Families' phones / laptops (PWA, FR/EN/PT)          Cloud (managed)
+ ┌──────────────────────────────────┐        ┌─────────────────────────────────┐
+ │ Today · Skills · Skill map ·     │        │ Supabase (EU)                   │
+ │ Progress · Journal               │ HTTPS  │  Auth: accounts, invitations    │
+ │ Logic: status, curves, DQ,   ◄───┼────────┼─► Postgres: families, children, │
+ │        graph, "up next"          │        │    observations, journal        │
+ │ Catalogue (bundled, versioned)   │        │    (row-level security)         │
+ └──────────────────────────────────┘        │  Storage: photos (private)      │
+          ▲ built & deployed by Vercel       └─────────────────────────────────┘
+            from GitHub
+```
+
+The catalogue (~2 MB of JSON, less compressed) ships **inside the app**. So browsing and the
+skill map work offline and fast, and the database only stores what families record.
+
+### 6.3 Public-facing: what changes
+- **Accounts and families:** a *family* has one or more *caregivers* (roles: owner / editor /
+  viewer) and one or more *children*. Invitations go by email. Grandparents or the nanny can
+  get viewer or editor access.
+- **Isolation:** PostgreSQL row-level security. Every query is automatically restricted to the
+  user's family, at the database level rather than in app code.
+- **Optional read-only share link** per child (e.g. to show the pediatrician). Off by default,
+  revocable, expires.
+- **GDPR:** developmental observations about a child can be treated as **health data**
+  (Article 9), which requires explicit consent, a data protection impact assessment (DPIA),
+  EU hosting, data minimisation, and a one-click export and full delete. Parents consent on
+  behalf of the child. No advertising, no third-party trackers.
+- **Regulatory positioning:** the app must stay an **educational / parenting tool**, not a
+  screening or diagnostic device. Under the EU Medical Device Regulation, software intended to
+  detect developmental disorders can qualify as a medical device, which means certification.
+  The wording must therefore stay "typical ages" and "worth discussing with your pediatrician",
+  with no risk scores or diagnoses. Get a regulatory opinion before a wide public launch.
+- **Abuse and safety:** photos are private files with expiring links, sign-up needs email
+  verification, and requests are rate-limited (both built into Supabase).
+
+### 6.4 Data model
+
+```
+Catalogue (versioned files, not user data)
+  Subject        id, name{fr,en,pt}, order, colour
+  Domain         id, subject_id, name{fr,en,pt}
+  Skill          id, domain_id, kind (milestone | learning_goal | behaviour),
+                 type (conceptual | procedural | representational | language | meta),
+                 name, description, evidence[], assessment_prompt, activities[],
+                 p25, p50, p75, p90 (months, milestones only),
+                 age_start, age_end (years, learning goals),
+                 literacy_language (en | fr | pt | null), source, source_ref,
+                 origin (own | marble), marble_id, centrality
+  Dependency     skill_id, prerequisite_id, strength (hard | soft), reason, origin
+  Translation    entity_id, field, locale (fr | en | pt), text, status (machine | reviewed)
+
+User data (Supabase, per family)
+  Family         id, name, created_at
+  Member         family_id, user_id, role (owner | editor | viewer)
+  Child          id, family_id, first_name, birth_date, gestational_weeks, home_languages[]
+  Observation    id, child_id, skill_id, status (not_yet | emerging | achieved | lost),
+                 observed_on, languages[], note, photo_path, logged_by, created_at
+  JournalEntry   id, child_id, date, text, photo_path, skill_ids[]
+  ShareLink      id, child_id, token, expires_at, revoked
 ```
 
 Notes:
-- We keep **every observation** (history), not just the latest status. "Emerging on 3 March,
-  achieved on 20 April" is valuable, and it lets us detect regression.
-- **Domains:** gross motor, fine motor, language (receptive / expressive), cognitive,
-  social-emotional, self-care. These match CDC's groupings.
+- Every observation is kept (full history), which allows regression detection and "emerging → achieved" timelines.
+- `catalog_version` is stored with each observation, so later catalogue changes never corrupt history.
+- Marble IDs (`mt_…`) are kept as they are, so we can pull new Marble versions and send
+  improvements back.
 
-### 6.4 Repository layout
+### 6.5 Interface languages (FR / EN / PT)
+- **Interface text**: i18next files `locales/{fr,en,pt}.json`. The language is detected from
+  the phone and can be changed in settings.
+- **Catalogue text**: source text is English (Marble is English). FR and PT are machine-
+  translated first and marked `machine`, then reviewed by a native speaker and marked
+  `reviewed`. If a translation is missing, the English text is shown.
+- **Volume to translate:** about 1,900 skills × (name, description, evidence, prompt) ≈ 160,000
+  words per language for Marble alone. Machine translation plus human review of the **4–7 year** range first
+  (~430 Marble topics + our 3–5 y items) keeps this manageable.
+
+🟡 **DECISION 4: Portuguese variant**: European (pt-PT) or Brazilian (pt-BR)?
+
+### 6.6 Repository layout
 ```
-/catalog/milestones.csv      reference data (editable, sourced)
-/catalog/sources.md          full citations
-/src/domain/                 pure logic: age, status, curves, DQ (+ tests)
-/src/ui/                     screens and components
-/supabase/schema.sql         database tables and security rules
-/scripts/import-excel.ts     one-off migration of BabyPerfMGT.xlsx
-APP_SPEC.md                  this document
+/catalog/subjects.csv            subjects & domains
+/catalog/early/skills.csv        catalogue A (our 0–5 milestones)
+/catalog/early/links.csv         links within A + bridges to Marble
+/catalog/marble/                 pinned copy of Marble v1 (topics, dependencies, clusters)
+/catalog/translations/{fr,pt}/   catalogue translations
+/catalog/SOURCES.md              citations and licence notices (incl. Marble attribution)
+/src/domain/                     pure logic: age, status, curves, DQ, graph, up-next (+ tests)
+/src/ui/                         screens, skill map, charts
+/locales/{fr,en,pt}.json         interface text
+/supabase/schema.sql             tables + row-level security policies
+/scripts/build-catalog.ts        merge A + Marble, validate graph, emit app JSON
+/scripts/import-excel.ts         one-off migration of BabyPerfMGT.xlsx
+APP_SPEC.md                      this document
 ```
 
 ---
 
-## 7. Migrating the Excel data
-1. Rebuild the catalogue from CDC / WHO sources (§3), assigning domains and definitions.
-2. **Map** each of the 135 Excel milestones to a catalogue item (many map directly;
-   duplicates are merged; items with no scientific equivalent are kept as "custom", with no
-   reference age, so they are logged but not scored).
-3. Import Constance's months as observations with date = birth date + *m* months, flagged
+## 7. Migrating the Excel data (Constance)
+1. Build catalogue A from CDC / WHO, then map the 135 Excel rows to it (merging duplicates;
+   items with no scientific equivalent kept as `behaviour` or dropped, your call).
+2. Import Constance's months as observations dated `4 Feb 2022 + m months`, marked
    "approximate date (imported)".
-4. I will produce a **mapping table for you to review** before import, especially for
-   the early motor entries in §2.3 (sitting at 3 months, crawling at 5 months).
-
-🟡 **DECISION 6:** I need Constance's **birth date** (and gestational age at birth if
-she was premature) to convert months into dates and compute her current age.
+3. Because the Excel stops at 29 months and she is now 55.9 months old, run an **onboarding
+   pass**: you tick what she can do today among the 3–5 year milestones and the Marble 4–6
+   topics, and the implied-skills rule (§4.2) fills in the rest.
+4. I will give you the **mapping table to review** first, including the two early motor
+   entries flagged in §2.3.
 
 ---
 
@@ -281,31 +487,50 @@ she was premature) to convert months into dates and compute her current age.
 
 | Step | Deliverable | Rough effort |
 |---|---|---|
-| 1 | Sourced milestone catalogue (CSV) + Excel mapping table, **for your review** | 1 session |
-| 2 | Pure logic module (§5) + unit tests, validated against the Excel numbers | 1 session |
-| 3 | App v1: Today, Milestones, logging, Progress chart A; Supabase login | 1-2 sessions |
-| 4 | Import Constance's history; charts B and C; alerts | 1 session |
-| 5 | Journal with photos, export, PWA install on phones | 1 session |
+| 1 | Catalogue A (0–5 y, sourced, with evidence) + bridge links to Marble + Excel mapping, **for your review** | 1–2 sessions |
+| 2 | Catalogue build script: merge with Marble, graph checks (§5.5), tests | 1 session |
+| 3 | Pure logic (§5) + tests, validated against the Excel numbers | 1 session |
+| 4 | App v1: accounts & families, Today, Skills, logging, FR/EN/PT interface | 2 sessions |
+| 5 | Skill map (focus + subject views), Progress charts, import Constance | 1–2 sessions |
+| 6 | Whole map, journal and photos, share link, export / delete, PWA install | 1–2 sessions |
+| 7 | Before a public launch: DPIA, privacy policy, legal and regulatory check, FR/PT review of 4–7 y content | outside coding |
 
-We validate with you after steps 1, 3 and 4.
+We validate with you after steps 1, 4 and 5.
 
 ---
 
 ## 9. Risks and safeguards
-- **Anxiety from comparisons.** Show windows and ranges, never rankings. Neutral wording.
-  Orange / red flags always come with "discuss with your pediatrician", not a verdict.
-- **Reference data quality.** Every item shows its source; estimated items are marked.
-- **Privacy (GDPR, child data).** EU hosting, family-only access, export and delete everything on demand.
-- **Data loss.** Supabase daily backups, plus manual CSV export.
+- **Anxiety from comparisons:** show windows, not rankings. No "late" labels for learning
+  goals. Flags always come with "discuss with your pediatrician".
+- **Reference data quality:** every skill shows its source, and every link shows its reason.
+  Graph checks run in tests.
+- **Privacy (child health data, GDPR):** EU hosting, row-level security, no trackers,
+  export and delete, DPIA before launch.
+- **Regulation (EU MDR):** educational positioning, no diagnostic claims, expert opinion before launch.
+- **Licences:** Marble attribution and share-alike respected (§3.7). Denver II not used.
+- **English-centric learning content:** literacy tracked per language. FR / PT reviewed by native speakers.
+- **Data loss:** Supabase daily backups, plus export.
 
 ---
 
-## 10. Summary of decisions needed
+## 10. Decisions
+
+### Answered
+| Question | Your answer |
+|---|---|
+| Birth date | 4 February 2022, so 4 y 7 m today. *Please confirm this is day/month (4 Feb), not 2 April.* |
+| Languages at home | English, French, Portuguese (§3.5) |
+| Sync | Shared across devices, **public-facing** (multi-family, §6.3) |
+| Interface | FR / EN / PT (§6.5) |
+| Subjects, timeline beyond 36 m, dependencies + visualisation | Included (§3.2–3.6, §4.1, §5.5–5.6), inspired by the Marble taxonomy |
+
+### Still open
 | # | Question | My recommendation |
 |---|---|---|
-| 1 | Age range | 0 to 6 years |
-| 2 | Bilingual language counting | Yes, if applicable |
-| 3 | Out-of-scope list for v1 | As listed in §4.3 |
-| 4 | Sync (Supabase) vs local only | Supabase |
-| 5 | Interface language | Your choice (FR / EN / both) |
-| 6 | Birth date, gestational age | Needed before import |
+| 1 | Which Marble subjects to include | All 8, filtered by age |
+| 2 | Language of school reading | Probably French, so that literacy track first |
+| 3 | Out-of-scope list for v1 (§4.3) | As listed |
+| 4 | Portuguese variant | pt-PT or pt-BR |
+| 5 | Publish catalogue A + bridges as open data (ODbL) | Yes, credited to Marble |
+| 6 | "Public-facing" means other families can sign up (my assumption), not public child profiles | Private by default, optional share link |
+| 7 | Gestational age at birth (for corrected age) | Only if Constance was born before 37 weeks |
