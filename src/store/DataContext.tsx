@@ -1,6 +1,7 @@
 // App-wide data: the child, observations and journal, with actions that save through the repo.
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import seed from '../../catalog/seed/constance.json';
 import { catalog } from '../catalog';
 import { todayIso } from '../domain/age';
 import type { Child, JournalEntry, Locale, Observation, ObservationStatus } from '../domain/types';
@@ -37,6 +38,43 @@ interface DataValue {
 
 const Ctx = createContext<DataValue | null>(null);
 
+// One load per repository, even if React runs the effect twice (StrictMode), so the
+// history can never be imported twice.
+const loads = new WeakMap<Repo, Promise<Snapshot>>();
+function loadOnce(repo: Repo, readOnly: boolean): Promise<Snapshot> {
+  if (!loads.has(repo)) {
+    loads.set(
+      repo,
+      (async () => {
+        const s = await repo.load();
+        // First launch: create Constance's profile and import her Excel history automatically.
+        if (s.child || readOnly) return s;
+        await importSeedInto(repo);
+        return repo.load();
+      })(),
+    );
+  }
+  return loads.get(repo)!;
+}
+
+/** Seed an empty store with Constance's profile and history (catalog/seed/constance.json). */
+async function importSeedInto(repo: Repo) {
+  const child: Child = {
+    id: newId(),
+    firstName: seed.child.firstName,
+    birthDate: seed.child.birthDate,
+    gestationalWeeks: seed.child.gestationalWeeks,
+    homeLanguages: seed.child.homeLanguages as Locale[],
+  };
+  await repo.saveChild(child);
+  await repo.addObservations(
+    toObservations(
+      child.id,
+      seed.observations.map((o) => ({ skillId: o.skillId, status: 'achieved' as const, observedOn: o.observedOn, approximate: true, note: o.note })),
+    ),
+  );
+}
+
 function toObservations(childId: string, entries: LogInput[]): Observation[] {
   const now = new Date().toISOString();
   return entries.map((e) => ({
@@ -61,12 +99,11 @@ export function DataProvider({ repo, initial, readOnly = false, children }: { re
 
   useEffect(() => {
     if (initial) return;
-    theRepo
-      .load()
+    loadOnce(theRepo, readOnly)
       .then(setSnap)
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
-  }, [theRepo, initial]);
+  }, [theRepo, initial, readOnly]);
 
   const guard = useCallback(
     async (fn: () => Promise<void>) => {
