@@ -1,0 +1,136 @@
+excel_row	age_band	excel_ability	constance_month	skill_id	note
+3	0-1 month	Recognizes caregiver's voice	0	com.calms_voice	
+4	0-1 month	Follows moving objects with eyes	0	think.watches_move	
+5	0-1 month	Startles at loud sounds	0	com.loud_sounds	
+6	1-3 months	Lifts head during tummy time	0	mob.head_tummy	
+7	1-3 months	Smiles at familiar faces	0	soc.smiles_back	
+8	1-3 months	Makes cooing sounds	0	com.coos	
+9	1-3 months	Turns head towards sounds	1	com.turns_to_voice	
+10	1-3 months	Holds head up briefly	1	mob.head_tummy	
+11	1-3 months	Grasps finger when placed in hand	2	hand.holds_toy	
+12	3-6 months	Reaches for objects	2	hand.reach_grab	
+13	3-6 months	Rolls over from tummy to back	3	mob.roll_tummy_back	
+14	3-6 months	Laughs and squeals	3	soc.laughs	
+15	3-6 months	Holds head steady	3	mob.head_steady	
+16	3-6 months	Explores objects with hands and mouth	3	hand.mouths_objects	
+17	3-6 months	Sits with support	3	mob.sit_leaning	
+18	3-6 months	Pushes up on arms during tummy time	3	mob.straight_arms	
+19	6-9 months	Sits without support	3	mob.sit_alone	Recorded at 3 months: below the WHO 1st percentile (3.8 m). Please check it was sitting WITHOUT support.
+20	6-9 months	Babbles consonant sounds	3	com.babbles	
+21	6-9 months	Transfers objects between hands	3	hand.transfer	
+22	6-9 months	Supports weight on legs when held upright	4	mob.legs_push	
+23	6-9 months	Explores objects by shaking, banging, and throwing	3	hand.bangs_objects	
+24	6-9 months	Responds to own name	4	com.responds_name	
+25	6-9 months	Plays peek-a-boo	4	soc.peekaboo	
+26	6-9 months	Shows stranger anxiety	4	soc.stranger_anxiety	
+27	9-12 months	Crawls	5	mob.crawl	Recorded at 5 months: below the WHO 1st percentile (5.2 m). Please check it was hands-and-knees crawling.
+28	9-12 months	Stands with support	7	mob.stand_assisted	
+29	9-12 months	Understands simple words like 'no'	7	com.understands_no	
+30	9-12 months	Claps hands	7	soc.pat_a_cake	
+31	9-12 months	Waves bye-bye	7	com.waves	
+32	9-12 months	Responds to 'come here'	7	com.directions_gesture	
+33	9-12 months	Picks up small objects with thumb and forefinger	8	hand.pincer	
+34	9-12 months	Shows interest in books and pictures	6	lit.looks_pages	
+35	12-15 months	Walks independently	10	mob.walk_alone	
+36	12-15 months	Says first words	10	com.first_words	
+37	12-15 months	Points to objects	10	com.points_ask	
+38	12-15 months	Feeds self with fingers	11	auto.finger_feeds	
+39	12-15 months	Drinks from a cup	11	auto.cup_held	
+40	12-15 months	Imitates simple actions	11	think.uses_right_way	
+41	12-15 months	Follows simple directions	11	com.directions_gesture	
+42	12-15 months	Shows preference for certain people and toys	11	soc.knows_familiar	
+43	12-15 months	Explores alone but with parent close by	11	soc.secure_base	
+44	15-18 months	Stacks two blocks	13	hand.stack_2	
+45	15-18 months	Follows simple commands	13	com.one_step	
+46	15-18 months	Imitates others	13	soc.copies_children	
+47	15-18 months	Walks backwards	14		No scientific equivalent kept (walking backwards).
+48	15-18 months	Uses a spoon	14	auto.tries_spoon	
+49	15-18 months	Turns pages in a book	14	hand.pages_one	
+50	15-18 months	Shows affection to familiar people	12	soc.affection	
+51	15-18 months	Identifies one or more body parts	12	com.body_parts	
+52	15-18 months	Pushes and pulls toys	13	mob.pull_toy	
+53	18-21 months	Runs	13	mob.run	
+54	18-21 months	Scribbles with a crayon	14	hand.scribble	
+55	18-21 months	Uses simple phrases	14	com.two_words	
+56	18-21 months	Builds tower of four blocks	14	hand.tower_4	
+57	18-21 months	Kicks a ball	14	mob.kick_ball	
+58	18-21 months	Shows defiant behavior	15	soc.defiance	
+59	18-21 months	Plays alongside other children	15	soc.plays_next_to	
+60	18-21 months	Uses a toothbrush with help	15	auto.toothbrush	
+61	18-21 months	Understands and responds to 'yes' and 'no'	15	com.understands_no	
+62	21-24 months	Shows more independence	17		Too vague to observe; kept in the journal instead.
+63	21-24 months	Names familiar objects	17	com.names_in_book	
+64	21-24 months	Begins to sort shapes and colors	17	math.sort_shape_colour	
+65	21-24 months	Engages in pretend play	19	soc.pretend_objects	
+66	21-24 months	Follows two-step instructions	19	com.two_step	
+67	21-24 months	Uses pronouns (I, me, you)	19	com.pronouns	
+68	21-24 months	Shows interest in toilet training	19	auto.toilet_interest	
+69	21-24 months	Plays simple make-believe games	19	soc.pretend_objects	
+70	21-24 months	Builds higher towers	20	hand.tower_6	
+71	21-24 months	Draws simple shapes	20	hand.circle	
+72	24-27 months	Jumps with both feet	21	mob.jump_both	
+74	24-27 months	Says name, age, and gender	21	com.name_age_gender	
+75	24-27 months	Shows empathy to others	21	soc.notices_hurt	
+76	24-27 months	Begins to understand time (today, tomorrow)	21	com.time_words	
+77	24-27 months	Shows curiosity about the world	21		Too vague to observe; kept in the journal instead.
+78	24-27 months	Completes simple puzzles	21	hand.puzzle	
+79	24-27 months	Dresses and undresses with help	21	auto.undress	
+80	24-27 months	Uses plurals and simple sentences	21	com.action_word	
+81	24-27 months	Knows some colors and shapes	21	think.one_colour	
+82	24-27 months	Begins to play cooperatively	21	soc.joins_play	
+83	27-30 months	Draws straight lines	22	hand.line	
+84	27-30 months	Throws ball overhand	22	mob.throw_overhand	
+85	27-30 months	Pedals a tricycle	22	mob.tricycle	
+86	27-30 months	Understands prepositions (in, on, under)	22	com.prepositions	
+87	27-30 months	Begins to understand size differences	22	math.big_small	
+88	27-30 months	Recognizes own reflection	22	soc.mirror	
+89	27-30 months	Follows simple rules during play	23	soc.takes_turns	
+90	27-30 months	Engages in role-play activities	23	soc.pretend_role	
+91	27-30 months	Counts to three	24	math.count_3	
+92	27-30 months	Speaks clearly enough for strangers to understand	24	com.intelligible	
+93	30-33 months	Balances on one foot	24	mob.one_foot_2s	
+94	30-33 months	Uses scissors to cut paper	25	hand.scissors	
+95	30-33 months	Understands simple jokes and humor	25	soc.humour	
+96	30-33 months	Plays make-believe with dolls, animals, and people	25	soc.pretend_objects	
+97	30-33 months	Recites simple rhymes and songs	25	com.song_words	
+98	30-33 months	Draws circles	25	hand.circle	
+99	30-33 months	Begins to share with others	25	soc.takes_turns	
+100	30-33 months	Knows basic body parts	25	com.body_parts	
+101	30-33 months	Matches objects to pictures	25	com.points_book	
+102	30-33 months	Recognizes familiar signs and logos	26	lit.signs_logos	
+103	33-36 months	Rides a tricycle	26	mob.tricycle	
+104	33-36 months	Sorts objects by shape and color	26	math.sort_shape_colour	
+105	33-36 months	Uses pronouns (I, me, you)	26	com.pronouns	
+106	33-36 months	Understands spatial concepts (inside, outside)	26	com.prepositions	
+107	33-36 months	Plays board games with simple rules	26	soc.follows_rules	
+108	33-36 months	Recites the alphabet	21		Reciting the alphabet depends on exposure, not a developmental norm; logged in the journal.
+109	33-36 months	Counts to ten	26	math.count_10	
+110	33-36 months	Names friends	26		No scientific equivalent kept (names friends).
+111	33-36 months	Builds complex structures with blocks	26	hand.tower_6	
+112	33-36 months	Understands and follows complex instructions	26	com.two_step	
+113	33-36 months	Recognizes and names many colors	26	think.names_colours	
+114	33-36 months	Asks 'why' questions	28	com.wh_questions	
+115	33-36 months	Engages in imaginative play	26	soc.pretend_role	
+116	33-36 months	Recognizes written numbers and letters	28	math.names_numbers_5	Mapped to naming numbers 1–5 (CDC 5 y).
+117	33-36 months	Participates in group activities	28	soc.joins_play	
+118	33-36 months	Speaks in full sentences	28	com.sentences_4	
+119	36 months	Balances on one foot for a few seconds	28	mob.one_foot_2s	
+120	36 months	Uses correct tense and plurals	28		Covered by sentence milestones; not scored separately.
+121	36 months	Understands prepositions (in, on, under)	28	com.prepositions	
+122	36 months	Knows own name, age, and gender	28	com.name_age_gender	
+123	36 months	Rides a tricycle well	28	mob.tricycle	
+124	36 months	Draws recognizable shapes	28	hand.circle	
+125	36 months	Engages in detailed pretend play		soc.pretend_role	
+126	36 months	Follows three-step instructions		com.three_step	
+127	36 months	Recognizes and can write some letters and numbers		hand.letters_name	
+128	36 months	Participates in group activities and plays cooperatively		soc.follows_rules	
+129	36 months	Expresses a wide range of emotions		soc.facial_expressions	
+130	36 months	Uses a fork and spoon effectively	29	auto.fork	
+131	36 months	Dresses and undresses with minimal help		auto.dress_some	
+132	36 months	Recognizes familiar written words			Reading words is a later learning goal (lit.fr.read_words); not imported from a blank row.
+133	36 months	Understands cause and effect relationships		think.toy_switches	
+134	36 months	Shows interest in new experiences			Too vague to observe.
+135	36 months	Can state first and last name		com.says_address	
+136	36 months	Participates in simple chores		auto.chores	
+137	36 months	Displays a sense of humor		soc.humour	
+138	36 months	Understands basic safety rules		soc.avoids_danger	

@@ -1,0 +1,266 @@
+prerequisite	skill	strength	reason
+mob.head_tummy	mob.elbows_tummy	hard	Head control on the tummy comes before pushing up on the forearms
+mob.head_tummy	mob.head_steady	hard	Neck strength develops from tummy to upright
+mob.elbows_tummy	mob.straight_arms	hard	Forearm support precedes straight-arm support
+mob.head_steady	mob.sit_leaning	hard	Sitting needs head control
+mob.moves_limbs	mob.roll_tummy_back	soft	Active limb movement helps rolling
+mob.straight_arms	mob.roll_tummy_back	soft	Pushing up helps shift weight to roll
+mob.sit_leaning	mob.sit_alone	hard	Supported sitting precedes independent sitting (WHO sequence)
+mob.legs_push	mob.stand_assisted	hard	Bearing weight on the legs comes before standing with support
+mob.sit_alone	mob.sit_up_alone	hard	The child must hold sitting before getting into it alone
+mob.sit_alone	mob.crawl	soft	Most children sit before they crawl
+mob.straight_arms	mob.crawl	soft	Arm strength supports crawling
+mob.stand_assisted	mob.pull_to_stand	hard	Standing with support precedes pulling up alone
+mob.stand_assisted	mob.cruise	hard	Walking along furniture needs standing with support (WHO sequence)
+mob.cruise	mob.stand_alone	soft	Usual order in the WHO sequence
+mob.stand_alone	mob.walk_alone	hard	Walking alone requires standing balance
+mob.cruise	mob.walk_alone	soft	Cruising usually precedes walking
+mob.crawl	mob.walk_alone	soft	Crawling usually comes first, but some children skip it
+mob.crawl	mob.climb_couch	soft	Climbing builds on crawling
+mob.walk_alone	mob.climb_couch	soft	Leg strength from walking helps climbing
+mob.walk_alone	mob.pull_toy	hard	Needs stable walking
+mob.walk_alone	mob.run	hard	Running builds on stable walking
+mob.walk_alone	mob.stairs_up	hard	Needs stable walking
+mob.walk_alone	mob.kick_ball	hard	Kicking requires balance on one leg for a moment
+mob.walk_alone	mob.tiptoe	hard	Needs standing balance
+mob.run	mob.jump_both	soft	Leg power from running helps jumping
+mob.tiptoe	mob.jump_both	soft	Push-off from the toes
+mob.walk_alone	mob.tricycle	hard	Needs independent leg coordination
+mob.stairs_up	mob.stairs_alternate	hard	Alternating feet follows step-by-step climbing
+mob.kick_ball	mob.one_foot_2s	soft	Kicking trains short one-foot balance
+mob.walk_alone	mob.throw_overhand	soft	Needs standing balance while throwing
+mob.throw_overhand	mob.catch_big_ball	soft	Ball games develop together
+mob.one_foot_2s	mob.hop	hard	Hopping requires balancing on one foot
+mob.jump_both	mob.hop	hard	Hopping is a one-foot jump
+mob.one_foot_2s	mob.one_foot_10s	hard	Longer balance builds on short balance
+mob.hop	mob.skip	hard	Skipping is a step followed by a hop
+mob.jump_both	mob.somersault	soft	Body control from jumping
+mob.tricycle	mob.bike	soft	Pedalling is learned on a tricycle
+mob.one_foot_10s	mob.bike	soft	Balance helps riding without stabilisers
+mob.jump_both	mob.swim	soft	General coordination
+hand.opens_hands	hand.holds_toy	hard	Open hands can grasp
+hand.hands_to_mouth	hand.mouths_objects	hard	Hand-to-mouth coordination
+hand.holds_toy	hand.reach_grab	hard	Grasping precedes reaching to grab
+hand.swings_at_toys	hand.reach_grab	hard	Swiping becomes directed reaching
+hand.reach_grab	hand.transfer	hard	Needs a voluntary grasp
+hand.reach_grab	hand.rake	hard	Raking is an early finger grasp
+hand.transfer	hand.bangs_objects	soft	Holding two objects at once
+hand.rake	hand.pincer	hard	Raking precedes the thumb-finger pincer grasp
+hand.transfer	hand.container	hard	Needs voluntary release of objects
+hand.container	hand.stack_2	hard	Stacking needs precise release
+hand.pincer	hand.stack_2	soft	Fine grasp helps placing blocks
+hand.stack_2	hand.tower_4	hard	Taller towers build on stacking two
+hand.bangs_objects	hand.two_hands	soft	Using two hands together
+hand.tower_4	hand.tower_6	hard	Taller towers need more precision
+hand.two_hands	hand.twist	hard	Holding with one hand while turning with the other
+hand.pincer	hand.pages_one	hard	Turning a single page needs a fine pincer grasp
+hand.pincer	hand.beads	hard	Threading needs a fine grasp
+hand.two_hands	hand.beads	hard	One hand holds the string, the other the bead
+hand.container	hand.puzzle	soft	Placing objects precisely
+hand.pincer	hand.scribble	soft	Holding a crayon
+hand.scribble	hand.line	hard	Controlled lines come from scribbling
+hand.line	hand.circle	hard	Closed shapes follow straight lines
+hand.scribble	hand.tripod	hard	Grip matures from fist to fingers
+hand.line	hand.cross	hard	A cross is two crossing lines
+hand.circle	hand.person_3	hard	A person drawing starts with a round head
+hand.cross	hand.square	hard	Corners come after crossing lines
+hand.square	hand.triangle	hard	Diagonal lines are harder than straight ones
+hand.person_3	hand.person_6	hard	More detail on the same drawing
+hand.tripod	hand.letters_name	hard	Writing needs a finger grip
+hand.cross	hand.letters_name	soft	Letters are made of lines and crosses
+hand.two_hands	hand.scissors	hard	One hand holds the paper, the other cuts
+hand.scissors	hand.scissors_line	hard	Cutting along a line needs basic cutting
+hand.tower_6	hand.glue_assemble	soft	Construction skills
+com.loud_sounds	com.turns_to_voice	hard	Hearing and locating sound
+com.calms_voice	com.turns_to_voice	soft	Recognising a familiar voice
+com.turns_to_voice	com.responds_name	hard	Orienting to voices precedes recognising one's name
+com.responds_name	com.understands_no	soft	Early word comprehension
+com.understands_no	com.looks_named_object	soft	Growing receptive vocabulary
+com.looks_named_object	com.directions_gesture	hard	Must understand object words
+com.directions_gesture	com.one_step	hard	Gestures are removed as comprehension grows
+com.looks_named_object	com.body_parts	hard	Linking words to things
+com.looks_named_object	com.points_book	hard	Linking words to pictures
+com.one_step	com.two_step	hard	Two steps build on one
+com.one_step	com.prepositions	soft	Understanding spatial words in requests
+com.two_step	com.three_step	hard	Three steps build on two
+com.points_book	com.what_for	soft	Understanding the meaning and use of things
+com.makes_sounds	com.coos	hard	Vocal play begins with simple sounds
+com.coos	com.sounds_back	hard	Needs vocal sounds to answer with
+com.sounds_back	com.turn_taking_sounds	hard	Back-and-forth vocal turns
+com.coos	com.squeals	soft	Vocal play
+com.turn_taking_sounds	com.babbles	soft	Imitation supports babbling
+com.squeals	com.babbles	soft	Vocal play develops into syllables
+com.babbles	com.mama_dada	hard	First words are built from babbled syllables
+com.mama_dada	com.first_words	hard	First special word, then more words
+com.arms_up	com.points_ask	soft	Gestures to communicate
+com.first_words	com.three_words	hard	Vocabulary grows
+com.points_ask	com.points_show	hard	Pointing to request precedes pointing to share
+com.waves	com.gestures	soft	More social gestures
+com.three_words	com.two_words	hard	Combining words needs a small vocabulary (usually ~50 words)
+com.two_words	com.fifty_words	soft	Vocabulary spurt around combinations
+com.two_words	com.action_word	hard	Combinations with verbs build on two-word phrases
+com.three_words	com.names_in_book	hard	Needs object words
+com.two_words	com.pronouns	soft	Early grammar
+com.two_words	com.first_name	soft	Talking about oneself
+com.fifty_words	com.intelligible	soft	More speech, more practice
+com.first_name	com.name_age_gender	hard	Adds age and more details to one's name
+com.action_word	com.sentences_4	hard	Longer sentences build on word combinations
+com.fifty_words	com.song_words	soft	Enough words to join in songs
+com.intelligible	com.speaks_clearly	hard	Clarity keeps improving
+com.sentences_4	com.future_tense	soft	Grammar grows with sentence length
+com.name_age_gender	com.says_address	hard	Adds last name and address
+com.two_words	com.conversation_2	hard	Conversation needs combined words
+com.names_in_book	com.describes_action	hard	Describing pictures builds on naming them
+com.action_word	com.describes_action	soft	Needs action words
+com.two_words	com.wh_questions	hard	Questions need word combinations
+com.conversation_2	com.tells_day	soft	Talking about past events in conversation
+com.sentences_4	com.tells_day	soft	Needs longer sentences
+com.tells_day	com.story_2_events	hard	Narrating a sequence of events
+com.conversation_2	com.conversation_3	hard	Longer conversations
+com.tells_day	com.time_words	soft	Talking about past and future
+lit.looks_pages	com.points_book	soft	Shared reading supports picture naming
+hand.pages_one	lit.looks_pages	soft	Handling the book
+lit.looks_pages	lit.next_in_story	soft	Knowing stories from repeated reading
+com.describes_action	lit.next_in_story	soft	Understanding what happens in a story
+lit.next_in_story	lit.answers_story	hard	Following a story's events
+com.song_words	lit.rhymes	soft	Songs and rhymes train sound awareness
+lit.recognises_name	lit.letter_names	soft	Letters of one's own name are learned first
+lit.signs_logos	lit.recognises_name	soft	Understanding that print carries meaning
+com.song_words	lit.fr.syllables	soft	Rhythm of songs helps hearing syllables
+lit.rhymes	lit.fr.rhyme_find	soft	Recognising rhymes precedes producing them
+lit.fr.syllables	lit.fr.first_sound	hard	Syllable awareness comes before phoneme awareness
+lit.fr.first_sound	lit.fr.sound_position	hard	Locating sounds anywhere in a word
+lit.letter_names	lit.fr.letters_3_scripts	hard	Knowing a letter before matching its three scripts
+lit.letter_names	lit.fr.letter_sounds	hard	Letter knowledge supports letter-sound learning
+lit.fr.first_sound	lit.fr.letter_sounds	hard	Hearing sounds before linking them to letters
+hand.letters_name	lit.fr.name_capitals	soft	Writing all letters of the name in capitals
+lit.recognises_name	lit.fr.name_capitals	hard	Knowing what one's name looks like
+lit.fr.name_capitals	lit.fr.name_cursive	hard	Cursive comes after capitals in French school
+lit.fr.letters_3_scripts	lit.fr.name_cursive	hard	Knowing cursive letter forms
+lit.fr.name_capitals	lit.fr.copy_word	soft	Copying other words
+lit.fr.letter_sounds	lit.fr.read_syllables	hard	Decoding needs letter-sound knowledge
+lit.fr.sound_position	lit.fr.read_syllables	soft	Phoneme awareness supports blending
+lit.fr.read_syllables	lit.fr.read_words	hard	Words are blended syllables
+lit.fr.read_words	lit.fr.read_sentence	hard	Sentences are made of decoded words
+com.first_words	math.one_many	soft	"Needs words like ""more"""
+math.one_many	math.give_n	hard	"Knowing ""one"" before ""two"" and ""three"" (knower levels)"
+com.song_words	math.count_3	soft	Number words are learned like a song first
+math.count_3	math.count_10	hard	The counting sequence extends
+math.one_many	math.subitize_3	soft	Early sense of small quantities
+math.subitize_3	math.give_n	soft	Seeing small quantities supports giving them
+math.count_10	math.count_things_10	hard	Counting objects needs the number sequence
+math.give_n	math.count_things_10	hard	Understanding that the last number tells how many
+math.count_3	math.names_numbers_5	soft	Number words before written numbers
+math.count_things_10	math.quantify_10	hard	Making a collection needs counting
+math.quantify_10	math.decompose_10	hard	Splitting a number needs making collections
+math.sort_shape_colour	math.shapes_3	soft	Sorting by shape leads to naming shapes
+think.one_colour	math.sort_shape_colour	soft	Colour awareness helps sorting
+math.sort_shape_colour	math.pattern_ab	soft	Patterns use attributes like colour
+math.big_small	math.order_sizes	hard	Ordering needs comparing
+math.big_small	math.same_different	soft	Comparing attributes
+think.watches_move	think.looks_toy	soft	Visual attention
+think.looks_toy	think.looks_hands	soft	Visual exploration
+think.looks_toy	think.object_permanence	soft	Tracking objects
+think.object_permanence	think.finds_hidden	hard	Knowing objects still exist when hidden
+think.finds_hidden	soc.peekaboo	soft	Hide-and-find games
+think.uses_right_way	think.copies_chores	soft	Imitating real uses of objects
+think.uses_right_way	soc.pretend_objects	hard	Pretending needs knowing an object's real use
+think.toy_switches	think.problem_solving	soft	Cause and effect
+think.one_colour	think.names_colours	hard	Naming several colours builds on knowing one
+think.looks_toy	think.attention_5_10	soft	Attention span grows
+think.day_sequence	think.days_week	soft	Time vocabulary
+think.day_sequence	com.time_words	soft	Understanding time helps using time words
+soc.looks_face	soc.smiles_back	hard	Looking at faces precedes smiling at them
+soc.smiles_back	soc.smiles_attention	hard	Responsive smile becomes initiated smile
+soc.happy_to_see	soc.knows_familiar	soft	Recognising familiar people
+soc.chuckles	soc.laughs	hard	Chuckles become laughter
+soc.knows_familiar	soc.stranger_anxiety	soft	Knowing familiar people makes strangers noticeable
+soc.knows_familiar	soc.reacts_leave	hard	Attachment to specific people
+soc.laughs	soc.peekaboo	soft	Enjoying social games
+soc.peekaboo	soc.pat_a_cake	soft	More complex social games
+soc.pat_a_cake	com.waves	soft	Social routines with gestures
+soc.shows_object	com.points_show	soft	Sharing attention
+soc.copies_children	soc.plays_next_to	soft	Interest in other children
+soc.plays_simple	soc.several_toys	hard	Combining toys in play
+soc.several_toys	soc.pretend_objects	soft	Symbolic play
+soc.plays_next_to	soc.joins_play	hard	Parallel play precedes joining play
+soc.pretend_objects	soc.pretend_role	hard	Pretending with objects precedes role play
+soc.joins_play	soc.asks_play	soft	Seeking playmates
+soc.joins_play	soc.takes_turns	soft	Playing together requires turns
+soc.takes_turns	soc.follows_rules	hard	Rules build on turn-taking
+soc.reacts_leave	soc.secure_base	soft	Attachment as a secure base
+soc.secure_base	soc.calms_dropoff	soft	Secure attachment helps separation
+soc.facial_expressions	soc.notices_hurt	soft	Reading emotions
+soc.notices_hurt	soc.comforts	hard	Noticing distress precedes comforting
+soc.affection	soc.affection_friends	soft	Affection extends to peers
+soc.social_referencing	soc.adapts_place	soft	Reading social cues
+think.hot_warning	soc.avoids_danger	soft	Understanding danger
+soc.facial_expressions	soc.names_emotions	soft	Emotions before words for them
+com.two_words	soc.names_emotions	hard	Needs words
+soc.names_emotions	soc.calm_strategy	soft	Naming feelings helps regulate them
+soc.calms	soc.calm_strategy	soft	Self-soothing matures into strategies
+soc.helper	auto.chores	soft	Wanting to help
+soc.look_at_me	soc.performs	soft	Enjoying an audience
+auto.opens_mouth	auto.closes_lips	soft	Feeding cues
+hand.rake	auto.finger_feeds	hard	Needs a finger grasp
+hand.pincer	auto.finger_feeds	soft	Finer grasp for small pieces
+auto.cup_held	auto.cup_alone	hard	Drinking alone after drinking with help
+auto.finger_feeds	auto.tries_spoon	soft	Self-feeding
+auto.tries_spoon	auto.spoon	hard	Practice makes the spoon efficient
+auto.spoon	auto.fork	hard	Spoon before fork
+auto.cup_alone	auto.serves_self	soft	Handling liquids
+auto.fork	auto.knife	hard	Knife is the last utensil
+auto.hands_wash	auto.toothbrush	soft	Hygiene routines
+auto.toilet_interest	auto.toilet_day	soft	Readiness signs usually come first
+auto.toilet_day	auto.toilet_alone	hard	Daytime toilet use before full independence
+auto.helps_dress	auto.undress	soft	Taking part in dressing
+auto.undress	auto.dress_some	hard	Undressing is easier than dressing
+auto.dress_some	auto.dress_alone	hard	Full dressing builds on partial dressing
+auto.unbuttons	auto.buttons	hard	Unbuttoning is easier than buttoning
+hand.twist	auto.unbuttons	soft	Finger dexterity
+auto.buttons	auto.dress_alone	soft	Fasteners
+auto.dress_alone	auto.laces	soft	Laces are the last dressing skill
+hand.tripod	auto.laces	soft	Fine finger control
+math.count_things_10	mt_WcfaSfVT33	soft	Bridge: one-to-one counting (Marble)
+math.give_n	mt_WcfaSfVT33	soft	Bridge: knowing small quantities
+math.count_things_10	mt_dmNvjroCPT	soft	Bridge: how many in total (cardinality)
+math.subitize_3	mt_pAcaehday5	soft	Bridge: representing numbers with objects
+math.quantify_10	mt_pAcaehday5	soft	Bridge: making collections
+math.same_different	mt__h7hvT4tEb	soft	Bridge: comparing groups
+math.count_things_10	mt__h7hvT4tEb	soft	Bridge: counting to compare
+math.decompose_10	mt_7XcCG43ZZW	soft	Bridge: numbers up to 10 into pairs
+math.shapes_3	mt_KJeEeTutJI	hard	Bridge: 2-D shapes
+com.prepositions	mt_qeZYF6HZ4o	hard	Bridge: positional language
+math.order_sizes	mt_uhuxX8sg9f	soft	Bridge: comparing lengths and heights
+math.big_small	mt_NtJYlJdUe9	soft	Bridge: measurable attributes
+think.day_sequence	mt_-vvVxpOHG2	soft	Bridge: ordering events in time
+think.days_week	mt_bj1YCgNWUx	soft	Bridge: days, weeks, months
+math.pattern_ab	mt_uG2mjHFOlO	soft	Bridge: spotting mathematical patterns
+math.names_numbers_5	mt__YRJ23GuIK	soft	Bridge: written numerals
+hand.tripod	mt_WBfj79OqXz	hard	Bridge: sitting and holding a pencil
+hand.letters_name	mt_H7DquwQi_F	soft	Bridge: forming capital letters
+math.names_numbers_5	mt_oAK9GXSfqV	soft	Bridge: writing digits
+lit.rhymes	mt_4GiE83rJF_	soft	Bridge: rhyming words (English)
+lit.letter_names	mt_frDIaXzWbx	soft	Bridge: knowing all letters
+lit.signs_logos	mt_1KCwbGvm1F	soft	Bridge: understanding print
+lit.fr.syllables	mt_UvNrOXny1i	soft	Bridge: syllables (English)
+lit.answers_story	mt_8-POYyg7GJ	soft	Bridge: predicting what happens next
+lit.next_in_story	mt_8-POYyg7GJ	soft	Bridge: anticipating stories
+com.wh_questions	mt_f8n4txtLej	soft	Bridge: asking questions
+com.conversation_3	mt_mB7DVai-Uf	soft	Bridge: listening and responding
+com.describes_action	mt_4A7FYmvVhA	soft	Bridge: describing aloud
+com.sentences_4	mt_N8CpN1EJrP	soft	Bridge: building sentences
+soc.names_emotions	mt_LhkP_KKIRS	hard	Bridge: naming basic emotions
+soc.names_emotions	mt_69hFD2NgGe	soft	Bridge: naming your feelings
+soc.calm_strategy	mt_Iwg2diBSyW	soft	Bridge: simple calming strategies
+soc.comforts	mt_lAvS72LOUO	soft	Bridge: everyday kindness and care
+soc.follows_rules	mt_FwI7q7DSIx	soft	Bridge: taking turns and sharing
+soc.follows_rules	mt_rkrG2w7WXI	soft	Bridge: rules and agreements
+soc.avoids_danger	mt_q3vRl4dddK	soft	Bridge: everyday safety awareness
+com.body_parts	mt_83gRQ9OPkc	soft	Bridge: body parts and senses
+think.attention_5_10	mt_S4G6GLKr1-	soft	Bridge: persisting when it's hard
+think.problem_solving	mt_20WfHhnL39	soft	Bridge: hands-on problem solving
+soc.pretend_role	think.real_pretend	soft	Playing pretend helps tell pretend from real
+soc.looks_face	soc.mirror	soft	Interest in faces, including one's own
+soc.pat_a_cake	soc.claps_excited	soft	Clapping learned in games becomes a way to show joy
+com.one_step	soc.routines	soft	Following routines needs understanding simple instructions
