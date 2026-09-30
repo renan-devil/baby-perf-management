@@ -24,7 +24,7 @@ Requires [Node.js 22](https://nodejs.org).
 npm install
 npm run dev          # http://localhost:5173
 ```
-Without any configuration, the app stores data **only in the browser** (IndexedDB). That's handy for trying it out. On first launch, click **"Import Constance's history"** to load the 95 milestones from `BabyPerfMGT.xlsx`.
+Without any configuration, the app stores data **only in the browser** (IndexedDB). That's handy for trying it out. On first launch, the app loads Constance's history automatically (192 skills: the Excel milestones plus skills filled at their typical age).
 
 Checks: `npm test` (maths, graph and catalogue checks) · `npm run lint` · `npm run typecheck` · `npm run build`.
 
@@ -54,6 +54,7 @@ The catalogue is plain data. Open the files in Excel, Numbers or Google Sheets (
 | `catalog/translations/` | FR / PT names of Marble skills (ages ≤ 6; machine drafts marked `draft`) and domains |
 | `catalog/marble/` | Pinned copy of Marble v1. Do not edit; replace it with a new release to update |
 | `catalog/seed/excel-mapping.tsv` | How each Excel row was mapped (re-run `npm run import:excel` after changes) |
+| `catalog/seed/constance.json` | Constance's built-in history: 95 Excel milestones + 97 skills filled at their typical age up to 3 months before 30 Sep 2026 (`python3 scripts/fill_typical_ages.py`). Increase `version` to push new entries to devices that already imported it |
 
 ## How the numbers work (short)
 - Each milestone has an age distribution (p25/p50/p75/p90). **Status** follows where Constance's age, or her age when she achieved it, falls in that window.

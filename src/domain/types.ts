@@ -99,6 +99,8 @@ export interface Child {
   birthDate: string; // ISO date
   gestationalWeeks?: number | null;
   homeLanguages: Locale[];
+  /** Version of the built-in history (catalog/seed) already imported for this child. */
+  seedVersion?: number;
 }
 
 export interface Observation {

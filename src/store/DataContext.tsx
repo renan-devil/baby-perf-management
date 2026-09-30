@@ -47,14 +47,36 @@ function loadOnce(repo: Repo, readOnly: boolean): Promise<Snapshot> {
       repo,
       (async () => {
         const s = await repo.load();
-        // First launch: create Constance's profile and import her Excel history automatically.
-        if (s.child || readOnly) return s;
-        await importSeedInto(repo);
-        return repo.load();
+        if (readOnly) return s;
+        // First launch: create Constance's profile and import her history automatically.
+        if (!s.child) {
+          await importSeedInto(repo);
+          return repo.load();
+        }
+        // A newer built-in history: add what is missing, once (never duplicates, never
+        // overwrites what the family recorded).
+        if ((s.child.seedVersion ?? 1) < SEED_VERSION) {
+          await upgradeSeed(repo, s);
+          return repo.load();
+        }
+        return s;
       })(),
     );
   }
   return loads.get(repo)!;
+}
+
+const SEED_VERSION = seed.version ?? 1;
+
+const seedEntries = (): LogInput[] =>
+  seed.observations.map((o) => ({ skillId: o.skillId, status: 'achieved' as const, observedOn: o.observedOn, approximate: true, note: o.note }));
+
+async function upgradeSeed(repo: Repo, s: Snapshot) {
+  const child = s.child!;
+  const have = new Set(s.observations.map((o) => o.skillId));
+  const missing = seedEntries().filter((e) => !have.has(e.skillId));
+  await repo.addObservations(toObservations(child.id, missing));
+  await repo.saveChild({ ...child, seedVersion: SEED_VERSION });
 }
 
 /** Seed an empty store with Constance's profile and history (catalog/seed/constance.json). */
@@ -65,14 +87,10 @@ async function importSeedInto(repo: Repo) {
     birthDate: seed.child.birthDate,
     gestationalWeeks: seed.child.gestationalWeeks,
     homeLanguages: seed.child.homeLanguages as Locale[],
+    seedVersion: SEED_VERSION,
   };
   await repo.saveChild(child);
-  await repo.addObservations(
-    toObservations(
-      child.id,
-      seed.observations.map((o) => ({ skillId: o.skillId, status: 'achieved' as const, observedOn: o.observedOn, approximate: true, note: o.note })),
-    ),
-  );
+  await repo.addObservations(toObservations(child.id, seedEntries()));
 }
 
 function toObservations(childId: string, entries: LogInput[]): Observation[] {

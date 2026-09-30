@@ -163,7 +163,7 @@
     "devHelp": "L'âge auquel un enfant typique a atteint autant d'étapes dans cette matière. Âge réel : {{age}}.",
     "devAge": "Âge de développement",
     "actualAge": "âge réel",
-    "devNote": "Compte les étapes acquises et probablement acquises. Devient peu informatif quand toutes les étapes d'une matière sont acquises (vers 5–6 ans).",
+    "devNote": "Compte les étapes acquises et probablement acquises. « ≥ » signifie que toutes les étapes suivies dans cette matière sont acquises : la vraie valeur est plus élevée et inconnue.",
     "goalsTitle": "Objectifs d'apprentissage pour cet âge",
     "goalsHelp": "Part des objectifs d'apprentissage (type école) commençant à l'âge actuel ou avant qui sont acquis. Jamais un verdict : cela dépend de l'enseignement.",
     "goalsDone": "Acquis"
