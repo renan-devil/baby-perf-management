@@ -1,14 +1,14 @@
 type	id	parent	color	order	name_en	name_fr	name_pt
-subject	mobility		#e5484d	1	Mobility	Motricité	Mobilidade
-subject	hands		#f76b15	2	Hand skills	Habileté manuelle	Motricidade fina
-subject	communication		#ffb224	3	Communication	Communication	Comunicação
-subject	literacy		#46a758	4	Literacy	Lecture et écriture	Leitura e escrita
-subject	mathematics		#0090ff	5	Mathematics	Mathématiques	Matemática
-subject	thinking		#12a594	6	Thinking & discovery	Réflexion et découverte	Pensamento e descoberta
-subject	social		#8e4ec6	7	Personal & social development	Développement personnel et social	Desenvolvimento pessoal e social
-subject	autonomy		#d6409f	8	Autonomy & life skills	Autonomie et vie pratique	Autonomia e vida prática
-subject	history		#a18072	9	History	Histoire	História
-subject	computing		#6e6ade	10	Computing	Informatique	Informática
+subject	mobility		#2a78d6	1	Mobility	Motricité	Mobilidade
+subject	hands		#eb6834	2	Hand skills	Habileté manuelle	Motricidade fina
+subject	communication		#1baf7a	3	Communication	Communication	Comunicação
+subject	literacy		#eda100	4	Literacy	Lecture et écriture	Leitura e escrita
+subject	mathematics		#e87ba4	5	Mathematics	Mathématiques	Matemática
+subject	thinking		#008300	6	Thinking & discovery	Réflexion et découverte	Pensamento e descoberta
+subject	social		#4a3aa7	7	Personal & social development	Développement personnel et social	Desenvolvimento pessoal e social
+subject	autonomy		#e34948	8	Autonomy & life skills	Autonomie et vie pratique	Autonomia e vida prática
+subject	history		#8a8984	9	History	Histoire	História
+subject	computing		#8a8984	10	Computing	Informatique	Informática
 domain	mob.posture	mobility		1	Posture & moving around	Posture et déplacements	Postura e deslocação
 domain	mob.balance	mobility		2	Balance, jumping & ball games	Équilibre, sauts et jeux de ballon	Equilíbrio, saltos e jogos com bola
 domain	hand.grasp	hands		1	Grasping & handling objects	Préhension et manipulation	Preensão e manipulação

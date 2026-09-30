@@ -33,12 +33,17 @@ export function skillStates(observations: Observation[]): Map<string, SkillState
 }
 
 /**
- * Skills implied as achieved: every hard prerequisite (transitively) of an achieved skill,
- * unless the family recorded something else for it.
+ * Skills implied as achieved ("probably achieved"): every prerequisite (transitively) of an
+ * achieved skill, unless the family recorded something else for it. Soft links count too:
+ * a skill that usually comes first has very probably been acquired when a later one is.
  */
-export function impliedAchieved(g: SkillGraph, states: Map<string, SkillState>): Set<string> {
+export function impliedAchieved(
+  g: SkillGraph,
+  states: Map<string, SkillState>,
+  strengths: ('hard' | 'soft')[] = ['hard', 'soft'],
+): Set<string> {
   const achieved = [...states].filter(([, s]) => s.status === 'achieved').map(([id]) => id);
-  const implied = ancestors(g, achieved, ['hard']);
+  const implied = ancestors(g, achieved, strengths);
   for (const id of [...implied]) if (states.has(id)) implied.delete(id);
   return implied;
 }
@@ -50,7 +55,15 @@ export type MilestoneLabel =
   | 'not_expected_yet'
   | 'in_window_pending'
   | 'discuss'
-  | 'regression';
+  | 'regression'
+  | 'unlogged';
+
+/**
+ * Months after p90 during which a missing milestone is flagged. Beyond that, a milestone
+ * nobody logged is far more likely forgotten than absent, so it is shown as "not logged"
+ * instead (unless the family explicitly recorded "not yet").
+ */
+export const STALE_AFTER_MONTHS = 12;
 
 export type LearningLabel = 'not_yet' | 'ready' | 'emerging' | 'achieved' | 'implied';
 
@@ -67,6 +80,7 @@ export function milestoneLabel(skill: Skill, state: SkillState | undefined, ageN
   }
   if (ageNow < p.p25) return 'not_expected_yet';
   if (ageNow <= p.p90) return 'in_window_pending';
+  if (ageNow > p.p90 + STALE_AFTER_MONTHS && state?.status !== 'not_yet') return 'unlogged';
   return 'discuss';
 }
 
@@ -190,7 +204,10 @@ export function upNext(
     if (s.kind === 'behaviour' || done(s.id)) return false;
     if (states.get(s.id)?.status === 'lost') return false;
     if (!hardPrereqsDone(g, s.id, done)) return false;
-    if (s.percentiles) return s.percentiles.p25 <= ageNow + 6;
+    if (s.percentiles) {
+      const emerging = states.get(s.id)?.status === 'emerging';
+      return s.percentiles.p25 <= ageNow + 6 && (emerging || ageNow <= s.percentiles.p90 + STALE_AFTER_MONTHS);
+    }
     if (s.ageStart !== undefined) return s.ageStart * 12 <= ageNow;
     return false;
   });

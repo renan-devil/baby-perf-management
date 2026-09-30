@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  base: './',
+  build: { chunkSizeWarningLimit: 4000 },
   plugins: [
     react(),
     VitePWA({

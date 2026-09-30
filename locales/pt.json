@@ -1,0 +1,253 @@
+{
+  "app": {
+    "name": "Acompanhamento do desenvolvimento",
+    "readOnly": "Só leitura"
+  },
+  "common": {
+    "close": "Fechar",
+    "delete": "Apagar",
+    "loading": "A carregar…",
+    "notTranslated": "Ainda não traduzido (mostrado em inglês)",
+    "save": "Guardar"
+  },
+  "nav": {
+    "today": "Hoje",
+    "skills": "Competências",
+    "map": "Mapa",
+    "progress": "Progresso",
+    "journal": "Diário"
+  },
+  "age": {
+    "full": "{{y}} anos {{m}} meses {{d}} dias",
+    "months_one": "{{count}} mês",
+    "months_other": "{{count}} meses",
+    "years_one": "{{count}} ano",
+    "years_other": "{{count}} anos",
+    "yearsMonths": "{{y}} anos {{m}} meses"
+  },
+  "status": {
+    "early": "Precoce",
+    "in_window": "Dentro da janela normal",
+    "later": "Mais tarde do que a maioria (adquirido)",
+    "not_expected_yet": "Ainda não esperado",
+    "in_window_pending": "Na sua janela",
+    "discuss": "A falar com o pediatra",
+    "regression": "Competência perdida: falar em breve",
+    "not_yet": "Ainda não",
+    "ready": "Pronto para aprender",
+    "emerging": "Em curso",
+    "achieved": "Adquirido",
+    "implied": "Provavelmente adquirido",
+    "observed": "Observado",
+    "unlogged": "Não registado (provavelmente adquirido há muito)",
+    "not_observed": "Não observado"
+  },
+  "obs": {
+    "achieved": "Adquirido",
+    "emerging": "Em curso",
+    "not_yet": "Ainda não",
+    "lost": "Perdido"
+  },
+  "lang": {
+    "fr": "Francês",
+    "en": "Inglês",
+    "pt": "Português"
+  },
+  "role": {
+    "owner": "Proprietário",
+    "editor": "Editor",
+    "viewer": "Leitor"
+  },
+  "link": {
+    "hard": "pré-requisito necessário",
+    "soft": "costuma vir antes"
+  },
+  "today": {
+    "log": "Registar uma competência",
+    "alerts_one": "{{count}} marco a falar com o pediatra",
+    "alerts_other": "{{count}} marcos a falar com o pediatra",
+    "upNext": "A seguir",
+    "upNextHelp": "Competências cujos pré-requisitos estão adquiridos e adequadas à idade atual.",
+    "unlocks_one": "Abre caminho a {{count}} competência",
+    "unlocks_other": "Abre caminho a {{count}} competências",
+    "timely": "Oportuno nesta idade",
+    "nothingNext": "Nada a sugerir de momento.",
+    "checkin": "Ponto rápido: o que sabe fazer hoje?",
+    "recent": "Registados recentemente",
+    "noRecent": "Ainda nada registado."
+  },
+  "log": {
+    "title": "Registar uma competência",
+    "search": "Procurar uma competência…",
+    "noResult": "Nenhuma competência encontrada.",
+    "change": "Mudar",
+    "status": "Estado",
+    "date": "Data",
+    "languages": "Em que língua(s)?",
+    "note": "Nota (opcional)"
+  },
+  "skills": {
+    "title": "Competências",
+    "search": "Procurar…",
+    "allSubjects": "Todas",
+    "age": "Idade",
+    "aroundAge": "Até 18 meses à frente",
+    "allAges": "Todas as idades",
+    "status": "Estado",
+    "allStatus": "Todos os estados",
+    "todo": "Por adquirir",
+    "done": "Adquiridas",
+    "count_one": "{{count}} competência",
+    "count_other": "{{count}} competências",
+    "none": "Nenhuma competência corresponde.",
+    "more": "Mostrar mais"
+  },
+  "skill": {
+    "notFound": "Competência não encontrada.",
+    "achievedToday": "Adquirido hoje",
+    "logOther": "Registar…",
+    "onMap": "Ver no mapa",
+    "evidence": "O que conta",
+    "ask": "Pergunte-se:",
+    "activities": "Atividades que ajudam",
+    "reference": "Referência",
+    "window": "Janela normal: de {{from}} a {{to}}",
+    "ageRange": "Idade típica: {{from}}–{{to}} anos",
+    "median": "metade das crianças aos {{age}}",
+    "measured": "medido (OMS)",
+    "estimated": "estimado",
+    "learningGoalNote": "Um objetivo de aprendizagem: depende do ensino e da exposição, por isso nunca é marcado como atrasado.",
+    "percentile": "Adquirido por volta do percentil {{p}} (mais cedo do que cerca de {{rest}}% das crianças).",
+    "source": "Fonte",
+    "prerequisites_one": "Vem depois de ({{count}})",
+    "prerequisites_other": "Vem depois de ({{count}})",
+    "unlocks_one": "Abre caminho a ({{count}} no total)",
+    "unlocks_other": "Abre caminho a ({{count}} no total)",
+    "history": "Histórico",
+    "noHistory": "Nada registado.",
+    "approximate": "data aproximada",
+    "confirmDelete": "Apagar este registo?"
+  },
+  "map": {
+    "title": "Mapa de competências",
+    "focus": "Foco",
+    "subject": "Por área",
+    "whole": "Mapa completo",
+    "legendDone": "Adquirido",
+    "legendProgress": "Em curso / pronto",
+    "searchFocus": "Centrar o mapa numa competência…",
+    "openSkill": "Abrir",
+    "focusHelp": "Em cima: o que vem antes. Em baixo: o que abre. Toque numa competência para recentrar.",
+    "ahead": "Até que idade",
+    "aheadN_one": "Até {{count}} ano à frente",
+    "aheadN_other": "Até {{count}} anos à frente",
+    "subjectHelp": "As setas vão de uma competência para as que ela abre. Toque numa competência para a focar.",
+    "tooMany": "A mostrar as {{shown}} mais próximas da idade atual de {{total}}.",
+    "wholeHelp": "{{done}} de {{total}} competências adquiridas (pontos vivos). Toque num ponto para o focar."
+  },
+  "progress": {
+    "title": "Progresso",
+    "milestonesDone": "marcos adquiridos (de {{total}})",
+    "expectedNow": "esperados em média nesta idade",
+    "toDiscuss": "a falar com o pediatra",
+    "curveTitle": "Marcos ao longo do tempo",
+    "curveHelp": "Número acumulado de marcos atingidos em cada idade, comparado com uma criança típica (tracejado) e o intervalo habitual (faixa, cerca do percentil 10 ao 90).",
+    "ageMonths": "Idade (meses)",
+    "band": "Intervalo habitual",
+    "expected": "Criança típica",
+    "today": "hoje",
+    "curveNote": "Baseado em {{dated}} marcos datados; a linha pára no último registado. A faixa é aproximada: os marcos não são independentes, por isso o intervalo real é mais largo.",
+    "showTable": "Mostrar em tabela",
+    "hideTable": "Ocultar tabela",
+    "devTitle": "Idade de desenvolvimento por área",
+    "devHelp": "A idade em que uma criança típica atingiu o mesmo número de marcos nessa área. Idade real: {{age}}.",
+    "devAge": "Idade de desenvolvimento",
+    "actualAge": "idade real",
+    "devNote": "Conta marcos adquiridos e provavelmente adquiridos. Deixa de ser informativo quando todos os marcos de uma área estão adquiridos (por volta dos 5–6 anos).",
+    "goalsTitle": "Objetivos de aprendizagem para esta idade",
+    "goalsHelp": "Percentagem dos objetivos de aprendizagem (tipo escola) que começam na idade atual ou antes e estão adquiridos. Nunca um veredito: dependem do ensino.",
+    "goalsDone": "Adquirido"
+  },
+  "journal": {
+    "title": "Diário",
+    "placeholder": "O que fez a {{name}} hoje?",
+    "photo": "Foto",
+    "linkSkill": "Ligar uma competência (opcional)…",
+    "add": "Adicionar ao diário",
+    "empty": "Ainda sem entradas.",
+    "confirmDelete": "Apagar esta entrada?"
+  },
+  "alerts": {
+    "title": "A falar",
+    "explain": "Estes marcos já passaram a idade em que 90% das crianças os têm, ou uma competência foi perdida. Não é um diagnóstico: as crianças variam muito. Fale disso na próxima consulta; uma competência perdida merece ser referida em breve.",
+    "none": "Nada a assinalar."
+  },
+  "checkin": {
+    "title": "Ponto rápido",
+    "help": "Assinale o que sabe fazer hoje. As competências necessárias antes passam a contar como provavelmente adquiridas.",
+    "none": "Nada a verificar nesta área por volta desta idade.",
+    "note": "Ponto rápido",
+    "save_one": "Guardar {{count}} competência",
+    "save_other": "Guardar {{count}} competências"
+  },
+  "setup": {
+    "title": "Bem-vindo",
+    "importTitle": "Histórico da Constance",
+    "importHelp": "Criar o perfil da Constance (nascida a 4 de fevereiro de 2022) e importar {{count}} marcos do ficheiro Excel.",
+    "import": "Importar o histórico da Constance",
+    "or": "ou",
+    "newTitle": "Começar com um perfil vazio",
+    "create": "Criar"
+  },
+  "settings": {
+    "title": "Definições",
+    "language": "Língua da interface",
+    "child": "Criança",
+    "firstName": "Nome",
+    "birthDate": "Data de nascimento",
+    "gestationalWeeks": "Semanas de gestação ao nascer (só se prematuro)",
+    "homeLanguages": "Línguas em casa",
+    "saved": "Guardado.",
+    "storage": "Armazenamento",
+    "localMode": "Os dados estão guardados só neste navegador. Para os partilhar entre os telemóveis da família, configure a base de dados online (ver README).",
+    "family": "Família",
+    "familyHelp": "As pessoas convidadas podem entrar com o email depois de a conta existir no Supabase (Authentication → Users → Invite).",
+    "pending": "pendente",
+    "invite": "Convidar",
+    "share": "Link só de leitura",
+    "shareHelp": "Por exemplo para o pediatra. Válido 30 dias, revogável.",
+    "createLink": "Criar um link",
+    "revokeLinks": "Revogar todos os links",
+    "data": "Dados",
+    "export": "Exportar tudo (JSON)",
+    "importFile": "Restaurar a partir de uma exportação",
+    "importExcel": "Importar o histórico Excel ({{count}} marcos)",
+    "imported": "Importado.",
+    "confirmReplace": "Substituir todos os dados atuais por este ficheiro?",
+    "deleteAll": "Apagar todos os dados",
+    "confirmDeleteAll": "Apagar o perfil, todas as observações e o diário? Não pode ser desfeito.",
+    "signOut": "Terminar sessão"
+  },
+  "about": {
+    "title": "Sobre e agradecimentos",
+    "intro": "Uma aplicação familiar privada para acompanhar as competências de uma criança face a idades de referência científicas e sugerir o que trabalhar a seguir.",
+    "notMedical": "Não é uma ferramenta médica nem de diagnóstico. As crianças variam muito; em caso de dúvida, fale com o seu pediatra.",
+    "thanks": "Obrigado, Marble",
+    "marble": "As {{count}} competências de idade escolar e as suas ligações de pré-requisitos (4 a 13 anos) vêm da Marble Skill Taxonomy, um conjunto de dados aberto criado pelos nossos amigos da Marble. Obrigado!",
+    "sources": "Fontes científicas",
+    "ownCatalog": "As {{count}} competências da primeira infância (nascimento aos 6 anos) foram compiladas a partir de:",
+    "estimates": "Quando uma fonte dá só uma idade (por ex. o percentil 75 do CDC), os outros percentis são estimados e assinalados como tal.",
+    "licence": "Licença",
+    "mit": "O código da aplicação e o nosso catálogo estão sob a licença MIT. Os dados da Marble mantêm as suas próprias licenças (ODbL 1.0 e CC BY-SA 4.0)."
+  },
+  "login": {
+    "help": "Entre com o endereço de email convidado. Vai receber um código de 6 dígitos.",
+    "send": "Enviar-me um código",
+    "sent": "Veja o seu email e escreva o código (ou toque no link do email).",
+    "verify": "Entrar",
+    "error": "Não foi possível entrar: {{message}}"
+  },
+  "share": {
+    "invalid": "Este link é inválido ou expirou."
+  }
+}

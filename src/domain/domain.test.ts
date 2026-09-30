@@ -148,12 +148,22 @@ describe('progress', () => {
     expect(milestoneLabel(walk, undefined, 8, BIRTH)).toBe('not_expected_yet');
     expect(milestoneLabel(walk, undefined, 12, BIRTH)).toBe('in_window_pending');
     expect(milestoneLabel(walk, undefined, 16, BIRTH)).toBe('discuss');
+    // Long past the window and never logged: most likely just not logged.
+    expect(milestoneLabel(walk, undefined, 40, BIRTH)).toBe('unlogged');
+    expect(milestoneLabel(walk, st([obs('walk', 'not_yet', '2025-06-01')]), 40, BIRTH)).toBe('discuss');
     expect(milestoneLabel(walk, st([obs('walk', 'lost', '2023-02-04')]), 16, BIRTH)).toBe('regression');
   });
-  it('implies hard prerequisites of achieved skills', () => {
-    const g = buildGraph(['a', 'b', 'c', 'd'].map((id) => skill(id)), [dep('a', 'b'), dep('b', 'c'), dep('d', 'c', 'soft')]);
-    const st = skillStates([obs('c', 'achieved', '2024-01-01')]);
-    expect([...impliedAchieved(g, st)].sort()).toEqual(['a', 'b']);
+  it('implies prerequisites of achieved skills, except those recorded otherwise', () => {
+    const g = buildGraph(['a', 'b', 'c', 'd', 'e'].map((id) => skill(id)), [dep('a', 'b'), dep('b', 'c'), dep('d', 'c', 'soft'), dep('e', 'c')]);
+    const st = skillStates([obs('c', 'achieved', '2024-01-01'), obs('e', 'not_yet', '2024-01-01')]);
+    expect([...impliedAchieved(g, st)].sort()).toEqual(['a', 'b', 'd']);
+    expect([...impliedAchieved(g, st, ['hard'])].sort()).toEqual(['a', 'b']);
+  });
+  it('does not suggest long-overdue unlogged milestones', () => {
+    const baby = skill('coo', { percentiles: { p25: 2, p50: 3, p75: 4, p90: 5 } });
+    const g = buildGraph([baby], []);
+    expect(upNext([baby], g, () => false, skillStates([]), 56)).toHaveLength(0);
+    expect(upNext([baby], g, () => false, skillStates([]), 10)).toHaveLength(1);
   });
   it('builds a cumulative curve whose expected count tends to the number of milestones', () => {
     const ms = [walk, skill('sit', { percentiles: { p25: 5, p50: 6, p75: 7, p90: 8 } })];
