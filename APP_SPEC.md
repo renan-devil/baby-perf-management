@@ -292,8 +292,14 @@ For **milestones** (percentiles known):
 For **learning goals** (Marble and school items): *Not yet*, *Ready* (all hard prerequisites
 achieved), *Emerging*, *Achieved*. There is no "late" label.
 
-**Implied skills:** if a child has achieved B, every **hard** prerequisite of B is shown as
-"implied achieved" (lighter colour) unless recorded otherwise. This matters for onboarding:
+**Implied skills:** if a child has achieved B, every prerequisite of B (hard and soft,
+transitively) is shown as "probably achieved" (lighter colour) unless recorded otherwise.
+*(Changed during the build: with hard links only, too many early skills stayed unmarked.)*
+
+**Not logged:** a milestone more than 12 months past its p90 that nobody logged is shown as
+"not logged (probably acquired long ago)" instead of being flagged, unless the family
+explicitly recorded "not yet". Without this, a history that stops (like the Excel at
+29 months) produces dozens of false alerts. This matters for onboarding:
 for a 4½-year-old like Constance, you tick a few advanced skills and the app fills in the
 hundreds of earlier ones, which you can then correct.
 
@@ -367,7 +373,7 @@ mathematics").
 | App | **PWA** (web app installable on phones) in React + TypeScript (Vite) | One code base for iPhone, Android and computer. No App Store fees or review at first. |
 | Translations | i18next (FR / EN / PT) | Standard, simple |
 | Charts | Recharts | Simple |
-| Skill map | **React Flow + ELK layout** (focus and subject views); **react-force-graph** (whole map, WebGL) | React Flow handles readable diagrams of up to a few hundred nodes; WebGL is needed to draw ~1,900 nodes smoothly |
+| Skill map | **React Flow + dagre layout** (focus and subject views); **react-force-graph** (whole map, canvas) | React Flow handles readable diagrams of up to a few hundred nodes; canvas is needed to draw ~1,800 nodes smoothly |
 | Database + login + photos | **Supabase** (PostgreSQL, authentication, storage), **EU region** | Login, database and photo storage in one service; access restricted to invited family members |
 | Hosting | **Vercel** | Deploys automatically from GitHub |
 | Tests | Vitest | Maths and graph checks |
@@ -529,3 +535,22 @@ We validate with you after steps 1, 4 and 5.
 
 No decisions are open. Next is **build step 1** (§8): catalogue A, the bridge links to
 Marble, and the Excel mapping table, for your review.
+
+---
+
+## 11. Implementation notes (v1.0 build)
+- **Status:** the app is built. See `BUILD_PROGRESS.md` and `README.md` (setup, deployment, catalogue editing).
+- **Storage:** without Supabase settings, the app stores data in the browser (IndexedDB). With
+  `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY`, it uses the shared online database. Sign-in is
+  by email code, invitation only. The schema's access rules were tested on PostgreSQL with Supabase
+  stubs: owner, editor, viewer (read only), stranger (no access), share link (valid, revoked).
+- **Estimated percentiles:** for CDC items, `p25 = 0.75·p75`, `p50 = 0.87·p75`, `p90 = 1.15·p75`
+  (typical spread of Denver-type norms); WHO windows use a normal approximation. All estimates are
+  labelled in the app.
+- **Catalogue A:** 230 skills (CDC 2022, CDC 2004–2021, WHO, maternelle, CP, Clements & Sarama, AAP)
+  in EN / FR / PT, with 265 links, 48 of them bridges into Marble.
+- **Translations:** all our texts and the interface are in 3 languages. Marble skill names for ages ≤ 6
+  (426) and all domain names are machine-drafted in FR / PT (`status = draft`); descriptions and
+  evidence of Marble skills are shown in English for now.
+- **Subject map:** layered layout (prerequisites before dependents), limited to the 60 skills closest to
+  the child's age for readability. The focus view shows 2 levels upstream and the 10 closest dependents.

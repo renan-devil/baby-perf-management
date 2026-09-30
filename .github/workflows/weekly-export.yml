@@ -1,0 +1,30 @@
+# Weekly backup of the family data (the free Supabase plan has no automatic backups).
+# Also keeps the free project from pausing after 7 days without activity.
+# Needs two repository secrets: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY
+# (Supabase → Project Settings → API). The export is kept 90 days as a workflow artifact.
+name: Weekly export
+on:
+  schedule:
+    - cron: '17 3 * * 1' # Mondays 03:17 UTC
+  workflow_dispatch:
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Export tables
+        env:
+          URL: ${{ secrets.SUPABASE_URL }}
+          KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then echo "Secrets not set: nothing to export."; exit 0; fi
+          mkdir export
+          for t in family member invitation child observation journal_entry share_link; do
+            curl -sf "$URL/rest/v1/$t?select=*" -H "apikey: $KEY" -H "Authorization: Bearer $KEY" -o "export/$t.json"
+          done
+          ls -la export
+      - uses: actions/upload-artifact@v4
+        with:
+          name: family-export-${{ github.run_number }}
+          path: export
+          retention-days: 90
+          if-no-files-found: ignore
