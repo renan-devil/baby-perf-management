@@ -521,7 +521,6 @@ We validate with you after steps 1, 4 and 5.
 | Use | **Private, non-commercial, for Constance only** (§3.7) |
 | Interface | FR / EN / PT (§6.5) |
 | Subjects, timeline beyond 36 m, dependencies + visualisation | Included (§3.2–3.6, §4.1, §5.5–5.6), inspired by the Marble taxonomy |
-
 | Marble subjects | All 8, filtered by age (§3.4) |
 | School reading language | French: its literacy track comes first (§3.5) |
 | Out-of-scope list for v1 | Confirmed (§4.3) |
