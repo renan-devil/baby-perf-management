@@ -1,13 +1,17 @@
-# Child Development Tracker: App Specification (v0.2, draft to amend)
+# Constance's Development Tracker: App Specification (v0.3, draft to amend)
 
+> **v0.3 changes:** the app is **private, for Constance only**, not commercial and not
+> open to other families. It is still online and shared between devices, by invitation only.
+> Birth date confirmed: **4 February 2022**. §1, §3.7, §6 and §8–10 are simplified.
+>
 > **v0.2 changes:**
 > - Skills are grouped by **subject → domain** (§3.3).
 > - The timeline goes **beyond 36 months**, by joining our early catalogue with the open
 >   **Marble Skill Taxonomy** (ages 4–13, §3.2, §3.4).
 > - Skills are **linked by dependencies** (§3.6) and shown on a **skill map** (§4.1, §5.5–5.6).
 > - Your answers are included: Constance was born on **4 February 2022**, she hears
->   **three languages** (EN / FR / PT, §3.5), the app is **shared and public-facing**
->   (several families, §6.3), and the interface is in **FR / EN / PT** (§6.5).
+>   **three languages** (EN / FR / PT, §3.5), the app is **shared online** between
+>   family devices (§6.3), and the interface is in **FR / EN / PT** (§6.5).
 
 > **How to use this document.** This is a working draft. Amend anything directly.
 > Items marked **🟡 DECISION** need your call before we build. Items marked
@@ -17,9 +21,9 @@
 
 ## 1. Purpose
 
-Track a child's skills, grouped by subject (mobility, language, social skills,
-mathematics, …), from birth to the early school years. Constance is the first user,
-and other families can use the app too. The app compares each child's progress with **scientifically
+Track Constance's skills, grouped by subject (mobility, language, social skills,
+mathematics, …), from birth to the early school years. It is a **private family app**:
+not commercial and not open to the public. It compares her progress with **scientifically
 sourced reference ages**, and suggest **what to do next** to support the skills
 she is currently developing.
 
@@ -104,7 +108,7 @@ wherever possible it is a **distribution** (percentiles), not a single number.
 |---|---|---|
 | **WHO Motor Development Study** (Multicentre Growth Reference Study, 2006) | 6 gross motor milestones with 1st / 50th / 99th percentile windows, measured on ~800 children in 5 countries | Gold standard for motor: sitting, crawling, standing with help, walking with help, standing alone, walking alone |
 | **CDC / AAP "Learn the Signs. Act Early."** (revised 2022) | Checklists at 2, 4, 6, 9, 12, 15, 18 m, 2, 3, 4, 5 years. Each item is something **75% of children** do by that age | Main catalogue for social, language, cognitive, motor. Also "when to talk to your doctor" flags |
-| **Denver II** (Frankenburg et al.) | Ages at which 25%, 50%, 75%, 90% of children pass each item | **Internal calibration only.** The item content is copyrighted, so it cannot be published in a public app |
+| **Denver II** (Frankenburg et al.) | Ages at which 25%, 50%, 75%, 90% of children pass each item | **Not used.** The item content is copyrighted, and CDC / WHO are enough |
 | **French health booklet** (*carnet de santé*, 2018 edition), optional | Milestones checked at the mandatory check-ups (9 m, 24 m, …) | Aligns the app with what your pediatrician checks |
 
 **Reference model for each milestone:** a small set of percentile points, for example
@@ -224,21 +228,21 @@ Rules, checked automatically (§5.5):
 - **Every link has a `reason`** (as in Marble), so it can be challenged.
 - Links may cross subjects and cross catalogues (the bridge links of §3.2).
 
-### 3.7 Licences (important because the app is public)
+### 3.7 Licences (private, non-commercial use)
+
+The app is for Constance only. It is not distributed or sold, so the licence obligations are light:
 
 | Source | Licence | What it means for us |
 |---|---|---|
-| **Marble taxonomy**: database | ODbL 1.0 | Free, **commercial use allowed**, **attribution required**. If we publish an improved *version of the taxonomy* (e.g. our catalogue A plus bridge links merged into it), that dataset must also be ODbL. The **app itself** stays ours. |
-| **Marble texts** (descriptions, evidence, reasons) | CC BY-SA 4.0 | Attribution plus share-alike. Our **FR / PT translations** of these texts must also be CC BY-SA. |
-| Marble `curriculum-standards.json` | Each source's own licence (e.g. Common Core is purpose-limited, NGSS restricted for commercial use) | We keep only the standard codes, as Marble does, or we leave this file out. |
-| CDC "Learn the Signs. Act Early." | US government work, generally public domain | OK to reuse. We cite it. |
-| WHO motor study | Numbers (facts) cited from the publication | We cite the source. We do not copy WHO documents (CC BY-NC-SA, non-commercial). |
-| Denver II | Copyrighted test | **Not used** in the public app. |
+| **Marble taxonomy** (database, ODbL 1.0; texts, CC BY-SA 4.0) | Open, commercial use allowed | Private use is fully allowed. Share-alike only applies if we **publish** a modified version of the dataset, which we don't. We still credit Marble in the app's About page (it's good practice, and it's your friends). |
+| Marble `curriculum-standards.json` | Each source's own licence | Not needed. We keep only the standard codes that appear in the topics. |
+| CDC "Learn the Signs. Act Early." | US government work, public domain | Free to use. We cite it. |
+| WHO motor study | Published figures | We cite the source. |
+| Denver II | Copyrighted test | Not used, since the CDC and WHO data are enough. |
 
-*Recommendation:* publish our catalogue A and the bridge links **as open data under ODbL**,
-compatible with Marble and credited to them. It costs nothing, it satisfies share-alike without
-ambiguity, and it is a natural contribution back to your friends. The app code and the
-families' data stay private. Get a lawyer's short check before any commercial launch.
+If you ever want to open it to other families or make it commercial, §3.7 and §6.3 of v0.2
+(in git history) list what would change: open-data publishing, GDPR impact assessment, and
+medical-device positioning.
 
 ---
 
@@ -353,8 +357,7 @@ mathematics").
    plain data files in the repo, validated by tests.
 2. **Computations are pure functions** (§5), unit tested, in one module.
 3. **Few moving parts.** One web app, one managed database, no custom servers.
-4. **Private by default, even though the app is public**: anyone can sign up, but each
-   family sees only its own data.
+4. **Private**: no public sign-up. Only invited family members can log in.
 
 ### 6.2 Recommended stack
 | Layer | Choice | Why |
@@ -363,20 +366,22 @@ mathematics").
 | Translations | i18next (FR / EN / PT) | Standard, simple |
 | Charts | Recharts | Simple |
 | Skill map | **React Flow + ELK layout** (focus and subject views); **react-force-graph** (whole map, WebGL) | React Flow handles readable diagrams of up to a few hundred nodes; WebGL is needed to draw ~1,900 nodes smoothly |
-| Database + login + photos | **Supabase** (PostgreSQL, authentication, storage), **EU region** | Multi-family with row-level security, backups included |
+| Database + login + photos | **Supabase** (PostgreSQL, authentication, storage), **EU region** | Login, database and photo storage in one service; access restricted to invited family members |
 | Hosting | **Vercel** | Deploys automatically from GitHub |
 | Tests | Vitest | Maths and graph checks |
 
-**Expected cost:** €0/month at launch on free tiers. Around €45/month (Supabase Pro €25 +
-Vercel Pro ~€20) once public with real users, mainly for backups, uptime and photo storage.
-Plus a domain (~€10/year).
+**Expected cost:** **€0/month**. One family fits easily within the free tiers of Supabase
+(500 MB database, 1 GB photo storage) and Vercel. The only caveat: a free Supabase project
+**pauses after 7 days without use** and has no automatic backups. So we add a weekly
+automatic export (a small scheduled job, also free). Optional: Supabase Pro at €25/month
+for daily backups, and a custom domain (~€10/year). Neither is needed.
 
 ```
- Families' phones / laptops (PWA, FR/EN/PT)          Cloud (managed)
+ Family phones / laptops (PWA, FR/EN/PT)            Cloud (managed)
  ┌──────────────────────────────────┐        ┌─────────────────────────────────┐
  │ Today · Skills · Skill map ·     │        │ Supabase (EU)                   │
- │ Progress · Journal               │ HTTPS  │  Auth: accounts, invitations    │
- │ Logic: status, curves, DQ,   ◄───┼────────┼─► Postgres: families, children, │
+ │ Progress · Journal               │ HTTPS  │  Auth: invited family only      │
+ │ Logic: status, curves, DQ,   ◄───┼────────┼─► Postgres: child,             │
  │        graph, "up next"          │        │    observations, journal        │
  │ Catalogue (bundled, versioned)   │        │    (row-level security)         │
  └──────────────────────────────────┘        │  Storage: photos (private)      │
@@ -385,27 +390,20 @@ Plus a domain (~€10/year).
 ```
 
 The catalogue (~2 MB of JSON, less compressed) ships **inside the app**. So browsing and the
-skill map work offline and fast, and the database only stores what families record.
+skill map work offline and fast, and the database only stores what the family records.
 
-### 6.3 Public-facing: what changes
-- **Accounts and families:** a *family* has one or more *caregivers* (roles: owner / editor /
-  viewer) and one or more *children*. Invitations go by email. Grandparents or the nanny can
-  get viewer or editor access.
-- **Isolation:** PostgreSQL row-level security. Every query is automatically restricted to the
-  user's family, at the database level rather than in app code.
-- **Optional read-only share link** per child (e.g. to show the pediatrician). Off by default,
-  revocable, expires.
-- **GDPR:** developmental observations about a child can be treated as **health data**
-  (Article 9), which requires explicit consent, a data protection impact assessment (DPIA),
-  EU hosting, data minimisation, and a one-click export and full delete. Parents consent on
-  behalf of the child. No advertising, no third-party trackers.
-- **Regulatory positioning:** the app must stay an **educational / parenting tool**, not a
-  screening or diagnostic device. Under the EU Medical Device Regulation, software intended to
-  detect developmental disorders can qualify as a medical device, which means certification.
-  The wording must therefore stay "typical ages" and "worth discussing with your pediatrician",
-  with no risk scores or diagnoses. Get a regulatory opinion before a wide public launch.
-- **Abuse and safety:** photos are private files with expiring links, sign-up needs email
-  verification, and requests are rate-limited (both built into Supabase).
+### 6.3 Access and privacy (private family app)
+- **Who can log in:** you create the accounts. Parents are editors. Grandparents or the
+  nanny can be invited as viewers or editors. There is no public sign-up page.
+- **Isolation:** PostgreSQL row-level security. Even with the app's web address, nobody
+  outside the family can read anything.
+- **Optional read-only share link** (e.g. for the pediatrician). Off by default, revocable, expires.
+- **Photos:** private storage, displayed through short-lived links.
+- **GDPR:** a family keeping its own records is covered by the "household" exemption, so no
+  formal compliance work is needed. We still use EU hosting, no trackers, and keep an export
+  and delete-all button.
+- **Tone:** it stays a parenting tool, not a diagnosis ("typical ages", "worth discussing
+  with your pediatrician").
 
 ### 6.4 Data model
 
@@ -490,10 +488,10 @@ APP_SPEC.md                      this document
 | 1 | Catalogue A (0–5 y, sourced, with evidence) + bridge links to Marble + Excel mapping, **for your review** | 1–2 sessions |
 | 2 | Catalogue build script: merge with Marble, graph checks (§5.5), tests | 1 session |
 | 3 | Pure logic (§5) + tests, validated against the Excel numbers | 1 session |
-| 4 | App v1: accounts & families, Today, Skills, logging, FR/EN/PT interface | 2 sessions |
+| 4 | App v1: family login, Today, Skills, logging, FR/EN/PT interface | 2 sessions |
 | 5 | Skill map (focus + subject views), Progress charts, import Constance | 1–2 sessions |
-| 6 | Whole map, journal and photos, share link, export / delete, PWA install | 1–2 sessions |
-| 7 | Before a public launch: DPIA, privacy policy, legal and regulatory check, FR/PT review of 4–7 y content | outside coding |
+| 6 | Whole map, journal and photos, share link, weekly export, PWA install on your phones | 1–2 sessions |
+| 7 | FR / PT review of the 4–7 year content by a native speaker (can be you) | outside coding |
 
 We validate with you after steps 1, 4 and 5.
 
@@ -504,12 +502,10 @@ We validate with you after steps 1, 4 and 5.
   goals. Flags always come with "discuss with your pediatrician".
 - **Reference data quality:** every skill shows its source, and every link shows its reason.
   Graph checks run in tests.
-- **Privacy (child health data, GDPR):** EU hosting, row-level security, no trackers,
-  export and delete, DPIA before launch.
-- **Regulation (EU MDR):** educational positioning, no diagnostic claims, expert opinion before launch.
-- **Licences:** Marble attribution and share-alike respected (§3.7). Denver II not used.
+- **Privacy:** invitation-only access, EU hosting, row-level security, no trackers.
+- **Licences:** private use only; Marble credited (§3.7). Denver II not used.
 - **English-centric learning content:** literacy tracked per language. FR / PT reviewed by native speakers.
-- **Data loss:** Supabase daily backups, plus export.
+- **Data loss:** weekly automatic export (free tier has no backups), plus manual export.
 
 ---
 
@@ -518,9 +514,10 @@ We validate with you after steps 1, 4 and 5.
 ### Answered
 | Question | Your answer |
 |---|---|
-| Birth date | 4 February 2022, so 4 y 7 m today. *Please confirm this is day/month (4 Feb), not 2 April.* |
+| Birth date | **4 February 2022** (confirmed), so 4 y 7 m today |
 | Languages at home | English, French, Portuguese (§3.5) |
-| Sync | Shared across devices, **public-facing** (multi-family, §6.3) |
+| Sync | Shared online across family devices, invitation only (§6.3) |
+| Use | **Private, non-commercial, for Constance only** (§3.7) |
 | Interface | FR / EN / PT (§6.5) |
 | Subjects, timeline beyond 36 m, dependencies + visualisation | Included (§3.2–3.6, §4.1, §5.5–5.6), inspired by the Marble taxonomy |
 
@@ -531,6 +528,4 @@ We validate with you after steps 1, 4 and 5.
 | 2 | Language of school reading | Probably French, so that literacy track first |
 | 3 | Out-of-scope list for v1 (§4.3) | As listed |
 | 4 | Portuguese variant | pt-PT or pt-BR |
-| 5 | Publish catalogue A + bridges as open data (ODbL) | Yes, credited to Marble |
-| 6 | "Public-facing" means other families can sign up (my assumption), not public child profiles | Private by default, optional share link |
-| 7 | Gestational age at birth (for corrected age) | Only if Constance was born before 37 weeks |
+| 5 | Gestational age at birth (for corrected age) | Only if Constance was born before 37 weeks |
