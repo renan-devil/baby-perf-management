@@ -20,7 +20,8 @@ export async function GET(request: Request) {
     headers: {
       'Content-Type': result.blob.contentType || 'application/octet-stream',
       'Content-Disposition': `${mode}; filename="${ascii}"; filename*=UTF-8''${encodeURIComponent(name)}`,
-      'Cache-Control': 'private, no-store',
+      // Paths never change (each upload gets a new timestamp), so the browser may keep them.
+      'Cache-Control': 'private, max-age=86400',
       'X-Content-Type-Options': 'nosniff',
     },
   });

@@ -30,7 +30,7 @@ export function Login() {
   return (
     <div className="page narrow">
       <h1>
-        <img src="icon.svg" alt="" width={32} height={32} /> {t('app.name')}
+        <img src="icon-64.png" className="avatar" alt="" width={32} height={32} /> {t('app.name')}
       </h1>
       <section className="card stack">
         <p className="muted">{t('login.help')}</p>

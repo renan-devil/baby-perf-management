@@ -13,15 +13,18 @@ export default defineConfig({
       // offline cache. selfDestroying removes the service worker installed by earlier versions.
       selfDestroying: true,
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg'],
+      includeAssets: ['icon-64.png', 'apple-touch-icon.png'],
       manifest: {
         name: 'Constance',
         short_name: 'Constance',
-        description: 'Développement, administratif et école',
+        description: 'Développement, administratif, école et photos',
         theme_color: '#5b5bd6',
         background_color: '#faf9f7',
         display: 'standalone',
-        icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
+        icons: [
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
+        ],
       },
       workbox: { maximumFileSizeToCacheInBytes: 8 * 1024 * 1024, globPatterns: ['**/*.{js,css,html,svg,json}'] },
     }),

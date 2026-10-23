@@ -6,6 +6,7 @@ const APPS = [
   { href: '#/dev/', icon: '🌱', key: 'development' },
   { href: '#/administrative', icon: '🗂', key: 'administrative' },
   { href: '#/school', icon: '🎒', key: 'school' },
+  { href: '#/pictures', icon: '📷', key: 'pictures' },
 ] as const;
 
 export function Hub() {
@@ -14,7 +15,7 @@ export function Hub() {
     <>
       <header className="topbar">
         <span className="brand">
-          <img src="icon.svg" alt="" width={24} height={24} /> Constance
+          <img src="icon-64.png" className="avatar" alt="" width={24} height={24} /> Constance
         </span>
         <a href="/api/logout" className="icon-btn" aria-label={t('hub.lock')} title={t('hub.lock')}>
           🔒

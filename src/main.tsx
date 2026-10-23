@@ -81,6 +81,7 @@ function Root() {
   if (path.startsWith('/dev') || path.startsWith('/share/')) return <DevRoot />;
   if (path.startsWith('/administrative')) return <Documents space="administrative" />;
   if (path.startsWith('/school')) return <Documents space="school" />;
+  if (path.startsWith('/pictures')) return <Documents space="pictures" />;
   return <Hub />;
 }
 

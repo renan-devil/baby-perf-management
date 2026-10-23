@@ -1,11 +1,11 @@
-// A shared folder of documents (administrative papers, school papers), stored in a
+// A shared folder of documents (administrative papers, school papers, pictures), stored in a
 // private Vercel Blob store behind the site password. See api/docs.ts, api/file.ts, api/upload.ts.
 
 import { upload } from '@vercel/blob/client';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-export type Space = 'administrative' | 'school';
+export type Space = 'administrative' | 'school' | 'pictures';
 
 interface Doc {
   pathname: string;
@@ -23,6 +23,8 @@ function formatSize(bytes: number): string {
   if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
+
+const isImage = (pathname: string) => /\.(jpe?g|png|gif|webp|heic|heif|avif)$/i.test(pathname);
 
 const fileUrl = (pathname: string, download = false) =>
   `/api/file?pathname=${encodeURIComponent(pathname)}${download ? '&download=1' : ''}`;
@@ -76,6 +78,7 @@ export function Documents({ space }: { space: Space }) {
     await refresh();
   };
 
+  const photos = space === 'pictures';
   const q = query.trim().toLowerCase();
   const shown = (docs ?? []).filter((d) => !q || displayName(d.pathname).toLowerCase().includes(q));
 
@@ -90,10 +93,11 @@ export function Documents({ space }: { space: Space }) {
       <main className="page narrow">
         <section className="card stack">
           <label className={`btn primary${busy ? ' disabled' : ''}`}>
-            {t('docs.add')}
+            {t(photos ? 'docs.addPhotos' : 'docs.add')}
             <input
               type="file"
               multiple
+              accept={photos ? 'image/*,video/*' : undefined}
               hidden
               disabled={!!busy}
               onChange={(e) => {
@@ -106,12 +110,30 @@ export function Documents({ space }: { space: Space }) {
           {error && <p className="callout serious">{error}</p>}
         </section>
 
-        {docs && docs.length > 0 && <input className="input" type="search" placeholder={t('docs.search')} value={query} onChange={(e) => setQuery(e.target.value)} />}
+        {docs && docs.length > 0 && !photos && <input className="input" type="search" placeholder={t('docs.search')} value={query} onChange={(e) => setQuery(e.target.value)} />}
 
         {docs === null ? (
           <p className="muted">{t('common.loading')}</p>
         ) : docs.length === 0 ? (
           <p className="muted center">{t('docs.empty')}</p>
+        ) : photos ? (
+          <div className="photo-grid">
+            {docs.map((d) => (
+              <div key={d.pathname} className="photo">
+                <a href={fileUrl(d.pathname)} target="_blank" rel="noreferrer">
+                  {isImage(d.pathname) ? <img src={fileUrl(d.pathname)} alt={displayName(d.pathname)} loading="lazy" /> : <span className="doc-name">{displayName(d.pathname)}</span>}
+                </a>
+                <div className="photo-actions">
+                  <a className="icon-btn" href={fileUrl(d.pathname, true)} aria-label={t('docs.download')} title={t('docs.download')}>
+                    ⤓
+                  </a>
+                  <button className="icon-btn" onClick={() => void remove(d)} aria-label={t('common.delete')} title={t('common.delete')}>
+                    🗑
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         ) : (
           <div className="cards">
             {shown.map((d) => (

@@ -264,6 +264,10 @@
     "school": {
       "name": "School",
       "desc": "Upload and find documents from school"
+    },
+    "pictures": {
+      "name": "Pictures",
+      "desc": "Photos of Constance, shared with the family"
     }
   },
   "docs": {
@@ -275,6 +279,7 @@
     "confirmDelete": "Delete \"{{name}}\" for everyone?",
     "loadError": "Could not load the documents ({{message}}).",
     "uploadError": "Upload failed: {{message}}",
-    "deleteError": "Delete failed ({{message}})."
+    "deleteError": "Delete failed ({{message}}).",
+    "addPhotos": "Add photos"
   }
 }

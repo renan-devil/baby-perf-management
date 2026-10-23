@@ -264,6 +264,10 @@
     "school": {
       "name": "École",
       "desc": "Déposer et retrouver les documents de l'école"
+    },
+    "pictures": {
+      "name": "Photos",
+      "desc": "Les photos de Constance, partagées en famille"
     }
   },
   "docs": {
@@ -275,6 +279,7 @@
     "confirmDelete": "Supprimer « {{name}} » pour tout le monde ?",
     "loadError": "Impossible de charger les documents ({{message}}).",
     "uploadError": "Échec de l'envoi : {{message}}",
-    "deleteError": "Échec de la suppression ({{message}})."
+    "deleteError": "Échec de la suppression ({{message}}).",
+    "addPhotos": "Ajouter des photos"
   }
 }

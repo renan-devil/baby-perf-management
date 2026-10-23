@@ -3,7 +3,7 @@
 // variable on Vercel; the browser only ever holds a cookie derived from it.
 
 export const COOKIE = 'site_auth';
-export const SPACES = ['administrative', 'school'] as const;
+export const SPACES = ['administrative', 'school', 'pictures'] as const;
 export type Space = (typeof SPACES)[number];
 
 async function sha256hex(text: string): Promise<string> {

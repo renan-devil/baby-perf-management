@@ -3,9 +3,9 @@
 
 import { isAuthed } from './api/_lib.js';
 
-// Files the browser fetches without cookies (home-screen icon and manifest) or that
-// must stay reachable to retire the old offline cache (sw.js). None contain data.
-const PUBLIC = new Set(['/api/login', '/icon.svg', '/manifest.webmanifest', '/sw.js', '/registerSW.js']);
+// Files the browser fetches without cookies (home-screen icons and manifest) or that
+// must stay reachable to retire the old offline cache (sw.js). No documents or data.
+const PUBLIC = new Set(['/api/login', '/icon-64.png', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png', '/manifest.webmanifest', '/sw.js', '/registerSW.js']);
 
 export default async function middleware(request: Request) {
   const url = new URL(request.url);
@@ -25,7 +25,8 @@ function passwordPage(error: boolean): string {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>Constance</title>
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
   :root { color-scheme: light dark; --page:#f9f9f7; --surface:#fcfcfb; --border:#e4e3df; --ink:#0b0b0b; --ink-2:#52514e; --accent:#2a78d6; --critical:#d03b3b; }
   @media (prefers-color-scheme: dark) { :root { --page:#0d0d0d; --surface:#1a1a19; --border:#3a3a37; --ink:#fff; --ink-2:#c3c2b7; --accent:#3987e5; --critical:#ff7a7a; } }
@@ -42,7 +43,7 @@ function passwordPage(error: boolean): string {
 </head>
 <body>
 <form method="post" action="/api/login">
-  <h1><img src="/icon.svg" alt="" width="28" height="28"> Constance</h1>
+  <h1><img src="/icon-64.png" alt="" width="32" height="32" style="border-radius:50%"> Constance</h1>
   <p>Mot de passe · Password · Palavra-passe</p>
   <input type="password" name="password" autocomplete="current-password" autofocus required aria-label="Password">
   ${error ? '<p class="error">Mot de passe incorrect · Wrong password</p>' : ''}

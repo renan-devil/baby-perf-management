@@ -264,6 +264,10 @@
     "school": {
       "name": "Escola",
       "desc": "Carregar e encontrar documentos da escola"
+    },
+    "pictures": {
+      "name": "Fotografias",
+      "desc": "Fotografias da Constance, partilhadas com a família"
     }
   },
   "docs": {
@@ -275,6 +279,7 @@
     "confirmDelete": "Eliminar «{{name}}» para todos?",
     "loadError": "Não foi possível carregar os documentos ({{message}}).",
     "uploadError": "O envio falhou: {{message}}",
-    "deleteError": "A eliminação falhou ({{message}})."
+    "deleteError": "A eliminação falhou ({{message}}).",
+    "addPhotos": "Adicionar fotografias"
   }
 }

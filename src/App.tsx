@@ -26,7 +26,7 @@ export function App() {
           ⌂
         </a>
         <Link to="/" className="brand">
-          <img src="icon.svg" alt="" width={24} height={24} /> {child?.firstName ?? t('app.name')}
+          <img src="icon-64.png" className="avatar" alt="" width={24} height={24} /> {child?.firstName ?? t('app.name')}
         </Link>
         {readOnly && <span className="badge tone-neutral">{t('app.readOnly')}</span>}
         <NavLink to="/settings" className="icon-btn" aria-label={t('settings.title')}>
