@@ -249,5 +249,32 @@
   },
   "share": {
     "invalid": "This link is invalid or has expired."
+  },
+  "hub": {
+    "title": "Applications",
+    "lock": "Lock this device",
+    "development": {
+      "name": "Development",
+      "desc": "Constance's skills, progress and journal"
+    },
+    "administrative": {
+      "name": "Administrative",
+      "desc": "Upload and find administrative documents"
+    },
+    "school": {
+      "name": "School",
+      "desc": "Upload and find documents from school"
+    }
+  },
+  "docs": {
+    "add": "Add documents",
+    "search": "Search by name",
+    "empty": "No documents yet.",
+    "download": "Download",
+    "uploading": "Uploading {{name}} ({{n}}/{{total}})…",
+    "confirmDelete": "Delete \"{{name}}\" for everyone?",
+    "loadError": "Could not load the documents ({{message}}).",
+    "uploadError": "Upload failed: {{message}}",
+    "deleteError": "Delete failed ({{message}})."
   }
 }

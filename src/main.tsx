@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 import { App } from './App';
 import './i18n';
+import { Documents } from './pages/Documents';
+import { Hub } from './pages/Hub';
 import { Login } from './pages/Login';
 import { DataProvider } from './store/DataContext';
 import type { Snapshot } from './store/repo';
@@ -45,11 +47,12 @@ function CloudRoot() {
   );
 }
 
-function Root() {
+/** The Development app (the skill tracker), served under #/dev/. */
+function DevRoot() {
   const m = location.hash.match(/^#\/share\/([a-f0-9]+)/);
   if (m) {
     sessionStorage.setItem(SHARE_KEY, m[1]);
-    history.replaceState(null, '', `${location.pathname}#/`);
+    history.replaceState(null, '', `${location.pathname}#/dev/`);
   }
   const shareToken = sessionStorage.getItem(SHARE_KEY);
   if (shareToken) return <SharedRoot token={shareToken} />;
@@ -59,6 +62,26 @@ function Root() {
       <App />
     </DataProvider>
   );
+}
+
+/** Current hash path ("#/school" → "/school"), updated when the hash changes. */
+function useHashPath(): string {
+  const [hash, setHash] = useState(location.hash);
+  useEffect(() => {
+    const onChange = () => setHash(location.hash);
+    addEventListener('hashchange', onChange);
+    return () => removeEventListener('hashchange', onChange);
+  }, []);
+  return hash.replace(/^#/, '') || '/';
+}
+
+/** Home screen with one card per application; each application has its own hash prefix. */
+function Root() {
+  const path = useHashPath();
+  if (path.startsWith('/dev') || path.startsWith('/share/')) return <DevRoot />;
+  if (path.startsWith('/administrative')) return <Documents space="administrative" />;
+  if (path.startsWith('/school')) return <Documents space="school" />;
+  return <Hub />;
 }
 
 createRoot(document.getElementById('root')!).render(

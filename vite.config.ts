@@ -9,12 +9,15 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      // The site is password-protected on the server, so pages must not be served from an
+      // offline cache. selfDestroying removes the service worker installed by earlier versions.
+      selfDestroying: true,
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg'],
       manifest: {
-        name: 'Constance – développement',
+        name: 'Constance',
         short_name: 'Constance',
-        description: 'Suivi du développement de Constance',
+        description: 'Développement, administratif et école',
         theme_color: '#5b5bd6',
         background_color: '#faf9f7',
         display: 'standalone',

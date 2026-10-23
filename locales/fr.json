@@ -249,5 +249,32 @@
   },
   "share": {
     "invalid": "Ce lien est invalide ou a expiré."
+  },
+  "hub": {
+    "title": "Applications",
+    "lock": "Verrouiller cet appareil",
+    "development": {
+      "name": "Développement",
+      "desc": "Compétences, progrès et journal de Constance"
+    },
+    "administrative": {
+      "name": "Administratif",
+      "desc": "Déposer et retrouver les documents administratifs"
+    },
+    "school": {
+      "name": "École",
+      "desc": "Déposer et retrouver les documents de l'école"
+    }
+  },
+  "docs": {
+    "add": "Ajouter des documents",
+    "search": "Rechercher par nom",
+    "empty": "Aucun document pour le moment.",
+    "download": "Télécharger",
+    "uploading": "Envoi de {{name}} ({{n}}/{{total}})…",
+    "confirmDelete": "Supprimer « {{name}} » pour tout le monde ?",
+    "loadError": "Impossible de charger les documents ({{message}}).",
+    "uploadError": "Échec de l'envoi : {{message}}",
+    "deleteError": "Échec de la suppression ({{message}})."
   }
 }

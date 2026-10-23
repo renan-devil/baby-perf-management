@@ -20,8 +20,11 @@ export function App() {
   if (loading) return <p className="page">{t('common.loading')}</p>;
 
   return (
-    <HashRouter>
+    <HashRouter basename="/dev">
       <header className="topbar">
+        <a href="#/" className="icon-btn" aria-label={t('hub.title')}>
+          ⌂
+        </a>
         <Link to="/" className="brand">
           <img src="icon.svg" alt="" width={24} height={24} /> {child?.firstName ?? t('app.name')}
         </Link>

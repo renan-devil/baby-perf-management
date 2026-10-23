@@ -16,6 +16,7 @@
   "dependencies": {
     "@dagrejs/dagre": "^1.1.8",
     "@supabase/supabase-js": "^2.117.2",
+    "@vercel/blob": "^2.8.2",
     "@xyflow/react": "^12.12.0",
     "i18next": "^26.4.2",
     "react": "^19.3.0",
