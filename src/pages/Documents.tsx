@@ -1,7 +1,7 @@
 // A shared folder of documents (administrative papers, school papers, pictures), stored in a
 // private Vercel Blob store behind the site password. See api/docs.ts, api/file.ts, api/upload.ts.
 
-import { upload } from '@vercel/blob/client';
+import { uploadPresigned } from '@vercel/blob/client';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -57,7 +57,7 @@ export function Documents({ space }: { space: Space }) {
     try {
       for (const [i, file] of [...files].entries()) {
         setBusy(t('docs.uploading', { name: file.name, n: i + 1, total: files.length }));
-        await upload(`${space}/${Date.now()}-${safeName(file.name)}`, file, {
+        await uploadPresigned(`${space}/${Date.now()}-${safeName(file.name)}`, file, {
           access: 'private',
           handleUploadUrl: '/api/upload',
           multipart: file.size > 20 * 1024 * 1024,
