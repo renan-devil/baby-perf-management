@@ -1,7 +1,7 @@
 // Vercel Routing Middleware: runs on Vercel's servers before any page, file or API is
 // served. Without the password cookie, visitors only get the password page.
 
-import { isAuthed } from './api/_lib';
+import { isAuthed } from './api/_lib.js';
 
 // Files the browser fetches without cookies (home-screen icon and manifest) or that
 // must stay reachable to retire the old offline cache (sw.js). None contain data.

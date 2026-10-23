@@ -1,6 +1,6 @@
 // GET /api/logout: forgets the password on this device.
 
-import { COOKIE } from './_lib';
+import { COOKIE } from './_lib.js';
 
 export function GET() {
   return new Response(null, {

@@ -2,7 +2,7 @@
 // straight to the private Blob store (so large scans are not limited by function size).
 
 import { handleUpload, type HandleUploadBody } from '@vercel/blob/client';
-import { denyUnlessAuthed, isDocPath } from './_lib';
+import { denyUnlessAuthed, isDocPath } from './_lib.js';
 
 const MAX_BYTES = 100 * 1024 * 1024; // 100 MB per document
 

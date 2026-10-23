@@ -2,7 +2,7 @@
 // DELETE /api/docs?pathname=<space>/<file>        → deletes one document
 
 import { del, list } from '@vercel/blob';
-import { denyUnlessAuthed, isDocPath, SPACES } from './_lib';
+import { denyUnlessAuthed, isDocPath, SPACES } from './_lib.js';
 
 export async function GET(request: Request) {
   const denied = await denyUnlessAuthed(request);

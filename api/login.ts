@@ -1,6 +1,6 @@
 // POST /api/login (form field "password"): sets the session cookie for one year.
 
-import { COOKIE, sessionToken } from './_lib';
+import { COOKIE, sessionToken } from './_lib.js';
 
 const YEAR = 365 * 24 * 3600;
 

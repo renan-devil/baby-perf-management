@@ -1,7 +1,7 @@
 // GET /api/file?pathname=<space>/<file>[&download=1]: streams a private document.
 
 import { get } from '@vercel/blob';
-import { denyUnlessAuthed, isDocPath } from './_lib';
+import { denyUnlessAuthed, isDocPath } from './_lib.js';
 
 export async function GET(request: Request) {
   const denied = await denyUnlessAuthed(request);
