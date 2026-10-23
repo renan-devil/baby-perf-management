@@ -8,7 +8,22 @@ A private family web app to follow Constance's skills from birth to school age. 
 
 > Not a medical or diagnostic tool. The wording stays "typical ages" and "worth discussing with your pediatrician".
 
-## Screens
+## Applications
+The site opens on a **password page**, then a home screen with one card per application:
+
+| Application | What it does |
+|---|---|
+| **Development** | The development tracker below (`#/dev/`) |
+| **Administrative** | Upload, open, download and delete administrative documents (`#/administrative`) |
+| **School** | The same for documents from school (`#/school`) |
+| **Pictures** | Photos of Constance as a grid, with upload, download and delete (`#/pictures`) |
+
+- **Password**: checked on Vercel's servers by [`middleware.ts`](middleware.ts) before any page, file or API is served. Its value is the `SITE_PASSWORD` environment variable (Vercel → Settings → Environment Variables); change it there and redeploy, and every device must enter the new one. The 🔒 button on the home screen locks the current device.
+- **Documents** are stored in a **private Vercel Blob store** (Vercel → Storage → Create → Blob, access *Private*, connected to this project; this adds `BLOB_STORE_ID`, and functions sign in to the store with Vercel OIDC, so there is no secret token to manage). Files are never public: they are only served through `api/file.ts`, behind the password. Up to 100 MB per file.
+- **App icon**: a crop of a photo of Constance (`public/icon-*.png`, `apple-touch-icon.png`). These icon files are the only images reachable without the password, because phones fetch home-screen icons without cookies.
+- The server code is in [`api/`](api) (Vercel Functions). It does not run under `npm run dev`; use `vercel dev` to try documents locally.
+
+## Screens (Development)
 | Screen | What it does |
 |---|---|
 | **Today** | Age, "up next" suggestions with activities, alerts, recent entries, quick check-in |

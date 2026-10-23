@@ -249,5 +249,37 @@
   },
   "share": {
     "invalid": "Este link é inválido ou expirou."
+  },
+  "hub": {
+    "title": "Aplicações",
+    "lock": "Bloquear este dispositivo",
+    "development": {
+      "name": "Desenvolvimento",
+      "desc": "Competências, progresso e diário da Constance"
+    },
+    "administrative": {
+      "name": "Administrativo",
+      "desc": "Carregar e encontrar documentos administrativos"
+    },
+    "school": {
+      "name": "Escola",
+      "desc": "Carregar e encontrar documentos da escola"
+    },
+    "pictures": {
+      "name": "Fotografias",
+      "desc": "Fotografias da Constance, partilhadas com a família"
+    }
+  },
+  "docs": {
+    "add": "Adicionar documentos",
+    "search": "Pesquisar por nome",
+    "empty": "Ainda não há documentos.",
+    "download": "Transferir",
+    "uploading": "A enviar {{name}} ({{n}}/{{total}})…",
+    "confirmDelete": "Eliminar «{{name}}» para todos?",
+    "loadError": "Não foi possível carregar os documentos ({{message}}).",
+    "uploadError": "O envio falhou: {{message}}",
+    "deleteError": "A eliminação falhou ({{message}}).",
+    "addPhotos": "Adicionar fotografias"
   }
 }
