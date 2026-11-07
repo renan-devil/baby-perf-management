@@ -1,5 +1,7 @@
 # O Vento Norte e o Sol
 
+![O Vento Norte sopra com força: o viajante agarra a capa vermelha e o chapéu voa.](picture-1.svg)
+
 Lá no alto do céu, o Vento Norte e o Sol estavam a discutir.
 
 — Eu é que sou o mais forte! — rugiu o Vento Norte. — Consigo dobrar as árvores mais altas e levantar ondas do tamanho de casas!
@@ -11,6 +13,8 @@ Lá no alto do céu, o Vento Norte e o Sol estavam a discutir.
 As folhas voaram das árvores. O chapéu do viajante voou da cabeça dele. Mas o viajante apenas apertou mais a capa à sua volta.
 
 Então o Vento Norte soprou com mais força. *FUUUUUUH!* O viajante tremeu de frio, apertou todos os botões e agarrou a capa com mais força ainda.
+
+![Ao sol quentinho, o viajante descansa debaixo de uma árvore, já sem a capa.](picture-2.svg)
 
 O Vento Norte soprou, soprou, até ficar sem fôlego nenhum. — Pff… pff… desisto — arfou ele.
 

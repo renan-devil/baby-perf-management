@@ -1,4 +1,4 @@
-import { PAL, hatch, paths, rays, tufts } from './lib.mjs';
+import { PAL, hatch, paths, rays, tufts } from '../lib.mjs';
 
 // The North Wind and the Sun: a puffing cloud, a kind sun, a traveller holding on to his red cloak.
 const cloud =

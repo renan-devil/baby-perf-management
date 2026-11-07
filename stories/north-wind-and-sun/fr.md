@@ -1,5 +1,7 @@
 # Le Vent du Nord et le Soleil
 
+![Le Vent du Nord souffle fort : le voyageur serre son manteau rouge et son chapeau s’envole.](picture-1.svg)
+
 Tout là-haut dans le ciel, le Vent du Nord et le Soleil se disputaient.
 
 « C’est moi le plus fort ! » rugit le Vent du Nord. « Je fais plier les plus grands arbres et je soulève des vagues hautes comme des maisons ! »
@@ -11,6 +13,8 @@ Tout là-haut dans le ciel, le Vent du Nord et le Soleil se disputaient.
 Les feuilles s’envolèrent des arbres. Le chapeau du voyageur s’envola de sa tête. Mais le voyageur serra son manteau encore plus fort autour de lui.
 
 Alors le Vent du Nord souffla plus fort. *FOUUUUUH !* Le voyageur grelotta, ferma tous ses boutons et serra son manteau plus fort encore.
+
+![Sous le soleil bien chaud, le voyageur se repose sous un arbre, sans son manteau.](picture-2.svg)
 
 Le Vent du Nord souffla, souffla, jusqu’à ne plus avoir de souffle du tout. « Pff… pff… j’abandonne », haleta-t-il.
 

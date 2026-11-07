@@ -1,10 +1,14 @@
 # The Lion and the Mouse
 
+![The lion is caught in a rope net and the little mouse nibbles through a rope.](picture-1.svg)
+
 Far, far away, in a land of tall golden grass, there lived a great big Lion with a great big mane. When Lion roared, *ROOOAAAR!*, the birds flew out of the trees and the zebras galloped away.
 
 One hot afternoon, Lion was having a nap in the shade of a rock. He was snoring: *Rrrrr… pfff… Rrrrr… pfff…*
 
 Just then, a tiny grey Mouse came scampering by. She was in such a hurry that she didn’t look where she was going, and — *oops!* — she ran right up Lion’s tail, along his back, and onto the very end of his nose.
+
+![The lion holds the little mouse up by her tail and roars with laughter.](picture-2.svg)
 
 Lion opened one eye. Then the other eye. And with one huge paw — *SLAP!* — he caught the little Mouse by her tail.
 
@@ -16,6 +20,8 @@ Lion burst out laughing. “Ho ho ho! YOU? Help ME? A tiny little mouse helping 
 
 He laughed so much that his tummy wobbled. And because she had made him laugh, he felt kind. He lifted his paw and let her go. “Off you go, little one.”
 
+![Whoosh! A big rope net falls from the trees onto the lion.](picture-3.svg)
+
 “Thank you, Mr Lion! I won’t forget!” squeaked the Mouse, and away she ran.
 
 A few days later, Lion was walking through the forest when — *WHOOSH!* — a big rope net fell from the trees on top of him. Hunters had set a trap!
@@ -23,6 +29,8 @@ A few days later, Lion was walking through the forest when — *WHOOSH!* — a b
 Lion pulled. Lion pushed. Lion rolled and twisted. But the more he struggled, the more the ropes tangled around his legs and his mane. He was stuck.
 
 “ROOOAAAR!” he roared, so loudly that the whole forest heard him. But this time his roar sounded more sad than scary.
+
+![The little mouse runs as fast as she can through the tall grass.](picture-4.svg)
 
 Far away, a little grey Mouse heard it too. Her ears pricked up. “I know that roar,” she said. “That’s my friend the Lion!” And she ran as fast as her tiny legs could carry her, *tip-tap, tip-tap, tip-tap*, all the way to the net.
 
@@ -33,6 +41,8 @@ Far away, a little grey Mouse heard it too. Her ears pricked up. “I know that 
 The Mouse didn’t answer. She was far too busy. She found the thickest rope and began to nibble it with her sharp little teeth. *Nibble, nibble, nibble… Snap!* One rope broke. *Nibble, nibble, nibble… Snap!* Another one broke. *Nibble, nibble… Snap! Snap! Snap!*
 
 She nibbled and nibbled until she had made a hole big enough for a lion. Lion wriggled out, shook his mane, and stretched in the sunshine. He was free!
+
+![Best friends: the mouse sits on top of the lion’s head like a little crown.](picture-5.svg)
 
 Lion looked down at the little Mouse for a long time. “You laughed at me,” said the Mouse, “but I kept my promise.”
 

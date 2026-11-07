@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LANGS, newestFirst, REACTIONS, type Lang, type NewTelling, type Reaction, type Telling } from '../../api/_stories';
 import { useLocale } from '../i18n';
-import { authorName, LENGTHS, STORIES, storyText, STYLES, THEMES, type Story } from '../stories/catalog';
+import { authorName, hasText, LENGTHS, STORIES, storyText, STYLES, THEMES, type Block, type Story } from '../stories/catalog';
 import { latestByStory, tasteBy } from '../stories/taste';
 
 const EMOJI: Record<Reaction, string> = { loved: '😍', ok: '🙂', disliked: '😕' };
@@ -44,9 +44,10 @@ function Inline({ text, lang }: { text: string; lang: Lang }) {
   return <>{parts.map((part, i) => (i % 2 ? <em key={i}>{part}</em> : part))}</>;
 }
 
-function Picture({ story, className, alt = '' }: { story: Story; className: string; alt?: string }) {
-  return story.picture ? (
-    <img src={story.picture} className={className} alt={alt} loading="lazy" />
+/** The cover (picture 1), or a book icon when the story has no picture. */
+function Cover({ story, className, alt = '' }: { story: Story; className: string; alt?: string }) {
+  return story.pictures[1] ? (
+    <img src={story.pictures[1]} className={className} alt={alt} loading="lazy" />
   ) : (
     <span className={`${className} story-placeholder`} aria-hidden>
       📖
@@ -197,7 +198,7 @@ function StoryList({ lang, tellings, filters, setFilters }: { lang: Lang; tellin
                 const last = latest.get(s.id);
                 return (
                   <a key={s.id} href={`#/stories/${s.id}`} className="story-row">
-                    <Picture story={s} className="story-thumb" />
+                    <Cover story={s} className="story-thumb" />
                     <span className="story-row-main">
                       <span className="story-name">{storyText(s, lang).title}</span>
                       <span className="muted small">{authorName(s, lang)}</span>
@@ -283,6 +284,8 @@ function StoryPage({
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
   const text = storyText(story, lang);
+  const cover = text.blocks.find((b): b is Extract<Block, { kind: 'picture' }> => b.kind === 'picture' && b.n === 1);
+  const coverAlt = cover?.alt || text.title;
   const history = (tellings ?? []).filter((x) => x.storyId === story.id).sort(newestFirst);
 
   const react = async (reaction: Reaction) => {
@@ -310,7 +313,7 @@ function StoryPage({
 
   return (
     <>
-      <Picture story={story} className="story-picture" alt={text.title} />
+      <Cover story={story} className="story-picture" alt={coverAlt} />
       <h1 className="story-heading" lang={lang}>
         {text.title}
       </h1>
@@ -322,13 +325,18 @@ function StoryPage({
         <span className="badge tone-neutral">{t(`stories.themes.${story.theme}`)}</span>
       </div>
 
-      {text.paragraphs.length ? (
+      {hasText(text) ? (
         <article className="story-text" lang={lang === 'pt' ? 'pt-PT' : lang}>
-          {text.paragraphs.map((p, i) => (
-            <p key={i}>
-              <Inline text={p} lang={lang} />
-            </p>
-          ))}
+          {text.blocks.map((b, i) =>
+            b.kind === 'text' ? (
+              <p key={i}>
+                <Inline text={b.text} lang={lang} />
+              </p>
+            ) : b.n > 1 && story.pictures[b.n] ? (
+              // One picture for each minute of the story; the cover (picture 1) is shown above.
+              <img key={i} src={story.pictures[b.n]} alt={b.alt} className="story-picture" loading="lazy" />
+            ) : null,
+          )}
           {text.moral && (
             <p className="story-moral">
               <Inline text={text.moral} lang={lang} />

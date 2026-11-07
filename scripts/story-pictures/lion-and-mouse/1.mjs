@@ -1,4 +1,4 @@
-import { PAL, hatch, paths, rng, tufts } from './lib.mjs';
+import { PAL, hatch, paths, rng, tufts } from '../lib.mjs';
 
 // The Lion and the Mouse: a worried lion under a rope net, a small mouse gnawing a rope free.
 const f1 = (n) => Math.round(n * 10) / 10;

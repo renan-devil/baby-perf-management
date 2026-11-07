@@ -1,10 +1,14 @@
 # O Leão e o Ratinho
 
+![O leão está preso numa rede de corda e o ratinho rói uma corda.](picture-1.svg)
+
 Muito, muito longe daqui, numa terra de erva alta e dourada, vivia um Leão enorme com uma juba enorme. Quando o Leão rugia, *ROOOAAAR!*, os pássaros fugiam das árvores e as zebras desatavam a galopar.
 
 Numa tarde muito quente, o Leão estava a dormir a sesta à sombra de uma rocha. Ressonava assim: *Rrrrr… pfff… Rrrrr… pfff…*
 
 Nesse instante, passou a correr um Ratinho cinzento, muito pequenino. Ia com tanta pressa que não olhava por onde andava e — *ups!* — subiu pela cauda do Leão, correu pelas costas dele e foi parar mesmo à ponta do nariz.
+
+![O leão segura o ratinho pela cauda e desata a rir.](picture-2.svg)
 
 O Leão abriu um olho. Depois o outro olho. E, com uma pata enorme — *PÁS!* — apanhou o Ratinho pela cauda.
 
@@ -16,6 +20,8 @@ O Leão desatou a rir. — Oh oh oh! TU? Ajudares-ME a MIM? Um ratinho pequenino
 
 Riu-se tanto que a barriga lhe abanava. E, como o Ratinho o tinha feito rir, sentiu-se bondoso. Levantou a pata e deixou-o ir. — Vai lá, pequenino.
 
+![Zás! Uma grande rede de corda cai das árvores em cima do leão.](picture-3.svg)
+
 — Obrigado, senhor Leão! Não me vou esquecer! — guinchou o Ratinho, e fugiu a correr.
 
 Alguns dias depois, o Leão passeava pela floresta quando — *ZÁS!* — uma grande rede de corda caiu das árvores em cima dele. Uns caçadores tinham montado uma armadilha!
@@ -23,6 +29,8 @@ Alguns dias depois, o Leão passeava pela floresta quando — *ZÁS!* — uma gr
 O Leão puxou. O Leão empurrou. O Leão rebolou e torceu-se todo. Mas quanto mais se debatia, mais as cordas se enrolavam nas patas e na juba. Estava preso.
 
 — ROOOAAAR! — rugiu ele, tão alto que a floresta inteira o ouviu. Mas desta vez o rugido soava mais triste do que assustador.
+
+![O ratinho corre o mais depressa que pode pela erva alta.](picture-4.svg)
 
 Lá longe, um Ratinho cinzento também o ouviu. Arrebitou as orelhas. — Conheço este rugido — disse ele. — É o meu amigo Leão! — E correu tão depressa quanto as suas perninhas lhe permitiam, *tic-tac, tic-tac, tic-tac*, até chegar à rede.
 
@@ -33,6 +41,8 @@ Lá longe, um Ratinho cinzento também o ouviu. Arrebitou as orelhas. — Conhe�
 O Ratinho não respondeu. Estava muito ocupado. Encontrou a corda mais grossa e começou a roê-la com os seus dentinhos afiados. *Rói, rói, rói… Tlac!* Uma corda partiu-se. *Rói, rói, rói… Tlac!* Partiu-se outra. *Rói, rói… Tlac! Tlac! Tlac!*
 
 Roeu e roeu até fazer um buraco do tamanho de um leão. O Leão saiu a contorcer-se, sacudiu a juba e espreguiçou-se ao sol. Estava livre!
+
+![Os melhores amigos: o ratinho sentado no alto da cabeça do leão, como uma pequena coroa.](picture-5.svg)
 
 O Leão ficou muito tempo a olhar para o Ratinho. — O senhor riu-se de mim — disse o Ratinho —, mas eu cumpri a minha promessa.
 

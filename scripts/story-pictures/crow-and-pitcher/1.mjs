@@ -1,4 +1,4 @@
-import { PAL, hatch, rays, tufts } from './lib.mjs';
+import { PAL, hatch, rays, tufts } from '../lib.mjs';
 
 // The Crow and the Pitcher: a scruffy crow with a pebble in her beak, a tall clay pitcher, plop!
 const ground = 'M14 252C90 248 190 255 386 249';

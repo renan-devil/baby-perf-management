@@ -1,4 +1,4 @@
-import { PAL, hatch, paths, tufts } from './lib.mjs';
+import { PAL, hatch, paths, tufts } from '../lib.mjs';
 
 // The Town Mouse and the Country Mouse: a straw-hatted country mouse with a wheat stalk, a smart
 // town mouse in top hat and waistcoat, a big holey cheese between them, and a ginger cat peeking in.

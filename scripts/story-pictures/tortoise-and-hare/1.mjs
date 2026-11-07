@@ -1,4 +1,4 @@
-import { PAL, hatch, paths, tufts, zed } from './lib.mjs';
+import { PAL, hatch, paths, tufts, zed } from '../lib.mjs';
 
 // The Tortoise and the Hare: the hare snoozes under an old oak while the tortoise plods to the flag.
 const hill = 'M0 258C110 258 190 258 236 242C280 228 322 196 358 186C376 182 390 183 400 184';

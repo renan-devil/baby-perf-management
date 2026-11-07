@@ -1,5 +1,7 @@
 # The North Wind and the Sun
 
+![The North Wind blows hard: the traveller clutches his red cloak and his hat flies off.](picture-1.svg)
+
 High up in the sky, the North Wind and the Sun were having an argument.
 
 “I am the strongest!” roared the North Wind. “I can bend the tallest trees and blow up waves as big as houses!”
@@ -11,6 +13,8 @@ High up in the sky, the North Wind and the Sun were having an argument.
 The leaves flew off the trees. The traveller’s hat flew off his head. But the traveller just pulled his cloak tighter around him.
 
 So the North Wind blew harder. *WHOOOOOSH!* The traveller shivered, did up every button, and held his cloak tighter still.
+
+![In the warm sunshine, the traveller rests under a tree, his cloak off.](picture-2.svg)
 
 The North Wind blew and blew until he had no breath left at all. “Pff… pff… I give up,” he puffed.
 

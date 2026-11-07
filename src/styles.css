@@ -876,6 +876,9 @@ main {
   margin: 0 0 0.9em;
   white-space: pre-line;
 }
+.story-text .story-picture {
+  margin: 0.3em 0 1.1em;
+}
 .story-moral {
   padding: 12px 14px;
   border-left: 4px solid var(--accent);

@@ -4,7 +4,7 @@ import { isNewTelling, parseTellingPath, tellingPath, type Telling } from '../..
 import en from '../../locales/en.json';
 import fr from '../../locales/fr.json';
 import pt from '../../locales/pt.json';
-import { countWords, LENGTHS, parseStoryText, STORIES, STYLES, THEMES } from './catalog';
+import { countWords, hasText, LENGTHS, parseStoryText, STORIES, STYLES, THEMES } from './catalog';
 import { latestByStory, tasteBy } from './taste';
 
 const LOCALES = { en, fr, pt } as const;
@@ -28,12 +28,42 @@ describe('story catalogue', () => {
       for (const l of ['en', 'fr', 'pt'] as const) {
         const text = s.texts[l];
         expect(text?.title, `${s.id} ${l}: title`).toBeTruthy();
-        if (!text?.paragraphs.length) continue; // a book read from the shelf has no text
+        if (!text || !hasText(text)) continue; // a book read from the shelf has no text
         expect(text.moral, `${s.id} ${l}: moral`).toBeTruthy();
         // Read aloud calmly with the voices: about 120 words a minute.
-        const perMinute = countWords([...text.paragraphs, text.moral].join(' ')) / s.minutes;
-        expect(perMinute, `${s.id} ${l}: words per minute`).toBeGreaterThanOrEqual(90);
-        expect(perMinute, `${s.id} ${l}: words per minute`).toBeLessThanOrEqual(170);
+        const words = text.blocks.reduce((sum, b) => sum + (b.kind === 'text' ? countWords(b.text) : 0), countWords(text.moral));
+        expect(words / s.minutes, `${s.id} ${l}: words per minute`).toBeGreaterThanOrEqual(90);
+        expect(words / s.minutes, `${s.id} ${l}: words per minute`).toBeLessThanOrEqual(170);
+      }
+    }
+  });
+
+  it('has one picture for each minute, spread through the text', () => {
+    for (const s of STORIES) {
+      const told = Object.values(s.texts).some(hasText);
+      if (!told) continue; // a book read from the shelf needs no pictures
+      const numbers = Array.from({ length: s.minutes }, (_, i) => i + 1); // 1, 2, …, minutes
+      expect(Object.keys(s.pictures).map(Number).sort((a, b) => a - b), `${s.id}: picture files`).toEqual(numbers);
+      for (const l of ['en', 'fr', 'pt'] as const) {
+        const text = s.texts[l]!;
+        const where = `${s.id} ${l}`;
+        const pictures = text.blocks.filter((b) => b.kind === 'picture');
+        expect(pictures.map((p) => p.n), `${where}: pictures in the text, in order`).toEqual(numbers);
+        for (const p of pictures) expect(p.alt, `${where}: description of picture ${p.n}`).toBeTruthy();
+        expect(text.blocks[0], `${where}: the cover (picture 1) comes right under the title`).toMatchObject({ kind: 'picture', n: 1 });
+        // Words read after each picture, until the next one: each picture covers about one minute
+        // (between half a minute and a minute and a half of this story's reading pace).
+        const after: number[] = [];
+        for (const b of text.blocks) {
+          if (b.kind === 'picture') after.push(0);
+          else after[after.length - 1] += countWords(b.text);
+        }
+        after[after.length - 1] += countWords(text.moral);
+        const perPicture = after.reduce((a, w) => a + w, 0) / s.minutes;
+        after.forEach((w, i) => {
+          expect(w / perPicture, `${where}: text after picture ${i + 1}`).toBeGreaterThanOrEqual(0.5);
+          expect(w / perPicture, `${where}: text after picture ${i + 1}`).toBeLessThanOrEqual(1.5);
+        });
       }
     }
   });
@@ -52,10 +82,20 @@ describe('story catalogue', () => {
   });
 
   it('reads a story file', () => {
-    const t = parseStoryText('# Title\n\nOne *Plop!*\ntwo.\n\n  \nThree.\n\n> Moral\n> continued.\n');
-    expect(t).toEqual({ title: 'Title', paragraphs: ['One *Plop!*\ntwo.', 'Three.'], moral: 'Moral continued.' });
-    expect(parseStoryText('# Just a book\n')).toEqual({ title: 'Just a book', paragraphs: [], moral: '' });
-    expect(parseStoryText('# Title\nText right after.').paragraphs).toEqual(['Text right after.']);
+    const t = parseStoryText('# Title\n\n![The cover](picture-1.svg)\n\nOne *Plop!*\ntwo.\n\n  \n![Next](picture-2.svg)\n\nThree.\n\n> Moral\n> continued.\n');
+    expect(t).toEqual({
+      title: 'Title',
+      blocks: [
+        { kind: 'picture', n: 1, alt: 'The cover' },
+        { kind: 'text', text: 'One *Plop!*\ntwo.' },
+        { kind: 'picture', n: 2, alt: 'Next' },
+        { kind: 'text', text: 'Three.' },
+      ],
+      moral: 'Moral continued.',
+    });
+    expect(parseStoryText('# Just a book\n')).toEqual({ title: 'Just a book', blocks: [], moral: '' });
+    expect(parseStoryText('# Title\nText right after.').blocks).toEqual([{ kind: 'text', text: 'Text right after.' }]);
+    expect(parseStoryText('# T\n\nSee ![x](picture-2.svg) here.').blocks).toEqual([{ kind: 'text', text: 'See ![x](picture-2.svg) here.' }]);
     expect(countWords('Zip! Zoom! — *Plod…* « Croâ ! »')).toBe(4);
   });
 });

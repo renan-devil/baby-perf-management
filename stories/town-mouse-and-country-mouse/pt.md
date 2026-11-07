@@ -1,5 +1,7 @@
 # O Rato do Campo e o Rato da Cidade
 
+![O Rato do Campo e o Rato da Cidade ao lado de um grande queijo, enquanto um gato ruivo espreita.](picture-1.svg)
+
 Era uma vez, à beira de um campo de trigo, debaixo das raízes de uma velha macieira, um pequeno Rato do Campo.
 
 A casa dele era pequena e aconchegante. Tinha uma cama de musgo verde e macio, uma chávena feita de uma bolota e uma janelinha redonda que dava para os campos. De manhã, ouvia os pássaros a cantar. À noite, via o sol a pôr-se atrás das colinas. O Rato do Campo era muito feliz.
@@ -7,6 +9,8 @@ A casa dele era pequena e aconchegante. Tinha uma cama de musgo verde e macio, u
 Um dia, chegou uma carta. Estava escrita com uma letra cheia de voltinhas e cheirava a perfume.
 
 *«Querido primo»*, dizia a carta. *«Vou visitar-te no domingo. Um abraço do Rato da Cidade.»*
+
+![O Rato da Cidade chega de cartola à portinha do Rato do Campo, debaixo da macieira.](picture-2.svg)
 
 — O meu primo da cidade grande! — exclamou o Rato do Campo. — Tenho de preparar tudo!
 
@@ -16,6 +20,8 @@ No domingo, o Rato da Cidade chegou. Trazia um colete elegante com botões brilh
 
 — Valha-me Deus — disse ele. — Que… pequenino.
 
+![O almoço numa folha grande: o Rato da Cidade toca na amora, pouco impressionado.](picture-3.svg)
+
 O Rato do Campo estava muito orgulhoso do seu almoço. Pôs tudo em cima de uma folha grande. — Por favor, primo, serve-te!
 
 O Rato da Cidade mordiscou um grão de trigo. Mordiscou uma semente de cevada. Tocou na amora com a ponta da pata. — Hum — disse ele. — É só isto que comes? Sementes e bagas? Todos os dias?
@@ -24,15 +30,21 @@ O Rato da Cidade mordiscou um grão de trigo. Mordiscou uma semente de cevada. T
 
 — Meu pobre primo — disse o Rato da Cidade, abanando a cabeça. — Não sabes o que estás a perder! Na cidade, como bolos, queijos e doces todos os dias. A minha casa é um palácio! Tens de vir ficar comigo. Assim vais ver como é que um rato deve viver.
 
+![Os dois ratos vão para a cidade escondidos num cesto de couves, na carroça do lavrador.](picture-4.svg)
+
 O Rato do Campo olhou para a sua casinha e para o seu almoço tão simples. De repente, tudo lhe pareceu pequeno demais. — Está bem — disse ele. — Eu vou!
 
 Logo na manhã seguinte, os dois ratos puseram-se a caminho. Esconderam-se num cesto de couves, na traseira da carroça do lavrador, e foram aos solavancos pela estrada durante muito, muito tempo. *Tloc-tloc, tloc-tloc*, fazia o cavalo. *Pum, pum, pum*, fazia a carroça.
 
 Por fim, chegaram à cidade. O Rato do Campo nunca tinha visto nada assim! Havia casas tão altas como montanhas. Havia carruagens e bicicletas, e pessoas por todo o lado, cheias de pressa e aos gritos. *Tlim-tlim!* fazia um elétrico. *Pó-pó!* fazia um carro. O Rato do Campo agarrou-se com força à cauda do primo para não se perder.
 
+![A sala de jantar magnífica: uma mesa comprida coberta de bolos, queijo, fruta e natas.](picture-5.svg)
+
 — Chegámos — disse o Rato da Cidade, todo orgulhoso. Espremeram-se por baixo de uma grande porta e entraram numa casa magnífica. Havia tapetes grossos, espelhos dourados e um lustre que brilhava como mil estrelas. E na sala de jantar havia uma mesa comprida coberta com a comida mais maravilhosa que o Rato do Campo alguma vez tinha visto.
 
 Havia bolos com cobertura cor-de-rosa. Havia um queijo do tamanho de uma roda de carroça, cheio de buracos. Havia uvas, peras e pêssegos, bolachas de chocolate, gelatinas a tremelicar e uma enorme taça de natas.
+
+![O Rato do Campo dá uma grande dentada no queijo enorme.](picture-6.svg)
 
 — Serve-te, primo! — disse o Rato da Cidade. — Não é melhor do que sementes e bagas?
 
@@ -44,6 +56,8 @@ Mas nesse momento a porta abriu-se de repente. *PUM!* Entrou a cozinheira com um
 
 Esperaram e esperaram, muito caladinhos, até a cozinheira se ir embora.
 
+![Um grande gato ruivo salta para uma cadeira e os dois ratos atravessam a mesa a correr.](picture-7.svg)
+
 — Já passou — sussurrou o Rato da Cidade. — Isto acontece sempre. Anda, vamos provar o bolo!
 
 Voltaram para a mesa pé ante pé. O Rato do Campo tinha acabado de pôr a pata na cobertura cor-de-rosa quando… — Miaaaau!
@@ -51,6 +65,8 @@ Voltaram para a mesa pé ante pé. O Rato do Campo tinha acabado de pôr a pata 
 Um grande gato ruivo saltou para cima de uma cadeira. Tinha olhos amarelos, bigodes compridos e garras muito afiadas. E estava a olhar mesmo para eles.
 
 — FOGE! — gritou o Rato da Cidade. Os dois ratos atravessaram a mesa a correr, entornaram a gelatina — *chape!* —, escorregaram pela toalha, saltaram para o chão e mergulharam no buraco da parede mesmo a tempo. A pata do gato entrou atrás deles, às apalpadelas — *rasca, rasca* —, mas o buraco era pequeno demais.
+
+![Escondidos no buraco da parede enquanto dois cães enormes passam aos saltos.](picture-8.svg)
 
 O Rato do Campo tremia da ponta das orelhas até à ponta da cauda. Esperaram muito, muito tempo, até o gato se aborrecer e ir dormir para junto da lareira.
 
@@ -62,6 +78,8 @@ O Rato do Campo tapou os olhos. — Ai, ai, ai, ai — sussurrou ele.
 
 Quando a casa finalmente ficou outra vez sossegada, o Rato do Campo pegou na sua trouxinha.
 
+![O Rato do Campo, com a sua trouxinha, despede-se do primo com educação.](picture-9.svg)
+
 — Muito obrigado por me teres recebido, primo — disse ele, com muita educação. — A tua casa é muito bonita e a tua comida é muito fina. Mas eu vou para casa.
 
 — Vais para casa? — disse o Rato da Cidade. — Mas porquê? Nem sequer provaste as natas!
@@ -69,6 +87,8 @@ Quando a casa finalmente ficou outra vez sossegada, o Rato do Campo pegou na sua
 — Prefiro comer as minhas sementes e bagas em paz — disse o Rato do Campo — do que comer bolos e queijo sempre cheio de medo.
 
 Então despediu-se, voltou a subir para o cesto de couves da carroça do lavrador e foi aos solavancos o caminho todo até casa. *Tloc-tloc, tloc-tloc. Pum, pum, pum.*
+
+![De volta a casa, o Rato do Campo dorme na sua cama de musgo, enquanto lá fora brilham as estrelas.](picture-10.svg)
 
 Quando viu a velha macieira à beira do campo de trigo, o coração deu-lhe um pulinho de alegria. Correu para dentro da sua casinha aconchegante. Preparou um jantar de grãos de trigo e amoras, e soube-lhe melhor do que todos os bolos do mundo.
 

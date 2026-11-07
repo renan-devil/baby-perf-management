@@ -1,5 +1,7 @@
 # A Gralha e o Cântaro
 
+![Uma gralha preta deixa cair uma pedrinha num cântaro de barro alto.](picture-1.svg)
+
 Era o dia mais quente de todo o verão. O sol escaldava, a erva ficou toda amarela, e todos os charcos e poças tinham secado.
 
 Uma gralha preta voava por cima dos campos. — Crá! — grasnou ela. — Tenho tanta sede! Se não encontrar água depressa, já não consigo voar nem mais um bocadinho.
@@ -9,6 +11,8 @@ Por fim, viu um cântaro de barro alto, num jardim. Pousou na borda e espreitou 
 A gralha enfiou o bico o mais fundo que conseguiu. Esticou o pescoço. Esticou-o ainda mais. *Toc!* O bico só tocava na parede do cântaro. A água estava longe demais.
 
 Tentou virar o cântaro. *Upa!* Era pesado demais.
+
+![A gralha, sentada ao pé do cântaro, pensa com muita força a olhar para as pedrinhas.](picture-2.svg)
 
 Então a gralha sentou-se e pensou com muita força. Depois olhou para as pedrinhas espalhadas pelo caminho do jardim.
 
