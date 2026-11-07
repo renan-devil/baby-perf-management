@@ -32,7 +32,7 @@ const headSil = 'M142 148C136 136 138 124 146 116C156 104 176 108 180 122C184 13
 const beakSil = 'M178 117C192 112 206 112 214 117L212 122C200 128 188 134 178 136Z';
 
 const ANG = 42; // head tilt, degrees
-const NECK = [140, 152]; // where the cover's neck point (157,148) goes
+const NECK = [140, 154]; // where the cover's neck point (157,148) goes
 const c = Math.cos((ANG * Math.PI) / 180);
 const s = Math.sin((ANG * Math.PI) / 180);
 const H = (x, y) => [NECK[0] + c * (x - 157) - s * (y - 148), NECK[1] + s * (x - 157) + c * (y - 148)];
@@ -42,26 +42,28 @@ const throat = H(170, 149);
 const headStart = H(142, 148);
 
 // Sitting body: back down to the tail on the path, belly on the ground, round chest up to the throat.
-const back = `M${pt(neckBack)}C118 150 98 178 96 206C95 216 96 222 98 228`;
-const tail = 'M98 228L56 228L47 238L60 237L53 247L68 243L68 251L84 245L100 246';
-const belly = 'M100 246C118 252 146 252 160 246';
-const chest = `M${pt(throat)}C162 168 170 180 172 192`;
-const bodySil = `C${pt(throat)} ${pt(throat)} ${pt(throat)}C162 168 172 184 175 204C178 226 172 240 160 247C146 253 118 253 100 247L68 252L46 238L56 227L97 227C94 218 94 210 96 202C98 176 118 150 ${pt(headStart)}Z`;
+const back = `M${pt(neckBack)}C120 152 108 176 107 200C106 212 107 220 109 228`;
+const tail = 'M109 228C96 228 80 227 64 224L53 232L67 234L57 243L73 241L70 250L87 245L108 246';
+const belly = 'M108 246C124 252 150 253 164 247';
+const chest = `M${pt(throat)}C156 166 163 172 168 180`;
+const bodySil = `C158 168 166 178 170 192C176 214 176 236 164 247C148 254 122 254 106 247L88 246L70 251L56 243L52 232L64 223L108 227C107 216 107 206 108 198C109 176 121 154 ${pt(headStart)}Z`;
 
-// The near wing, bent like an arm in front of her chest, feather tips touching under her beak.
+// The near wing, bent like an arm in front of her chest, its feather tips touching under her beak.
 const wing =
-  'M122 172C140 166 160 178 168 196L170 172L166 164L174 167L175 157L181 165L185 156L187 168L189 172C192 190 194 206 186 214C176 222 158 218 140 210C122 202 112 182 122 172Z';
-const wingInk = 'M124 174C140 170 156 180 164 196C168 200 172 196 172 172';
+  'M120 177C138 172 156 184 166 200C166 192 167 184 168 178L166 164L172 172L175 166L179 173L183 168L186 177C190 188 194 206 188 216C180 226 160 222 140 213C122 204 112 188 120 177Z';
 
 const pebbles = [
-  [190, 247, 6, 4.5],
-  [204, 252, 7, 5],
-  [220, 246, 5, 3.8],
-  [233, 254, 6, 4.2],
-  [247, 248, 4.5, 3.4],
-  [338, 254, 6, 4.2],
-  [360, 249, 4.5, 3.4],
-  [26, 255, 5, 3.6],
+  [196, 248, 7, 5],
+  [212, 254, 8.5, 5.8],
+  [227, 246, 6.5, 4.6],
+  [241, 255, 6, 4.4],
+  [252, 248, 5, 3.8],
+  [222, 251, 4, 3],
+  [184, 255, 4.5, 3.3],
+  [342, 255, 6, 4.2],
+  [364, 250, 5, 3.6],
+  [30, 256, 5.5, 3.8],
+  [14, 251, 3.5, 2.8],
 ];
 const pebblePaths = pebbles
   .map(([x, y, rx, ry]) => `M${x - rx} ${y}C${x - rx} ${y - ry * 1.3} ${x + rx} ${y - ry * 1.4} ${x + rx} ${y}C${x + rx} ${y + ry * 1.1} ${x - rx} ${y + ry * 1.1} ${x - rx} ${y}Z`)
@@ -81,40 +83,41 @@ const swirl = (cx, cy, r, turns, a0) => {
 };
 const swirls = [swirl(142, 88, 8, 2.2, 0), swirl(172, 70, 10, 2.4, 2), swirl(204, 84, 7, 2, 4)];
 
-const SUN = [346, 50];
-const sun = `M${SUN[0] - 24} ${SUN[1]}C${SUN[0] - 24} ${SUN[1] - 14} ${SUN[0] - 12} ${SUN[1] - 24} ${SUN[0] + 1} ${SUN[1] - 24}C${SUN[0] + 14} ${SUN[1] - 24} ${SUN[0] + 24} ${SUN[1] - 13} ${SUN[0] + 24} ${SUN[1]}C${SUN[0] + 24} ${SUN[1] + 14} ${SUN[0] + 13} ${SUN[1] + 24} ${SUN[0]} ${SUN[1] + 24}C${SUN[0] - 13} ${SUN[1] + 24} ${SUN[0] - 24} ${SUN[1] + 13} ${SUN[0] - 24} ${SUN[1]}Z`;
-const sunWash = `M${SUN[0] - 26} ${SUN[1] + 2}C${SUN[0] - 28} ${SUN[1] - 18} ${SUN[0] - 8} ${SUN[1] - 28} ${SUN[0] + 6} ${SUN[1] - 25}C${SUN[0] + 22} ${SUN[1] - 20} ${SUN[0] + 30} ${SUN[1] - 6} ${SUN[0] + 24} ${SUN[1] + 10}C${SUN[0] + 18} ${SUN[1] + 24} ${SUN[0] - 2} ${SUN[1] + 30} ${SUN[0] - 14} ${SUN[1] + 22}C${SUN[0] - 22} ${SUN[1] + 17} ${SUN[0] - 25} ${SUN[1] + 10} ${SUN[0] - 26} ${SUN[1] + 2}Z`;
+// The cover's sun, nudged up and right to make room for the pitcher's handle.
+const S = (x, y) => [x + 8, y - 8];
+const sun = 'M314 58C314 44 326 34 339 34C352 34 362 45 362 58C362 72 351 82 338 82C325 82 314 71 314 58Z';
+const sunWash = 'M312 60C310 40 330 30 344 33C360 38 368 52 362 68C356 82 336 88 324 80C316 75 313 68 312 60Z';
 
 const eye = H(166.5, 126);
 const pupil = [eye[0] + 1, eye[1] + 1.9];
 
 export default {
-  title: 'The crow sits and thinks',
+  title: 'The crow thinks very hard',
   seed: 11,
   washes: [
-    { c: PAL.ochre, o: 0.75, d: sunWash },
+    { c: PAL.ochre, o: 0.75, d: xf(sunWash, S) },
     { c: PAL.ochre, o: 0.4, d: 'M8 246C40 240 70 246 110 242C170 238 230 246 300 241C340 238 370 244 394 240L394 258C360 266 330 258 290 263C230 270 160 260 110 266C70 270 40 262 8 264Z' },
     { c: PAL.terracotta, o: 0.78, d: xf(pitcherWash, P), rule: 'evenodd' },
     { c: PAL.terracotta, o: 0.45, d: xf(handleWash, P) },
-    { c: PAL.slate, o: 0.85, d: xf(headSil, H) + bodySil },
-    { c: PAL.ink, o: 0.5, d: xf(headSil, H) + bodySil },
+    { c: PAL.slate, o: 0.85, d: xf(headSil, H) + bodySil + wing },
+    { c: PAL.ink, o: 0.5, d: xf(headSil, H) + bodySil + wing },
     { c: PAL.ink, o: 0.35, d: wing },
     { c: PAL.grey, o: 0.7, d: xf(beakSil, H) + pebblePaths },
     { c: PAL.green, o: 0.55, d: 'M20 252C24 244 34 242 40 250ZM330 250C334 240 346 240 352 249ZM366 249C369 243 377 243 380 248Z' },
   ],
   whites: xf(eyeWhite, H),
-  lines: paths([ground, ...[pitcher, rim, handle].map((d) => xf(d, P)), xf(crowHead, H), xf(beak, H), back, tail, belly, chest, wing, sun, ...swirls]),
+  lines: paths([ground, ...[pitcher, rim, handle].map((d) => xf(d, P)), xf(crowHead, H), xf(beak, H), back, tail, belly, chest, wing, xf(sun, S), ...swirls]),
   fine: paths([
     xf(band, P),
     xf(zigzag, P),
     xf(tuft, H),
     xf(brow, H),
     pebblePaths,
-    'M136 186l4 4l3-5M150 198l4 3l3-5M176 196l4 3l3-5M110 206l5 3l2-5M118 226l5 3l2-5',
+    'M132 186l4 4l3-5M147 198l4 3l3-5M176 190l4 3l3-5M176 204l4 3l3-5M116 210l5 3l2-5M124 230l5 3l2-5',
     hatch(298 + PX, 150, 312 + PX, 230, 9, 9, 120, 4),
     hatch(290, 256, 330, 256, 7, 7, 160, 5),
     hatch(30, 258, 150, 260, 10, 6, 160, 6),
-    rays(SUN[0], SUN[1], 31, 43, 12, 7),
+    rays(346, 50, 31, 44, 12, 7),
     tufts([[28, 251], [340, 249], [372, 249], [176, 252]], 9, 8),
   ]),
   fills: `<circle cx="${f1(pupil[0])}" cy="${f1(pupil[1])}" r="3.2"/>`,
