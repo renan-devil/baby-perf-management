@@ -6,6 +6,7 @@ import './i18n';
 import { Documents } from './pages/Documents';
 import { Hub } from './pages/Hub';
 import { Login } from './pages/Login';
+import { Stories } from './pages/Stories';
 import { DataProvider } from './store/DataContext';
 import type { Snapshot } from './store/repo';
 import { loadShared, supabase, SupabaseRepo } from './store/supabaseRepo';
@@ -79,6 +80,7 @@ function useHashPath(): string {
 function Root() {
   const path = useHashPath();
   if (path.startsWith('/dev') || path.startsWith('/share/')) return <DevRoot />;
+  if (path.startsWith('/stories')) return <Stories path={path} />;
   if (path.startsWith('/administrative')) return <Documents space="administrative" />;
   if (path.startsWith('/school')) return <Documents space="school" />;
   if (path.startsWith('/pictures')) return <Documents space="pictures" />;

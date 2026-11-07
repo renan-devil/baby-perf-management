@@ -257,6 +257,10 @@
       "name": "Développement",
       "desc": "Compétences, progrès et journal de Constance"
     },
+    "stories": {
+      "name": "Histoires",
+      "desc": "Des histoires à raconter à Constance, et celles qu'elle aime"
+    },
     "administrative": {
       "name": "Administratif",
       "desc": "Déposer et retrouver les documents administratifs"
@@ -281,5 +285,57 @@
     "uploadError": "Échec de l'envoi : {{message}}",
     "deleteError": "Échec de la suppression ({{message}}).",
     "addPhotos": "Ajouter des photos"
+  },
+  "stories": {
+    "readIn": "Langue des histoires",
+    "back": "Toutes les histoires",
+    "length": "Durée",
+    "anyLength": "Toutes",
+    "minutes": "{{count}} min",
+    "lengthHeading": "{{count}} minutes",
+    "style": "Style",
+    "theme": "Thème",
+    "anyStyle": "Tous les styles",
+    "anyTheme": "Tous les thèmes",
+    "none": "Aucune histoire ne correspond à ces filtres.",
+    "notTold": "Pas encore racontée",
+    "told_one": "racontée une fois",
+    "told_other": "racontée {{count}} fois",
+    "notFound": "Histoire introuvable.",
+    "noText": "Pas de texte ici : lisez-la dans le livre.",
+    "howWasIt": "Constance a-t-elle aimé ?",
+    "toldOn": "Racontée le",
+    "saved": "Enregistré. Merci !",
+    "saveError": "Impossible d'enregistrer ({{message}}). Réessayez.",
+    "deleteError": "Impossible de supprimer ({{message}}).",
+    "loadError": "Impossible de charger les réactions de Constance ({{message}}). Les histoires restent lisibles.",
+    "confirmDelete": "Supprimer cette entrée ?",
+    "history": "Historique",
+    "reactions": {
+      "loved": "Adoré",
+      "ok": "Bien, sans plus",
+      "disliked": "Pas pour elle"
+    },
+    "styles": {
+      "funny": "Drôle",
+      "adventure": "Aventure",
+      "calm": "Calme",
+      "puzzle": "Énigme"
+    },
+    "themes": {
+      "perseverance": "Persévérance",
+      "kindness": "Gentillesse",
+      "cleverness": "Astuce",
+      "gentleness": "Douceur",
+      "home": "Chez soi"
+    },
+    "taste": {
+      "title": "Ce que Constance aime",
+      "help": "Un visage par histoire racontée : sa dernière réaction. Les préférées en premier.",
+      "empty": "Après une histoire, notez si elle a aimé : ses styles et thèmes préférés apparaîtront ici.",
+      "byStyle": "Par style",
+      "byTheme": "Par thème",
+      "untried": "Pas encore essayé : {{list}}"
+    }
   }
 }

@@ -257,6 +257,10 @@
       "name": "Desenvolvimento",
       "desc": "Competências, progresso e diário da Constance"
     },
+    "stories": {
+      "name": "Histórias",
+      "desc": "Histórias para contar à Constance, e as que ela prefere"
+    },
     "administrative": {
       "name": "Administrativo",
       "desc": "Carregar e encontrar documentos administrativos"
@@ -281,5 +285,57 @@
     "uploadError": "O envio falhou: {{message}}",
     "deleteError": "A eliminação falhou ({{message}}).",
     "addPhotos": "Adicionar fotografias"
+  },
+  "stories": {
+    "readIn": "Língua das histórias",
+    "back": "Todas as histórias",
+    "length": "Duração",
+    "anyLength": "Todas",
+    "minutes": "{{count}} min",
+    "lengthHeading": "{{count}} minutos",
+    "style": "Estilo",
+    "theme": "Tema",
+    "anyStyle": "Todos os estilos",
+    "anyTheme": "Todos os temas",
+    "none": "Nenhuma história corresponde a estes filtros.",
+    "notTold": "Ainda não foi contada",
+    "told_one": "contada uma vez",
+    "told_other": "contada {{count}} vezes",
+    "notFound": "História não encontrada.",
+    "noText": "Sem texto aqui: leia-a no livro.",
+    "howWasIt": "A Constance gostou?",
+    "toldOn": "Contada no dia",
+    "saved": "Guardado. Obrigado!",
+    "saveError": "Não foi possível guardar ({{message}}). Tente outra vez.",
+    "deleteError": "Não foi possível eliminar ({{message}}).",
+    "loadError": "Não foi possível carregar as reações da Constance ({{message}}). As histórias continuam disponíveis.",
+    "confirmDelete": "Eliminar este registo?",
+    "history": "Histórico",
+    "reactions": {
+      "loved": "Adorou",
+      "ok": "Assim-assim",
+      "disliked": "Não é para ela"
+    },
+    "styles": {
+      "funny": "Engraçada",
+      "adventure": "Aventura",
+      "calm": "Calma",
+      "puzzle": "Enigma"
+    },
+    "themes": {
+      "perseverance": "Perseverança",
+      "kindness": "Bondade",
+      "cleverness": "Engenho",
+      "gentleness": "Doçura",
+      "home": "Lar"
+    },
+    "taste": {
+      "title": "Do que a Constance gosta",
+      "help": "Uma cara por história contada: a reação mais recente. As preferidas primeiro.",
+      "empty": "Depois de contar uma história, registe se ela gostou: os estilos e temas preferidos aparecem aqui.",
+      "byStyle": "Por estilo",
+      "byTheme": "Por tema",
+      "untried": "Ainda não experimentado: {{list}}"
+    }
   }
 }

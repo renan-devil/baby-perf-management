@@ -257,6 +257,10 @@
       "name": "Development",
       "desc": "Constance's skills, progress and journal"
     },
+    "stories": {
+      "name": "Stories",
+      "desc": "Stories to tell Constance, and the ones she likes"
+    },
     "administrative": {
       "name": "Administrative",
       "desc": "Upload and find administrative documents"
@@ -281,5 +285,57 @@
     "uploadError": "Upload failed: {{message}}",
     "deleteError": "Delete failed ({{message}}).",
     "addPhotos": "Add photos"
+  },
+  "stories": {
+    "readIn": "Language of the stories",
+    "back": "All stories",
+    "length": "Length",
+    "anyLength": "All",
+    "minutes": "{{count}} min",
+    "lengthHeading": "{{count}} minutes",
+    "style": "Style",
+    "theme": "Theme",
+    "anyStyle": "Any style",
+    "anyTheme": "Any theme",
+    "none": "No story matches these filters.",
+    "notTold": "Not told yet",
+    "told_one": "told once",
+    "told_other": "told {{count}} times",
+    "notFound": "Story not found.",
+    "noText": "No text here: read it from the book.",
+    "howWasIt": "Did Constance like it?",
+    "toldOn": "Told on",
+    "saved": "Saved. Thank you!",
+    "saveError": "Could not save ({{message}}). Please try again.",
+    "deleteError": "Could not delete ({{message}}).",
+    "loadError": "Could not load Constance's reactions ({{message}}). The stories can still be read.",
+    "confirmDelete": "Delete this entry?",
+    "history": "History",
+    "reactions": {
+      "loved": "Loved it",
+      "ok": "It was OK",
+      "disliked": "Not for her"
+    },
+    "styles": {
+      "funny": "Funny",
+      "adventure": "Adventure",
+      "calm": "Calm",
+      "puzzle": "Puzzle"
+    },
+    "themes": {
+      "perseverance": "Perseverance",
+      "kindness": "Kindness",
+      "cleverness": "Cleverness",
+      "gentleness": "Gentleness",
+      "home": "Home"
+    },
+    "taste": {
+      "title": "What Constance likes",
+      "help": "One face per story told: her latest reaction to it. Best liked first.",
+      "empty": "After telling a story, note whether she liked it: her favourite styles and themes will show here.",
+      "byStyle": "By style",
+      "byTheme": "By theme",
+      "untried": "Not tried yet: {{list}}"
+    }
   }
 }

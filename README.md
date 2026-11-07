@@ -14,6 +14,7 @@ The site opens on a **password page**, then a home screen with one card per appl
 | Application | What it does |
 |---|---|
 | **Development** | The development tracker below (`#/dev/`) |
+| **Stories** | Stories to tell Constance, with pictures, in French, English and Portuguese, lasting 2, 5 or 10 minutes; after each telling, note whether she loved it, found it OK or didn't like it (`#/stories`). See [Stories](#stories) |
 | **Administrative** | Upload, open, download and delete administrative documents (`#/administrative`) |
 | **School** | The same for documents from school (`#/school`) |
 | **Pictures** | Photos of Constance as a grid, with upload, download and delete (`#/pictures`) |
@@ -22,6 +23,13 @@ The site opens on a **password page**, then a home screen with one card per appl
 - **Documents** are stored in a **private Vercel Blob store** (Vercel → Storage → Create → Blob, access *Private*, connected to this project; this adds `BLOB_STORE_ID`, and functions sign in to the store with Vercel OIDC, so there is no secret token to manage). Files are never public: they are only served through `api/file.ts`, behind the password. Up to 100 MB per file.
 - **App icon**: a crop of a photo of Constance (`public/icon-*.png`, `apple-touch-icon.png`). These icon files are the only images reachable without the password, because phones fetch home-screen icons without cookies.
 - The server code is in [`api/`](api) (Vercel Functions). It does not run under `npm run dev`; use `vercel dev` to try documents locally.
+
+## Stories
+- **The stories** are plain files in [`stories/`](stories): one folder per story with its length, style and theme (`story.json`), its text in each language (`en.md`, `fr.md`, `pt.md`) and its picture (`picture.svg`). To add one, follow [`stories/README.md`](stories/README.md), then run `npm test`. It starts with five of Aesop's fables, retold for Constance: *The Crow and the Pitcher* and *The North Wind and the Sun* (2 min), *The Tortoise and the Hare* and *The Lion and the Mouse* (5 min), *The Town Mouse and the Country Mouse* (10 min).
+- **The pictures** are original drawings in the loose ink-and-watercolour spirit of Roald Dahl's books (they don't copy any existing illustration).
+- **Reading language**: the FR · EN · PT switch at the top changes only the language of the stories, not the rest of the interface.
+- **Constance's reactions** (😍 loved it, 🙂 it was OK, 😕 not for her, with the day and the language it was told in) are shared by the family. They are kept in the same private Blob store as the documents, so there is nothing to set up. Each reaction is one small file, never changed afterwards, whose name holds everything: `story-reactions/<story>/<day>_<reaction>_<language>_<time saved>.json`. Reading the list of names is enough to show everything, and two people saving at the same moment cannot erase each other's entry. Code: [`api/stories.ts`](api/stories.ts) and [`api/_stories.ts`](api/_stories.ts).
+- **"What Constance likes"** groups the stories by style and by theme. Each story counts once, with her latest reaction to it (loved = 1, OK = ½, not for her = 0). Groups are sorted by their average, so a favourite told twenty times does not outweigh the others, and her taste can change over time. Styles and themes not tried yet are listed underneath. Code: [`src/stories/taste.ts`](src/stories/taste.ts).
 
 ## Screens (Development)
 | Screen | What it does |
@@ -41,7 +49,7 @@ npm run dev          # http://localhost:5173
 ```
 Without any configuration, the app stores data **only in the browser** (IndexedDB). That's handy for trying it out. On first launch, the app loads Constance's history automatically (192 skills: the Excel milestones plus skills filled at their typical age).
 
-Checks: `npm test` (maths, graph and catalogue checks) · `npm run lint` · `npm run typecheck` · `npm run build`.
+Checks: `npm test` (maths, graph, catalogue and stories checks) · `npm run lint` · `npm run typecheck` · `npm run build`.
 
 ## Put it online for the family (free)
 Two free services: **Supabase** (database, login, photos) and **Vercel** (hosting). About 20 minutes, one time.
