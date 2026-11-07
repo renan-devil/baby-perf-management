@@ -58,43 +58,47 @@ const cPink = 'M100 114C94 108 93 100 97 98C102 97 106 106 105 114ZM125 112C124 
 const cFace = 'M144 141l12-4M145 145l13 0M144 149l12 4';
 const sleepyEye = 'M119 137C122 141 128 141 131 137';
 const sleepySmile = 'M133 150C136 152 140 151 142 149';
-const mHead = place(144, 144, 252, 214, 0.82, 22);
+const mHead = place(144, 144, 262, 214, 0.76, 16);
 
-// her straw hat (picture 1), hung on its peg
+// her straw hat (picture 1), hung on a wooden peg in the wall
 const strawHat = 'M76 124C84 115 142 113 150 122C142 129 84 131 76 124ZM94 120C94 104 132 102 134 118';
 const hatBand = 'M95 114C106 118 122 118 133 113';
 const straw = 'M84 120l6 4M96 126l4 3M120 126l4 3M136 124l5 3';
 const cHatWash = 'M76 124C84 115 142 113 150 122C142 129 84 131 76 124ZM94 120C94 104 132 102 134 118Z';
-const mHat = place(113, 104, 150, 122, 0.8, -10);
-const peg = 'M150 112l2-10';
+const mHat = place(113, 106, 160, 112, 0.78, -8);
+const peg = 'M154 106L166 104L166 109L155 111Z';
 
-// --- The bed: a soft mound of moss, a rose blanket, a pillow; her long curly tail hangs out
-const moss = 'M54 252C50 230 86 210 150 208C214 206 262 226 268 252';
-const mossWash = 'M54 252C50 230 86 210 150 208C214 206 262 226 268 252C232 264 92 264 54 252Z';
+// --- The bed: a round nest of soft moss with a rose blanket; her long curly tail hangs out
+const rim = 'M46 230C70 220 120 216 160 216C204 216 250 220 276 230';
+const nest = 'M46 230C44 246 76 260 160 260C244 260 278 246 276 230';
+const mossWash = 'M46 230C70 220 120 216 160 216C204 216 250 220 276 230C278 246 244 260 160 260C76 260 44 246 46 230Z';
 let curls = '';
-for (const [x, y] of [[70, 238], [92, 226], [252, 236], [238, 226], [84, 250], [250, 250], [168, 254], [120, 255], [206, 254]]) {
+for (const [x, y] of [[64, 238], [96, 244], [134, 248], [176, 249], [214, 246], [248, 238], [78, 252], [156, 256], [232, 252], [114, 234], [196, 236]]) {
   curls += `M${x} ${y}c2-3 6-3 6 0c0 3-4 3-4 1`;
 }
-const blanket = 'M86 238C88 214 118 196 160 196C196 196 220 210 224 232C200 242 120 244 86 238Z';
-const patchwork = 'M120 202C122 214 122 228 120 240M158 196C160 210 160 226 158 242M192 202C192 214 194 226 196 238M96 222C130 218 180 216 220 220';
-const pillow = 'M214 226C210 214 228 206 250 210C270 214 276 228 264 234C250 238 224 236 214 226Z';
-const tail = 'M88 236C68 236 50 242 44 254C40 264 52 270 60 264C66 258 60 252 54 256';
-const paw = 'M240 222C236 226 240 232 246 230C250 228 250 222 246 220';
+const fluff = 'M52 228c2-4 6-5 9-3M74 222c3-3 7-3 9 0M232 221c3-2 7-2 9 1M256 225c3-2 7-1 8 2';
+const blanket = 'M82 224C84 202 116 186 156 186C194 186 220 200 226 220';
+const blanketWash = 'M82 224C84 202 116 186 156 186C194 186 220 200 226 220C190 216 120 216 82 224Z';
+const stitches = 'M92 216C96 204 112 194 132 192M200 196C210 200 216 206 218 214';
+const dots = [[118, 206], [146, 198], [176, 200], [200, 210], [134, 214], [162, 212], [104, 214]];
+const tail = 'M84 222C66 224 50 232 46 246C44 258 56 266 64 260C70 254 64 248 58 252';
+const paw = 'M244 214C240 218 242 224 248 223C253 222 254 216 250 213';
 
-// --- The burrow: apple-tree roots overhead, the earth floor
+// --- The burrow: apple-tree roots overhead, a few pebbles in the earth walls, the floor
 const roots =
-  'M-4 46C40 30 80 36 120 22C150 12 176 16 200 4M-4 62C46 46 90 52 130 36C160 24 190 26 214 10M404 34C370 26 346 32 318 22C300 16 284 10 270 -4M404 50C372 42 344 48 316 38';
+  'M-4 28C30 20 62 38 98 32C132 26 152 10 178 -4M-4 52C34 44 66 58 102 52C136 46 158 30 192 -4M404 22C372 26 350 44 326 42C304 40 290 28 268 32M404 44C376 48 356 64 330 64C310 64 298 54 276 46';
 const rootlets =
-  'M40 50c2 8 0 14-4 18M96 40c-1 7 2 12 6 15M150 26c2 6 1 11-2 15M356 40c-2 7 0 12 4 16M330 36c1 5-1 9-4 12M196 14c3 6 3 11 0 15';
-const rootWash = 'M-4 46C40 30 80 36 120 22C150 12 176 16 200 4L214 10C190 26 160 24 130 36C90 52 46 46 -4 62ZM404 34C370 26 346 32 318 22C300 16 284 10 270 -4L290 -4C300 10 330 26 404 50Z';
+  'M30 50c2 8-1 15-5 19M70 54c-1 9 2 15 7 18M104 52c2 6 0 12-3 16M142 40c3 6 3 12 0 17M354 58c-2 8 0 14 5 18M314 62c1 6-1 11-5 14M392 46c-4 20 2 40-6 62M386 80c4 4 6 8 5 12';
+const rootWash = 'M-4 28C30 20 62 38 98 32C132 26 152 10 178 -4L192 -4C158 30 136 46 102 52C66 58 34 44 -4 52ZM404 22C372 26 350 44 326 42C304 40 290 28 268 32L276 46C298 54 310 64 330 64C356 64 376 48 404 44Z';
 const floor = 'M8 262C120 259 280 263 392 260';
-const earth = hatch(26, 276, 380, 274, 9, 6, 160, 4);
-const pebbles = 'M24 120c2-2 5-1 5 1M60 160c2-2 5-1 5 1M30 200c2-2 5-1 5 1M372 220c2-2 5-1 5 1M360 186c2-2 5-1 5 1M210 100c2-2 5-1 5 1';
+const earth = hatch(26, 278, 380, 276, 9, 6, 160, 4);
+const pebbles = ell(26, 132, 4, 3) + ell(40, 176, 3, 2.2) + ell(370, 206, 4, 3) + ell(356, 240, 3, 2.2) + ell(214, 92, 3, 2.4) + ell(60, 104, 2.5, 2);
 
 // --- The round window, with the night outside
 const [wx, wy] = [304, 118];
 const frame = ell(wx, wy, 54) + ell(wx, wy, 45);
-const sill = 'M256 172C280 180 328 180 352 172';
+const sill = 'M262 176L346 176L344 182L264 182Z';
+const acorn = 'M278 176C276 168 288 168 288 176ZM276 170C278 164 288 164 290 170C286 172 280 172 276 170ZM283 164l1-4';
 const moon = 'M282 86C270 92 268 110 278 118C268 114 262 102 266 92C270 84 278 82 282 86Z';
 const branch = 'M352 150C338 146 322 150 306 146C298 144 290 146 284 150M326 148l6-8';
 const owl =
@@ -126,21 +130,24 @@ export default {
     { c: PAL.terracotta, o: 0.5, d: owl },
     { c: PAL.ochre, o: 0.85, d: owlEyes },
     // the bed
+    { c: PAL.ochre, o: 0.5, d: 'M262 176L346 176L344 182L264 182Z' + peg },
+    { c: PAL.terracotta, o: 0.6, d: 'M276 170C278 164 288 164 290 170C286 172 280 172 276 170Z' },
+    { c: PAL.ochre, o: 0.7, d: 'M278 176C276 170 288 170 288 176Z' },
     { c: PAL.green, o: 0.55, d: mossWash },
-    { c: PAL.rose, o: 0.62, d: blanket },
+    { c: PAL.rose, o: 0.62, d: blanketWash },
     { c: PAL.grey, o: 0.7, d: T(cFur, mHead) + paw },
     { c: PAL.rose, o: 0.55, d: T(cPink, mHead) },
     { c: PAL.ochre, o: 0.75, d: T(cHatWash, mHat) },
   ],
-  whites: pillow,
   lines: paths([
     roots,
     floor,
     frame,
     sill,
-    moss,
+    acorn,
+    rim,
+    nest,
     blanket,
-    pillow,
     tail,
     paw,
     ...all([cHead, cEarsBare], mHead),
@@ -152,15 +159,19 @@ export default {
   fine: paths([
     rootlets,
     earth,
+    pebbles,
     curls,
-    patchwork,
+    fluff,
+    stitches,
     moon,
     owlEyes,
     owlFace,
     ...all([cFace, sleepyEye, sleepySmile], mHead),
     ...all([hatBand, straw], mHat),
   ]),
-  once: paths([zed(214, 168, 9), zed(198, 142, 12), zed(176, 110, 15), pebbles]),
+  once: paths([zed(228, 168, 9), zed(212, 142, 12), zed(192, 110, 15)]),
   fills: `<circle cx="327" cy="119.5" r="1.5"/><circle cx="337" cy="119.5" r="1.5"/>`,
-  glints: stars.map(([x, y, r]) => `<path d="${star(x, y, r)}"/>`).join(''),
+  glints:
+    stars.map(([x, y, r]) => `<path d="${star(x, y, r)}"/>`).join('') +
+    dots.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.8"/>`).join(''),
 };
