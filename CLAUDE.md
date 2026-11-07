@@ -27,6 +27,9 @@ the user can also type `/add-story …`). In short:
 - **one picture for each minute**: picture 1 is the cover, the others sit in the text about a minute
   apart, and all are drawn by code in `scripts/story-pictures/<story>/<n>.mjs`
   (`npm run build:pictures`), in the shared ink-and-watercolour style;
+- [`stories/sources.md`](stories/sources.md) holds where stories may come from (public domain only),
+  the queue for daily stories (take the next `to do` row), family notes on what Constance likes, and the
+  log of every story made;
 - `src/stories/stories.test.ts` and `scripts/story-pictures/pictures.test.mjs` enforce these rules.
 
 ## Code notes

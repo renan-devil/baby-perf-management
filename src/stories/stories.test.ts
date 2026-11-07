@@ -4,6 +4,7 @@ import { isNewTelling, parseTellingPath, tellingPath, type Telling } from '../..
 import en from '../../locales/en.json';
 import fr from '../../locales/fr.json';
 import pt from '../../locales/pt.json';
+import sources from '../../stories/sources.md?raw';
 import { countWords, hasText, LENGTHS, parseStoryText, STORIES, STYLES, THEMES } from './catalog';
 import { latestByStory, tasteBy } from './taste';
 
@@ -97,6 +98,41 @@ describe('story catalogue', () => {
     expect(parseStoryText('# Title\nText right after.').blocks).toEqual([{ kind: 'text', text: 'Text right after.' }]);
     expect(parseStoryText('# T\n\nSee ![x](picture-2.svg) here.').blocks).toEqual([{ kind: 'text', text: 'See ![x](picture-2.svg) here.' }]);
     expect(countWords('Zip! Zoom! — *Plod…* « Croâ ! »')).toBe(4);
+  });
+});
+
+describe('stories/sources.md (the queue for daily stories)', () => {
+  // Queue rows: | # | Story | Source | Min | Style | Theme | Notes | Status |
+  const rows = sources
+    .split('\n')
+    .filter((line) => /^\|\s*\d+\s*\|/.test(line))
+    .map((line) => line.split('|').slice(1, -1).map((cell) => cell.trim()));
+  const folder = (status: string) => /`([a-z0-9-]+)`/.exec(status)?.[1];
+
+  it('has valid rows, numbered in order', () => {
+    expect(rows.length).toBeGreaterThanOrEqual(STORIES.length);
+    rows.forEach((r, i) => {
+      const [n, story, source, min, style, theme, , status] = r;
+      const where = `sources.md row ${n} (${story})`;
+      expect(r.length, where).toBe(8);
+      expect(Number(n), where).toBe(i + 1);
+      expect(story && source, where).toBeTruthy();
+      expect(LENGTHS as readonly number[], where).toContain(Number(min));
+      expect(STYLES as readonly string[], where).toContain(style);
+      expect(THEMES as readonly string[], where).toContain(theme);
+      expect(status, where).toMatch(/^(to do|done \d{4}-\d{2}-\d{2} `[a-z0-9-]+`)$/);
+    });
+  });
+
+  it('marks every story of the app as done, with its length, style and theme', () => {
+    const done = new Map(rows.filter((r) => r[7].startsWith('done')).map((r) => [folder(r[7]), r]));
+    for (const s of STORIES) {
+      if (!Object.values(s.texts).some(hasText)) continue; // a book read from the shelf needs no row
+      const r = done.get(s.id);
+      expect(r, `stories/${s.id} must be marked done in sources.md`).toBeTruthy();
+      expect([Number(r![3]), r![4], r![5]], `sources.md row for ${s.id}`).toEqual([s.minutes, s.style, s.theme]);
+    }
+    for (const id of done.keys()) expect(STORIES.some((s) => s.id === id), `sources.md: stories/${id} does not exist`).toBe(true);
   });
 });
 

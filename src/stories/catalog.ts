@@ -6,9 +6,22 @@ import type { Locale } from '../domain/types';
 
 export const LENGTHS = [2, 5, 10] as const;
 /** How a story feels. Names: locales/*.json → stories.styles. */
-export const STYLES = ['funny', 'adventure', 'calm', 'puzzle'] as const;
+export const STYLES = ['funny', 'adventure', 'calm', 'puzzle', 'magic', 'repeat'] as const;
 /** What a story is about. Names: locales/*.json → stories.themes. */
-export const THEMES = ['perseverance', 'kindness', 'cleverness', 'gentleness', 'home'] as const;
+export const THEMES = [
+  'perseverance',
+  'kindness',
+  'cleverness',
+  'gentleness',
+  'home',
+  'friendship',
+  'sharing',
+  'honesty',
+  'courage',
+  'teamwork',
+  'being-yourself',
+  'curiosity',
+] as const;
 export type Minutes = (typeof LENGTHS)[number];
 export type Style = (typeof STYLES)[number];
 export type Theme = (typeof THEMES)[number];

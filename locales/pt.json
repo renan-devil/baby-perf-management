@@ -320,14 +320,23 @@
       "funny": "Engraçada",
       "adventure": "Aventura",
       "calm": "Calma",
-      "puzzle": "Enigma"
+      "puzzle": "Enigma",
+      "magic": "Magia",
+      "repeat": "Lengalenga"
     },
     "themes": {
       "perseverance": "Perseverança",
       "kindness": "Bondade",
       "cleverness": "Engenho",
       "gentleness": "Doçura",
-      "home": "Lar"
+      "home": "Lar",
+      "friendship": "Amizade",
+      "sharing": "Partilha",
+      "honesty": "Honestidade",
+      "courage": "Coragem",
+      "teamwork": "Entreajuda",
+      "being-yourself": "Ser quem se é",
+      "curiosity": "Curiosidade"
     },
     "taste": {
       "title": "Do que a Constance gosta",

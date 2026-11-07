@@ -15,6 +15,12 @@ The request may name a tale, a collection ("three Grimm tales"), an idea for an 
 a style or a theme, or nothing at all. Choose sensible defaults yourself, and say what you chose. Ask
 only if the request is genuinely unclear.
 
+- **No story named** (for example the daily automation)? Take the next one from
+  [`stories/sources.md`](../../../stories/sources.md) and follow its rules: the queue, the family notes
+  about what Constance likes, the allowed sources and the softening rules.
+- Whatever the request, every story must end up with a row marked done in the queue of
+  `stories/sources.md`. Add a row if it isn't there; `npm test` checks this.
+
 - **Source.**
   - Write full texts only for tales in the public domain (traditional tales; authors who died more than
     70 years ago: Aesop, La Fontaine, Perrault, Grimm, Andersen, Kipling's *Just So Stories*…) or for
@@ -121,6 +127,8 @@ Every picture is drawn by code, so all stories share one look.
 
 ## 6. Finish
 
+- Mark the story's row in `stories/sources.md`: ``done <date> `<folder>` ``, with the same length,
+  style and theme as `story.json`.
 - Commit with a clear message, for example `Add story: The Fox and the Grapes (2 min)`, and push to the
   session's branch. Don't open a pull request unless asked.
 - **Publishing.** The live site (constance.devillieres.com) is built by Vercel from `main` only; other

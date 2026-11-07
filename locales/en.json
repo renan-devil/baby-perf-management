@@ -320,14 +320,23 @@
       "funny": "Funny",
       "adventure": "Adventure",
       "calm": "Calm",
-      "puzzle": "Puzzle"
+      "puzzle": "Puzzle",
+      "magic": "Magic",
+      "repeat": "Repeat-along"
     },
     "themes": {
       "perseverance": "Perseverance",
       "kindness": "Kindness",
       "cleverness": "Cleverness",
       "gentleness": "Gentleness",
-      "home": "Home"
+      "home": "Home",
+      "friendship": "Friendship",
+      "sharing": "Sharing",
+      "honesty": "Honesty",
+      "courage": "Courage",
+      "teamwork": "Teamwork",
+      "being-yourself": "Being yourself",
+      "curiosity": "Curiosity"
     },
     "taste": {
       "title": "What Constance likes",

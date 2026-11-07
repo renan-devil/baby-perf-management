@@ -8,6 +8,12 @@ Constance's reactions are filed under that name.
 example `/add-story The Fox and the Grapes` or "add three Grimm tales of 5 minutes". Claude follows
 [`.claude/skills/add-story/SKILL.md`](../.claude/skills/add-story/SKILL.md), which applies everything below.
 
+**For a story every day**, [`sources.md`](sources.md) lists:
+- where stories may come from (public domain only);
+- the queue of the next stories, which a daily automation takes in order;
+- family notes on what Constance likes, for you to fill in;
+- the log of every story made.
+
 ```
 stories/
   tortoise-and-hare/
@@ -32,8 +38,10 @@ stories/
 
 - **minutes**: `2`, `5` or `10`. Count about 120 words per minute (read calmly, with the voices).
   A test checks that every text is between 90 and 170 words per minute.
-- **style** (how the story feels): `funny`, `adventure`, `calm` or `puzzle`.
-- **theme** (what it is about): `perseverance`, `kindness`, `cleverness`, `gentleness` or `home`.
+- **style** (how the story feels): `funny`, `adventure`, `calm`, `puzzle` (she can guess what happens),
+  `magic` or `repeat` (a repeating chain to say together).
+- **theme** (what it is about): `perseverance`, `kindness`, `cleverness`, `gentleness`, `home`,
+  `friendship`, `sharing`, `honesty`, `courage`, `teamwork`, `being-yourself` or `curiosity`.
   To add a new style or theme, add its id to `STYLES` or `THEMES` in `src/stories/catalog.ts`
   and its name in `locales/en.json`, `fr.json` and `pt.json` (under `stories.styles` or `stories.themes`).
 - **author**: one name (`"Roald Dahl"`) or one per language, as above.

@@ -320,14 +320,23 @@
       "funny": "Drôle",
       "adventure": "Aventure",
       "calm": "Calme",
-      "puzzle": "Énigme"
+      "puzzle": "Énigme",
+      "magic": "Merveilleux",
+      "repeat": "Ritournelle"
     },
     "themes": {
       "perseverance": "Persévérance",
       "kindness": "Gentillesse",
       "cleverness": "Astuce",
       "gentleness": "Douceur",
-      "home": "Chez soi"
+      "home": "Chez soi",
+      "friendship": "Amitié",
+      "sharing": "Partage",
+      "honesty": "Honnêteté",
+      "courage": "Courage",
+      "teamwork": "Entraide",
+      "being-yourself": "Être soi-même",
+      "curiosity": "Curiosité"
     },
     "taste": {
       "title": "Ce que Constance aime",
