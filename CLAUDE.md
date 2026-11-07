@@ -5,6 +5,12 @@ European Portuguese). [`README.md`](README.md) describes the applications and ho
 (Vercel, behind a site password); [`APP_SPEC.md`](APP_SPEC.md) specifies the development tracker.
 Explain choices in plain words, and prefer simple, sound designs.
 
+## Publishing
+
+The live site, constance.devillieres.com, is built by Vercel from `main`. Other branches only get
+private preview builds, so work is not visible on the site until it reaches `main`. Publish only when
+the user asks, and confirm that the production deployment is READY.
+
 ## Before committing
 
 Run `npm test`, `npm run lint`, `npm run typecheck` and `npm run build`. Interface text exists in three
