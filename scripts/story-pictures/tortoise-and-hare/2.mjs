@@ -37,11 +37,11 @@ function limb(pts) {
   return `M${f(L[0][0])} ${f(L[0][1])}${curve(L)}${cap}${curve(R)}`;
 }
 
-const ground = 'M0 252C70 249 150 254 230 252C300 250 350 253 400 251';
+const ground = 'M0 236C70 233 150 238 230 236C300 234 350 237 400 235';
 
 // The hare on his back (drawn with the ground at y=0): head on the left, legs kicking on the right
-const HS = 'translate(134 253) scale(1.12)';
-const hs = at(134, 253, 0, 1.12);
+const HS = 'translate(134 237) scale(1.12)';
+const hs = at(134, 237, 0, 1.12);
 const back = 'M-66 -2C-40 3 0 3 30 -2C42 -6 48 -16 44 -28';
 const belly = 'M-50 -5C-42 -24 -18 -38 8 -38C18 -38 26 -37 30 -34';
 const leg1 = limb([[44, -26, 16], [54, -50, 12], [60, -76, 9], [62, -94, 9], [70, -104, 10], [80, -107, 9]]);
@@ -62,8 +62,8 @@ const laughEye = 'M-4 -3Q0 -10 5 -4';
 const whiskers = 'M19 -1l9 -4M20 1l10 0';
 
 // Tortoise from the cover, turned to face him
-const TT = 'translate(296 246) scale(-1 1)';
-const T = at(296, 246, 0, -1, 1);
+const TT = 'translate(296 230) scale(-1 1)';
+const T = at(296, 230, 0, -1, 1);
 const shell = 'M-42 -6C-40 -36 -20 -48 0 -48C22 -48 40 -34 42 -6Z';
 const shellRim = 'M-46 -5C-20 2 20 2 46 -5';
 const plates = 'M-12 -36L10 -36L18 -22L8 -10L-10 -10L-18 -22ZM-12 -36L-18 -45M10 -36L16 -45M18 -22L38 -24M8 -10L14 -4M-10 -10L-16 -4M-18 -22L-38 -24';
@@ -77,7 +77,7 @@ const lid = 'M65.6 -33.6C68 -34.6 74 -34.6 76.4 -33.6';
 const eyeWhite = 'M66 -33.4C69 -34.2 73 -34.2 76 -33.4C76 -26.5 66 -26.5 66 -33.4Z';
 
 // A little duck (facing left, ground at y=0) giggling behind her wing
-const DT = 'translate(372 253)';
+const DT = 'translate(369 237)';
 const duck = 'M-12 -25C-22 -20 -24 -6 -14 -1C-4 3 12 2 19 -4C22 -8 23 -14 24 -21C19 -18 13 -19 7 -23';
 const duckHead = 'M-16 -34C-16 -47 4 -47 4 -34C4 -26 -2 -23 -6 -23C-12 -23 -16 -27 -16 -34Z';
 const bill = 'M-15 -37C-20 -39 -26 -37 -28 -34C-24 -31 -19 -30 -15 -31';
@@ -85,13 +85,13 @@ const wing = 'M10 -12C2 -18 -6 -24 -12 -28C-16 -30 -21 -30 -20 -26C-18 -20 -8 -1
 const giggle = 'M-10 -36Q-7 -40 -4 -36M-18 -50l-3 -5M-7 -53l0 -6M5 -50l3 -5M28 -30l5 -3M29 -24l6 0';
 
 // laugh marks round his head, kick marks by his feet
-const marks = 'M58 192l-4 -9M73 187l0 -10M89 190l5 -9M38 200l-8 -5M240 116q9 7 4 18M249 110q13 9 7 27M183 98q-9 -5 -14 4M186 89q-13 -9 -22 4';
+const marks = 'M58 176l-4 -9M73 171l0 -10M89 174l5 -9M38 184l-8 -5M240 100q9 7 4 18M249 94q13 9 7 27M183 82q-9 -5 -14 4M186 73q-13 -9 -22 4';
 
 export default {
   title: 'Hare laughs, Tortoise waits',
   seed: 32,
   washes: [
-    { c: PAL.green, o: 0.38, d: 'M0 248C70 245 150 250 230 248C300 246 350 249 400 247L400 300L0 300Z' },
+    { c: PAL.green, o: 0.38, d: 'M0 232C70 229 150 234 230 232C300 230 350 233 400 231L400 300L0 300Z' },
     // hare fur
     {
       c: PAL.grey,
@@ -118,9 +118,10 @@ export default {
   fine:
     paths([
       marks,
-      hatch(10, 272, 120, 272, 10, 6, 160, 6),
-      hatch(220, 272, 390, 270, 10, 6, 160, 7),
-      tufts([[118, 253], [204, 252], [334, 251], [20, 252]], 9, 9),
+      hatch(10, 258, 120, 258, 10, 6, 160, 6),
+      hatch(220, 258, 390, 256, 10, 6, 160, 7),
+      hatch(90, 282, 300, 282, 12, 6, 160, 5),
+      tufts([[118, 237], [204, 236], [334, 235], [20, 236]], 9, 9),
     ]) +
     paths([toes], HS) +
     paths([whiskers], HT) +

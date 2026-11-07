@@ -125,6 +125,7 @@ const dogFarLeg = 'M54 122C54 138 48 150 40 160M70 130C68 146 62 160 54 170M40 1
 const dogWash =
   'M-10 44C30 34 72 30 100 36C124 40 138 56 136 76C134 102 128 118 120 130C124 144 130 156 128 168C124 186 122 214 122 244C136 248 140 262 130 262L104 262C90 262 92 246 104 244C102 222 102 200 98 182C92 168 82 158 74 146C70 138 70 124 76 108C52 118 24 126 -10 128ZM54 122L70 130C68 146 62 160 54 170C52 174 46 177 38 175C28 172 30 160 40 160C48 150 54 138 54 122Z';
 const fluff = 'M134 98l7 3M130 112l7 4M124 124l6 5M128 150l6 2';
+const fur = 'M30 50c4 2 6 6 6 10M64 44c4 2 6 6 6 10M98 50c4 3 5 7 4 11M44 84c3 2 5 6 4 9M80 78c3 2 5 6 4 9M112 76c3 3 4 7 3 10M18 104c3 2 4 5 3 8';
 const goldTail = 'M128 46C144 38 152 24 152 6';
 const feathers = 'M146 40l7 5M151 30l8 2M153 18l8-1M126 52l3 6';
 const goldTailWash = 'M124 44C138 36 144 22 144 4C150 -2 162 4 160 14C158 32 148 50 130 58Z';
@@ -183,7 +184,7 @@ export default {
   fine: paths([
     boards,
     holeEdge,
-    ...all([dogToes, fluff, feathers], mDogA),
+    ...all([dogToes, fluff, feathers, fur], mDogA),
     T(dogToes, mDogB),
     ...all([hatBand, straw, patch, cFace, cPawToes], mC),
     ...all([hatBand2, monocle, vest, bowTie, tFace, lid, tPaws], mT),

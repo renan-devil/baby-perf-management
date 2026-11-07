@@ -98,17 +98,11 @@ const mHat = mC;
 
 // --- The table: top edge, a hanging cloth with soft folds and a scalloped hem
 const tableTop = 'M8 238C120 235 280 240 392 236';
-let hem = 'M12 270';
-let lace = '';
-for (let i = 0; i < 16; i++) {
-  hem += `q11.8 ${i % 2 ? 9 : 11} 23.5 0`;
-  lace += `M${f1(21.5 + i * 23.5)} 274.5l1.5 0`;
-}
-const clothSides = 'M9 239C9 250 11 260 12 270M391 237C391 250 389 260 388 270';
-const border = 'M11 255C120 258 280 254 389 256M11 262C120 265 280 261 389 263';
-const folds = 'M82 270c-2-5-1-10 2-14M176 270c2-5 1-10-2-14M270 270c-2-5-1-10 2-14M364 270c2-5 1-10-2-14';
-const clothWash = `M8 238C120 235 280 240 392 236L388 270${'q-11.8 10 -23.5 0'.repeat(16)}Z`;
-const borderWash = 'M11 255C120 258 280 254 389 256L389 263C280 261 120 265 11 262Z';
+// a plain white cloth with a scalloped hem, as on the table in picture 5
+let hem = 'M12 282';
+for (let i = 0; i < 16; i++) hem += `q11.8 ${i % 2 ? 9 : 10} 23.5 0`;
+const clothSides = 'M9 239C9 254 11 268 12 282M391 237C391 254 389 268 388 282';
+const folds = [59, 106, 153, 200, 247, 294, 341].map((x) => `M${x} 242L${x} 279`).join('');
 
 // --- The cheese wheel, with a big bite out of its side
 const cheeseTop = ell(296, 120, 92, 22);
@@ -150,8 +144,6 @@ export default {
   title: 'Country Mouse takes a big bite of the enormous cheese',
   seed: 61,
   washes: [
-    { c: PAL.sky, o: 0.26, d: clothWash },
-    { c: PAL.rose, o: 0.55, d: borderWash },
     { c: PAL.grey, o: 0.4, d: 'M140 236C150 230 190 230 206 236ZM28 238C36 232 112 232 120 238Z' },
     { c: PAL.ochre, o: 0.42, d: cheeseTop },
     { c: PAL.ochre, o: 0.78, d: cheeseSide },
@@ -187,7 +179,6 @@ export default {
   ]),
   fine: paths([
     folds,
-    border,
     holes,
     crumbs,
     hatch(330, 222, 380, 206, 6, 8, 115, 5),
@@ -200,7 +191,6 @@ export default {
     ...all([hatBand2, monocle, tFace, smugEye, smile], mTH),
     ...all([vest, bowTie], mT),
   ]),
-  once: paths([lace]),
   fills: `<path d="${T(ell(124.6, 136.4, 3.1), mC)}"/>`,
   glints: `<path d="${T(ell(125.8, 135.2, 1), mC)}"/>`,
 };

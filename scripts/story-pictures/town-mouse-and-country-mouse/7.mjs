@@ -52,14 +52,14 @@ const all = (list, m) => list.map((d) => T(d, m));
 // --- Country Mouse (picture 1 coordinates, facing right); her hat has flown off, so her ears
 // reach down to her head
 const cHead = 'M92 150C88 134 98 122 112 122C126 122 136 132 144 144C136 152 122 156 110 156C100 156 94 154 92 150Z';
-const cEarsBare = 'M104 124C92 120 86 102 94 95C102 89 112 100 110 122M120 123C118 106 125 93 134 95C143 99 139 116 128 125';
+const cEarsBare = 'M105 124C94 125 85 116 87 105C89 95 99 91 106 96C112 101 112 112 110 122M120 123C116 113 117 101 125 96C133 92 141 99 139 109C138 117 133 122 127 125';
 const strawHat = 'M76 124C84 115 142 113 150 122C142 129 84 131 76 124ZM94 120C94 104 132 102 134 118';
 const hatBand = 'M95 114C106 118 122 118 133 113';
 const straw = 'M84 120l6 4M96 126l4 3M120 126l4 3M136 124l5 3';
 const cFace = 'M144 141l12-4M145 145l13 0M144 149l12 4';
 const cFur =
-  cHead + 'M104 124C92 120 86 102 94 95C102 89 112 100 110 122ZM120 123C118 106 125 93 134 95C143 99 139 116 128 125Z';
-const cPink = 'M100 114C94 108 93 100 97 98C102 97 106 106 105 114ZM125 112C124 104 128 98 132 99C136 102 133 110 128 114ZM144 141C146 139 149 141 147 144Z';
+  cHead + 'M105 124C94 125 85 116 87 105C89 95 99 91 106 96C112 101 112 112 110 122ZM120 123C116 113 117 101 125 96C133 92 141 99 139 109C138 117 133 122 127 125Z';
+const cPink = 'M97 116C92 112 91 104 95 101C100 99 105 106 104 114ZM126 114C123 108 125 100 130 99C135 99 136 107 131 113ZM144 141C146 139 149 141 147 144Z';
 const cHatWash = 'M76 124C84 115 142 113 150 122C142 129 84 131 76 124ZM94 120C94 104 132 102 134 118Z';
 const cBrow = 'M118 128C121 125 127 125 131 128';
 const cRun = {
@@ -125,24 +125,23 @@ const catTailWash = 'M364 220C370 218 372 210 369 199C365 186 366 170 361 163C35
 const stripes = 'M346 176c4 4 6 8 6 12M352 196c4 3 6 7 6 11M342 216c4 2 7 5 8 9M366 196l7-2M365 180l7 1';
 const thump = 'M318 246l-7-3M318 252l-8 1M364 244l7-4M366 250l8 0';
 
-// --- Table and chair (the floor is out of the picture, below)
+// --- Table and chair: a plain white cloth with a scalloped hem and a turned leg, as on the
+// table in picture 5; the chair is wooden with a rose cushion, like the one in picture 8
 const tableTop = 'M8 196C100 193 180 198 262 194';
 let hem = 'M10 234';
-let lace = '';
-for (let i = 0; i < 11; i++) {
-  hem += `q11.2 ${i % 2 ? 9 : 11} 22.4 0`;
-  lace += `M${f1(19.2 + i * 22.4)} 238.5l1.5 0`;
-}
+for (let i = 0; i < 11; i++) hem += `q11.2 ${i % 2 ? 9 : 10} 22.4 0`;
 const clothEdge = 'M262 194C264 210 263 222 256 234';
-const border = 'M10 219C100 222 180 218 258 220M10 226C100 229 180 225 257 227';
-const folds = 'M78 234c-2-5-1-10 2-14M168 234c2-5 1-10-2-14M236 234c-2-5-1-10 2-14';
-const clothWash = `M8 196C100 193 180 198 262 194C264 210 263 222 256 234${'q-11.2 10 -22.4 0'.repeat(11)}Z`;
-const borderWash = 'M10 219C100 222 180 218 258 220L257 227C180 225 100 229 10 226Z';
+const folds = [54.8, 99.6, 144.4, 189.2, 234].map((x) => `M${x} 198L${x} 231`).join('');
 const floor = 'M176 292C250 290 330 293 394 290';
-const tableLeg = 'M232 240L232 292M244 240L244 292';
+const lx = 236;
+const legSide = (k) =>
+  `M${lx + 3 * k} 242L${lx + 3 * k} 246C${lx + 9 * k} 249 ${lx + 9 * k} 259 ${lx + 3 * k} 262L${lx + 2 * k} 284C${lx + 6 * k} 286 ${lx + 6 * k} 291 ${lx + 2 * k} 292`;
+const tableLeg = legSide(-1) + legSide(1);
+const tableLegWash = `${legSide(-1)}L${lx + 2} 292C${lx + 6} 291 ${lx + 6} 286 ${lx + 2} 284L${lx + 3} 262C${lx + 9} 259 ${lx + 9} 249 ${lx + 3} 246L${lx + 3} 242Z`;
 const chair =
   'M290 252L390 252L390 260L290 260ZM296 260L294 293M306 260L306 289M380 260L383 293M372 260L372 289M384 252L388 150M377 252L380 154M376 152C380 144 392 144 396 150M379 184L386 183M379 216L385 215';
-const chairWash = 'M290 252L390 252L390 260L290 260ZM294 260L298 260L296 293L292 293ZM380 260L384 260L385 293L381 293ZM382 252L386 150L394 150L390 252Z';
+const chairWash = 'M294 260L298 260L296 293L292 293ZM380 260L384 260L385 293L381 293ZM382 252L386 150L394 150L390 252ZM376 152C380 144 392 144 396 150Z';
+const cushion = 'M290 252L390 252L390 260L290 260Z';
 
 // --- The jelly, tumbling over: a fluted mould, with a splosh
 const mJelly = place(26, 0, 226, 195, 1.05, 30); // pivoting on its right edge, toppling towards the cat
@@ -170,10 +169,9 @@ export default {
   title: 'A big ginger cat jumps onto a chair and the two mice run across the table',
   seed: 71,
   washes: [
-    { c: PAL.sky, o: 0.26, d: clothWash },
-    { c: PAL.rose, o: 0.55, d: borderWash },
     { c: PAL.grey, o: 0.42, d: 'M176 291C250 289 330 292 394 289L394 299C330 301 250 299 176 300Z' },
-    { c: PAL.slate, o: 0.45, d: chairWash + 'M232 240L244 240L244 292L232 292Z' },
+    { c: PAL.terracotta, o: 0.5, d: chairWash + tableLegWash },
+    { c: PAL.rose, o: 0.6, d: cushion },
     { c: PAL.terracotta, o: 0.72, d: T(catHead, mCat) + catBodyWash + catTailWash + catPawWash },
     { c: PAL.rose, o: 0.6, d: T(catNose + catEars, mCat) },
     { c: PAL.ochre, o: 0.85, d: T(catEyes, mCat) },
@@ -208,7 +206,6 @@ export default {
     ...all([tRun.body, tRun.legs, tRun.shoes, tRun.arms, tRun.cane, tRun.tail], mTR),
   ]),
   fine: paths([
-    border,
     folds,
     T(catNose, mCat),
     T(catMarks, mCat),
@@ -223,7 +220,7 @@ export default {
     ...all([hatBand2, monocle, tFace, tBrow], mTH),
     ...all([vest, bowTie, tRun.hem, tRun.paws], mTR),
   ]),
-  once: paths([lace, thump, speed, fright, wobble]),
+  once: paths([thump, speed, fright, wobble]),
   fills: [T(catPupils, mCat), T(ell(126.5, 137, 1.8), mCH), T(ell(276.5, 130, 1.8), mTH)].map((d) => `<path d="${d}"/>`).join(''),
   glints: `<path d="${T(ell(-9, -26, 2.5, 6), mJelly)}"/><path d="${T(ell(-2, -38, 2, 1.5), mJelly)}"/>`,
 };
