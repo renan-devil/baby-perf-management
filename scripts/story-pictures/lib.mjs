@@ -12,9 +12,136 @@ export const PAL = {
   paper: '#fbf6ea',
 };
 
-/** Paths drawn inside a scaled group keep their line width. */
+/**
+ * Ink paths, optionally placed with an SVG transform ("translate(282 222) rotate(-26) scale(1.05)").
+ * The transform is applied to the coordinates themselves (transformPath), so placed shapes keep the
+ * book's line width in picture units and the picture looks the same at every display size.
+ */
 export function paths(list, t) {
-  return list.map((d) => `<path d="${d}"${t ? ` transform="${t}" vector-effect="non-scaling-stroke"` : ''}/>`).join('');
+  return list.map((d) => `<path d="${t ? transformPath(d, t) : d}"/>`).join('');
+}
+
+/** An affine transform [a, b, c, d, e, f], as in SVG: x' = a·x + c·y + e, y' = b·x + d·y + f. */
+const multiply = (m, n) => [
+  m[0] * n[0] + m[2] * n[1],
+  m[1] * n[0] + m[3] * n[1],
+  m[0] * n[2] + m[2] * n[3],
+  m[1] * n[2] + m[3] * n[3],
+  m[0] * n[4] + m[2] * n[5] + m[4],
+  m[1] * n[4] + m[3] * n[5] + m[5],
+];
+
+/** Reads an SVG transform list (translate, scale, rotate, matrix), applied right to left as in SVG. */
+export function parseTransform(t) {
+  let m = [1, 0, 0, 1, 0, 0];
+  for (const [, name, args] of t.matchAll(/(\w+)\s*\(([^)]*)\)/g)) {
+    const v = args.split(/[\s,]+/).filter(Boolean).map(Number);
+    const rad = ((v[0] ?? 0) * Math.PI) / 180;
+    let n;
+    if (name === 'translate') n = [1, 0, 0, 1, v[0], v[1] ?? 0];
+    else if (name === 'scale') n = [v[0], 0, 0, v[1] ?? v[0], 0, 0];
+    else if (name === 'rotate') {
+      n = [Math.cos(rad), Math.sin(rad), -Math.sin(rad), Math.cos(rad), 0, 0];
+      if (v.length === 3) n = multiply(multiply([1, 0, 0, 1, v[1], v[2]], n), [1, 0, 0, 1, -v[1], -v[2]]);
+    } else if (name === 'matrix') n = v;
+    else throw new Error(`Unsupported transform: ${name}`);
+    m = multiply(m, n);
+  }
+  return m;
+}
+
+const f2 = (n) => {
+  const r = Math.round(n * 100) / 100;
+  return Object.is(r, -0) ? '0' : String(r);
+};
+
+/**
+ * Moves path data by an SVG transform (string or matrix) and returns absolute path data. Use it to
+ * reuse a character's shapes in another picture or pose (also for whites and fills, which take
+ * plain path data).
+ */
+export function transformPath(d, t) {
+  const m = typeof t === 'string' ? parseTransform(t) : t;
+  const at = (x, y) => [m[0] * x + m[2] * y + m[4], m[1] * x + m[3] * y + m[5]];
+  const tokens = d.match(/[a-zA-Z]|[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/g) ?? [];
+  const out = [];
+  let i = 0;
+  let cmd = '';
+  let [x, y, startX, startY] = [0, 0, 0, 0];
+  const num = () => {
+    if (i >= tokens.length || /[a-zA-Z]/.test(tokens[i])) throw new Error(`Bad path data near "${cmd}" in ${d}`);
+    return Number(tokens[i++]);
+  };
+  while (i < tokens.length) {
+    if (/[a-zA-Z]/.test(tokens[i])) cmd = tokens[i++];
+    const rel = cmd !== cmd.toUpperCase();
+    const ox = rel ? x : 0;
+    const oy = rel ? y : 0;
+    switch (cmd.toUpperCase()) {
+      case 'M':
+        x = ox + num();
+        y = oy + num();
+        [startX, startY] = [x, y];
+        out.push('M', ...at(x, y));
+        cmd = rel ? 'l' : 'L'; // more pairs after a move are lines
+        break;
+      case 'L':
+        x = ox + num();
+        y = oy + num();
+        out.push('L', ...at(x, y));
+        break;
+      case 'H':
+        x = ox + num();
+        out.push('L', ...at(x, y));
+        break;
+      case 'V':
+        y = oy + num();
+        out.push('L', ...at(x, y));
+        break;
+      case 'C': {
+        const p = [ox + num(), oy + num(), ox + num(), oy + num()];
+        x = ox + num();
+        y = oy + num();
+        out.push('C', ...at(p[0], p[1]), ...at(p[2], p[3]), ...at(x, y));
+        break;
+      }
+      case 'S':
+      case 'Q': {
+        const p = [ox + num(), oy + num()];
+        const c = cmd.toUpperCase();
+        x = ox + num();
+        y = oy + num();
+        out.push(c, ...at(p[0], p[1]), ...at(x, y));
+        break;
+      }
+      case 'T':
+        x = ox + num();
+        y = oy + num();
+        out.push('T', ...at(x, y));
+        break;
+      case 'A': {
+        // Arcs stay exact under moves, turns, uniform scales and mirrors.
+        const [rx, ry, rot, large, sweep] = [num(), num(), num(), num(), num()];
+        x = ox + num();
+        y = oy + num();
+        const det = m[0] * m[3] - m[1] * m[2];
+        const scale = Math.hypot(m[0], m[1]);
+        if (Math.abs(Math.hypot(m[2], m[3]) - scale) > 1e-9 || Math.abs(m[0] * m[2] + m[1] * m[3]) > 1e-9) {
+          throw new Error('Arcs can only be moved, turned, mirrored or scaled evenly');
+        }
+        const turn = (Math.atan2(m[1], m[0]) * 180) / Math.PI;
+        out.push('A', rx * scale, ry * scale, det < 0 ? turn - rot : turn + rot, large, det < 0 ? 1 - sweep : sweep, ...at(x, y));
+        break;
+      }
+      case 'Z':
+        [x, y] = [startX, startY];
+        out.push('Z');
+        break;
+      default:
+        throw new Error(`Unknown path command "${cmd}" in ${d}`);
+    }
+  }
+  return out.map((v) => (typeof v === 'number' ? f2(v) : v)).join(' ');
 }
 
 /** Deterministic pseudo-random numbers, so the files are stable. */

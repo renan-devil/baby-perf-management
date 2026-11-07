@@ -1,4 +1,4 @@
-import { PAL, hatch, paths } from '../lib.mjs';
+import { PAL, paths } from '../lib.mjs';
 
 // "RUN!" The big ginger cat leaps up onto a chair at the end of the table and looks straight at the
 // two mice, who race away across the tablecloth; behind them the jelly tips over with a splosh.

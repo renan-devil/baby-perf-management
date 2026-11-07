@@ -92,6 +92,10 @@ Every picture is drawn by code, so all stories share one look.
   - It must read clearly as a 96×72 thumbnail.
 - **Same characters throughout.** Draw each character once, usually in picture 1, then reuse its path
   constants in the other pictures with transforms (translate, scale, rotate, flip) or faithful redraws.
+  - `paths(list, 'translate(…) rotate(…) scale(…)')` places ink shapes.
+  - `transformPath(d, sameTransform)` places any other path data: wash shapes, `whites`, `fills`.
+  - Both apply the transform to the coordinates, so the line width stays the same at every display
+    size. Never use `vector-effect`.
 - **Build.** `npm run build:pictures -- <id>` writes every picture of the story; `-- <id>/<k>` writes
   just one.
 - **Look at every picture before moving on.**
