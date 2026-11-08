@@ -123,11 +123,11 @@ Every picture is drawn by code, so all stories share one look.
 
 - Commit with a clear message, for example `Add story: The Fox and the Grapes (2 min)`, and push to the
   session's branch. Don't open a pull request unless asked.
-- **Publishing.** The live site (constance.devillieres.com) is built by Vercel from `main` only; other
-  branches just get private preview builds. If the request said to publish ("…and put it live"), or
-  the user agrees when you ask, move `main` forward to your commit (`git push origin <commit>:main`
-  when it is a fast-forward; otherwise merge). Then check that the Vercel production deployment
-  reaches READY before saying it is live.
+- **Publishing (policy: publish directly).** The live site (constance.devillieres.com) is built by
+  Vercel from `main` only; other branches just get private preview builds. Once all checks pass, move
+  `main` forward to your commit without asking (`git push origin <commit>:main` when it is a
+  fast-forward; otherwise merge). Then check that the Vercel production deployment reaches READY
+  before saying it is live.
 - Report:
   - what you added (title, length, style, theme, source)
   - the moments the pictures show

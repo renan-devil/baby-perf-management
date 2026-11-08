@@ -8,8 +8,10 @@ Explain choices in plain words, and prefer simple, sound designs.
 ## Publishing
 
 The live site, constance.devillieres.com, is built by Vercel from `main`. Other branches only get
-private preview builds, so work is not visible on the site until it reaches `main`. Publish only when
-the user asks, and confirm that the production deployment is READY.
+private preview builds, so work is not visible on the site until it reaches `main`. **Policy: publish
+directly.** Once the checks below pass, push finished work straight to `main` as well as to the
+session's branch (`git push origin HEAD:main` when it is a fast-forward; otherwise merge `main` first),
+without asking and without a pull request. Then confirm that the production deployment is READY.
 
 ## Before committing
 
