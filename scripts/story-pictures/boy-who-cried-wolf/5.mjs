@@ -23,8 +23,8 @@ export default compose({
   title: 'Safe and sound',
   seed: 95,
   washes: [
-    { c: PAL.rose, o: 0.25, d: 'M0 130C120 120 280 130 400 120L400 254L0 254Z' },
-    { c: PAL.ochre, o: 0.3, d: 'M0 196C120 188 280 196 400 190L400 254L0 254Z' },
+    { c: PAL.rose, o: 0.25, d: 'M0 130C120 120 280 130 400 120L400 196C280 206 120 194 0 204Z' },
+    { c: PAL.ochre, o: 0.3, d: 'M0 176C120 168 280 176 400 170L400 214C280 222 120 210 0 220Z' },
     { c: PAL.ochre, o: 0.85, d: sun },
     { c: PAL.green, o: 0.5, d: topWash },
     { c: PAL.rose, o: 0.8, d: hearts },
@@ -45,6 +45,6 @@ export default compose({
     place(villager({ kind: 'baker', mood: 'happy', tilt: -6, arms: [V_ARMS.fwd, right(V_ARMS.down)] }), 'translate(112 252) scale(1.12)'),
     place(villager({ kind: 'farmer', mood: 'happy', tilt: 6, arms: [V_ARMS.down, right(V_ARMS.fwd)] }), 'translate(290 252) scale(1.12)'),
     place(peter({ mood: 'content', tilt: 10, arms: hug }), 'translate(200 256) scale(1.5)'),
-    place(sheep({ mood: 'content' }), 'translate(200 186) scale(0.85)'),
+    place(sheep({}), 'translate(218 192) scale(0.85)'),
   ],
 });

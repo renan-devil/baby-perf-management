@@ -69,7 +69,6 @@ export function compose({ title, seed, washes = [], after = [], whites = '', lin
   };
 }
 
-const mirror = (pts) => pts.map(([x, y, w]) => [-x, y, w]);
 const close = (list) => list.map((d) => `${d}Z`).join('');
 
 // ---------------------------------------------------------------------------------------------
