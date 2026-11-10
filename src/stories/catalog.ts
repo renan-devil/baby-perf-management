@@ -8,7 +8,7 @@ export const LENGTHS = [2, 5, 10] as const;
 /** How a story feels. Names: locales/*.json → stories.styles. */
 export const STYLES = ['funny', 'adventure', 'calm', 'puzzle'] as const;
 /** What a story is about. Names: locales/*.json → stories.themes. */
-export const THEMES = ['perseverance', 'kindness', 'cleverness', 'gentleness', 'home', 'curiosity'] as const;
+export const THEMES = ['perseverance', 'kindness', 'cleverness', 'gentleness', 'home', 'curiosity', 'honesty'] as const;
 export type Minutes = (typeof LENGTHS)[number];
 export type Style = (typeof STYLES)[number];
 export type Theme = (typeof THEMES)[number];

@@ -33,7 +33,7 @@ stories/
 - **minutes**: `2`, `5` or `10`. Count about 120 words per minute (read calmly, with the voices).
   A test checks that every text is between 90 and 170 words per minute.
 - **style** (how the story feels): `funny`, `adventure`, `calm` or `puzzle`.
-- **theme** (what it is about): `perseverance`, `kindness`, `cleverness`, `gentleness`, `home` or `curiosity`.
+- **theme** (what it is about): `perseverance`, `kindness`, `cleverness`, `gentleness`, `home`, `curiosity` or `honesty`.
   To add a new style or theme, add its id to `STYLES` or `THEMES` in `src/stories/catalog.ts`
   and its name in `locales/en.json`, `fr.json` and `pt.json` (under `stories.styles` or `stories.themes`).
 - **author**: one name (`"Roald Dahl"`) or one per language, as above.
