@@ -16,8 +16,7 @@ export function grapes(x, y, r = 8) {
     for (let k = 0; k < n; k++) berries.push(dot(f(x + (k - (n - 1) / 2) * r * 1.7 + (i % 2 ? 1 : -1)), f(y + 10 + i * r * 1.45), r));
   });
   const stem = `M${x} ${y + 4}C${x + 1} ${y - 4} ${x - 2} ${y - 10} ${x + 2} ${y - 16}`;
-  const shine = berries.slice(0, 9).map((_, i) => '');
-  return { berries, stem, shine };
+  return { berries, stem };
 }
 
 export const ground = 'M0 272C80 268 180 274 280 270C330 268 370 271 400 269';
@@ -28,7 +27,7 @@ const stones =
 // the vine: a twisty branch along the top of the wall and up to an overhanging arch
 const vine = 'M404 104C372 98 352 108 330 96C310 84 300 70 280 64C262 58 244 62 232 70';
 const vineTwigs = 'M330 96C336 86 346 82 356 84M280 64C274 54 276 46 284 40M300 74C304 80 302 88 296 92';
-const leaf = (x, y, s, a) =>
+const leaf = (x, y, s) =>
   `M${x} ${y}C${f(x - 8 * s)} ${f(y - 4 * s)} ${f(x - 10 * s)} ${f(y - 14 * s)} ${f(x - 4 * s)} ${f(y - 18 * s)}C${f(x - 1 * s)} ${f(y - 12 * s)} ${f(x + 4 * s)} ${f(y - 20 * s)} ${f(x + 8 * s)} ${f(y - 14 * s)}C${f(x + 12 * s)} ${f(y - 8 * s)} ${f(x + 6 * s)} ${f(y - 2 * s)} ${x} ${y}Z`;
 const leaves = leaf(356, 86, 1.1) + leaf(284, 42, 1) + leaf(236, 74, 0.9) + leaf(380, 104, 1) + leaf(318, 94, 0.9);
 
