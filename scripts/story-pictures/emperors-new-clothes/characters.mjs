@@ -183,9 +183,16 @@ export function emperor({ dress = 'coat', mood = 'happy', look = 0, tilt = 0, ar
     const pantsPeek = 'M-12 -5C-10 -1 10 -1 12 -5';
     parts.push({
       lines: [blanket, flap],
-      fine: ['M-30 -96q-8 30 -6 84M-16 -90q-4 40 -2 84M30 -96q8 30 6 84M18 -80q4 30 2 72', pantsPeek],
+      fine: [
+        'M-30 -96q-8 30 -6 70M-16 -90q-4 40 -2 70M30 -96q8 30 6 70M18 -80q4 30 2 58',
+        pantsPeek,
+        'M-47 -24C-20 -18 20 -18 47 -24M-46 -16C-20 -10 20 -10 46 -16',
+        // the tassels along the bottom
+        'M-38 -5l-1 5M-26 -3l-1 5M-14 -2l0 5M14 -2l0 5M26 -3l1 5M38 -5l1 5',
+      ],
       washes: [
         { c: PAL.red, o: 0.85, d: Z(blanket) },
+        { c: PAL.ochre, o: 0.9, d: 'M-47 -24C-20 -18 20 -18 47 -24L46 -16C20 -10 -20 -10 -46 -16Z' },
         { c: PAL.terracotta, o: 0.4, d: 'M20 -112C6 -104 -4 -94 -2 -78C0 -56 8 -30 4 -5C20 -3 34 -5 44 -8C48 -18 50 -34 50 -56C50 -84 42 -106 20 -112Z' },
       ],
     });
@@ -397,9 +404,9 @@ export function girl({ mood = 'happy', look = 0, tilt = 0, arms = G_ARMS.down, s
   const collar = 'M-8 -62C-6 -55 -1 -55 0 -59C1 -55 6 -55 8 -62C4 -63 -4 -63 -8 -62Z';
   const parts = [];
   if (sit) {
-    const legs = [limb([[-10, -32, 6], [-16, -22, 5.5], [-16, -6, 5]]), limb([[10, -32, 6], [16, -22, 5.5], [16, -6, 5]])];
+    const legs = [limb([[-10, -32, 6], [-20, -26, 5.5], [-23, -8, 5]]), limb([[10, -32, 6], [20, -26, 5.5], [23, -8, 5]])];
     parts.push({ lines: legs, washes: legs.map((d) => ({ c: PAL.rose, o: 0.4, d: Z(d) })) });
-    parts.push(place(shoe(PAL.red), 'translate(-16 -6) scale(-0.6 0.6)'), place(shoe(PAL.red), 'translate(16 -6) scale(0.6)'));
+    parts.push(place(shoe(PAL.red), 'translate(-23 -7) scale(-0.6 0.6)'), place(shoe(PAL.red), 'translate(23 -7) scale(0.6)'));
   } else {
     const legs = [limb([[-7, -16, 5], [-7, -4, 4.5]]), limb([[7, -16, 5], [7, -4, 4.5]])];
     parts.push({ lines: legs, washes: legs.map((d) => ({ c: PAL.rose, o: 0.4, d: Z(d) })) });
