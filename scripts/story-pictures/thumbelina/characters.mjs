@@ -8,7 +8,7 @@ import { dot, f, limb, merge, oval, place } from '../stone-soup/characters.mjs';
 export { compose, place, merge, at, dot, oval, limb } from '../stone-soup/characters.mjs';
 
 /** Eyes at (±ex, ey), mouth at my. mood: 'happy', 'sleep' (eyes shut, tiny mouth), 'wow' (round
- * mouth), 'joy' (eyes shut in a smile, mouth open), 'peep' (looking right). */
+ * mouth), 'joy' (eyes shut in a smile, mouth open), 'peep' / 'peepL' (looking right / left). */
 function faceMarks({ mood, ex = 4.5, ey = 0, my = 7, r = 1.7, w = 4 }) {
   const fine = [];
   const fills = [];
@@ -21,7 +21,7 @@ function faceMarks({ mood, ex = 4.5, ey = 0, my = 7, r = 1.7, w = 4 }) {
     fine.push(`M${-ex - 2.6} ${ey + 1}q2.6 -3.2 5.2 0M${ex - 2.6} ${ey + 1}q2.6 -3.2 5.2 0`, mouth);
     washes.push({ c: PAL.red, o: 0.7, d: mouth });
   } else {
-    const dx = mood === 'peep' ? 1.2 : 0;
+    const dx = mood === 'peep' ? 1.2 : mood === 'peepL' ? -1.2 : 0;
     fills.push(dot(-ex + dx, ey, r), dot(ex + dx, ey, r));
     glints.push(dot(-ex + dx - 0.5, ey - 0.6, 0.5), dot(ex + dx - 0.5, ey - 0.6, 0.5));
     if (mood === 'wow') fills.push(dot(0, my + 1, 1.8));
@@ -127,11 +127,11 @@ export function thumbCutBelow(top) {
   const x = Math.round((15 + (9 * (top + 54)) / 38) * 10) / 10;
   return `M${-x} ${top}L-24 -16L-12 -12L-10 1L10 1L12 -12L24 -16L${x} ${top}Z`;
 }
-const capeOut = 'M-30 -14C-34 -34 -30 -50 -24 -62C-30 -72 -32 -90 -22 -104C-14 -114 14 -114 22 -104C32 -90 30 -72 24 -62C30 -50 34 -34 30 -14';
-const capeVeins = 'M-22 -104C-26 -96 -27 -86 -26 -76M-26 -54C-30 -44 -31 -32 -30 -22M22 -104C26 -96 27 -86 26 -76M26 -54C30 -44 31 -32 30 -22M-12 -110l-6 -4M12 -110l6 -4';
-const wingR = 'M10 -62C18 -84 36 -104 54 -102C64 -98 56 -80 40 -70C52 -70 60 -62 54 -54C46 -46 26 -50 12 -56';
+const capeOut = 'M-30 -14C-34 -34 -30 -50 -24 -62C-30 -72 -32 -90 -22 -104C-14 -114 -6 -118 0 -128C6 -118 14 -114 22 -104C32 -90 30 -72 24 -62C30 -50 34 -34 30 -14';
+const capeVeins = 'M-22 -104C-26 -96 -27 -86 -26 -76M-26 -54C-30 -44 -31 -32 -30 -22M22 -104C26 -96 27 -86 26 -76M26 -54C30 -44 31 -32 30 -22M0 -112l-10 -2M0 -118l8 -1';
+const wingR = 'M10 -62C16 -82 28 -100 42 -102C52 -100 50 -84 38 -73C48 -73 52 -65 48 -59C42 -53 24 -53 12 -56';
 const wingL = transformPath(wingR, 'scale(-1 1)');
-const wingVeins = 'M14 -60C26 -76 38 -90 50 -98M14 -58C28 -60 42 -60 52 -56';
+const wingVeins = 'M14 -60C22 -76 32 -90 40 -98M14 -58C24 -61 36 -62 46 -61';
 
 export function thumbelina({ mood = 'happy', tilt = 0, arms = 'down', pose = 'stand', wings = false, leaf = false, wind = false } = {}) {
   const A = typeof arms === 'string' ? TH_ARMS[arms] : arms;
@@ -157,7 +157,7 @@ export function thumbelina({ mood = 'happy', tilt = 0, arms = 'down', pose = 'st
   if (leaf) {
     back.push({
       lines: [capeOut],
-      fine: [capeVeins, 'M0 -114l3 -9'],
+      fine: [capeVeins, 'M0 -128L0 -102', 'M0 -128q2 -7 7 -9'],
       washes: [
         { c: PAL.ochre, o: 0.8, d: `${capeOut}Z${silhouette}`, rule: 'evenodd' },
         { c: PAL.terracotta, o: 0.65, d: `${capeOut}Z${silhouette}`, rule: 'evenodd' },
@@ -186,16 +186,16 @@ export function thumbelina({ mood = 'happy', tilt = 0, arms = 'down', pose = 'st
 // pose: 'carry' (far wing up behind, near wing down: room for a rider on her back), 'up' (both wings
 // raised, flying off), 'asleep' (lying still with her wings folded and her eyes shut, belly at y = 12).
 const swBody =
-  'M66 -8C64 -16 56 -20 46 -19C30 -18 6 -16 -20 -10C-34 -7 -46 -6 -58 -6L-98 -24L-72 -1L-100 8L-58 4C-40 8 -14 14 14 12C34 11 50 8 58 4C63 1 66 -3 66 -8Z';
-const swBack = 'M66 -8C64 -16 56 -20 46 -19C30 -18 6 -16 -20 -10C-34 -7 -46 -6 -58 -6L-98 -24L-72 -1L-100 8L-58 4C-30 2 10 0 40 -2C50 -3 58 -3 63 -1Z';
+  'M67 -9C67 -19 60 -25 51 -25C43 -25 37 -21 33 -16C14 -16 -6 -14 -20 -10C-34 -7 -46 -6 -58 -6L-98 -24L-72 -1L-100 8L-58 4C-40 8 -14 16 14 14C34 13 48 10 58 4C64 1 67 -4 67 -9Z';
+const swBack = 'M67 -9C67 -19 60 -25 51 -25C43 -25 37 -21 33 -16C14 -16 -6 -14 -20 -10C-34 -7 -46 -6 -58 -6L-98 -24L-72 -1L-100 8L-58 4C-30 2 10 0 40 -2C50 -3 58 -3 64 -1Z';
 const swThroat = 'M64 -2C60 5 52 7 45 4C49 -1 56 -4 63 -3Z';
-const swBeak = 'M65 -11L75 -7L65 -4';
+const swBeak = 'M66 -12L76 -8L66 -5';
 const swBelly = 'M-40 6C-20 8 0 8 20 6M-10 10l2 -3M6 11l2 -3M22 9l2 -3';
 const swWings = {
   carry: {
-    far: 'M24 -16C14 -44 -8 -70 -46 -90C-34 -68 -26 -50 -22 -36C-18 -26 -10 -18 0 -14Z',
+    far: 'M8 -15C-2 -44 -24 -70 -62 -90C-50 -68 -42 -50 -38 -36C-34 -26 -26 -18 -16 -12Z',
     near: 'M28 2C22 26 4 48 -32 66C-22 46 -18 30 -16 18C-14 10 -6 4 4 2Z',
-    farMarks: 'M-6 -30l-10 -2M-14 -44l-10 -2M-22 -58l-10 -2',
+    farMarks: 'M-22 -30l-10 -2M-30 -44l-10 -2M-38 -58l-10 -2',
     nearMarks: 'M-4 18l-10 2M-10 32l-10 2M-18 46l-10 2',
   },
   up: {
@@ -208,21 +208,21 @@ const swWings = {
 const swFold = 'M44 -16C26 -22 -8 -18 -48 -8L-86 -10C-60 0 -20 4 30 0C38 -1 42 -8 44 -16Z';
 const swFoldMarks = 'M-30 -6l10 2M-14 -10l10 2M2 -12l10 2M-62 -6l12 1';
 const swBodyFold =
-  'M66 -8C64 -16 56 -20 46 -19C30 -18 6 -16 -20 -10C-34 -7 -46 -6 -58 -6L-96 -12L-60 2C-40 8 -14 14 14 12C34 11 50 8 58 4C63 1 66 -3 66 -8Z';
-const swBackFold = 'M66 -8C64 -16 56 -20 46 -19C30 -18 6 -16 -20 -10C-34 -7 -46 -6 -58 -6L-96 -12L-60 2C-30 2 10 0 40 -2C50 -3 58 -3 63 -1Z';
+  'M67 -9C67 -19 60 -25 51 -25C43 -25 37 -21 33 -16C14 -16 -6 -14 -20 -10C-34 -7 -46 -6 -58 -6L-96 -12L-60 2C-40 8 -14 16 14 14C34 13 48 10 58 4C64 1 67 -4 67 -9Z';
+const swBackFold = 'M67 -9C67 -19 60 -25 51 -25C43 -25 37 -21 33 -16C14 -16 -6 -14 -20 -10C-34 -7 -46 -6 -58 -6L-96 -12L-60 2C-30 2 10 0 40 -2C50 -3 58 -3 64 -1Z';
 
 export function swallow({ pose = 'carry' } = {}) {
   const asleep = pose === 'asleep';
   const body = asleep ? swBodyFold : swBody;
   const backD = asleep ? swBackFold : swBack;
-  const eye = dot(55, -10, 3.2);
+  const eye = dot(55, -12, 3.2);
   const out = {
     lines: [body, swBeak],
     fine: [swBelly, `${swBeak}Z`],
     washes: [
       { c: PAL.slate, o: 0.9, d: backD },
       { c: PAL.ink, o: 0.25, d: backD },
-      { c: PAL.red, o: 0.8, d: swThroat + dot(64, -13, 2.6) },
+      { c: PAL.red, o: 0.8, d: swThroat + dot(64, -15, 2.6) },
       { c: PAL.ink, o: 0.7, d: `${swBeak}Z` },
     ],
     whites: [],
@@ -231,7 +231,8 @@ export function swallow({ pose = 'carry' } = {}) {
   };
   if (asleep) {
     out.lines.push(swFold);
-    out.fine.push(swFoldMarks, 'M51 -10q4 3 8 0');
+    out.fine.push(swFoldMarks, 'M51 -12q4 3 8 0');
+    out.whites.push(eye);
     out.washes.push({ c: PAL.slate, o: 0.6, d: swFold });
   } else {
     const w = swWings[pose];
@@ -246,8 +247,8 @@ export function swallow({ pose = 'carry' } = {}) {
       ],
     };
     out.whites.push(eye);
-    out.fills.push(dot(56, -10, 1.9));
-    out.glints.push(dot(55.4, -10.7, 0.6));
+    out.fills.push(dot(56, -12, 1.9));
+    out.glints.push(dot(55.4, -12.7, 0.6));
     return merge(out, wings);
   }
   return out;
@@ -390,14 +391,14 @@ const prTunic =
   'M-7 -67C-13 -65 -15 -60 -15 -54C-16 -46 -17 -36 -19 -26L-14 -20L-8 -26L-3 -20L2 -26L8 -20L13 -26L19 -26C17 -36 16 -46 15 -54C15 -60 13 -65 7 -67';
 const prHair = 'M-13 -2C-17 -8 -15 -18 -8 -19C-4 -22 4 -22 8 -19C15 -18 17 -8 13 -2C10 -8 4 -9 0 -8C-4 -9 -10 -8 -13 -2Z';
 const prCrown = 'M-11 -17L-12 -30L-6 -23L0 -32L6 -23L12 -30L11 -17C4 -19 -4 -19 -11 -17Z';
-export function prince({ mood = 'happy', arms } = {}) {
+export function prince({ mood = 'peepL', arms } = {}) {
   const A = arms ?? [
     [[-12, -62, 6], [-16, -52, 5.5], [-18, -42, 5], [-18, -36, 5]],
     [[12, -62, 6], [20, -56, 5.5], [26, -48, 5], [30, -44, 5]],
   ];
   const legs = [limb([[-6, -24, 4.5], [-6, -4, 4]]), limb([[6, -24, 4.5], [6, -4, 4]])];
   const shoes = 'M-5 -4C-11 -4 -12 1 -8 1L-2 1L-2 -4ZM5 -4C11 -4 12 1 8 1L2 1L2 -4Z';
-  const m = faceMarks({ mood: mood === 'happy' ? 'peep' : mood, ex: 4.5, ey: 0, my: 7 });
+  const m = faceMarks({ mood, ex: 4.5, ey: 0, my: 7 });
   const head = {
     lines: [tFace, prHair, prCrown],
     fine: ['M-8 -14q2 2 4 0M4 -14q2 2 4 0', 'M0.5 2c1.6 1.2 1.6 2.4 -0.5 2.8', ...m.fine],
