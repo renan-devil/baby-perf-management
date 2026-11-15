@@ -152,20 +152,21 @@ const eHandUp = 'M-84 -146C-90 -152 -90 -164 -86 -170C-84 -174 -80 -172 -80 -168
 const eSleeveDown = 'M48 -112C62 -100 66 -78 58 -60C52 -52 40 -52 32 -58';
 const eHandDown = 'M32 -58C26 -60 22 -54 24 -50C28 -46 34 -48 36 -54Z';
 const eShoes = 'M-30 0C-34 -6 -18 -8 -14 -2L-14 2L-30 2ZM14 -2C18 -8 34 -6 30 0L30 2L14 2Z';
-const tBack = 'M-106 -60L-106 -176C-106 -212 106 -212 106 -176L106 -60';
-const tInner = 'M-94 -66L-94 -172C-94 -198 94 -198 94 -172L94 -66Z';
-const tSeat = 'M-116 -60L-62 -60M62 -60L116 -60L116 -46L66 -46M-66 -46L-116 -46L-116 -60M-110 -46L-110 4M110 -46L110 4';
-const tSeatWash = 'M-116 -60L-60 -60L-64 -46L-116 -46ZM116 -60L60 -60L64 -46L116 -46Z';
-const tKnobs = dot(-106, -182, 5) + dot(106, -182, 5);
+const tBack = 'M-112 -60L-112 -176C-112 -214 112 -214 112 -176L112 -60';
+// the inner edge of the frame stops at the seat, so nothing of the throne crosses the Emperor
+const tInner = 'M-100 -60L-100 -172C-100 -200 100 -200 100 -172L100 -60';
+const tFrame = 'M-112 -60L-112 -176C-112 -214 112 -214 112 -176L112 -60L100 -60L100 -172C100 -200 -100 -200 -100 -172L-100 -60Z';
+const tSeat = 'M-122 -60L-68 -60M68 -60L122 -60L122 -46L72 -46M-72 -46L-122 -46L-122 -60M-116 -46L-116 4M116 -46L116 4';
+const tSeatWash = 'M-122 -60L-68 -60L-72 -46L-122 -46ZM122 -60L68 -60L72 -46L122 -46Z';
+const tKnobs = dot(-112, -182, 5) + dot(112, -182, 5);
 
 export function emperor() {
   return {
     lines: [tBack, tInner, tSeat, eRobe, eSleeveDown, eSleeveUp, eFace, eCap, eBoard, eBeard],
     fine: [eStrings, eBeads, eMoustache, eBrows, eEyes, eCollar, eBelt, eHem, eHandUp, eHandDown, eShoes, 'M-6 -140q6 3 12 0', tKnobs],
     washes: [
-      { c: PAL.red, o: 0.7, rule: 'evenodd', d: `${tBack}Z${tInner}` },
+      { c: PAL.red, o: 0.7, d: tFrame },
       { c: PAL.red, o: 0.7, d: tSeatWash },
-      { c: PAL.ochre, o: 0.25, d: tInner },
       { c: PAL.ochre, o: 0.55, d: tKnobs },
       { c: PAL.ochre, o: 0.85, d: `${eRobe}${eSleeveUp}Z${eSleeveDown}Z` },
       { c: PAL.red, o: 0.75, d: `${eBelt}${eHem}M-14 -126L8 -92L14 -96L-6 -126Z` },

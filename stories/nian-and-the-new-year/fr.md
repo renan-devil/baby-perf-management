@@ -28,10 +28,10 @@ Pour finir, il alluma un feu dans la cour et posa un tas de tiges de bambou à c
 
 Juste à ce moment-là, le vieil homme jeta le bambou dans le feu. *Crac ! Bang ! Pop ! BANG !* « Oh ! Oh ! Trop de bruit ! » cria Nian. Il fit un grand bond en l’air, mit ses pattes sur ses oreilles et remonta en courant jusqu’en haut de la montagne, aussi vite que ses pattes duveteuses le pouvaient. *Boum-boum-boum-boum !* Et il ne s’arrêta qu’une fois bien à l’abri dans sa grotte.
 
-![Toute la famille est réunie autour d’une table pleine de raviolis, sous des lanternes rouges, avec la grand-mère et le vieil homme.](picture-5.svg)
+![Toute la famille est réunie autour d’une table pleine de raviolis chinois, sous des lanternes rouges, avec la grand-mère et le vieil homme.](picture-5.svg)
 
 Le lendemain matin, les villageois redescendirent des collines. Ils n’en croyaient pas leurs yeux. La maison de la grand-mère était intacte ! Le riz était là ! Les citrouilles étaient là ! Le vieil homme éclata de rire. « Nian n’aime pas le rouge, et il n’aime pas les grands bangs. Maintenant, vous savez comment le chasser ! »
 
-Et depuis ce jour, quand arrive le Nouvel An, les familles collent du papier rouge sur leurs portes et accrochent des lanternes rouges. Elles s’habillent en rouge et font éclater des pétards, *crac ! bang ! pop !* Et tout le monde rentre à la maison pour partager un grand repas, avec des raviolis, encore et encore des raviolis. Puis on s’embrasse et on se dit : *« Xīn nián kuài lè ! »* Ça veut dire « Bonne année ! »
+Et depuis ce jour, quand arrive le Nouvel An, les familles collent du papier rouge sur leurs portes et accrochent des lanternes rouges. Elles s’habillent en rouge et font éclater des pétards, *crac ! bang ! pop !* Et tout le monde rentre à la maison pour partager un grand repas, avec des raviolis chinois, encore et encore des raviolis. Puis on s’embrasse et on se dit : *« Xīn nián kuài lè ! »* Ça veut dire « Bonne année ! »
 
 > La plus belle façon de commencer une nouvelle année, c’est ensemble, à la maison, avec ceux qu’on aime.

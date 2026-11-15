@@ -301,10 +301,13 @@ export function emperorHead({ mood = 'happy', hat = true } = {}) {
   };
   return hat ? merge(head, emperorHat()) : head;
 }
-/** The outline of the seated Emperor's robe and head, to leave a hole for him in what is behind. */
+/**
+ * The outline of the seated Emperor's head and robe down to his knees (y = -34), to leave a hole for
+ * him in the throne behind him (with fill-rule evenodd, inside a shape that covers it all).
+ */
 export function emperorSeatedOutline() {
   const body =
-    'M-12 -124C-24 -122 -29 -112 -30 -98C-31 -86 -34 -76 -40 -68C-46 -60 -46 -44 -42 -34C-40 -22 -40 -10 -38 -2C-12 1 12 1 38 -2C40 -10 40 -22 42 -34C46 -44 46 -60 40 -68C34 -76 31 -86 30 -98C29 -112 24 -122 12 -124C6 -127 -6 -127 -12 -124Z';
+    'M-12 -124C-24 -122 -29 -112 -30 -98C-31 -86 -34 -76 -40 -68C-46 -60 -46 -44 -42 -34L42 -34C46 -44 46 -60 40 -68C34 -76 31 -86 30 -98C29 -112 24 -122 12 -124C6 -127 -6 -127 -12 -124Z';
   return body + oval(E_HEAD[0], E_HEAD[1] - 2, 15, 14);
 }
 export function emperor({ mood = 'happy', tilt = 0, arms = E_ARMS.down, seated = false, upper = false, hat = true } = {}) {

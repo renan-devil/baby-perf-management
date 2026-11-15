@@ -26,7 +26,7 @@ O pai ficou admirado. — Kong Rong, porque escolheste a mais pequena?
 
 O Kong Rong sorriu. — Porque eu sou maior do que ele. Por isso, ele também deve ficar com uma pera grande!
 
-O pai riu-se e deu-lhe um grande abraço. E o irmão mais novo deu uma dentada na sua pera. *Crunch!* O sumo escorreu-lhe pelo queixo.
+O pai riu-se e deu-lhe um grande abraço. E o irmão mais novo deu uma dentada na sua pera. *Crac!* O sumo escorreu-lhe pelo queixo.
 
 Nessa noite, a família toda comeu as peras em conjunto. E todos concordaram: a pera pequenina do Kong Rong era a mais doce de todas.
 

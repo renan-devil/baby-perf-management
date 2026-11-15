@@ -28,10 +28,10 @@ Por fim, acendeu uma fogueira no pátio e pôs um monte de canas de bambu ao lad
 
 Nesse momento, o velhinho atirou o bambu para a fogueira. *Crac! Pum! Pop! PUM!* — Ai! Ai! Que barulheira! — gritou o Nian. Deu um grande salto no ar, tapou as orelhas com as patas e fugiu montanha acima, o mais depressa que as patas fofinhas o deixavam. *Pum-pum-pum-pum!* E só parou quando chegou, são e salvo, à sua gruta.
 
-![A família toda está reunida à volta de uma mesa cheia de pastéis cozidos, debaixo de lanternas vermelhas, com a avó e o velhinho.](picture-5.svg)
+![A família toda está reunida à volta de uma mesa cheia de pastéis chineses, debaixo de lanternas vermelhas, com a avó e o velhinho.](picture-5.svg)
 
 Na manhã seguinte, os aldeões desceram das colinas. Nem queriam acreditar no que viam. A casa da avó estava intacta! O arroz estava lá! As abóboras estavam lá! O velhinho deu uma gargalhada. — O Nian não gosta da cor vermelha, e não gosta de estoiros. Agora já sabem como o mandar embora!
 
-E foi assim que, desde então, quando chega o Ano Novo, as famílias colam papel vermelho nas portas e penduram lanternas vermelhas. Vestem roupa vermelha e lançam petardos, *crac! pum! pop!* E toda a gente volta para casa para partilhar uma grande refeição, com muitos, muitos pastéis cozidos. Depois abraçam-se e dizem: *«Xīn nián kuài lè!»* Quer dizer «Feliz Ano Novo!»
+E foi assim que, desde então, quando chega o Ano Novo, as famílias colam papel vermelho nas portas e penduram lanternas vermelhas. Vestem roupa vermelha e lançam petardos, *crac! pum! pop!* E toda a gente volta para casa para partilhar uma grande refeição, com muitos, muitos pastéis chineses. Depois abraçam-se e dizem: *«Xīn nián kuài lè!»* Quer dizer «Feliz Ano Novo!»
 
 > A melhor maneira de começar um ano novo é juntos, em casa, com as pessoas de quem gostamos.
