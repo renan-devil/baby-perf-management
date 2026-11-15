@@ -1,4 +1,4 @@
-import { PAL } from '../lib.mjs';
+import { PAL, transformPath } from '../lib.mjs';
 import { at, compose, dot, f, limb, merge, oval, place } from '../stone-soup/characters.mjs';
 
 // The Princess and the Pea: the princess, the old Queen, the old King, the Prince, the tall pile of
@@ -101,9 +101,6 @@ export const star = (s = 5) => {
   return `M0 ${-s}L${k} ${-k}L${s} 0L${k} ${k}L0 ${s}L${-k} ${k}L${-s} 0L${-k} ${-k}Z`;
 };
 
-/** A little four-pointed sparkle (a glint of light), centre at 0,0. */
-export const sparkle = (s = 6) => `M0 ${-s}L0 ${s}M${-s} 0L${s} 0M${-s * 0.5} ${-s * 0.5}l${s * 0.2} ${s * 0.2}M${s * 0.5} ${s * 0.5}l${-s * 0.2} ${-s * 0.2}`;
-
 // =============================================================================================
 // THE PRINCESS (feet at 0,0), about 112 tall: long golden hair falling to her shoulders, a little
 // gold tiara, a rose dress and a gold sash, red slippers. Head at PR_HEAD; arms
@@ -118,7 +115,8 @@ export const PR_ARMS = {
     [[12, -80, 7], [17, -68, 6.5], [20, -56, 6.5], [20, -50, 6.5]],
   ],
 };
-export function princessHead({ mood = 'happy', look = 0, up = 0, wet = false, tiara = true } = {}) {
+export function princessHead({ mood = 'happy', look = 0, up = 0, wet = false, tiara = true, back = false } = {}) {
+  if (back) return princessBack({ tiara });
   const face = 'M-12.6 -2C-13 9 -6.5 14 0 14C6.5 14 13 9 12.6 -2';
   const faceFill = `${face}C10 -8 6 -10 0 -8C-5 -10 -10 -8 -12.6 -2Z`;
   const top = 'M-13 1C-15 -13 -8 -19 0 -19C8 -19 15 -13 13 1C11 -6 6 -10 0 -8C-5 -10 -11 -6 -13 1Z';
@@ -157,7 +155,18 @@ export function princessHead({ mood = 'happy', look = 0, up = 0, wet = false, ti
   }
   return merge(...parts);
 }
-export function princess({ mood = 'happy', look = 0, up = 0, tilt = 0, arms = PR_ARMS.down, wet = false, tiara = true, sit = false, legs } = {}) {
+/** The princess's head seen from behind: all golden hair, falling down her back, and the tiara. */
+function princessBack({ tiara = true } = {}) {
+  const hair = 'M-13 0C-15 -13 -8 -19 0 -19C8 -19 15 -13 13 0C14 12 16 24 14 36C6 40 -6 40 -14 36C-16 24 -14 12 -13 0Z';
+  const strands = 'M-6 -10q-3 20 -2 42M0 -12q0 22 0 46M6 -10q3 20 2 42M-10 4q-2 14 -1 28M10 4q2 14 1 28';
+  const t = 'M-8 -15L-9 -23L-4 -19L0 -26L4 -19L9 -23L8 -15C3 -17 -3 -17 -8 -15Z';
+  return {
+    lines: [hair, ...(tiara ? [t] : [])],
+    fine: [strands, 'M-14 -2C-17 -4 -17 2 -14 3M14 -2C17 -4 17 2 14 3'],
+    washes: [{ c: PAL.ochre, o: 0.95, d: hair }, { c: PAL.rose, o: 0.5, d: 'M-14 -2C-17 -4 -17 2 -14 3ZM14 -2C17 -4 17 2 14 3Z' }, ...(tiara ? [{ c: PAL.ochre, o: 1, d: t }] : [])],
+  };
+}
+export function princess({ mood = 'happy', look = 0, up = 0, tilt = 0, arms = PR_ARMS.down, wet = false, tiara = true, sit = false, legs, back = false } = {}) {
   const parts = [];
   const dy = sit ? 42 : 0; // sitting: the upper body comes down so the seat is at y = 0
   const lift = (pts) => pts.map(([x, y, w]) => [x, y + dy, w]);
@@ -200,8 +209,8 @@ export function princess({ mood = 'happy', look = 0, up = 0, tilt = 0, arms = PR
   }
   parts.push(...arms.map((a) => arm(lift(a), dressColour, 3.8)));
   const collar = `M-8 ${-84 + dy}C-5 ${-78 + dy} 5 ${-78 + dy} 8 ${-84 + dy}C4 ${-85 + dy} -4 ${-85 + dy} -8 ${-84 + dy}Z`;
-  parts.push({ fine: [collar], whites: [collar] });
-  parts.push(place(princessHead({ mood, look, up, wet, tiara }), `translate(${PR_HEAD[0]} ${PR_HEAD[1] + dy}) rotate(${tilt})`));
+  if (!back) parts.push({ fine: [collar], whites: [collar] });
+  parts.push(place(princessHead({ mood, look, up, wet, tiara, back }), `translate(${PR_HEAD[0]} ${PR_HEAD[1] + dy}) rotate(${tilt})`));
   return merge(...parts);
 }
 
@@ -289,6 +298,7 @@ export const K_ARMS = {
 };
 export function kingHead({ mood = 'happy', look = 0 } = {}) {
   const face = 'M-14 -2C-14 -12 -8 -17 0 -17C8 -17 14 -12 14 -2C14 6 10 10 6 11L-6 11C-10 10 -14 6 -14 -2Z';
+  const brow = 'M-14 2C-15 -12 -8 -17 0 -17C8 -17 15 -12 14 2';
   const beard = 'M-14 0C-18 14 -12 34 0 44C12 34 18 14 14 0C10 8 5 10 0 9C-5 10 -10 8 -14 0Z';
   const tache = 'M0 5C-4 2 -10 3 -12 7C-8 9 -3 9 0 7C3 9 8 9 12 7C10 3 4 2 0 5Z';
   const tufts = 'M-14 -8C-21 -10 -22 -2 -17 0C-21 2 -19 8 -14 6ZM14 -8C21 -10 22 -2 17 0C21 2 19 8 14 6Z';
@@ -297,12 +307,12 @@ export function kingHead({ mood = 'happy', look = 0 } = {}) {
   const m = faceMarks({ mood, ex: 5.6, ey: -4, my: 9, r: 1.7, w: 3, look });
   const wow = mood === 'wow';
   const marks = wow ? m.fine.slice(0, 2) : m.fine;
-  const mouth = wow ? [oval(0, 12.5, 2.2, 2.8)] : [];
+  const mouth = wow ? [oval(0, 11.5, 1.8, 2.3)] : [];
   const brows = wow ? 'M-11 -13C-9 -18 -3 -18 -1 -14C-4 -15 -8 -15 -11 -13ZM11 -13C9 -18 3 -18 1 -14C4 -15 8 -15 11 -13Z' : 'M-10 -11C-8 -15 -3 -15 -1 -12C-4 -13 -7 -13 -10 -11ZM10 -11C8 -15 3 -15 1 -12C4 -13 7 -13 10 -11Z';
   return merge(
     {
-      lines: [face, beard, tache],
-      fine: [tufts, brows, 'M-6 16q-1 8 1 16M0 14l0 20M6 16q1 8 -1 16', ...marks],
+      lines: [brow, beard],
+      fine: [tache, tufts, brows, 'M-6 20q-1 6 1 12M6 20q1 6 -1 12', ...marks],
       washes: [
         { c: PAL.rose, o: 0.38, d: face },
         { c: PAL.rose, o: 0.9, d: dot(0, 1.5, 3.4) },
@@ -477,5 +487,35 @@ export function candle() {
       { c: PAL.red, o: 0.7, d: flame },
       { c: PAL.ochre, o: 1, d: flame },
     ],
+  };
+}
+
+// =============================================================================================
+// THE BEDROOM WINDOW (bottom left of the sill at 0,0; 128 wide, 184 tall): a tall arched window at
+// night with a crossbar, the moon and paper-white stars, and a wooden sill.
+// =============================================================================================
+export function bedroomWindow() {
+  const win = 'M8 -8L8 -128C8 -164 32 -184 64 -184C96 -184 120 -164 120 -128L120 -8Z';
+  const bars = 'M64 -184L64 -8M8 -94L120 -94';
+  const sill = 'M0 -8L128 -8L128 0L0 0Z';
+  const moon = 'M50 -164C36 -160 28 -146 30 -132C32 -118 44 -108 58 -110C50 -116 44 -126 44 -136C44 -148 46 -156 50 -164Z';
+  const stars = [
+    [94, -156, 4.5],
+    [32, -70, 3.5],
+    [100, -66, 4],
+    [78, -126, 3],
+    [48, -38, 3],
+    [96, -28, 3],
+  ];
+  return {
+    lines: [win, sill],
+    fine: [moon, bars],
+    washes: [
+      { c: PAL.slate, o: 0.75, d: win },
+      { c: PAL.sky, o: 0.5, d: win },
+      { c: PAL.terracotta, o: 0.7, d: sill },
+      { c: PAL.ochre, o: 1, d: moon },
+    ],
+    whites: stars.map(([x, y, k]) => transformPath(star(k), `translate(${x} ${y})`)),
   };
 }

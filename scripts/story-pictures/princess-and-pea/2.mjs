@@ -18,11 +18,11 @@ const step = 'M58 262L350 262C356 268 354 276 346 278L52 278C46 276 50 268 58 26
 const puddle = 'M250 284C250 276 300 274 340 278C366 280 368 290 340 292C300 294 252 292 250 284Z';
 // the storm: a dark sky over on the right, with a zigzag of lightning
 const sky = 'M236 0L400 0L400 92C380 104 356 96 340 88C322 100 296 98 282 86C266 96 246 92 236 84Z';
-const bolt = 'M352 8L330 44L344 46L322 80L338 82L314 118L352 70L336 68L358 36L344 34L368 8Z';
+const bolt = 'M372 6L354 36L366 38L348 64L360 66L340 96L374 58L362 56L380 30L368 28L388 6Z';
 // the rain, falling slantwise outside, but not over the girl
 const r = rng(29);
 let rain = '';
-for (let i = 0; i < 70; i++) {
+for (let i = 0; i < 120; i++) {
   const x = 244 + r() * 150;
   const y = 8 + r() * 230;
   if (x > 268 && x < 344 && y > 108) continue;
