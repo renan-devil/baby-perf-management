@@ -15,6 +15,7 @@ The site opens on a **password page**, then a home screen with one card per appl
 |---|---|
 | **Development** | The development tracker below (`#/dev/`) |
 | **Stories** | Stories to tell Constance, with pictures, in French, English and Portuguese, lasting 2, 5 or 10 minutes; after each telling, note whether she loved it, found it OK or didn't like it (`#/stories`). See [Stories](#stories) |
+| **Memory** | A memory game Constance can play on her own: pairs of story covers to find, with a voice that names each story she finds (`#/memory`). See [Memory](#memory) |
 | **Administrative** | Upload, open, download and delete administrative documents (`#/administrative`) |
 | **School** | The same for documents from school (`#/school`) |
 | **Pictures** | Photos of Constance as a grid, with upload, download and delete (`#/pictures`) |
@@ -32,6 +33,12 @@ The site opens on a **password page**, then a home screen with one card per appl
 - **Reading language**: the FR · EN · PT switch at the top changes only the language of the stories, not the rest of the interface.
 - **Constance's reactions** (😍 loved it, 🙂 it was OK, 😕 not for her, with the day and the language it was told in) are shared by the family. They are kept in the same private Blob store as the documents, so there is nothing to set up. Each reaction is one small file, never changed afterwards, whose name holds everything: `story-reactions/<story>/<day>_<reaction>_<language>_<time saved>.json`. Reading the list of names is enough to show everything, and two people saving at the same moment cannot erase each other's entry. Code: [`api/stories.ts`](api/stories.ts) and [`api/_stories.ts`](api/_stories.ts).
 - **"What Constance likes"** groups the stories by style and by theme. Each story counts once, with her latest reaction to it (loved = 1, OK = ½, not for her = 0). Groups are sorted by their average, so a favourite told twenty times does not outweigh the others, and her taste can change over time. Styles and themes not tried yet are listed underneath. Code: [`src/stories/taste.ts`](src/stories/taste.ts).
+
+## Memory
+- **Made for a 4-year-old playing alone**: no reading needed. She picks a game by its picture (★ 6 cards, ★★ 8 cards, ★★★ 12 cards), turns cards over two at a time, and the pairs she finds stay face up with a green border. Two different cards turn back after a moment. There is no score, no timer and no way to lose; at the end a 🎉 screen offers 🔁 play again or ★ another size.
+- **The cards are the covers of the stories**, picked at random each game, so new stories automatically become new cards.
+- **The voice** is the device's own (no recordings): it says "Find the pairs!", names each story when its pair is found (tap a found pair to hear it again) and congratulates her at the end. The FR · EN · PT switch chooses its language. Tip: on an iPhone or iPad, *Guided Access* (Settings → Accessibility) keeps her inside the game.
+- Code: the rules in [`src/memory/game.ts`](src/memory/game.ts) (tested in `game.test.ts`), voice and sounds in [`src/memory/sound.ts`](src/memory/sound.ts), the screen in [`src/pages/Memory.tsx`](src/pages/Memory.tsx).
 
 ## Screens (Development)
 | Screen | What it does |

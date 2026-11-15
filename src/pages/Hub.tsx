@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 const APPS = [
   { href: '#/dev/', icon: '🌱', key: 'development' },
   { href: '#/stories', icon: '📖', key: 'stories' },
+  { href: '#/memory', icon: '🃏', key: 'memory' },
   { href: '#/administrative', icon: '🗂', key: 'administrative' },
   { href: '#/school', icon: '🎒', key: 'school' },
   { href: '#/pictures', icon: '📷', key: 'pictures' },

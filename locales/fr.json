@@ -261,6 +261,10 @@
       "name": "Histoires",
       "desc": "Des histoires à raconter à Constance, et celles qu'elle aime"
     },
+    "memory": {
+      "name": "Mémory",
+      "desc": "Retrouver les paires d'images des histoires : un jeu pour Constance toute seule"
+    },
     "administrative": {
       "name": "Administratif",
       "desc": "Déposer et retrouver les documents administratifs"
@@ -338,6 +342,19 @@
       "byStyle": "Par style",
       "byTheme": "Par thème",
       "untried": "Pas encore essayé : {{list}}"
+    }
+  },
+  "memory": {
+    "hint": "Choisissez un jeu, puis retournez les cartes deux par deux pour trouver les paires. La voix dit le nom de chaque histoire trouvée.",
+    "pairs_one": "{{count}} paire",
+    "pairs_other": "{{count}} paires",
+    "hidden": "Carte cachée",
+    "again": "Rejouer",
+    "levels": "Choisir un autre jeu",
+    "voice": "Langue de la voix",
+    "say": {
+      "start": "Trouve les paires !",
+      "won": "Bravo ! Tu as trouvé toutes les paires !"
     }
   }
 }

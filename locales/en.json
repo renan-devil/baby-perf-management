@@ -261,6 +261,10 @@
       "name": "Stories",
       "desc": "Stories to tell Constance, and the ones she likes"
     },
+    "memory": {
+      "name": "Memory",
+      "desc": "Find the pairs of story pictures: a game Constance can play on her own"
+    },
     "administrative": {
       "name": "Administrative",
       "desc": "Upload and find administrative documents"
@@ -338,6 +342,19 @@
       "byStyle": "By style",
       "byTheme": "By theme",
       "untried": "Not tried yet: {{list}}"
+    }
+  },
+  "memory": {
+    "hint": "Pick a game, then turn the cards over two at a time to find the pairs. The voice names each story she finds.",
+    "pairs_one": "{{count}} pair",
+    "pairs_other": "{{count}} pairs",
+    "hidden": "Hidden card",
+    "again": "Play again",
+    "levels": "Choose another game",
+    "voice": "Language of the voice",
+    "say": {
+      "start": "Find the pairs!",
+      "won": "Well done! You found all the pairs!"
     }
   }
 }

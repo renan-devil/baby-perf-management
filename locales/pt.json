@@ -261,6 +261,10 @@
       "name": "Histórias",
       "desc": "Histórias para contar à Constance, e as que ela prefere"
     },
+    "memory": {
+      "name": "Jogo da memória",
+      "desc": "Encontrar os pares de imagens das histórias: um jogo para a Constance jogar sozinha"
+    },
     "administrative": {
       "name": "Administrativo",
       "desc": "Carregar e encontrar documentos administrativos"
@@ -338,6 +342,19 @@
       "byStyle": "Por estilo",
       "byTheme": "Por tema",
       "untried": "Ainda não experimentado: {{list}}"
+    }
+  },
+  "memory": {
+    "hint": "Escolha um jogo e depois vire as cartas duas a duas para encontrar os pares. A voz diz o nome de cada história encontrada.",
+    "pairs_one": "{{count}} par",
+    "pairs_other": "{{count}} pares",
+    "hidden": "Carta escondida",
+    "again": "Jogar outra vez",
+    "levels": "Escolher outro jogo",
+    "voice": "Língua da voz",
+    "say": {
+      "start": "Encontra os pares!",
+      "won": "Muito bem! Encontraste todos os pares!"
     }
   }
 }
