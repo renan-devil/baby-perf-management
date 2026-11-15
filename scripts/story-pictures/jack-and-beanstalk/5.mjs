@@ -9,7 +9,7 @@ const archFill = `${arch}Z`;
 const wall = 'M150 300L150 0L400 0L400 300Z';
 const leafD = 'M362 292L362 92C372 60 384 44 396 40L396 300Z';
 const stones =
-  'M154 60l20 0M154 130l20 0M154 200l20 0M154 262l20 0M164 60l0 70M166 200l0 62M168 130l0 70M166 0l0 60M178 20l14 -14M198 6l8 -6M360 14l12 10M342 4l6 -4';
+  'M154 60l20 0M154 130l20 0M154 200l20 0M154 262l20 0M164 60l0 70M166 200l0 62M168 130l0 70M166 0l0 60';
 // soft cloud floor along the bottom, outside the door
 const floor = bumpy(84, 300, 110, 22, 8, 1.25, -170);
 
@@ -28,14 +28,14 @@ export default compose({
   whites: floor,
   parts: [
     { lines: [floor] },
-    cloud(70, 96, 52, 16, 8, 4),
+    cloud(70, 100, 50, 20, 7, 4),
     place(
       giantWife({
-        mood: 'wow',
-        tilt: -14,
+        mood: 'wowL',
+        tilt: -16,
         arms: [
-          [[-40, -160, 18], [-60, -132, 17], [-64, -98, 16]],
-          [[40, -160, 18], [56, -130, 17], [44, -102, 16]],
+          [[-40, -160, 18], [-62, -132, 17], [-82, -110, 16]],
+          [[40, -160, 18], [58, -130, 17], [66, -100, 16]],
         ],
       }),
       'translate(268 290) scale(1.02)',
@@ -49,7 +49,7 @@ export default compose({
           [[16, -84, 8], [30, -96, 7.5], [36, -114, 7]],
         ],
       }),
-      'translate(90 282) scale(0.5)',
+      'translate(92 282) scale(0.56)',
     ),
   ],
 });

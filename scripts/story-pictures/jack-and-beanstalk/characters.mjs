@@ -15,8 +15,13 @@ const Z = (d) => `${d}Z`;
 
 /** An arm (limb along pts) in a sleeve of colour c, with a round hand of radius r. */
 function arm(pts, c, o, r, extra = []) {
-  const d = limb(pts);
-  const [x, y] = pts[pts.length - 1];
+  // the sleeve stops at the wrist, so the hand keeps its own colour
+  const n = pts.length;
+  const [x, y] = pts[n - 1];
+  const [px, py] = pts[n - 2];
+  const l = Math.hypot(x - px, y - py);
+  const k = Math.min(0.8, (r * 0.75) / l);
+  const d = limb([...pts.slice(0, -1), [f(x - (x - px) * k), f(y - (y - py) * k), pts[n - 1][2]]]);
   const h = dot(x, y, r);
   return { lines: [d], fine: [h], washes: [{ c, o, d: Z(d) }, ...extra.map((w) => ({ ...w, d: Z(d) })), { c: PAL.rose, o: 0.6, d: h }] };
 }
@@ -50,8 +55,8 @@ function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4.5 }) {
     washes.push({ c: PAL.red, o: 0.75, d: mouth });
   } else if (mood === 'shut') {
     fine.push(shut(true), `M${-w} ${my}q${w} 5 ${2 * w} 0`);
-  } else if (mood === 'wow') {
-    eyes(0, r + 0.5);
+  } else if (mood === 'wow' || mood === 'wowL') {
+    eyes(mood === 'wowL' ? -1.2 : 0, r + 0.5);
     fine.push(`M${-ex - 3} ${ey - 5}q3 -2.4 6 0M${ex - 3} ${ey - 5}q3 -2.4 6 0`);
     const mouth = oval(0, my + 1.5, 2.4, 3);
     fills.push(mouth);
@@ -329,7 +334,7 @@ export function cow({ mood = 'happy' } = {}) {
 // a grey shirt straining over his big belly under a too-small red waistcoat, a belt with a golden
 // buckle, patched slate trousers and big brown boots. More grumpy and silly than frightening.
 // Head at G_HEAD (radius about 30), arms from the shoulders (±48,-160). seated: sitting (the
-// upper body 40 lower, big knees, short shins). mood: 'grumpy', 'sniff' (eyes shut, nose up),
+// upper body 40 lower, big knees, short shins); upper: no legs (behind a table). mood: 'grumpy', 'sniff' (eyes shut, nose up),
 // 'sleep' (eyes shut, mouth open, snoring), 'roar' (shouting), 'fright' (eyes wide, mouth "o").
 // =============================================================================================
 export const G_HEAD = [0, -200];
@@ -398,7 +403,7 @@ export function giantHead({ mood = 'grumpy' } = {}) {
   }
   return out;
 }
-export function giant({ mood = 'grumpy', tilt = 0, arms = G_ARMS.down, seated = false, legs = null } = {}) {
+export function giant({ mood = 'grumpy', tilt = 0, arms = G_ARMS.down, seated = false, legs = null, upper = false } = {}) {
   const shirt = 'M-24 -172C-44 -170 -54 -156 -56 -136C-62 -112 -60 -92 -50 -78C-30 -70 30 -70 50 -78C60 -92 62 -112 56 -136C54 -156 44 -170 24 -172';
   const shirtFill = `${shirt}C12 -176 -12 -176 -24 -172Z`;
   const vestL = 'M-24 -172C-42 -168 -50 -152 -52 -132C-54 -112 -52 -94 -46 -82L-22 -78C-20 -100 -18 -130 -8 -170C-12 -172 -18 -173 -24 -172Z';
@@ -437,18 +442,14 @@ export function giant({ mood = 'grumpy', tilt = 0, arms = G_ARMS.down, seated = 
       }),
     );
   } else if (seated) {
-    const knees = oval(-30, -38, 26, 18) + oval(30, -38, 26, 18);
-    const shins = 'M-50 -32L-48 -14L-8 -14L-10 -32M10 -32L8 -14L48 -14L50 -32';
-    const boots = 'M-48 -14C-50 -6 -54 -2 -60 0C-64 4 -60 8 -50 8L-6 8L-8 -14ZM48 -14C50 -6 54 -2 60 0C64 4 60 8 50 8L6 8L8 -14Z';
+    // seen from the front, sitting: his round knees just under the belt, his boots just under them
+    const knees = oval(-30, -24, 27, 13) + oval(30, -24, 27, 13);
+    const boots = 'M-48 -12C-50 -6 -54 -2 -60 0C-64 4 -60 8 -50 8L-8 8L-10 -12ZM48 -12C50 -6 54 -2 60 0C64 4 60 8 50 8L8 8L10 -12Z';
+    const patch = 'M-40 -30L-28 -31L-27 -21L-39 -20Z';
     lower = {
-      lines: ['M-50 -66C-52 -54 -54 -46 -54 -40M50 -66C52 -54 54 -46 54 -40', shins, boots, knees],
-      fine: ['M-36 -44L-22 -45L-21 -33L-35 -32Z'],
-      once: ['M-36 -40l-3 0M-22 -40l3 0'],
-      washes: [
-        ...TR.map((w) => ({ ...w, d: 'M-50 -70L50 -70L54 -40L-54 -40Z' + 'M-50 -32L-48 -14L-8 -14L-10 -32ZM10 -32L8 -14L48 -14L50 -32Z' + knees })),
-        { c: PAL.ochre, o: 0.85, d: 'M-36 -44L-22 -45L-21 -33L-35 -32Z' },
-        ...BOOT.map((w) => ({ ...w, d: boots })),
-      ],
+      lines: [boots, knees],
+      fine: [patch],
+      washes: [...TR.map((w) => ({ ...w, d: knees })), { c: PAL.ochre, o: 0.85, d: patch }, ...BOOT.map((w) => ({ ...w, d: boots }))],
     };
   } else {
     const trousers = 'M-50 -70C-52 -50 -50 -30 -48 -14L-8 -14L-4 -52L4 -52L8 -14L48 -14C50 -30 52 -50 50 -70';
@@ -461,7 +462,7 @@ export function giant({ mood = 'grumpy', tilt = 0, arms = G_ARMS.down, seated = 
       washes: [...TR.map((w) => ({ ...w, d: Z(trousers) })), { c: PAL.ochre, o: 0.85, d: patch }, ...BOOT.map((w) => ({ ...w, d: boots }))],
     };
   }
-  return merge(lower, seated ? place(upperParts, `translate(0 ${G_SEAT})`) : upperParts);
+  return merge(upper ? {} : lower, seated ? place(upperParts, `translate(0 ${G_SEAT})`) : upperParts);
 }
 
 // =============================================================================================
@@ -505,7 +506,7 @@ export function giantWife({ mood = 'happy', tilt = 0, arms = GW_ARMS.down } = {}
   return merge(
     {
       lines: [shoes, dress, apron],
-      fine: ['M-46 -120C-16 -112 16 -112 46 -120', 'M-12 -169L0 -156L12 -169', 'M-12 -70l10 -2l2 10l-10 2Z', 'M-14 -50C-4 -46 6 -46 16 -50'],
+      fine: ['M-46 -120C-16 -112 16 -112 46 -120', 'M-12 -169L0 -156L12 -169', 'M-12 -70l10 -2l2 10l-10 2Z'],
       washes: [
         { c: PAL.terracotta, o: 0.7, d: shoes },
         { c: PAL.green, o: 0.75, d: `${dress}C6 -174 -6 -174 -18 -170Z` },
@@ -671,7 +672,7 @@ export function beanstalk(pts, { leaves = [], tendrils = [], open = false } = {}
 // =============================================================================================
 /** A puffy white cloud round (cx, cy): paper-white, with a pale sky shadow along the bottom. */
 export function cloud(cx, cy, rx, ry, n = 9, seed = 0) {
-  const d = bumpy(cx, cy, rx, ry, n, 1.22, -90 + seed * 13);
+  const d = bumpy(cx, cy, rx, ry, n, 1.4, -90 + seed * 13);
   return {
     lines: [d],
     washes: [{ c: PAL.sky, o: 0.25, d: `M${cx - rx} ${cy + ry * 0.2}C${cx - rx * 0.5} ${cy + ry * 1.05} ${cx + rx * 0.5} ${cy + ry * 1.05} ${cx + rx} ${cy + ry * 0.2}C${cx + rx * 0.4} ${cy + ry * 0.6} ${cx - rx * 0.4} ${cy + ry * 0.6} ${cx - rx} ${cy + ry * 0.2}Z` }],
