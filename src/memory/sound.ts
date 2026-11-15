@@ -1,33 +1,5 @@
-// Voice and little tunes for the memory game, made by the device itself: no recordings to store.
-// The spoken voice is the phone's or computer's own (Web Speech API). Browsers only allow sound
-// after a tap, which is always the case here.
-
-import type { Lang } from '../../api/_stories';
-
-const SPEECH_LANG: Record<Lang, string> = { fr: 'fr-FR', en: 'en-GB', pt: 'pt-PT' };
-
-/** Best installed voice for the language: the exact variant (pt-PT, not pt-BR) when there is one. */
-function pickVoice(lang: Lang): SpeechSynthesisVoice | undefined {
-  const voices = speechSynthesis.getVoices();
-  const wanted = SPEECH_LANG[lang].toLowerCase();
-  const norm = (v: SpeechSynthesisVoice) => v.lang.replace('_', '-').toLowerCase();
-  return voices.find((v) => norm(v) === wanted) ?? (lang === 'pt' ? undefined : voices.find((v) => norm(v).startsWith(lang)));
-}
-
-/**
- * Says the text aloud. By default it interrupts whatever was being said; with after = true it waits
- * its turn. Does nothing where speech is missing.
- */
-export function speak(text: string, lang: Lang, after = false) {
-  if (typeof speechSynthesis === 'undefined') return;
-  if (!after) speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = SPEECH_LANG[lang];
-  const voice = pickVoice(lang);
-  if (voice) u.voice = voice;
-  u.rate = 0.9; // a little slower, for a child
-  speechSynthesis.speak(u);
-}
+// Little tunes for the memory game, made by the device itself: no recordings to store.
+// (The voice is in src/speech.ts.) Browsers only allow sound after a tap, which is always the case here.
 
 let audio: AudioContext | undefined;
 

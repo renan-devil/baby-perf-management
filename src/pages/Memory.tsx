@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { LANGS, type Lang } from '../../api/_stories';
 import i18n, { useLocale } from '../i18n';
 import { deal, flip, hide, isWon, LEVELS, type Game, type Level } from '../memory/game';
-import { chimeMatch, chimeWin, speak } from '../memory/sound';
+import { chimeMatch, chimeWin } from '../memory/sound';
+import { speak, stopSpeaking } from '../speech';
 import { STORIES, storyText } from '../stories/catalog';
 
 /** Stories that have a cover, which is what the cards show. */
@@ -32,7 +33,7 @@ export function Memory() {
   useEffect(
     () => () => {
       window.clearTimeout(timer.current);
-      if (typeof speechSynthesis !== 'undefined') speechSynthesis.cancel();
+      stopSpeaking();
     },
     [],
   );
@@ -70,7 +71,7 @@ export function Memory() {
       speak(title(card.storyId), lang);
       if (isWon(next)) {
         window.setTimeout(chimeWin, 900);
-        speak(say('memory.say.won'), lang, true);
+        speak(say('memory.say.won'), lang, { after: true });
       }
     } else if (result === 'miss') {
       timer.current = window.setTimeout(() => setGame((g) => (g ? hide(g) : g)), SHOW_MISS_MS);

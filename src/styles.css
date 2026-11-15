@@ -1085,3 +1085,81 @@ main {
     transition: none;
   }
 }
+
+/* "Listen" button of a story (src/stories/ListenControls.tsx): big enough for a child to find and tap */
+.listen-start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 76px;
+  margin: 12px 0 4px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 999px;
+  background: #e07a3f;
+  color: #fff;
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  touch-action: manipulation;
+}
+.listen-start:active {
+  transform: scale(0.97);
+}
+.listen-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  color: #e07a3f;
+  font-size: 1.6rem;
+  padding-left: 4px;
+}
+.listen-bar {
+  position: fixed;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+.listen-round {
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 1.8rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.listen-round.big {
+  width: 88px;
+  height: 88px;
+  background: #e07a3f;
+  color: #fff;
+  font-size: 2.4rem;
+}
+.story-text p,
+.story-heading {
+  transition: background-color 0.3s ease;
+}
+.reading {
+  background: var(--progress-bg);
+  border-radius: 8px;
+  box-shadow: 0 0 0 6px var(--progress-bg);
+}

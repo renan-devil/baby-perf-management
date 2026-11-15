@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { LANGS, newestFirst, REACTIONS, type Lang, type NewTelling, type Reaction, type Telling } from '../../api/_stories';
 import { useLocale } from '../i18n';
 import { authorName, hasText, LENGTHS, STORIES, storyText, STYLES, THEMES, type Block, type Story } from '../stories/catalog';
+import { spokenParts } from '../stories/listen';
+import { ListenControls, useReader } from '../stories/ListenControls';
 import { latestByStory, tasteBy } from '../stories/taste';
 
 const EMOJI: Record<Reaction, string> = { loved: '😍', ok: '🙂', disliked: '😕' };
@@ -287,6 +289,14 @@ function StoryPage({
   const cover = text.blocks.find((b): b is Extract<Block, { kind: 'picture' }> => b.kind === 'picture' && b.n === 1);
   const coverAlt = cover?.alt || text.title;
   const history = (tellings ?? []).filter((x) => x.storyId === story.id).sort(newestFirst);
+  const parts = useMemo(() => spokenParts(storyText(story, lang)), [story, lang]);
+  const reader = useReader(parts, lang);
+
+  // While the story is read aloud, keep the paragraph being read in the middle of the screen.
+  useEffect(() => {
+    if (reader.block === null || reader.block < 0) return;
+    document.querySelector(`[data-block="${reader.block}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [reader.block]);
 
   const react = async (reaction: Reaction) => {
     setBusy(true);
@@ -314,7 +324,8 @@ function StoryPage({
   return (
     <>
       <Cover story={story} className="story-picture" alt={coverAlt} />
-      <h1 className="story-heading" lang={lang}>
+      {hasText(text) && <ListenControls reader={reader} />}
+      <h1 className={reader.block === -1 ? 'story-heading reading' : 'story-heading'} lang={lang}>
         {text.title}
       </h1>
       <p className="muted story-meta">
@@ -329,7 +340,7 @@ function StoryPage({
         <article className="story-text" lang={lang === 'pt' ? 'pt-PT' : lang}>
           {text.blocks.map((b, i) =>
             b.kind === 'text' ? (
-              <p key={i}>
+              <p key={i} data-block={i} className={reader.block === i ? 'reading' : undefined}>
                 <Inline text={b.text} lang={lang} />
               </p>
             ) : b.n > 1 && story.pictures[b.n] ? (
@@ -338,7 +349,7 @@ function StoryPage({
             ) : null,
           )}
           {text.moral && (
-            <p className="story-moral">
+            <p data-block={text.blocks.length} className={reader.block === text.blocks.length ? 'story-moral reading' : 'story-moral'}>
               <Inline text={text.moral} lang={lang} />
             </p>
           )}

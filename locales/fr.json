@@ -342,6 +342,12 @@
       "byStyle": "Par style",
       "byTheme": "Par thème",
       "untried": "Pas encore essayé : {{list}}"
+    },
+    "listen": {
+      "start": "Écouter",
+      "pause": "Pause",
+      "resume": "Continuer",
+      "stop": "Arrêter"
     }
   },
   "memory": {
