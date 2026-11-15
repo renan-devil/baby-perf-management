@@ -1,5 +1,5 @@
-import { PAL } from '../lib.mjs';
-import { dot, limb, merge, oval, place } from '../stone-soup/characters.mjs';
+import { PAL, transformPath } from '../lib.mjs';
+import { dot, limb, merge, oval } from '../stone-soup/characters.mjs';
 
 // The Great Race: little Rat, big kind Ox, sleepy Cat, the Jade Emperor and kind Dragon, shared by the
 // five pictures. Each is drawn once here and placed in each picture with a transform (place); flip
@@ -229,5 +229,103 @@ export function fishbone() {
     fine: ['M-4 -7L-2 7M4 -8L6 8M12 -7L13 7', 'M-19 -2l0 0'],
     washes: [],
     fills: [dot(-19, -2, 1.5)],
+  };
+}
+
+// ---------------------------------------------------------------------------------------------
+// Dragon, in the Chinese way: long and wingless, a green snake-like body winding through the sky,
+// red fins along his back, a cream belly, four little clawed legs, a kind face with big eyes, little
+// antlers, a flowing mane and long whiskers. Drawn in place (whole picture coordinates): the body
+// follows SPINE from the neck (left) to the tip of the tail (right); the head faces left.
+const SPINE = [
+  [118, 96, 26], [150, 76, 28], [188, 64, 28], [224, 82, 26], [252, 112, 24], [290, 124, 20], [326, 102, 16],
+  [350, 74, 12], [370, 58, 8], [386, 52, 5],
+];
+const f1 = (n) => Math.round(n * 10) / 10;
+// a point on the body: segment i, fraction t along it, side s (-1 top, +1 bottom, 0 middle)
+function onBody(i, t, s) {
+  const [ax, ay, aw] = SPINE[i];
+  const [bx, by, bw] = SPINE[i + 1];
+  const l = Math.hypot(bx - ax, by - ay);
+  const nx = -(by - ay) / l;
+  const ny = (bx - ax) / l;
+  const w = (aw + (bw - aw) * t) / 2;
+  return [ax + (bx - ax) * t + nx * w * s, ay + (by - ay) * t + ny * w * s, nx, ny, (bx - ax) / l, (by - ay) / l];
+}
+function dragonBits() {
+  let fins = '';
+  let scales = '';
+  let belly = '';
+  for (let i = 0; i < SPINE.length - 2; i++) {
+    for (const t of [0.25, 0.75]) {
+      const [x, y, nx, ny, tx, ty] = onBody(i, t, -1);
+      const h = SPINE[i][2] * 0.45;
+      fins += `M${f1(x - tx * 5)} ${f1(y - ty * 5)}L${f1(x - nx * h + tx * 3)} ${f1(y - ny * h + ty * 3)}L${f1(x + tx * 6)} ${f1(y + ty * 6)}Z`;
+      const [mx, my] = onBody(i, t, -0.15);
+      scales += `M${f1(mx - tx * 4)} ${f1(my - ty * 4)}q${f1(tx * 4 + nx * 4)} ${f1(ty * 4 + ny * 4)} ${f1(tx * 8)} ${f1(ty * 8)}`;
+      const [bx, by] = onBody(i, t, 0.75);
+      belly += `M${f1(bx - nx * 4)} ${f1(by - ny * 4)}l${f1(nx * 6)} ${f1(ny * 6)}`;
+    }
+  }
+  return { fins, scales, belly };
+}
+const dBody = limb(SPINE.map(([x, y, w]) => [x, y, w]));
+const dBellyBand = limb(SPINE.slice(0, -1).map((p, i) => {
+  const [x, y] = onBody(Math.min(i, SPINE.length - 2), i === SPINE.length - 2 ? 1 : 0, 0.62);
+  return [x, y, p[2] * 0.32];
+}));
+const dHead = 'M126 84C118 72 96 72 86 80C74 80 62 86 58 96C56 106 64 112 76 112C90 114 108 114 120 108C128 102 132 92 126 84Z';
+const dJaw = 'M60 102C70 108 84 108 96 104';
+const dEye = 'M92 88C92 80 104 80 104 88C104 96 92 96 92 88Z';
+const dBrow = 'M88 80C94 74 104 74 108 80';
+const dNose = 'M62 92q3 -3 6 0';
+const dWhiskers = 'M64 104C54 112 46 110 40 120C36 128 42 132 46 126M66 90C56 82 48 84 42 76C38 70 40 66 46 68';
+const dAntlers = `${limb([[110, 78, 5], [114, 64, 4], [118, 52, 3]])}Z${limb([[115, 63, 3], [124, 58, 2.5]])}Z${limb([[120, 80, 5], [128, 66, 4], [134, 54, 3]])}Z${limb([[129, 64, 3], [138, 62, 2.5]])}Z`;
+const dMane = 'M124 80C130 70 140 76 146 68C150 76 146 82 156 80C156 88 150 90 158 96C150 100 144 96 140 104C134 100 132 108 126 106C128 98 122 92 124 80Z';
+const dLegs = [
+  limb([[162, 80, 9], [160, 96, 7], [152, 108, 6]]),
+  limb([[204, 76, 9], [208, 92, 7], [202, 104, 6]]),
+  limb([[274, 128, 8], [274, 142, 6], [268, 152, 5]]),
+  limb([[304, 122, 8], [310, 136, 6], [306, 146, 5]]),
+];
+const dClaws = 'M148 108l-5 4M152 110l-2 6M156 109l2 5M198 104l-5 4M202 106l-2 6M206 105l2 5M264 152l-5 3M268 154l-2 5M272 153l2 4M302 146l-5 3M306 148l-2 5M310 147l2 4';
+
+export function dragon() {
+  const { fins, scales, belly } = dragonBits();
+  const legs = dLegs.map((d) => `${d}Z`).join('');
+  // the head and everything on it, drawn a little bigger around the neck
+  const H = (d) => transformPath(d, 'translate(124 96) scale(1.3) translate(-124 -96)');
+  return {
+    lines: [...dLegs, dBody, H(dMane), H(dAntlers), H(dHead)],
+    fine: [fins, scales, belly, ...[dJaw, dEye, dBrow, dNose, dWhiskers, 'M96 106q8 3 16 -1'].map(H), dClaws],
+    washes: [
+      { c: PAL.red, o: 0.75, d: fins },
+      { c: PAL.ochre, o: 0.75, d: H(dMane) },
+      { c: PAL.green, o: 0.8, d: `${dBody}Z${H(dHead)}${legs}` },
+      { c: PAL.ochre, o: 0.7, d: `${dBellyBand}Z${H(dAntlers)}` },
+      { c: PAL.rose, o: 0.4, d: H(dot(84, 100, 5)) },
+    ],
+    whites: [H(dEye)],
+    fills: [H(dot(99, 89, 3))],
+    glints: [H(dot(98, 88, 0.9))],
+  };
+}
+
+// A little village house with a curved, upturned roof (door at the front), ground at y = 0, about
+// 70 wide.
+export function house() {
+  const walls = 'M-24 0L-24 -26L24 -26L24 0Z';
+  const roof = 'M-38 -22C-30 -26 -22 -40 0 -44C22 -40 30 -26 38 -22C30 -28 -30 -28 -38 -22Z';
+  const ridge = 'M-14 -44L14 -44';
+  const door = 'M-6 0L-6 -16L6 -16L6 0';
+  const win = 'M12 -18L20 -18L20 -10L12 -10ZM16 -18L16 -10';
+  return {
+    lines: [walls, roof],
+    fine: [ridge, door, win],
+    washes: [
+      { c: PAL.ochre, o: 0.35, d: walls },
+      { c: PAL.slate, o: 0.6, d: roof },
+      { c: PAL.red, o: 0.7, d: `${door}Z` },
+    ],
   };
 }

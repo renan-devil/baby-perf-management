@@ -265,10 +265,7 @@ export const E_ARMS = {
     [[22, -116, 14], [30, -96, 14], [32, -80, 13]],
   ],
 };
-const YELLOW = [
-  { c: PAL.ochre, o: 0.85 },
-  { c: PAL.ochre, o: 0.35 },
-];
+const YELLOW = [{ c: PAL.ochre, o: 0.7 }];
 const BLACK = [
   { c: PAL.slate, o: 0.95 },
   { c: PAL.ink, o: 0.6 },
@@ -303,6 +300,12 @@ export function emperorHead({ mood = 'happy', hat = true } = {}) {
     glints: m.glints,
   };
   return hat ? merge(head, emperorHat()) : head;
+}
+/** The outline of the seated Emperor's robe and head, to leave a hole for him in what is behind. */
+export function emperorSeatedOutline() {
+  const body =
+    'M-12 -124C-24 -122 -29 -112 -30 -98C-31 -86 -34 -76 -40 -68C-46 -60 -46 -44 -42 -34C-40 -22 -40 -10 -38 -2C-12 1 12 1 38 -2C40 -10 40 -22 42 -34C46 -44 46 -60 40 -68C34 -76 31 -86 30 -98C29 -112 24 -122 12 -124C6 -127 -6 -127 -12 -124Z';
+  return body + oval(E_HEAD[0], E_HEAD[1] - 2, 15, 14);
 }
 export function emperor({ mood = 'happy', tilt = 0, arms = E_ARMS.down, seated = false, upper = false, hat = true } = {}) {
   const top = 'M-12 -124C-24 -122 -29 -112 -30 -98';
