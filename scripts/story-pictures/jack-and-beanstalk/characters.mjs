@@ -79,7 +79,7 @@ function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4.5 }) {
 // JACK (feet at 0,0), about 120 tall: a mop of spiky ochre hair, freckles, a green tunic with
 // patches (ochre and terracotta) tied with a rope belt, slate trousers, terracotta shoes.
 // Head at J_HEAD; arms are two limb centrelines from the shoulders (±16,-84); legs two
-// { pts, dir } from the hips (±8,-47), dir: which way the shoe points. upper: no legs.
+// { pts, dir } from the hips (±8,-47), dir: which way the shoe points. upper: only above y = -62.
 // =============================================================================================
 export const J_HEAD = [0, -104];
 export const J_ARMS = {
@@ -101,7 +101,7 @@ export function jackHead({ mood = 'happy' } = {}) {
   const m = faceMarks({ mood, ex: 4.6, ey: 1, my: 8, w: 4 });
   return {
     lines: [face, hair],
-    fine: ['M-12.6 -1q-4.5 0 -3 6M12.6 -1q4.5 0 3 6', 'M0.5 2.5c1.6 1.2 1.6 2.6 -0.6 3', 'M-5 -22l-4 -5M1 -23l0 -6M7 -21l4 -5', ...m.fine],
+    fine: ['M-12.6 -1q-4.5 0 -3 6M12.6 -1q4.5 0 3 6', 'M0.5 2.5c1.6 1.2 1.6 2.6 -0.6 3', 'M-4 -22q-2 -4 -6 -4M2 -23q1 -4 -1 -7M7 -21q3 -3 6 -2', ...m.fine],
     once: ['M-8.5 5l0.4 0M-6.5 6.6l0.4 0M6.5 6.6l0.4 0M8.5 5l0.4 0'],
     washes: [
       { c: PAL.rose, o: 0.3, d: faceFill },
@@ -115,21 +115,29 @@ export function jackHead({ mood = 'happy' } = {}) {
   };
 }
 export function jack({ mood = 'happy', tilt = 0, arms = J_ARMS.down, legs = J_LEGS.stand, upper = false } = {}) {
-  const tunic = 'M-9 -90C-18 -88 -21 -80 -21 -70C-21 -62 -22 -54 -23 -45C-8 -42 8 -42 23 -45C22 -54 21 -62 21 -70C21 -80 18 -88 9 -90';
-  const patches = 'M-15 -79L-6 -80L-5 -71L-14 -70ZM7 -54L16 -55L17 -47L8 -46Z';
+  // upper: the tunic stops at y = -62 (he leans on a window sill there)
+  const tunic = upper
+    ? 'M-9 -90C-18 -88 -21 -80 -21 -70C-21 -66 -21 -64 -21.2 -62M21.2 -62C21 -64 21 -66 21 -70C21 -80 18 -88 9 -90'
+    : 'M-9 -90C-18 -88 -21 -80 -21 -70C-21 -62 -22 -54 -23 -45C-8 -42 8 -42 23 -45C22 -54 21 -62 21 -70C21 -80 18 -88 9 -90';
+  const tunicFill = upper ? 'M-9 -90C-18 -88 -21 -80 -21 -70C-21 -66 -21 -64 -21.2 -62L21.2 -62C21 -64 21 -66 21 -70C21 -80 18 -88 9 -90C6 -93 -6 -93 -9 -90Z' : `${tunic}C6 -93 -6 -93 -9 -90Z`;
+  const patches = upper ? 'M-15 -79L-6 -80L-5 -71L-14 -70Z' : 'M-15 -79L-6 -80L-5 -71L-14 -70ZM7 -54L16 -55L17 -47L8 -46Z';
   const belt = 'M-21.5 -60C-8 -57 8 -57 21.5 -60';
   const legParts = upper ? [] : legs.map((l) => leg(l.pts, [{ c: PAL.slate, o: 0.55 }, { c: PAL.grey, o: 0.35 }], [{ c: PAL.terracotta, o: 0.8 }, { c: PAL.grey, o: 0.4 }], l.dir));
   return merge(
     ...legParts,
     {
       lines: [tunic],
-      fine: [patches, belt, 'M-5 -89L0 -83L5 -89', 'M-3 -58l2 6M1 -58l3 5'],
-      once: ['M-15 -75l-2.5 0M-5 -75l2.5 0M12 -55l0 -2.5M12 -46l0 2.5'],
+      fine: [patches, 'M-5 -89L0 -83L5 -89', ...(upper ? [] : [belt, 'M-3 -58l2 6M1 -58l3 5'])],
+      once: ['M-15 -75l-2.5 0M-5 -75l2.5 0', ...(upper ? [] : ['M12 -55l0 -2.5M12 -46l0 2.5'])],
       washes: [
-        { c: PAL.green, o: 0.8, d: `${tunic}C6 -93 -6 -93 -9 -90Z` },
+        { c: PAL.green, o: 0.8, d: tunicFill },
         { c: PAL.ochre, o: 0.9, d: 'M-15 -79L-6 -80L-5 -71L-14 -70Z' },
-        { c: PAL.terracotta, o: 0.8, d: 'M7 -54L16 -55L17 -47L8 -46Z' },
-        { c: PAL.ochre, o: 0.7, d: 'M-21.5 -61C-8 -58 8 -58 21.5 -61L21.5 -58C8 -55 -8 -55 -21.5 -58Z' },
+        ...(upper
+          ? []
+          : [
+              { c: PAL.terracotta, o: 0.8, d: 'M7 -54L16 -55L17 -47L8 -46Z' },
+              { c: PAL.ochre, o: 0.7, d: 'M-21.5 -61C-8 -58 8 -58 21.5 -61L21.5 -58C8 -55 -8 -55 -21.5 -58Z' },
+            ]),
       ],
     },
     ...arms.map((a) => arm(a, PAL.green, 0.8, 4.3)),
@@ -215,18 +223,29 @@ export function oldMan({ arms = O_ARMS.down } = {}) {
   const nose = oval(0, 1.5, 4, 3.6);
   const robe = 'M-8 -54C-16 -52 -19 -44 -20 -34C-21 -22 -23 -10 -25 -2C-10 1 10 1 25 -2C23 -10 21 -22 20 -34C19 -44 16 -52 8 -54';
   const shoes = 'M-12 -1C-22 -2 -24 3 -18 4L-4 4L-4 -1ZM12 -1C22 -2 24 3 18 4L4 4L4 -1Z';
-  const head = {
-    lines: [face, beard, brim, crown, nose],
-    fine: ['M-5 14q2 6 0 12M5 14q-2 6 0 12M0 18l0 12', 'M-7.5 -2.5q2.5 -2.5 5 0M2.5 -2.5q2.5 -2.5 5 0', 'M-9 -5.5q3 -2.5 6 -0.5M3 -6q3 -2 6 0.5'],
+  const brows = 'M-8.5 -3.6C-7 -6 -3 -6 -1.6 -3.8C-4 -4.4 -6 -4.2 -8.5 -3.6ZM8.5 -3.6C7 -6 3 -6 1.6 -3.8C4 -4.4 6 -4.2 8.5 -3.6Z';
+  const hat = place(
+    {
+      lines: [brim, crown],
+      washes: [
+        { c: PAL.red, o: 0.85, d: `${brim}${crown}C6 -6 -6 -6 -10 -8Z` },
+        { c: PAL.ochre, o: 0.95, d: band },
+      ],
+    },
+    'translate(0 -5)',
+  );
+  const head = merge(hat, {
+    lines: [face, beard, nose],
+    fine: ['M-5 14q2 6 0 12M5 14q-2 6 0 12M0 18l0 12', brows],
     washes: [
       { c: PAL.rose, o: 0.32, d: faceFill },
-      { c: PAL.red, o: 0.85, d: `${brim}${crown}C6 -6 -6 -6 -10 -8Z` },
-      { c: PAL.ochre, o: 0.95, d: band },
       { c: PAL.rose, o: 0.9, d: nose },
-      { c: PAL.rose, o: 0.6, d: dot(-7, 3, 2) + dot(7, 3, 2) },
+      { c: PAL.rose, o: 0.6, d: dot(-7.5, 3.5, 2) + dot(7.5, 3.5, 2) },
     ],
-    whites: [beard],
-  };
+    whites: [beard, brows],
+    fills: [dot(-4.6, -1, 1.5), dot(4.6, -1, 1.5)],
+    glints: [dot(-5, -1.5, 0.5), dot(4.2, -1.5, 0.5)],
+  });
   return merge(
     {
       lines: [shoes, robe],
@@ -242,25 +261,31 @@ export function oldMan({ arms = O_ARMS.down } = {}) {
   );
 }
 
+/** The five magic beans' colours: red, slate (purple-ish), speckled gold, green, rose. */
+const BEAN_COLOURS = [PAL.red, PAL.slate, PAL.ochre, PAL.green, PAL.rose];
+/** One shiny magic bean (i = 0 to 4), centred at (0,0), lying along x. */
+export function bean(i = 0) {
+  const d = oval(0, 0, 4.6, 3.1);
+  return {
+    fine: [d],
+    once: i === 2 ? ['M-1.5 -0.5l0.3 0M1.5 1l0.3 0M2 -1l0.3 0'] : [],
+    washes: [{ c: BEAN_COLOURS[i], o: 0.95, d }],
+    glints: [dot(-1.4, -1, 0.9)],
+  };
+}
 /** Five shiny magic beans in a little heap round (0,0), about 26 wide, with sparkles. */
 export function beans({ sparkle = true } = {}) {
-  const list = [
-    [-8, 0, -20, PAL.red],
-    [0, 1, 10, PAL.slate],
-    [8, 0, 30, PAL.ochre],
-    [-4, -5, 60, PAL.green],
-    [5, -5, -30, PAL.rose],
+  const spots = [
+    [-8, 0, -20],
+    [0, 1, 10],
+    [8, 0, 30],
+    [-4, -5, 60],
+    [5, -5, -30],
   ];
-  const out = { lines: [], fine: [], washes: [], glints: [], once: [] };
-  for (const [x, y, a, c] of list) {
-    const d = place({ lines: [oval(0, 0, 4.6, 3.1)] }, `translate(${x} ${y}) rotate(${a})`).lines[0];
-    out.fine.push(d);
-    out.washes.push({ c, o: 0.95, d });
-    out.glints.push(dot(x - 1.2, y - 1, 0.9));
-  }
-  out.once.push('M4.5 -2l0.3 0M10 1l0.3 0M7 -1l0.3 0');
-  if (sparkle) out.fine.push('M-16 -12l-4 -4M0 -14l0 -6M16 -12l4 -4M-20 0l-5 0M20 0l5 0');
-  return out;
+  return merge(
+    ...spots.map(([x, y, a], i) => place(bean(i), `translate(${x} ${y}) rotate(${a})`)),
+    sparkle ? { fine: ['M-13 -9l-3 -3M0 -11l0 -4M13 -9l3 -3M-15 0l-4 0M15 0l4 0'] } : {},
+  );
 }
 
 // =============================================================================================
@@ -283,7 +308,7 @@ export function cow({ mood = 'happy' } = {}) {
   const eyes = mood === 'sad' ? 'M-90 -62q3 2 6 0M-80 -62q3 2 6 0' : '';
   return {
     lines: [body, legsD, hooves, tail, ears, head, muzzle, horns],
-    fine: [patches, udder, tuft, 'M-88 -42l0 0.5M-76 -42l0 0.5', eyes, 'M-86 -70q2 -2 4 0', 'M-78 -70q2 -2 4 0'].filter(Boolean),
+    fine: [patches, udder, tuft, 'M-88 -42l0 0.5M-76 -42l0 0.5', eyes].filter(Boolean),
     washes: [
       { c: PAL.grey, o: 0.55, d: patches },
       { c: PAL.slate, o: 0.3, d: patches },
@@ -600,13 +625,35 @@ export function leaf(s = 1, a = 0) {
 export function tendril(s = 1, a = 0) {
   return place({ fine: ['M0 0C6 -2 12 -8 12 -14C12 -20 4 -20 4 -14C4 -10 8 -10 8 -13'] }, `rotate(${a}) scale(${s})`);
 }
-export function beanstalk(pts, { leaves = [], tendrils = [], top = false } = {}) {
+/** The two sides of a limb along pts, without the cap (for a stalk that runs on into a cloud). */
+function sides(pts) {
+  const n = pts.length;
+  const side = (s) =>
+    pts.map(([x, y, w], i) => {
+      const a = pts[Math.max(0, i - 1)];
+      const b = pts[Math.min(n - 1, i + 1)];
+      const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      return [x - (s * (b[1] - a[1]) * w) / 2 / l, y + (s * (b[0] - a[0]) * w) / 2 / l];
+    });
+  const curve = (P) =>
+    `M${f(P[0][0])} ${f(P[0][1])}` +
+    P.slice(1)
+      .map((p2, j) => {
+        const p0 = P[Math.max(0, j - 1)];
+        const p1 = P[j];
+        const p3 = P[Math.min(P.length - 1, j + 2)];
+        return `C${f(p1[0] + (p2[0] - p0[0]) / 6)} ${f(p1[1] + (p2[1] - p0[1]) / 6)} ${f(p2[0] - (p3[0] - p1[0]) / 6)} ${f(p2[1] - (p3[1] - p1[1]) / 6)} ${f(p2[0])} ${f(p2[1])}`;
+      })
+      .join('');
+  return [curve(side(1)), curve(side(-1))];
+}
+/** open: the stalk runs on into a cloud at its last point (no rounded tip drawn in ink). */
+export function beanstalk(pts, { leaves = [], tendrils = [], open = false } = {}) {
   const d = limb(pts);
   const stripe = limb(pts.map(([x, y, w]) => [x + w * 0.18, y, w * 0.25]));
   const parts = [
     {
-      lines: [d],
-      fine: [],
+      lines: open ? sides(pts) : [d],
       washes: [
         { c: PAL.green, o: 0.95, d: Z(d) },
         { c: PAL.slate, o: 0.18, d: Z(d) },
@@ -616,7 +663,6 @@ export function beanstalk(pts, { leaves = [], tendrils = [], top = false } = {})
     ...leaves.map((l) => place(leaf(l.s, l.a), `translate(${l.at[0]} ${l.at[1]})`)),
     ...tendrils.map(([x, y, a, s]) => place(tendril(s, a), `translate(${x} ${y})`)),
   ];
-  void top;
   return merge(...parts);
 }
 
@@ -635,21 +681,21 @@ export function cloud(cx, cy, rx, ry, n = 9, seed = 0) {
 
 /** The cottage (bottom centre 0,0), 160 wide: whitewashed walls, a shaggy ochre thatch, a red door
  * on the left and a window with open shutters on the right (its opening at COT_WIN: x, y, w, h).
- * dark: the window's opening is shadowy (someone stands inside). */
+ * dark: the window's opening is shadowy (someone stands inside); win: a bigger window [x, y, w, h]. */
 export const COT_WIN = [14, -76, 44, 40];
-export function cottage({ dark = true, smoke = true } = {}) {
+export function cottage({ dark = true, smoke = true, win = COT_WIN } = {}) {
   const walls = 'M-80 0L-80 -92M80 -92L80 0';
   const wallsFill = 'M-80 0L-80 -92L80 -92L80 0Z';
   const roof = 'M-98 -84C-84 -110 -50 -146 -6 -152C30 -150 70 -122 98 -84C70 -94 -70 -94 -98 -84Z';
   const door = 'M-58 0L-58 -52C-58 -66 -32 -66 -32 -52L-32 0';
-  const [x, y, w, h] = COT_WIN;
-  const win = `M${x} ${y}L${x + w} ${y}L${x + w} ${y + h}L${x} ${y + h}Z`;
+  const [x, y, w, h] = win;
+  const pane = `M${x} ${y}L${x + w} ${y}L${x + w} ${y + h}L${x} ${y + h}Z`;
   const shutters = `M${x} ${y}L${x - 16} ${y + 3}L${x - 16} ${y + h - 3}L${x} ${y + h}M${x + w} ${y}L${x + w + 16} ${y + 3}L${x + w + 16} ${y + h - 3}L${x + w} ${y + h}`;
   const shutFill = `M${x} ${y}L${x - 16} ${y + 3}L${x - 16} ${y + h - 3}L${x} ${y + h}ZM${x + w} ${y}L${x + w + 16} ${y + 3}L${x + w + 16} ${y + h - 3}L${x + w} ${y + h}Z`;
   const sill = `M${x - 6} ${y + h}L${x + w + 6} ${y + h}L${x + w + 5} ${y + h + 6}L${x - 5} ${y + h + 6}Z`;
   const chimney = 'M44 -132L44 -162L62 -162L62 -116';
   return {
-    lines: [walls, 'M-84 0L84 0', door, chimney, roof, win, shutters, sill],
+    lines: [walls, 'M-84 0L84 0', door, chimney, roof, pane, shutters, sill],
     fine: [
       'M-80 -40l10 0M-70 -20l10 0M60 -14l12 0M-74 -70l10 0',
       'M-70 -98q4 -10 10 -18M-40 -104q2 -14 8 -28M-6 -108q0 -16 2 -34M30 -104q-2 -14 -8 -28M62 -98q-4 -10 -10 -18',
@@ -665,7 +711,7 @@ export function cottage({ dark = true, smoke = true } = {}) {
       { c: PAL.terracotta, o: 0.4, d: Z(door) },
       { c: PAL.terracotta, o: 0.6, d: `${chimney}Z` },
       { c: PAL.grey, o: 0.4, d: `${chimney}Z` },
-      { c: dark ? PAL.slate : PAL.sky, o: dark ? 0.45 : 0.35, d: win },
+      { c: dark ? PAL.slate : PAL.sky, o: dark ? 0.45 : 0.35, d: pane },
       { c: PAL.green, o: 0.7, d: shutFill },
       { c: PAL.ochre, o: 0.6, d: sill },
     ],
