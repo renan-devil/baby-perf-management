@@ -510,15 +510,18 @@ export function bird({ wings = 'up', sparrow = false } = {}) {
 // and a red Chinese sail with bamboo battens. sail: 'full' (bellying out to the right, in the wind)
 // or 'flat'.
 // =============================================================================================
+/** Just the sail of the boat, to leave a hole for it in the sea behind (fill-rule evenodd). */
+export function boatSail({ sail = 'full' } = {}) {
+  return sail === 'full'
+    ? 'M-2 -114C20 -112 40 -104 52 -88C60 -70 60 -44 52 -20C40 -14 18 -12 -2 -12Z'
+    : 'M-2 -114L34 -110C38 -80 38 -44 34 -14L-2 -12Z';
+}
 export function boat({ sail = 'full' } = {}) {
   const hull = 'M-76 -8C-70 -4 -66 0 -62 2L62 2C66 0 70 -4 76 -10C70 6 50 18 0 18C-50 18 -70 6 -76 -8Z';
   const rim = 'M-74 -6C-40 2 40 2 74 -8';
   const stripe = 'M-68 4C-40 10 40 10 68 2C64 8 56 12 50 13C20 15 -20 15 -50 13C-58 11 -64 8 -68 4Z';
   const mast = 'M-4 0L-4 -118';
-  const sailD =
-    sail === 'full'
-      ? 'M-2 -114C20 -112 40 -104 52 -88C60 -70 60 -44 52 -20C40 -14 18 -12 -2 -12Z'
-      : 'M-2 -114L34 -110C38 -80 38 -44 34 -14L-2 -12Z';
+  const sailD = boatSail({ sail });
   const battens =
     sail === 'full'
       ? 'M-2 -94C20 -92 42 -90 56 -82M-2 -74C20 -72 46 -70 59 -64M-2 -54C22 -52 46 -50 59 -46M-2 -34C20 -32 42 -30 56 -27'

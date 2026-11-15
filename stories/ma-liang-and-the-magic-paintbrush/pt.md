@@ -24,7 +24,7 @@ Dia após dia, os desenhos ficavam cada vez mais bonitos. Pareciam tão verdadei
 
 Uma noite, o Ma Liang estava tão cansado que adormeceu na sua esteirinha, ainda com o bocado de carvão na mão.
 
-![Num sonho, um velhinho bondoso de longa barba branca dá ao Ma Liang um pincel dourado.](picture-3.svg)
+![Num sonho, um velhinho bondoso de longa barba branca estende um pincel dourado ao Ma Liang, que dorme na sua esteira.](picture-3.svg)
 
 Enquanto dormia, o Ma Liang teve um sonho. Uma luz dourada e suave encheu o seu quartinho, e ali estava um velhinho bondoso, com uma longa barba branca.
 
@@ -80,7 +80,7 @@ Os soldados encontraram o Ma Liang e levaram-no ao palácio. O Imperador estava 
 
 O Ma Liang pensou durante muito tempo. Depois sorriu. — Muito bem, Majestade. Mas uma montanha de ouro tem de ficar numa ilha, no meio do mar. Por isso, primeiro tenho de pintar o mar.
 
-![O Ma Liang pinta o grande mar azul e um barco grande de vela vermelha, enquanto o Imperador olha.](picture-8.svg)
+![O Ma Liang pinta o grande mar azul e um barco grande de vela vermelha, e o Imperador aponta para a ilha lá longe, com a sua montanha de ouro.](picture-8.svg)
 
 Pintou o mar, imenso e azul. *Zás, zás, zás…* e ganhou vida! Pequenas ondas vieram bater nos degraus do palácio, e os peixes saltavam na água. Muito, muito ao longe, pintou uma ilha, e na ilha uma montanha de ouro que cintilava ao sol.
 

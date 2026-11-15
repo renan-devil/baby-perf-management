@@ -1,5 +1,5 @@
-import { PAL, hatch } from '../lib.mjs';
-import { at, boat, brush, compose, emperor, maLiang, place, sparkle, waves } from './characters.mjs';
+import { PAL, hatch, transformPath } from '../lib.mjs';
+import { at, boat, boatSail, brush, compose, emperor, maLiang, place, sparkle, waves } from './characters.mjs';
 
 // Ma Liang and the Magic Paintbrush, 8: on the palace terrace, Ma Liang paints the wide blue sea
 // and a big boat with a red sail; far away shines the island with its mountain of gold, and the
@@ -9,6 +9,9 @@ const M = 'translate(148 282) scale(1.02)';
 const hand = [40, -86];
 const [hx, hy] = at(...hand, M);
 const terrace = 'M0 236L196 236L210 300L0 300Z';
+const BOAT = 'translate(292 262) scale(0.72)';
+// the sea stops round the red sail, so the sail stays red
+const sailHole = transformPath(boatSail({ sail: 'flat' }), BOAT);
 const sea = 'M190 162C260 158 330 158 400 162L400 300L206 300L194 236Z';
 const island = 'M296 166C306 150 352 148 368 166Z';
 const gold = 'M310 160L332 112L354 160Z';
@@ -19,8 +22,8 @@ export default compose({
   seed: 888,
   washes: [
     { c: PAL.sky, o: 0.25, d: 'M0 0L400 0L400 236L0 236Z' },
-    { c: PAL.sky, o: 0.85, d: sea },
-    { c: PAL.slate, o: 0.25, d: sea },
+    { c: PAL.sky, o: 0.85, d: sea + sailHole, rule: 'evenodd' },
+    { c: PAL.slate, o: 0.25, d: sea + sailHole, rule: 'evenodd' },
     { c: PAL.green, o: 0.7, d: island },
     { c: PAL.ochre, o: 0.95, d: gold },
     { c: PAL.ochre, o: 0.95, d: glitter },
@@ -32,19 +35,19 @@ export default compose({
     glitter,
     'M318 146L332 120M340 150L346 132',
     waves(214, 400, 196, 4, 7),
-    waves(212, 400, 284, 4, 8),
+    waves(212, 400, 290, 4, 6),
     waves(270, 400, 172, 3, 4),
     'M0 262L200 262M0 284L206 284',
     hatch(40, 248, 180, 248, 4, 5, 175, 888),
   ],
   parts: [
-    place(boat({ sail: 'flat' }), 'translate(296 252) scale(0.62)'),
+    place(boat({ sail: 'flat' }), BOAT),
     place(
       emperor({
         mood: 'greedy',
         arms: [
           [[-22, -116, 14], [-34, -96, 14], [-30, -78, 13]],
-          [[22, -116, 14], [50, -132, 13], [78, -150, 12]],
+          [[22, -116, 13], [40, -128, 12], [58, -140, 11]],
         ],
       }),
       E,

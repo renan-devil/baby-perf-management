@@ -24,7 +24,7 @@ Day after day, his drawings grew better and better. They looked so real that the
 
 One evening, Ma Liang was so tired that he fell asleep on his little mat, still holding his piece of charcoal.
 
-![In a dream, a kind old man with a long white beard gives Ma Liang a golden paintbrush.](picture-3.svg)
+![In a dream, a kind old man with a long white beard holds out a golden paintbrush to Ma Liang, asleep on his mat.](picture-3.svg)
 
 In his sleep, Ma Liang had a dream. A soft golden light filled his little room, and there stood a kind old man with a long white beard.
 
@@ -80,7 +80,7 @@ His soldiers found Ma Liang and brought him to the palace. The Emperor sat on hi
 
 Ma Liang thought for a long time. Then he smiled. “Very well, Your Majesty. But a mountain of gold must stand on an island in the middle of the sea. So first, I must paint the sea.”
 
-![Ma Liang paints the wide blue sea and a big boat with a red sail, while the Emperor watches.](picture-8.svg)
+![Ma Liang paints the wide blue sea and a big boat with a red sail, while the Emperor points at the far island with its mountain of gold.](picture-8.svg)
 
 He painted the sea, wide and blue. *Swish, swish, swoosh…* and it came to life! Little waves came lapping up to the palace steps, and fish jumped in the water. Far, far away, he painted an island, and on the island a mountain of gold that sparkled in the sun.
 

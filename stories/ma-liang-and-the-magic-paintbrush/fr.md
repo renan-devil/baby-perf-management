@@ -24,7 +24,7 @@ Jour après jour, ses dessins devenaient de plus en plus beaux. Ils avaient l’
 
 Un soir, Ma Liang était si fatigué qu’il s’endormit sur sa petite natte, son morceau de charbon encore à la main.
 
-![Dans un rêve, un vieil homme très gentil, à la longue barbe blanche, donne à Ma Liang un pinceau doré.](picture-3.svg)
+![Dans un rêve, un vieil homme très gentil, à la longue barbe blanche, tend un pinceau doré à Ma Liang, endormi sur sa natte.](picture-3.svg)
 
 Pendant son sommeil, Ma Liang fit un rêve. Une douce lumière dorée remplit sa petite chambre, et devant lui se tenait un vieil homme très gentil, avec une longue barbe blanche.
 
@@ -80,7 +80,7 @@ Ses soldats trouvèrent Ma Liang et l’amenèrent au palais. L’Empereur étai
 
 Ma Liang réfléchit longtemps. Puis il sourit. « Bien, Votre Majesté. Mais une montagne d’or doit se trouver sur une île, au milieu de la mer. Alors d’abord, je dois peindre la mer. »
 
-![Ma Liang peint la grande mer bleue et un grand bateau à la voile rouge, sous le regard de l’Empereur.](picture-8.svg)
+![Ma Liang peint la grande mer bleue et un grand bateau à la voile rouge, et l’Empereur montre du doigt l’île lointaine et sa montagne d’or.](picture-8.svg)
 
 Il peignit la mer, immense et bleue. *Flic, flac, flouch…* et elle prit vie ! De petites vagues vinrent clapoter jusqu’aux marches du palais, et des poissons sautaient dans l’eau. Très, très loin, il peignit une île, et sur l’île une montagne d’or qui scintillait au soleil.
 
