@@ -30,9 +30,9 @@ Na margem do rio, o Imperador de Jade levantou a mão. *Bong!* fez o grande gong
 
 Rápido como um relâmpago, o Rato subiu para a cabeça do Boi e agarrou-se aos chifres dele. O Boi nadava devagar, sem nunca parar. *Chuá… chuá… chuá…* Ia à frente de toda a gente!
 
-O Rato via a outra margem cada vez mais perto. Mesmo quando o Boi ia a sair da água, o Rato encheu o peito de ar e… *Upa!* Saltou do focinho do Boi e aterrou na relva.
+O Rato via a outra margem cada vez mais perto. Mesmo quando o Boi ia a sair da água, o Rato encheu o peito de ar e… *Upa!* Saltou da cabeça do Boi e aterrou na relva.
 
-![O Rato salta do focinho do Boi para a margem, mesmo à frente dele.](picture-4.svg)
+![O Rato salta da cabeça do Boi para a margem, mesmo à frente dele.](picture-4.svg)
 
 — O Rato é o primeiro! — disse o Imperador de Jade. — O primeiro ano será o ano do Rato!
 

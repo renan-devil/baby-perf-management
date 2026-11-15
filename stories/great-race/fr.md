@@ -30,9 +30,9 @@ Au bord de la rivière, l’Empereur de Jade leva la main. *Bong !* fit le grand
 
 Vif comme l’éclair, le Rat grimpa sur la tête du Bœuf et s’accrocha à ses cornes. Le Bœuf nageait lentement, sans jamais s’arrêter. *Flic… flac… flic…* Il était devant tout le monde !
 
-Le Rat voyait l’autre rive se rapprocher, de plus en plus près. Juste au moment où le Bœuf allait sortir de l’eau, le Rat prit une grande inspiration, et… *Hop !* Il sauta du museau du Bœuf et atterrit dans l’herbe.
+Le Rat voyait l’autre rive se rapprocher, de plus en plus près. Juste au moment où le Bœuf allait sortir de l’eau, le Rat prit une grande inspiration, et… *Hop !* Il sauta de la tête du Bœuf et atterrit dans l’herbe.
 
-![Le Rat bondit du museau du Bœuf sur la rive, juste devant lui.](picture-4.svg)
+![Le Rat bondit de la tête du Bœuf sur la rive, juste devant lui.](picture-4.svg)
 
 « Le Rat est le premier ! dit l’Empereur de Jade. La première année sera l’année du Rat ! »
 

@@ -164,7 +164,7 @@ export function nian({ mood = 'curious', look = [2, -2], legs = 'stand' } = {}) 
   const tuft = fluff(tx, ty - 6, 11, 10, 7, 1.3);
 
   const fine = [nEarsIn, 'M59 -130l14 0M61 -140l10 -1M64 -149l6 0', toes.join('')];
-  const fills = [oval(76, -78, 1.6, 2.2), oval(84, -78, 1.6, 2.2)];
+  const fills = ['M74 -80C74 -85 86 -85 86 -80C85 -75 75 -75 74 -80Z'];
   const whites = [];
   const glints = [];
   const washes = [];

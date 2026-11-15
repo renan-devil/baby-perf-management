@@ -30,9 +30,9 @@ At the riverbank, the Jade Emperor raised his hand. *Bong!* went the big gong. *
 
 Quick as a wink, Rat climbed onto Ox’s head and held on to his horns. Ox swam slowly and steadily through the waves. *Swish… swish… swish…* He was ahead of everybody!
 
-Rat watched the other bank come closer and closer. Just as Ox was about to step out of the water, Rat took a big breath, and… *Hop!* He jumped off Ox’s nose and landed on the grass.
+Rat watched the other bank come closer and closer. Just as Ox was about to step out of the water, Rat took a big breath, and… *Hop!* He jumped off Ox’s head and landed on the grass.
 
-![Rat leaps from Ox’s nose onto the bank, just ahead of him.](picture-4.svg)
+![Rat leaps from Ox’s head onto the bank, just ahead of him.](picture-4.svg)
 
 “Rat is first!” said the Jade Emperor. “The first year will be the year of the Rat!”
 

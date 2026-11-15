@@ -111,18 +111,18 @@ export function ox({ mood = 'happy', back = true } = {}) {
 
 // ---------------------------------------------------------------------------------------------
 // The river: a band of water from y = top down to the bottom of the picture, with wavy lines.
-export function water(top, { seed = 1 } = {}) {
+export function water(top, { seed = 1, until = 400, shape } = {}) {
   const r = (i) => ((Math.sin(i * 12.9898 + seed * 78.233) * 43758.5453) % 1 + 1) % 1;
   const waves = [];
   for (let row = 0; row < 4; row++) {
     const y = top + 18 + row * 22;
     for (let k = 0; k < 4; k++) {
       const x = 20 + k * 100 + (row % 2) * 50 + r(row * 7 + k) * 20;
-      waves.push(`M${x} ${y}q8 -6 16 0q8 6 16 0`);
+      if (x + 32 < until) waves.push(`M${x} ${y}q8 -6 16 0q8 6 16 0`);
     }
   }
   return {
-    washes: [{ c: PAL.sky, o: 0.55, d: `M0 ${top}C100 ${top - 4} 300 ${top + 4} 400 ${top}L400 300L0 300Z` }],
+    washes: [{ c: PAL.sky, o: 0.55, d: shape ?? `M0 ${top}C100 ${top - 4} 300 ${top + 4} 400 ${top}L400 300L0 300Z` }],
     fine: waves,
   };
 }
@@ -184,4 +184,50 @@ export function cloud() {
   const d = 'M-60 6C-66 -6 -54 -16 -42 -10C-40 -24 -20 -28 -10 -18C-4 -30 18 -30 24 -18C34 -26 52 -20 50 -6C62 -6 66 6 56 10C30 14 -30 14 -60 6Z';
   const curls = 'M-42 -10C-40 -2 -30 -2 -30 -8C-30 -12 -36 -12 -36 -8M24 -18C22 -10 30 -6 34 -10C36 -14 32 -16 30 -13M-10 -18C-10 -10 0 -10 0 -14';
   return { lines: [d], fine: [curls], washes: [{ c: PAL.sky, o: 0.35, d }], whites: [] };
+}
+
+// ---------------------------------------------------------------------------------------------
+// Cat, fast asleep after his big lunch: a grey tabby lying on his side, floor at y = 0, his head on
+// the left resting on the ground and turned towards us (eyes shut, a little smile), his round full
+// white tummy facing us, paws folded on it, his striped tail curling up on the right. About 200
+// wide and 90 tall.
+const cBody = 'M-40 -60C-20 -88 50 -90 72 -62C88 -40 84 -6 58 0L-30 0C-50 -6 -56 -36 -40 -60Z';
+const cTummy = 'M-18 -38C-18 -62 46 -64 48 -38C48 -14 30 -4 14 -4C-2 -4 -18 -14 -18 -38Z';
+const cHead = 'M-86 -30C-86 -48 -74 -58 -60 -58C-46 -58 -34 -48 -34 -30C-34 -14 -46 -4 -60 -4C-74 -4 -86 -14 -86 -30Z';
+const cEars = 'M-82 -42L-84 -68L-68 -55M-52 -56L-36 -66L-38 -42';
+const cEarsIn = 'M-80 -46L-81 -61L-71 -54ZM-48 -54L-40 -60L-41 -46Z';
+const cFace = 'M-76 -32q5 4 10 0M-54 -32q5 4 10 0M-60 -17q-3 4 -7 2M-60 -17q3 4 7 2';
+const cNose = 'M-63 -22L-57 -22L-60 -18Z';
+const cWhiskers = 'M-70 -20l-22 -3M-70 -17l-21 4M-50 -20l22 -3M-50 -17l21 4';
+const cPaws = 'M-28 -56C-36 -54 -36 -44 -28 -44C-20 -44 -18 -54 -28 -56ZM-24 -34C-32 -32 -32 -22 -24 -22C-16 -22 -14 -32 -24 -34Z';
+const cLeg = 'M62 -10C78 -14 96 -8 100 0C90 4 70 4 58 0';
+const cTail = limb([[74, -30, 13], [96, -40, 11], [104, -60, 9], [96, -76, 7]]);
+const cStripes = 'M-20 -78C-14 -70 -12 -62 -14 -56M2 -84C6 -76 8 -68 6 -62M26 -86C30 -78 30 -70 28 -64M50 -78C52 -70 52 -62 50 -56M68 -60C64 -54 60 -50 56 -46';
+const cHeadStripes = 'M-66 -56l2 7M-60 -58l0 8M-54 -56l-2 7';
+const cTailStripes = 'M92 -34l8 -9M102 -50l9 -3M100 -66l7 3';
+
+export function cat() {
+  const fur = `${cBody}${cHead}${cTail}Z${cLeg}Z`;
+  return {
+    lines: [cTail, cBody, cLeg, cHead, cEars],
+    fine: [cTummy, cPaws, cFace, cWhiskers, cStripes, cHeadStripes, cTailStripes],
+    washes: [
+      { c: PAL.grey, o: 0.7, d: `${fur}M-82 -42L-84 -68L-68 -55ZM-52 -56L-36 -66L-38 -42Z` },
+      { c: PAL.slate, o: 0.35, d: `${cBody}${cTail}Z` },
+      { c: PAL.rose, o: 0.8, d: `${cEarsIn}${cNose}` },
+      { c: PAL.rose, o: 0.35, d: dot(-74, -24, 4) + dot(-46, -24, 4) },
+    ],
+    whites: [cTummy, 'M-72 -20C-70 -10 -50 -10 -48 -20C-54 -26 -66 -26 -72 -20Z'],
+    fills: [cNose],
+  };
+}
+
+// A fish skeleton (head on the left, centre 0,0, about 50 wide), all that is left of lunch.
+export function fishbone() {
+  return {
+    lines: ['M-26 0C-22 -8 -14 -10 -10 -6C-12 -2 -12 2 -10 6C-14 10 -22 8 -26 0Z', 'M-10 0L20 0M20 0L30 -8L30 8Z'],
+    fine: ['M-4 -7L-2 7M4 -8L6 8M12 -7L13 7', 'M-19 -2l0 0'],
+    washes: [],
+    fills: [dot(-19, -2, 1.5)],
+  };
 }

@@ -16,8 +16,7 @@ export default compose({
     { c: PAL.ochre, o: 0.45, d: glow },
     { c: PAL.green, o: 0.55, d: 'M0 264C120 258 280 260 400 266L400 300L0 300Z' },
   ],
-  fine: [tufts([[48, 286], [92, 280], [318, 284], [366, 278]], 10, 811)],
-  once: [sparkle(hx - 50, hy - 70, 7), sparkle(hx + 44, hy - 84, 6), sparkle(hx + 52, hy - 18, 5)].join(''),
+  fine: [tufts([[48, 286], [92, 280], [318, 284], [366, 278]], 10, 811), sparkle(hx - 50, hy - 70, 7), sparkle(hx + 44, hy - 84, 6), sparkle(hx + 52, hy - 18, 5)],
   parts: [
     place(
       maLiang({
@@ -30,7 +29,7 @@ export default compose({
       }),
       M,
     ),
-    place(brush(), `translate(${hx} ${hy}) rotate(22) scale(1.9)`),
+    place(brush(), `translate(${hx} ${hy}) rotate(22) scale(1.75)`),
     { washes: [{ c: PAL.ochre, o: 0.9, d: sparkle(hx - 50, hy - 70, 7) + sparkle(hx + 44, hy - 84, 6) + sparkle(hx + 52, hy - 18, 5) }] },
     place(bird({ wings: 'up' }), 'translate(78 92) rotate(-12) scale(1.3)'),
   ],

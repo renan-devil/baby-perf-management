@@ -203,7 +203,7 @@ export function brush({ shine = true, wet = null } = {}) {
 // =============================================================================================
 // THE KIND OLD MAN OF THE DREAM (feet at 0,0), about 150 tall: a bald head with a little white
 // topknot, long white eyebrows, kind closed smiling eyes, a long white beard and moustache, a long
-// peach robe with wide sleeves and a slate sash. Head at OM_HEAD; arms from the shoulders (±18,-104).
+// pale celadon robe with wide sleeves and a slate sash. Head at OM_HEAD; arms from the shoulders (±18,-104).
 // =============================================================================================
 export const OM_HEAD = [0, -122];
 export const OM_ARMS = {
@@ -213,8 +213,8 @@ export const OM_ARMS = {
   ],
 };
 const ROBE = [
-  { c: PAL.rose, o: 0.5 },
-  { c: PAL.ochre, o: 0.35 },
+  { c: PAL.sky, o: 0.4 },
+  { c: PAL.green, o: 0.3 },
 ];
 export function oldMan({ arms = OM_ARMS.down } = {}) {
   const scalp = 'M-11 -4C-12 -16 -6 -22 0 -22C6 -22 12 -16 11 -4';
