@@ -4,8 +4,8 @@
 // highlighted and kept in view.
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import type { Lang } from '../../api/_stories';
+import i18n from '../i18n';
 import { canSpeak, speak, stopSpeaking } from '../speech';
 import type { SpokenPart } from './listen';
 
@@ -56,8 +56,9 @@ export function useReader(parts: SpokenPart[], lang: Lang) {
   return { state, block, play, pause, stop };
 }
 
-export function ListenControls({ reader }: { reader: ReturnType<typeof useReader> }) {
-  const { t } = useTranslation();
+/** The buttons. Their words are in the story's language (lang), like the voice, not the interface's. */
+export function ListenControls({ reader, lang }: { reader: ReturnType<typeof useReader>; lang: Lang }) {
+  const t = i18n.getFixedT(lang);
   if (!canSpeak()) return null;
   const { state, play, pause, stop } = reader;
 

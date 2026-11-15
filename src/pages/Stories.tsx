@@ -324,7 +324,7 @@ function StoryPage({
   return (
     <>
       <Cover story={story} className="story-picture" alt={coverAlt} />
-      {hasText(text) && <ListenControls reader={reader} />}
+      {hasText(text) && <ListenControls reader={reader} lang={lang} />}
       <h1 className={reader.block === -1 ? 'story-heading reading' : 'story-heading'} lang={lang}>
         {text.title}
       </h1>
