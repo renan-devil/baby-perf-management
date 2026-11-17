@@ -15,8 +15,8 @@ const flowers = [
   [158, 252, PAL.red], [112, 260, PAL.sky], [40, 262, PAL.red], [226, 244, PAL.ochre], [94, 236, PAL.rose],
 ];
 // whoosh: speed lines behind the running wolf and little dust puffs at his heels
-const speed = 'M262 150l-34 0M266 170l-40 0M262 190l-28 0M268 130l-22 0';
-const dust = 'M262 250c-6 -8 -16 -6 -16 2c-6 -2 -10 6 -4 8M276 256c-4 -6 -12 -4 -12 2';
+const speed = 'M240 150l-30 0M244 170l-34 0M240 190l-26 0M244 130l-20 0';
+const dust = 'M250 252c-6 -8 -16 -6 -16 2c-6 -2 -10 6 -4 8M262 258c-4 -6 -12 -4 -12 2';
 
 export default compose({
   title: 'Flowers, and a wolf in a hurry',
@@ -39,9 +39,9 @@ export default compose({
   parts: [
     ...flowers.map(([x, y, c]) => place(flower(c), `translate(${x} ${y})`)),
     place(basket(), 'translate(70 228) scale(1.05)'),
-    place(bunch(), 'translate(84 200) rotate(-40) scale(0.85)'),
+    place(bunch(), 'translate(84.5 199.5) rotate(-35)'),
     place(girl({ arms: G_ARMS.pickBunch, mood: 'happy', tilt: 10 }), 'translate(112 252) scale(1.25)'),
-    place(flower(PAL.red, { h: 22 }), 'translate(155 252)'),
-    place(wolf({ pose: 'run', mouth: 'grin' }), 'translate(330 256) scale(0.95)'),
+    place(flower(PAL.red, { h: 28 }), 'translate(158 252)'),
+    place(wolf({ pose: 'run', mouth: 'grin' }), 'translate(298 256) scale(0.92)'),
   ],
 });

@@ -121,7 +121,12 @@ export const G_ARMS = {
   // picking a flower: the right hand reaches down to (34, -32), the left holds her bunch at (-22, -42)
   pickBunch: [
     [[-17, -60, 7], [-23, -50, 6.5], [-22, -42, 6.5]],
-    [[17, -60, 7], [28, -46, 6.5], [34, -34, 6.5]],
+    [[17, -60, 7], [28, -44, 6.5], [34, -28, 6.5]],
+  ],
+  // the left hand held out to (-38, -80), offering her flowers
+  offer: [
+    [[-16, -64, 7], [-28, -72, 6.5], [-38, -80, 6.5]],
+    [[17, -60, 7], [21, -50, 6.5], [22, -42, 6.5]],
   ],
   // flung up in surprise
   up: [
@@ -211,13 +216,11 @@ export function flower(c = PAL.red, { h = 18, r = 5 } = {}) {
 /** A bunch of flowers (the hand holds the stems at 0,0). */
 export function bunch() {
   const blooms = [
-    [-10, -26, PAL.red, -18],
-    [0, -32, PAL.ochre, 0],
-    [10, -27, PAL.sky, 16],
-    [-5, -20, PAL.rose, -8],
-    [6, -20, PAL.red, 8],
+    [-12, -26, PAL.red, -24],
+    [1, -34, PAL.ochre, 0],
+    [13, -25, PAL.sky, 24],
   ];
-  const parts = blooms.map(([x, y, c, a]) => placeIn(flower(c, { h: Math.hypot(x, y), r: 5 }), `rotate(${a})`));
+  const parts = blooms.map(([x, y, c, a]) => placeIn(flower(c, { h: Math.hypot(x, y), r: 6 }), `rotate(${a})`));
   return join(...parts, { fine: ['M-4 2L4 2'] });
 }
 
@@ -349,10 +352,10 @@ export const W_POSES = {
   },
   // a deep polite bow: bent forward, one paw on his tummy, the other sweeping out behind
   bow: {
-    lean: 34,
+    lean: 40,
     head: -16,
     arms: [
-      [[-14, -108, 11], [-30, -86, 10], [-40, -64, 9]],
+      [[-14, -108, 11], [-38, -78, 10], [-58, -52, 9]],
       [[14, -106, 11], [22, -84, 10], [8, -72, 9]],
     ],
     legs: [
@@ -403,13 +406,13 @@ export const W_POSES = {
     ],
     feet: [[-30, -4, 20], [46, -18, -30]],
   },
-  // diving head first, arms stretched out in front
+  // diving head first, arms flung out wide like little wings
   dive: {
     lean: 72,
-    head: -40,
+    head: -66,
     arms: [
-      [[-14, -108, 11], [8, -128, 10], [28, -140, 9]],
-      [[14, -108, 11], [34, -122, 10], [52, -130, 9]],
+      [[-14, -108, 11], [-36, -96, 10], [-50, -80, 9]],
+      [[12, -108, 11], [30, -96, 10], [44, -82, 9]],
     ],
     legs: [
       [[-8, -44, 15], [-30, -40, 12], [-52, -40, 11]],
@@ -677,7 +680,6 @@ const QUILT = {
   wolf: 'M-88 -64C-74 -66 -62 -62 -50 -66C-30 -76 0 -74 20 -70C40 -66 60 -64 70 -70C80 -74 92 -68 94 -56L96 -20C40 -18 -20 -18 -84 -20Z',
   tossed: 'M30 -48C40 -60 60 -62 74 -58C88 -62 98 -54 96 -44L98 -18C80 -14 50 -16 34 -20C28 -28 26 -40 30 -48Z',
 };
-const bdSheet = 'M-92 -50L94 -50L94 -40L-92 -40Z';
 export function bed({ quilt = 'flat' } = {}) {
   const q = QUILT[quilt];
   const patches = quilt === 'tossed' ? 'M48 -56L52 -18M72 -58L74 -16M32 -36C50 -38 80 -38 97 -34' : quilt === 'wolf' ? 'M-40 -70L-38 -20M0 -72L2 -19M40 -66L40 -18M-84 -42C-20 -44 40 -44 95 -40' : 'M-20 -53L-20 -19M20 -54L20 -18M60 -53L60 -19M-60 -36L95 -36';
