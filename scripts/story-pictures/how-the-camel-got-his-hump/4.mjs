@@ -6,13 +6,13 @@ import { H, at, camel, f, sand } from './1.mjs';
 // The Djinn is friendly: a round smiling face, a turban and a curly moustache, riding his whirlwind.
 
 // ---- The Camel, on the left, his head bent down over the pool ----
-const CT = 'translate(92 248) scale(1.12)';
+const CT = 'translate(100 248) scale(1.12)';
 const CHT = 'translate(100 -62) rotate(40) scale(1.3)';
 const cm = camel(CT, { headT: CHT, twig: false, neckTop: [22, -22], neckFront: [24, -10], look: [1, 1] });
 const ground = sand(248, 8);
 
 // the pool, with his upside-down head in it (the head wash, mirrored), and a few ripples
-const PX = 238;
+const PX = 246;
 const pool = transformPath('M-62 0C-62 -10 -30 -15 0 -15C34 -15 62 -10 62 0C62 10 34 15 0 15C-30 15 -62 10 -62 0Z', `translate(${PX} 268)`);
 // his head, flipped upside down and squashed, in the middle of the pool
 const [hx, hy] = at(`${CT} ${CHT}`, 20, 0);

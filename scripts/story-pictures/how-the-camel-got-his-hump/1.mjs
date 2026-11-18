@@ -66,15 +66,20 @@ export const TWIG = {
 
 /**
  * The Camel's ink, washes, whites and pupil, placed by transform t (camel coordinates → picture).
- * headT places the head in camel coordinates; the neck is drawn to it. hump puts the hump on his back,
+ * headT places the head in camel coordinates; the neck is drawn to it (neckTop and neckFront bend it
+ * where it leaves the body, neckInto is the direction it leaves the head, swapNeck is for a head turned
+ * right round). hump puts the hump on his back,
  * eye is 'half' or 'open', look shifts the pupil, twig puts the prickly twig in his mouth.
  */
-export function camel(t, { headT = 'translate(94 -130) rotate(-22) scale(1.3)', hump = false, eye = 'half', look = [0, 0], twig = true, neckTop: nt = [22, 4], neckFront: nf = [20, 14] } = {}) {
+export function camel(t, { headT = 'translate(94 -130) rotate(-22) scale(1.3)', hump = false, eye = 'half', look = [0, 0], twig = true, neckTop: nt = [22, 4], neckFront: nf = [20, 14], neckInto, swapNeck = false } = {}) {
   const HT = `${t} ${headT}`;
   // neck: from the withers to the back of the head, and from the chest to under the jaw
-  const jt = at(headT, -6, -8);
-  const jb = at(headT, -5, 8);
-  const back = at(headT, -1, 0).map((v, i) => v - at(headT, 0, 0)[i]); // points away from the snout
+  // (swapNeck: for a head turned right round, the back of the neck goes to the throat instead)
+  let jt = at(headT, -6, -8);
+  let jb = at(headT, -5, 8);
+  if (swapNeck) [jt, jb] = [jb, jt];
+  // the way the neck leaves the head: away from the snout, unless neckInto says otherwise
+  const back = neckInto ?? at(headT, -1, 0).map((v, i) => v - at(headT, 0, 0)[i]);
   const c2t = [f(jt[0] + back[0] * 24), f(jt[1] + back[1] * 24)];
   const c2f = [f(jb[0] + back[0] * 24), f(jb[1] + back[1] * 24)];
   const c1t = [NECK_TOP[0] + nt[0], NECK_TOP[1] + nt[1]];
