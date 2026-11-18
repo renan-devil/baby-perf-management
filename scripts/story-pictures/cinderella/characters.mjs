@@ -97,7 +97,7 @@ function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4, look = 0, up = 0 }) {
   const washes = [];
   const whites = [];
   const dx = look * 1.3;
-  const dy = -up * 1.2;
+  const dy = -up * 1.5;
   const pupils = (rr, oy = 0) => {
     fills.push(dot(-ex + dx, ey + dy + oy, rr), dot(ex + dx, ey + dy + oy, rr));
     glints.push(dot(-ex + dx - 0.5, ey + dy + oy - 0.6, 0.5), dot(ex + dx - 0.5, ey + dy + oy - 0.6, 0.5));
@@ -152,7 +152,8 @@ function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4, look = 0, up = 0 }) {
 //  - ball (gown: true): a wide sky-blue gown with silver at the waist and hem, puffed sleeves,
 //    bare arms, a sky ribbon in her bun, and glass slippers peeping from under the hem; sparkly.
 // sit: sitting on a seat at y = 0 (work clothes only), legs: [left, right] centrelines from the
-// knees (or bare: true for a bare foot), hem: 'swish' for a gown whirling to the left (running).
+// knees (or bare: true for a bare foot), hem: 'swish' for a gown whirling to the left (running),
+// 'lift' for a skirt lifted in front to show her ankles and both glass slippers.
 // =============================================================================================
 export const C_HEAD = [0, -98];
 export const C_ARMS = {
@@ -215,16 +216,26 @@ export function cinderella({ mood = 'happy', look = 0, up = 0, tilt = 0, arms, g
     const skirt =
       hem === 'swish'
         ? 'M-8 -84C-14 -82 -15 -76 -15 -68C-15 -62 -15 -58 -16 -54C-28 -46 -44 -30 -58 -14C-50 -10 -42 -8 -36 -6C-24 -2 -6 -2 10 -4C20 -5 28 -8 32 -10C28 -26 22 -42 16 -54C15 -58 15 -62 15 -68C15 -76 14 -82 8 -84'
-        : 'M-8 -84C-14 -82 -15 -76 -15 -68C-15 -62 -15 -58 -16 -54C-24 -44 -36 -24 -42 -6C-14 0 14 0 42 -6C36 -24 24 -44 16 -54C15 -58 15 -62 15 -68C15 -76 14 -82 8 -84';
+        : hem === 'lift'
+          ? 'M-8 -84C-14 -82 -15 -76 -15 -68C-15 -62 -15 -58 -16 -54C-24 -44 -36 -24 -42 -6C-32 -2 -22 -6 -16 -18C-8 -26 8 -26 16 -18C22 -6 32 -2 42 -6C36 -24 24 -44 16 -54C15 -58 15 -62 15 -68C15 -76 14 -82 8 -84'
+          : 'M-8 -84C-14 -82 -15 -76 -15 -68C-15 -62 -15 -58 -16 -54C-24 -44 -36 -24 -42 -6C-14 0 14 0 42 -6C36 -24 24 -44 16 -54C15 -58 15 -62 15 -68C15 -76 14 -82 8 -84';
     const waist = 'M-15.5 -60C-5 -57 5 -57 15.5 -60L16 -54C5 -51 -5 -51 -16 -54Z';
     const hemBand =
       hem === 'swish'
         ? 'M-54 -18C-44 -12 -38 -11 -34 -10C-22 -6 -4 -6 10 -8C20 -9 26 -12 31 -14L32 -10C28 -8 20 -5 10 -4C-6 -2 -24 -2 -36 -6C-42 -8 -50 -10 -58 -14Z'
-        : 'M-41 -12C-14 -6 14 -6 41 -12L42 -6C14 0 -14 0 -42 -6Z';
+        : hem === 'lift'
+          ? 'M-41 -12C-32 -8 -24 -12 -19 -22C-10 -30 10 -30 19 -22C24 -12 32 -8 41 -12L42 -6C32 -2 22 -6 16 -18C8 -26 -8 -26 -16 -18C-22 -6 -32 -2 -42 -6Z'
+          : 'M-41 -12C-14 -6 14 -6 41 -12L42 -6C14 0 -14 0 -42 -6Z';
     const folds = hem === 'swish' ? 'M-10 -50q-14 16 -32 34M-2 -50q-4 20 -8 42M8 -50q8 18 14 40' : 'M-8 -50q-6 20 -14 42M0 -50l0 44M8 -50q6 20 14 42';
     const sleeves = `${oval(-14, -79, 6.5, 5)}${oval(14, -79, 6.5, 5)}`;
     // glass slippers peeping out under the hem
     if (hem === 'swish') parts.push(place(slipperToe(1.1), 'translate(16 -1) rotate(20)'));
+    else if (hem === 'lift') {
+      // the skirt lifted in front: her ankles and both glass slippers show, toes turned out
+      const legLines = [limb([[-6, -24, 5.5], [-8, -6, 5]]), limb([[6, -24, 5.5], [8, -6, 5]])];
+      parts.push({ lines: legLines, washes: legLines.map((d) => ({ c: PAL.rose, o: 0.4, d: Z(d) })) });
+      parts.push(place(slipper({ shine: false }), 'translate(-7 -0.5) scale(-0.42 0.42)'), place(slipper({ shine: false }), 'translate(7 -0.5) scale(0.42)'));
+    }
     else parts.push(place(slipperToe(1.15), 'translate(-12 0.5)'), place(slipperToe(1.15), 'translate(12 0.5)'));
     parts.push({
       lines: [skirt],
@@ -652,7 +663,7 @@ export function pumpkin() {
 
 /**
  * The golden coach (bottom of the wheels at 0,0), facing right, about 150 long and 150 tall: a
- * round pumpkin body with ribs, an arched window with a sky curtain, a door, a curly stalk on top
+ * round pumpkin body with ribs, an arched sky-blue window, a door, a curly stalk on top
  * with a little crown, two big wheels with spokes, and a shaft reaching forward to the right.
  */
 export function coach() {
@@ -679,10 +690,9 @@ export function coach() {
     lines: [w1.rim, w2.rim, body, win, stalk, shaft],
     fine: [ribs, door, curl, w1.spokes, w2.spokes, w1.hub, w2.hub, scroll, 'M-18 -88L18 -88', 'M-24 -40L24 -40'],
     washes: [
-      { c: PAL.ochre, o: 1, d: body },
+      { c: PAL.ochre, o: 1, d: `${body}${win}`, rule: 'evenodd' },
       { c: PAL.terracotta, o: 0.25, d: 'M-56 -40C-76 -54 -74 -106 -48 -124C-30 -136 -40 -110 -40 -80C-40 -60 -36 -40 -32 -34C-40 -34 -50 -36 -56 -40Z' },
       { c: PAL.sky, o: 0.95, d: win },
-      { c: PAL.rose, o: 0.8, d: 'M-18 -100C-18 -112 0 -114 0 -112C-6 -104 -10 -92 -18 -84Z' },
       { c: PAL.green, o: 1, d: stalk },
       { c: PAL.ochre, o: 0.85, d: `${w1.rim}${w2.rim}` },
       { c: PAL.terracotta, o: 0.4, d: `${w1.rim}${w2.rim}` },
