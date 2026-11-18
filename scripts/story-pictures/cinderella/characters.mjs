@@ -152,7 +152,7 @@ function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4, look = 0, up = 0 }) {
 //  - ball (gown: true): a wide sky-blue gown with silver at the waist and hem, puffed sleeves,
 //    bare arms, a sky ribbon in her bun, and glass slippers peeping from under the hem; sparkly.
 // sit: sitting on a seat at y = 0 (work clothes only), legs: [left, right] centrelines from the
-// knees (or bare: true for a bare foot), hem: 'swish' for a gown whirling to the left (running),
+// knees (bare / glass: [left, right] for a bare foot or a glass slipper instead of a clog), hem: 'swish' for a gown whirling to the left (running),
 // 'lift' for a skirt lifted in front to show her ankles and both glass slippers.
 // =============================================================================================
 export const C_HEAD = [0, -98];
@@ -203,7 +203,7 @@ export function cinderellaHead({ mood = 'happy', look = 0, up = 0, gown = false 
   }
   return merge(...parts);
 }
-export function cinderella({ mood = 'happy', look = 0, up = 0, tilt = 0, arms, gown = false, sit = false, legs, bare = [false, false], hem = 'still' } = {}) {
+export function cinderella({ mood = 'happy', look = 0, up = 0, tilt = 0, arms, gown = false, sit = false, legs, bare = [false, false], glass = [false, false], hem = 'still' } = {}) {
   const parts = [];
   const dy = sit ? 42 : 0;
   const lift = (pts) => pts.map(([x, y, w]) => [x, y + dy, w]);
@@ -226,15 +226,20 @@ export function cinderella({ mood = 'happy', look = 0, up = 0, tilt = 0, arms, g
         : hem === 'lift'
           ? 'M-41 -12C-32 -8 -24 -12 -19 -22C-10 -30 10 -30 19 -22C24 -12 32 -8 41 -12L42 -6C32 -2 22 -6 16 -18C8 -26 -8 -26 -16 -18C-22 -6 -32 -2 -42 -6Z'
           : 'M-41 -12C-14 -6 14 -6 41 -12L42 -6C14 0 -14 0 -42 -6Z';
-    const folds = hem === 'swish' ? 'M-10 -50q-14 16 -32 34M-2 -50q-4 20 -8 42M8 -50q8 18 14 40' : 'M-8 -50q-6 20 -14 42M0 -50l0 44M8 -50q6 20 14 42';
+    const folds =
+      hem === 'swish'
+        ? 'M-10 -50q-14 16 -32 34M-2 -50q-4 20 -8 42M8 -50q8 18 14 40'
+        : hem === 'lift'
+          ? 'M-8 -50q-8 18 -20 34M0 -50l0 22M8 -50q8 18 20 34'
+          : 'M-8 -50q-6 20 -14 42M0 -50l0 44M8 -50q6 20 14 42';
     const sleeves = `${oval(-14, -79, 6.5, 5)}${oval(14, -79, 6.5, 5)}`;
     // glass slippers peeping out under the hem
     if (hem === 'swish') parts.push(place(slipperToe(1.1), 'translate(16 -1) rotate(20)'));
     else if (hem === 'lift') {
       // the skirt lifted in front: her ankles and both glass slippers show, toes turned out
-      const legLines = [limb([[-6, -24, 5.5], [-8, -6, 5]]), limb([[6, -24, 5.5], [8, -6, 5]])];
+      const legLines = [limb([[-7, -24, 5.5], [-11, -7, 5]]), limb([[7, -24, 5.5], [11, -7, 5]])];
       parts.push({ lines: legLines, washes: legLines.map((d) => ({ c: PAL.rose, o: 0.4, d: Z(d) })) });
-      parts.push(place(slipper({ shine: false }), 'translate(-7 -0.5) scale(-0.42 0.42)'), place(slipper({ shine: false }), 'translate(7 -0.5) scale(0.42)'));
+      parts.push(place(slipper({ shine: false }), 'translate(-9 -2.8) scale(-0.5 0.5)'), place(slipper({ shine: false }), 'translate(9 -2.8) scale(0.5)'));
     }
     else parts.push(place(slipperToe(1.15), 'translate(-12 0.5)'), place(slipperToe(1.15), 'translate(12 0.5)'));
     parts.push({
@@ -264,7 +269,8 @@ export function cinderella({ mood = 'happy', look = 0, up = 0, tilt = 0, arms, g
       const [x, y] = l[l.length - 1];
       const [px] = l[l.length - 2];
       const dir = x === px ? (i ? 1 : -1) : Math.sign(x - px);
-      if (bare[i]) {
+      if (glass[i]) parts.push(place(slipper({ shine: false }), `translate(${x + dir * 3} ${y - 1}) scale(${dir * 0.55} 0.55)`));
+      else if (bare[i]) {
         const foot = 'M-4 -3C-6 1 -5 4 -1 4L9 4C12 4 12 0 9 -1C6 -2 3 -3 -4 -3Z';
         parts.push(place({ lines: [foot], washes: [{ c: PAL.rose, o: 0.5, d: foot }] }, `translate(${x} ${y + 1}) scale(${dir * 0.75} 0.75)`));
       } else parts.push(place(shoe(PAL.terracotta, 0.8), `translate(${x} ${y + 1}) scale(${dir * 0.65} 0.65)`));
@@ -475,7 +481,7 @@ export function sister({ who = 'red', mood = 'proud', look = 0, up = 0, tilt = 0
     if (bare[i]) {
       // a big bare foot
       const foot = 'M-5 -5C-8 1 -6 5 -1 5L14 5C19 5 19 -1 14 -2C9 -3 4 -5 -5 -5Z';
-      parts.push(place({ lines: [foot], fine: ['M14 -1l0 5M10 -2l0 6'], washes: [{ c: PAL.rose, o: 0.55, d: foot }] }, `translate(${x} ${y}) scale(${dir} 1)`));
+      parts.push(place({ lines: [foot], fine: ['M14 -1l0 5M10 -2l0 6'], washes: [{ c: PAL.rose, o: 0.55, d: foot }] }, `translate(${x} ${y}) scale(${dir * 1.5} 1.5)`));
     } else {
       const toe = 'M-5 -4C-7 1 -6 4 -2 4L13 4C17 4 18 0 16 -1C10 -2 4 -4 -5 -4Z';
       parts.push(place({ lines: [toe], washes: [{ c: S.dress, o: 0.9, d: toe }] }, `translate(${x} ${y + 1}) scale(${dir * 0.65} 0.65)`));
@@ -685,7 +691,6 @@ export function coach() {
   const w2 = wheel(46, -22, 22);
   const shaft = 'M58 -46C76 -50 96 -52 118 -50';
   const scroll = 'M-60 -40C-64 -30 -56 -24 -52 -30M60 -40C66 -32 58 -26 54 -30';
-  const glass = 'M-14 -78L-14 -98C-14 -108 14 -108 14 -98L14 -78Z';
   return {
     lines: [w1.rim, w2.rim, body, win, stalk, shaft],
     fine: [ribs, door, curl, w1.spokes, w2.spokes, w1.hub, w2.hub, scroll, 'M-18 -88L18 -88', 'M-24 -40L24 -40'],
