@@ -90,14 +90,11 @@ function arm(pts, sleeve, o, hand) {
   return { lines: [d], fine: [h], washes: [{ c: sleeve, o, d: `${d}Z` }, { c: PAL.rose, o: 0.5, d: h }] };
 }
 
-/** Mirrors an arm's centreline (left ↔ right). */
-const mirror = (pts) => pts.map(([x, y, w]) => [-x, y, w]);
-
 // ---------------------------------------------------------------------------------------------
 // The fisherman (feet at 0,0), about 140 tall: a gentle old man with a bushy grey beard, a floppy
 // ochre hat, a sky-blue smock with a rope belt and a pocket, slate trousers and brown boots.
 // legs: false draws him only down to the hem of his smock (y = -40), for when he sits in his boat or
-// at the table. look: how far his pupils turn [dx, dy].
+// at the table. look: how far his pupils turn [dx, dy]. tilt: leaning (degrees, about his feet).
 // mood: 'happy', 'content' (eyes shut, smiling), 'worried', 'shout', 'wow'.
 const fsBrim = 'M-27 -115C-22 -122 -12 -124 0 -124C12 -124 22 -122 27 -115C21 -118 11 -119 0 -119C-11 -119 -21 -118 -27 -115Z';
 const fsCrown = 'M-14 -121C-16 -134 -8 -141 1 -140C10 -139 15 -133 14 -121';
@@ -165,10 +162,8 @@ export function fisherman({ mood = 'happy', arms = F_ARMS.down, legs = true, loo
     fine.push('M-16 -12l12 0M16 -12l-12 0');
     washes.push({ c: PAL.slate, o: 0.55, d: `${fsTrousers}Z` }, { c: PAL.terracotta, o: 0.75, d: fsBoots });
   }
-  const head = { lines, fine, washes, fills, glints };
-  const turned = tilt ? place(head, `rotate(${tilt} 0 -88)`) : head;
-  const parts = [arm(arms[0], PAL.sky, 0.6, 4), arm(arms[1], PAL.sky, 0.6, 4)];
-  return merge(turned, ...parts);
+  const all = merge({ lines, fine, washes, fills, glints }, arm(arms[0], PAL.sky, 0.6, 4), arm(arms[1], PAL.sky, 0.6, 4));
+  return tilt ? place(all, `rotate(${tilt})`) : all; // leaning, turned about his feet
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -228,9 +223,21 @@ export const I_ARMS = {
 /** Ilsebill's outline standing with her hands on her hips (to cut out of a dark doorway). */
 export const I_SIL_HIPS =
   'M0 -126C11 -126 19 -118 19 -104C19 -96 16 -91 12 -90L27 -83L32 -75L17 -63C22 -44 27 -22 29 -3L15 3L-15 3L-29 -3C-27 -22 -22 -44 -17 -63L-32 -75L-27 -83L-12 -90C-16 -91 -19 -96 -19 -104C-19 -118 -11 -126 0 -126Z';
-/** Ilsebill's outline sitting with her hands at her cheeks (scarf on). */
+/** Ilsebill's outline standing with her arms flung wide, hair in a bun, no apron. */
+export const I_SIL_WIDE =
+  'M0 -132C9 -132 17 -122 17 -106C17 -98 15 -93 13 -91L26 -97L34 -112L44 -110L42 -98L28 -84L15 -80L14 -62C21 -44 27 -22 30 -3L15 3L-15 3L-30 -3C-27 -22 -21 -44 -14 -62L-15 -80L-28 -84L-42 -98L-44 -110L-34 -112L-26 -97L-13 -91C-15 -93 -17 -98 -17 -106C-17 -122 -9 -132 0 -132Z';
+/** Ilsebill's outline sitting as a queen: crown, cloak, sceptre arm. */
+export const I_SIL_QUEEN =
+  'M0 -121L13 -120L17 -100C17 -93 15 -88 13 -85L17 -71C27 -61 33 -46 37 -26L40 -2L18 -1L-18 -1L-40 -2L-37 -26C-33 -46 -27 -61 -17 -71L-13 -85C-15 -88 -17 -93 -17 -100L-13 -120Z';
+/** Ilsebill's outline sitting as an empress: huge crown, cloak, hands in her lap. */
+export const I_SIL_EMPRESS =
+  'M-23 -144L0 -150L23 -144L17 -97C17 -93 15 -88 13 -85L17 -71C27 -61 33 -46 37 -26L40 -2L18 -1L-18 -1L-40 -2L-37 -26C-33 -46 -27 -61 -17 -71L-13 -85C-15 -88 -17 -93 -17 -97Z';
+/** Ilsebill's outline sitting, scarf on, hands flown up to her cheeks. */
 export const I_SIL_SIT_CHEEKS =
-  'M0 -109C11 -109 20 -101 20 -86C20 -80 16 -75 12 -73L25 -66L19 -45C26 -38 31 -28 31 -16L15 3L-15 3L-31 -16C-31 -28 -26 -38 -19 -45L-25 -66L-12 -73C-16 -75 -20 -80 -20 -86C-20 -101 -11 -109 0 -109Z';
+  'M0 -109C11 -109 20 -101 20 -88L29 -82L31 -66L22 -56L20 -45C26 -38 31 -28 31 -16L15 3L-15 3L-31 -16C-31 -28 -26 -38 -20 -45L-22 -56L-31 -66L-29 -82L-20 -88C-20 -101 -11 -109 0 -109Z';
+/** Ilsebill's outline sitting, scarf on, hands in her lap or at her cheeks. */
+export const I_SIL_SIT =
+  'M0 -109C11 -109 20 -101 20 -86C20 -80 16 -75 12 -73L23 -63L20 -45C26 -38 31 -28 31 -16L15 3L-15 3L-31 -16C-31 -28 -26 -38 -20 -45L-23 -63L-12 -73C-16 -75 -20 -80 -20 -86C-20 -101 -11 -109 0 -109Z';
 export function ilsebill({ pose = 'stand', mood = 'cross', arms = I_ARMS.hips, head = 'scarf', apron = true, cape = false, look = [0, 0], tilt = 0 } = {}) {
   const lines = [ilBodice];
   const fine = [];
@@ -332,6 +339,27 @@ export function ilsebill({ pose = 'stand', mood = 'cross', arms = I_ARMS.hips, h
 }
 
 // ---------------------------------------------------------------------------------------------
+// A golden throne (bottom centre at 0,0), w wide and h tall: a tall rounded back with knobs, arms,
+// short legs. cut: a shape (someone sitting on it, in the throne's own coordinates) that its gold
+// leaves out; it must lie inside the throne's outline.
+export function throne({ w = 96, h = 180, cut = '' } = {}) {
+  const x = w / 2;
+  const back = `M${-x} 0L${-x} ${-h + 30}C${-x} ${-h - 4} ${x} ${-h - 4} ${x} ${-h + 30}L${x} 0Z`;
+  const inner = `M${-x + 10} ${-h * 0.42}L${-x + 10} ${-h + 34}C${-x + 10} ${-h + 8} ${x - 10} ${-h + 8} ${x - 10} ${-h + 34}L${x - 10} ${-h * 0.42}`;
+  const knobs = dot(-x, -h + 26, 5.5) + dot(x, -h + 26, 5.5) + dot(0, -h - 8, 6);
+  const armsD = `M${-x - 8} ${-h * 0.24}L${-x} ${-h * 0.24}M${x} ${-h * 0.24}L${x + 8} ${-h * 0.24}M${-x - 8} ${-h * 0.24}L${-x - 8} ${-h * 0.2}L${-x} ${-h * 0.2}M${x + 8} ${-h * 0.24}L${x + 8} ${-h * 0.2}L${x} ${-h * 0.2}`;
+  return {
+    lines: [back, armsD],
+    fine: [inner, knobs, `M${-x + 4} 0L${-x + 4} 8M${x - 4} 0L${x - 4} 8`],
+    washes: [
+      { c: PAL.ochre, o: 0.8, d: `${back}${cut}`, rule: 'evenodd' },
+      { c: PAL.red, o: 0.8, d: knobs },
+      { c: PAL.ochre, o: 0.8, d: `M${-x - 8} ${-h * 0.24}L${-x} ${-h * 0.24}L${-x} ${-h * 0.2}L${-x - 8} ${-h * 0.2}ZM${x + 8} ${-h * 0.24}L${x} ${-h * 0.24}L${x} ${-h * 0.2}L${x + 8} ${-h * 0.2}Z` },
+    ],
+  };
+}
+
+// ---------------------------------------------------------------------------------------------
 // The flounder (centre of its body at 0,0, head to the left), about 84 long: a big flat diamond of a
 // fish, grey and ochre with terracotta spots, a frilly fin all round, both eyes on its top side and a
 // friendly smile. talk: mouth open. head: only the front of it (for popping out of the water; the
@@ -355,7 +383,6 @@ function finRays(x0, x1, top, n) {
 }
 export function flounder({ talk = false, look = [0, 0], head = false } = {}) {
   const [lx, ly] = look;
-  const body = head ? flHead : flBody;
   const lines = head ? [flHead] : [flBody, flTail];
   const fine = head ? [flHeadFinTop, flHeadFinBot, finRays(-26, -2, true, 6), finRays(-26, -2, false, 6)] : [flFinTop, flFinBot, finRays(-26, 28, true, 11), finRays(-26, 28, false, 11), 'M-20 4C-4 0 14 0 30 0', 'M36 -5l8 -6M36 5l8 6M37 0l9 0'];
   const fins = head ? `${flHeadFinTop}L0 -22C-12 -21 -22 -15 -28 -9ZM-28 13C-20 19 -10 22 0 22.5L0 30C-10 29 -20 23 -28 13Z` : `${flFinTop}C27 -10 18 -21 4 -22C-10 -23 -22 -16 -28 -9Z${flFinBot}C27 10 18 21 4 22C-10 23 -22 16 -28 13Z`;

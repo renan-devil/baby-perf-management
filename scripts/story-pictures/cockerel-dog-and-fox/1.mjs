@@ -1,4 +1,4 @@
-import { PAL, rays, zed } from '../lib.mjs';
+import { PAL, zed } from '../lib.mjs';
 import { BRANCH_AT, compose, cockerel, dogAsleep, oak, place } from './characters.mjs';
 
 // The Cockerel, the Dog and the Fox, 1 (cover): sunrise. On a high branch of the old oak the
