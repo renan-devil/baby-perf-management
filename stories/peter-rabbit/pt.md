@@ -16,7 +16,7 @@ Mas o Pedro, que era muito traquinas, correu direitinho para a horta do senhor M
 
 Primeiro, comeu umas alfaces. *Crunch, crunch.* Depois comeu uns feijões. *Nham, nham.* Depois comeu uns rabanetes. *Crunch, nham, crunch.* E depois, já um bocadinho enjoado, foi procurar salsa.
 
-Mas, ao virar a esquina de um canteiro de pepinos, quem é que ele encontrou? … O senhor McGregor!
+Mas, ao virar a esquina de um canteiro de pepinos, quem é que ele encontrou? O senhor McGregor!
 
 O senhor McGregor estava de gatas, a plantar couves. Levantou-se de um salto e correu atrás do Pedro, a abanar um ancinho e a gritar: — Agarra, ladrão!
 

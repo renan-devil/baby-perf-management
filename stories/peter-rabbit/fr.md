@@ -16,7 +16,7 @@ Mais Pierre, qui était très désobéissant, courut tout droit au jardin de M. 
 
 D’abord, il mangea des laitues. *Crounch, crounch.* Puis il mangea des haricots. *Miam, miam.* Puis il mangea des radis. *Crounch, miam, crounch.* Et puis, un peu barbouillé, il partit chercher du persil.
 
-Mais au coin d’un châssis de concombres, qui rencontra-t-il ? … M. McGregor !
+Mais au coin d’un châssis de concombres, qui rencontra-t-il ? M. McGregor !
 
 M. McGregor était à quatre pattes, en train de planter des choux. Il se releva d’un bond et courut après Pierre, en agitant un râteau et en criant : « Au voleur ! »
 
