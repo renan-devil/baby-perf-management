@@ -5,12 +5,13 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LANGS, newestFirst, REACTIONS, type Lang, type NewTelling, type Reaction, type Telling } from '../../api/_stories';
+import { newestFirst, REACTIONS, type Lang, type NewTelling, type Reaction, type Telling } from '../../api/_stories';
 import { useLocale } from '../i18n';
 import { authorName, hasText, LENGTHS, STORIES, storyText, STYLES, THEMES, type Block, type Story } from '../stories/catalog';
 import { spokenParts } from '../stories/listen';
 import { ListenControls, useReader } from '../stories/ListenControls';
 import { latestByStory, tasteBy } from '../stories/taste';
+import { LangSwitch } from '../ui/LangSwitch';
 
 const EMOJI: Record<Reaction, string> = { loved: '😍', ok: '🙂', disliked: '😕' };
 
@@ -53,20 +54,6 @@ function Cover({ story, className, alt = '' }: { story: Story; className: string
   ) : (
     <span className={`${className} story-placeholder`} aria-hidden>
       📖
-    </span>
-  );
-}
-
-/** Language the stories are read in (only the stories: the interface keeps its language). */
-function LangSwitch({ lang, onChange }: { lang: Lang; onChange: (l: Lang) => void }) {
-  const { t } = useTranslation();
-  return (
-    <span className="lang-switch" role="group" aria-label={t('stories.readIn')} title={t('stories.readIn')}>
-      {LANGS.map((l) => (
-        <button key={l} className={l === lang ? 'on' : ''} aria-pressed={l === lang} onClick={() => onChange(l)}>
-          {l.toUpperCase()}
-        </button>
-      ))}
     </span>
   );
 }
@@ -126,7 +113,7 @@ export function Stories({ path }: { path: string }) {
           </a>
         )}
         <span className="brand">{t('hub.stories.name')}</span>
-        <LangSwitch lang={lang} onChange={setLang} />
+        <LangSwitch lang={lang} onChange={setLang} label={t('stories.readIn')} />
       </header>
       <main className="page narrow">
         {loadError && <p className="callout serious">{t('stories.loadError', { message: loadError })}</p>}

@@ -6,6 +6,7 @@ const APPS = [
   { href: '#/dev/', icon: '🌱', key: 'development' },
   { href: '#/stories', icon: '📖', key: 'stories' },
   { href: '#/memory', icon: '🃏', key: 'memory' },
+  { href: '#/bucket-list', icon: '🎈', key: 'bucketList' },
   { href: '#/administrative', icon: '🗂', key: 'administrative' },
   { href: '#/school', icon: '🎒', key: 'school' },
   { href: '#/pictures', icon: '📷', key: 'pictures' },

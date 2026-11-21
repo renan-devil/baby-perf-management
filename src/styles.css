@@ -1163,3 +1163,116 @@ main {
   border-radius: 8px;
   box-shadow: 0 0 0 6px var(--progress-bg);
 }
+
+/* Bucket list (#/bucket-list): a grid of pictures, with a green ✓ on what Constance has done */
+.bucket-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 4px 0 10px;
+  font-weight: 600;
+}
+.bucket-bar {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--neutral-bg);
+  overflow: hidden;
+}
+.bucket-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--good);
+  transition: width 0.4s ease;
+}
+.bucket-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 10px 0 16px;
+}
+.bucket-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: var(--ink);
+  text-decoration: none;
+}
+.bucket-card:hover {
+  border-color: var(--accent);
+}
+.bucket-card.done {
+  border-color: var(--good);
+}
+.bucket-pic {
+  position: relative;
+  display: block;
+}
+.bucket-pic > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  background: #fbf6ea;
+}
+.bucket-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  font-size: 2.4rem;
+  background: var(--surface-2);
+}
+.bucket-stamp {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--good);
+  color: var(--surface);
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+.bucket-stamp.big {
+  top: 14px;
+  right: 10px;
+  width: 52px;
+  height: 52px;
+  font-size: 1.8rem;
+}
+.bucket-card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px 10px;
+}
+.bucket-name {
+  font-family: var(--story-font);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.bucket-when {
+  color: var(--good);
+  font-weight: 600;
+}
+.bucket-note {
+  margin: 4px 0 8px;
+  font-family: var(--story-font);
+  font-size: 1.18rem;
+  line-height: 1.5;
+}
+.bucket-done-line {
+  margin: 0;
+  color: var(--good);
+  font-size: 1.15rem;
+  font-weight: 700;
+}

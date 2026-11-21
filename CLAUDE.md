@@ -31,9 +31,17 @@ the user can also type `/add-story …`). In short:
   (`npm run build:pictures`), in the shared ink-and-watercolour style;
 - `src/stories/stories.test.ts` and `scripts/story-pictures/pictures.test.mjs` enforce these rules.
 
+## Bucket list (`#/bucket-list`)
+
+To add or change items, follow the **add-bucket-item** skill ([`.claude/skills/add-bucket-item/SKILL.md`](.claude/skills/add-bucket-item/SKILL.md);
+the user can also type `/add-bucket-item …`). The list is `bucket-list/items.json` (title and note in the three
+languages), with one picture per item, `bucket-list/<id>.svg`, drawn by `scripts/bucket-pictures/<id>.mjs`
+(`npm run build:bucket-pictures`) in the stories' style. What Constance has done lives in the Blob store
+(`api/_bucket.ts`), so never rename an item's id.
+
 ## Code notes
 
 - `api/` holds Vercel Functions. Local imports there end in `.js` (Node ESM on Vercel), and files whose
   name starts with `_` are shared code, not functions. Never put test files in `api/`.
-- Constance's reactions to stories live in the private Vercel Blob store, one never-modified file per
-  telling (`api/_stories.ts` explains the file names).
+- Constance's reactions to stories and her bucket-list marks live in the private Vercel Blob store, one
+  never-modified file each (`api/_stories.ts` and `api/_bucket.ts` explain the file names).

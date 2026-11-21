@@ -265,6 +265,10 @@
       "name": "Jogo da memória",
       "desc": "Encontrar os pares de imagens das histórias: um jogo para a Constance jogar sozinha"
     },
+    "bucketList": {
+      "name": "Lista de sonhos",
+      "desc": "Coisas a viver na infância: o que a Constance já fez e o que ainda está para vir"
+    },
     "administrative": {
       "name": "Administrativo",
       "desc": "Carregar e encontrar documentos administrativos"
@@ -362,5 +366,30 @@
       "start": "Encontra os pares!",
       "won": "Muito bem! Encontraste todos os pares!"
     }
+  },
+  "bucket": {
+    "readIn": "Língua da lista",
+    "back": "A lista toda",
+    "progress": "Já feito: {{done}} de {{total}}",
+    "search": "Pesquisar",
+    "searchPlaceholder": "Pesquisar em qualquer língua…",
+    "show": "Mostrar",
+    "shows": {
+      "all": "Tudo",
+      "todo": "Ainda não",
+      "done": "Feito"
+    },
+    "none": "Nada na lista corresponde.",
+    "notFound": "Isto não está na lista.",
+    "didIt": "A Constance já o fez?",
+    "day": "Dia em que o fez",
+    "markDone": "Já fez!",
+    "saved": "Muito bem, Constance! 🎉",
+    "doneOn": "Feito a {{date}}",
+    "undo": "Anular: ainda não feito",
+    "confirmUndo": "Marcar como ainda não feito?",
+    "saveError": "Não foi possível guardar ({{message}}). Tente novamente.",
+    "undoError": "Não foi possível anular ({{message}}).",
+    "loadError": "Não foi possível carregar o que a Constance já fez ({{message}}). A lista continua disponível."
   }
 }

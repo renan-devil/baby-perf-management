@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 import { App } from './App';
 import './i18n';
+import { BucketList } from './pages/BucketList';
 import { Documents } from './pages/Documents';
 import { Hub } from './pages/Hub';
 import { Login } from './pages/Login';
@@ -83,6 +84,7 @@ function Root() {
   if (path.startsWith('/dev') || path.startsWith('/share/')) return <DevRoot />;
   if (path.startsWith('/stories')) return <Stories path={path} />;
   if (path.startsWith('/memory')) return <Memory />;
+  if (path.startsWith('/bucket-list')) return <BucketList path={path} />;
   if (path.startsWith('/administrative')) return <Documents space="administrative" />;
   if (path.startsWith('/school')) return <Documents space="school" />;
   if (path.startsWith('/pictures')) return <Documents space="pictures" />;

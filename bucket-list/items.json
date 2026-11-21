@@ -1,0 +1,182 @@
+[
+  {
+    "id": "see-the-sea",
+    "title": { "en": "See the sea", "fr": "Voir la mer", "pt": "Ver o mar" },
+    "note": {
+      "en": "Feel the waves on her toes, and taste how salty the water is.",
+      "fr": "Sentir les vagues sur ses pieds et goûter l'eau salée.",
+      "pt": "Sentir as ondas nos pés e provar como a água é salgada."
+    }
+  },
+  {
+    "id": "build-a-sandcastle",
+    "title": { "en": "Build a sandcastle", "fr": "Construire un château de sable", "pt": "Fazer um castelo de areia" },
+    "note": {
+      "en": "With towers, a flag on top and a moat for the sea to fill.",
+      "fr": "Avec des tours, un drapeau tout en haut et des douves que la mer viendra remplir.",
+      "pt": "Com torres, uma bandeira lá em cima e um fosso para o mar encher."
+    }
+  },
+  {
+    "id": "swim-without-armbands",
+    "title": { "en": "Swim without armbands", "fr": "Nager sans brassards", "pt": "Nadar sem braçadeiras" },
+    "note": {
+      "en": "A few strokes all by herself, from one grown-up to the other.",
+      "fr": "Quelques brasses toute seule, d'un grand à l'autre.",
+      "pt": "Umas braçadas sozinha, de um adulto para o outro."
+    }
+  },
+  {
+    "id": "ride-a-bike",
+    "title": { "en": "Ride a bike without stabilisers", "fr": "Faire du vélo sans petites roues", "pt": "Andar de bicicleta sem rodinhas" },
+    "note": {
+      "en": "Wobble, wobble… and off she goes on her own!",
+      "fr": "Ça tangue un peu… et la voilà partie toute seule !",
+      "pt": "Abana, abana… e lá vai ela sozinha!"
+    }
+  },
+  {
+    "id": "climb-a-tree",
+    "title": { "en": "Climb a tree", "fr": "Grimper dans un arbre", "pt": "Subir a uma árvore" },
+    "note": {
+      "en": "Up to the first big branch, and wave from the top.",
+      "fr": "Jusqu'à la première grosse branche, et faire coucou de là-haut.",
+      "pt": "Até ao primeiro ramo grande, e acenar lá de cima."
+    }
+  },
+  {
+    "id": "jump-in-puddles",
+    "title": { "en": "Jump in puddles", "fr": "Sauter dans les flaques", "pt": "Saltar nas poças" },
+    "note": {
+      "en": "Wellies on, and the bigger the splash the better!",
+      "fr": "Avec des bottes, et plus ça éclabousse, mieux c'est !",
+      "pt": "De galochas calçadas, e quanto maior o salpico, melhor!"
+    }
+  },
+  {
+    "id": "build-a-snowman",
+    "title": { "en": "Build a snowman", "fr": "Faire un bonhomme de neige", "pt": "Fazer um boneco de neve" },
+    "note": {
+      "en": "With a carrot nose, two pebble eyes and a warm scarf.",
+      "fr": "Avec une carotte pour le nez, deux cailloux pour les yeux et une écharpe bien chaude.",
+      "pt": "Com uma cenoura no nariz, duas pedrinhas nos olhos e um cachecol quentinho."
+    }
+  },
+  {
+    "id": "fly-a-kite",
+    "title": { "en": "Fly a kite", "fr": "Faire voler un cerf-volant", "pt": "Lançar um papagaio de papel" },
+    "note": {
+      "en": "On a windy day, holding the string all by herself.",
+      "fr": "Un jour de vent, en tenant la ficelle toute seule.",
+      "pt": "Num dia de vento, a segurar o fio sozinha."
+    }
+  },
+  {
+    "id": "grow-a-sunflower",
+    "title": { "en": "Grow a sunflower from a seed", "fr": "Faire pousser un tournesol", "pt": "Fazer crescer um girassol" },
+    "note": {
+      "en": "Plant it, water it, and see who is taller by the end of summer.",
+      "fr": "Semer la graine, l'arroser, et voir qui est le plus grand à la fin de l'été.",
+      "pt": "Pôr a semente na terra, regá-la e ver quem é mais alto no fim do verão."
+    }
+  },
+  {
+    "id": "pick-cherries",
+    "title": { "en": "Pick cherries from a tree", "fr": "Cueillir des cerises", "pt": "Apanhar cerejas" },
+    "note": {
+      "en": "And hang a pair over each ear like earrings.",
+      "fr": "Et s'en accrocher une paire à chaque oreille, comme des boucles d'oreilles.",
+      "pt": "E pendurar um par em cada orelha, como brincos."
+    }
+  },
+  {
+    "id": "bake-a-cake",
+    "title": { "en": "Bake a cake", "fr": "Faire un gâteau", "pt": "Fazer um bolo" },
+    "note": {
+      "en": "Crack the eggs, stir the batter and lick the spoon.",
+      "fr": "Casser les œufs, mélanger la pâte et lécher la cuillère.",
+      "pt": "Partir os ovos, mexer a massa e lamber a colher."
+    }
+  },
+  {
+    "id": "sleep-in-a-tent",
+    "title": { "en": "Sleep in a tent", "fr": "Dormir sous la tente", "pt": "Dormir numa tenda" },
+    "note": {
+      "en": "A torch, a sleeping bag and the sounds of the night outside.",
+      "fr": "Une lampe de poche, un sac de couchage et les bruits de la nuit dehors.",
+      "pt": "Uma lanterna, um saco-cama e os sons da noite lá fora."
+    }
+  },
+  {
+    "id": "see-a-shooting-star",
+    "title": { "en": "See a shooting star", "fr": "Voir une étoile filante", "pt": "Ver uma estrela cadente" },
+    "note": {
+      "en": "Stay up late on a clear summer night, and make a wish.",
+      "fr": "Veiller tard par une nuit d'été bien claire, et faire un vœu.",
+      "pt": "Ficar acordada até tarde numa noite de verão limpa e pedir um desejo."
+    }
+  },
+  {
+    "id": "see-fireworks",
+    "title": { "en": "See fireworks", "fr": "Voir un feu d'artifice", "pt": "Ver fogo de artifício" },
+    "note": {
+      "en": "Ooh, aah… and a big bang to finish.",
+      "fr": "Des « oh ! », des « ah ! »… et un grand boum pour finir.",
+      "pt": "«Ohh!», «Ahh!»… e um grande estrondo no fim."
+    }
+  },
+  {
+    "id": "ride-a-pony",
+    "title": { "en": "Ride a pony", "fr": "Monter sur un poney", "pt": "Andar de pónei" },
+    "note": {
+      "en": "Sit up tall, hold the reins and give it a pat to say thank you.",
+      "fr": "Se tenir bien droite, tenir les rênes et lui faire une caresse pour dire merci.",
+      "pt": "Sentar-se direita, segurar as rédeas e fazer-lhe uma festa para agradecer."
+    }
+  },
+  {
+    "id": "see-a-dinosaur",
+    "title": { "en": "See a dinosaur skeleton", "fr": "Voir un squelette de dinosaure", "pt": "Ver um esqueleto de dinossauro" },
+    "note": {
+      "en": "At a natural history museum: how many children tall is it?",
+      "fr": "Dans un muséum d'histoire naturelle : il mesure combien d'enfants de haut ?",
+      "pt": "Num museu de história natural: quantas crianças de altura terá?"
+    }
+  },
+  {
+    "id": "see-a-puppet-show",
+    "title": { "en": "See a puppet show", "fr": "Voir un spectacle de marionnettes", "pt": "Ver um teatro de marionetas" },
+    "note": {
+      "en": "And shout “Behind you!” when the baddie creeps up.",
+      "fr": "Et crier « Attention, derrière toi ! » quand le méchant arrive.",
+      "pt": "E gritar «Cuidado, atrás de ti!» quando o mau aparece."
+    }
+  },
+  {
+    "id": "take-the-train",
+    "title": { "en": "Take a long train journey", "fr": "Faire un long voyage en train", "pt": "Fazer uma longa viagem de comboio" },
+    "note": {
+      "en": "Watch fields, cows and towns rush past the window.",
+      "fr": "Regarder défiler les champs, les vaches et les villes par la fenêtre.",
+      "pt": "Ver passar campos, vacas e cidades pela janela."
+    }
+  },
+  {
+    "id": "fly-in-a-plane",
+    "title": { "en": "Fly in a plane", "fr": "Prendre l'avion", "pt": "Andar de avião" },
+    "note": {
+      "en": "Look down on the clouds from the window seat.",
+      "fr": "Regarder les nuages d'en haut, côté hublot.",
+      "pt": "Ver as nuvens lá de cima, à janela."
+    }
+  },
+  {
+    "id": "lose-a-tooth",
+    "title": { "en": "Lose her first tooth", "fr": "Perdre sa première dent", "pt": "Perder o primeiro dente" },
+    "note": {
+      "en": "Put it under the pillow and wait for the tooth fairy.",
+      "fr": "La glisser sous l'oreiller et attendre la petite souris.",
+      "pt": "Pô-lo debaixo da almofada e esperar pela fada dos dentes."
+    }
+  }
+]

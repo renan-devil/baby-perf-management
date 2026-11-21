@@ -16,6 +16,7 @@ The site opens on a **password page**, then a home screen with one card per appl
 | **Development** | The development tracker below (`#/dev/`) |
 | **Stories** | Stories to tell Constance, with pictures, in French, English and Portuguese, lasting 2, 5 or 10 minutes; after each telling, note whether she loved it, found it OK or didn't like it (`#/stories`). See [Stories](#stories) |
 | **Memory** | A memory game Constance can play on her own: pairs of story covers to find, with a voice that names each story she finds (`#/memory`). See [Memory](#memory) |
+| **Bucket list** | Things to do once in Constance's childhood, one picture each, in French, English and Portuguese; search them, and mark the ones she has done with the day (`#/bucket-list`). See [Bucket list](#bucket-list) |
 | **Administrative** | Upload, open, download and delete administrative documents (`#/administrative`) |
 | **School** | The same for documents from school (`#/school`) |
 | **Pictures** | Photos of Constance as a grid, with upload, download and delete (`#/pictures`) |
@@ -41,6 +42,13 @@ The site opens on a **password page**, then a home screen with one card per appl
 - **The voice** is the device's own (no recordings): it says "Find the pairs!", names each story when its pair is found (tap a found pair to hear it again) and congratulates her at the end. The FR · EN · PT switch chooses its language. Tip: on an iPhone or iPad, *Guided Access* (Settings → Accessibility) keeps her inside the game.
 - Code: the rules in [`src/memory/game.ts`](src/memory/game.ts) (tested in `game.test.ts`), voice in [`src/speech.ts`](src/speech.ts), sounds in [`src/memory/sound.ts`](src/memory/sound.ts), the screen in [`src/pages/Memory.tsx`](src/pages/Memory.tsx).
 
+## Bucket list
+- **Things to do in childhood**: see the sea, ride a bike without stabilisers, sleep in a tent, lose her first tooth… 20 to start with, each with a short note and a picture in the same ink-and-watercolour style as the stories. The list shows how many are done, a green ✓ on each one she has done (with the day), and **All · Not yet · Done** filters.
+- **Search** ignores accents and capitals and looks in the three languages at once, so "mer", "sea" and "mar" all find *See the sea*. The FR · EN · PT switch chooses the language of the list.
+- **Mark one as done**: open it, pick the day, tap **She did it!**. Tap **Undo** to go back to "not yet". Shared by the family.
+- **Add items by asking Claude**: type `/add-bucket-item See the northern lights` in a Claude Code session; Claude follows [`.claude/skills/add-bucket-item/SKILL.md`](.claude/skills/add-bucket-item/SKILL.md) (three languages and a picture drawn by code). The list is the file [`bucket-list/items.json`](bucket-list/items.json); the format is in [`bucket-list/README.md`](bucket-list/README.md).
+- **What she has done** is kept like the story reactions: one small file per mark in the private Blob store, never changed afterwards, whose name holds everything (`bucket-list/<item>/<day>_<time saved>.json`). Code: [`api/bucket.ts`](api/bucket.ts), [`api/_bucket.ts`](api/_bucket.ts) and [`src/pages/BucketList.tsx`](src/pages/BucketList.tsx).
+
 ## Screens (Development)
 | Screen | What it does |
 |---|---|
@@ -59,7 +67,7 @@ npm run dev          # http://localhost:5173
 ```
 Without any configuration, the app stores data **only in the browser** (IndexedDB). That's handy for trying it out. On first launch, the app loads Constance's history automatically (192 skills: the Excel milestones plus skills filled at their typical age).
 
-Checks: `npm test` (maths, graph, catalogue and stories checks) · `npm run lint` · `npm run typecheck` · `npm run build`.
+Checks: `npm test` (maths, graph, catalogue, stories and bucket-list checks) · `npm run lint` · `npm run typecheck` · `npm run build`.
 
 ## Put it online for the family (free)
 Two free services: **Supabase** (database, login, photos) and **Vercel** (hosting). About 20 minutes, one time.

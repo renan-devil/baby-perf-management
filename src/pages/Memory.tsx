@@ -4,12 +4,13 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LANGS, type Lang } from '../../api/_stories';
+import type { Lang } from '../../api/_stories';
 import i18n, { useLocale } from '../i18n';
 import { deal, flip, hide, isWon, LEVELS, type Game, type Level } from '../memory/game';
 import { chimeMatch, chimeWin } from '../memory/sound';
 import { speak, stopSpeaking } from '../speech';
 import { STORIES, storyText } from '../stories/catalog';
+import { LangSwitch } from '../ui/LangSwitch';
 
 /** Stories that have a cover, which is what the cards show. */
 const DECK = STORIES.filter((s) => s.pictures[1]);
@@ -93,13 +94,7 @@ export function Memory() {
           </a>
         )}
         <span className="brand">{t('hub.memory.name')}</span>
-        <span className="lang-switch" role="group" aria-label={t('memory.voice')} title={t('memory.voice')}>
-          {LANGS.map((l) => (
-            <button key={l} className={l === lang ? 'on' : ''} aria-pressed={l === lang} onClick={() => setLang(l)}>
-              {l.toUpperCase()}
-            </button>
-          ))}
-        </span>
+        <LangSwitch lang={lang} onChange={setLang} label={t('memory.voice')} />
       </header>
       <main className="page memory">
         {!game || !level ? (

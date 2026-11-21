@@ -265,6 +265,10 @@
       "name": "Mémory",
       "desc": "Retrouver les paires d'images des histoires : un jeu pour Constance toute seule"
     },
+    "bucketList": {
+      "name": "Liste de rêves",
+      "desc": "Les choses à vivre pendant l'enfance : ce que Constance a déjà fait, et ce qui l'attend"
+    },
     "administrative": {
       "name": "Administratif",
       "desc": "Déposer et retrouver les documents administratifs"
@@ -362,5 +366,30 @@
       "start": "Trouve les paires !",
       "won": "Bravo ! Tu as trouvé toutes les paires !"
     }
+  },
+  "bucket": {
+    "readIn": "Langue de la liste",
+    "back": "Toute la liste",
+    "progress": "Déjà fait : {{done}} sur {{total}}",
+    "search": "Rechercher",
+    "searchPlaceholder": "Chercher dans les trois langues…",
+    "show": "Afficher",
+    "shows": {
+      "all": "Tout",
+      "todo": "Pas encore",
+      "done": "Fait"
+    },
+    "none": "Rien dans la liste ne correspond.",
+    "notFound": "Ce n'est pas dans la liste.",
+    "didIt": "Constance l'a-t-elle fait ?",
+    "day": "Le jour où elle l'a fait",
+    "markDone": "Elle l'a fait !",
+    "saved": "Bravo Constance ! 🎉",
+    "doneOn": "Fait le {{date}}",
+    "undo": "Annuler : pas encore fait",
+    "confirmUndo": "Marquer comme pas encore fait ?",
+    "saveError": "Impossible d'enregistrer ({{message}}). Merci de réessayer.",
+    "undoError": "Impossible d'annuler ({{message}}).",
+    "loadError": "Impossible de charger ce que Constance a déjà fait ({{message}}). La liste reste lisible."
   }
 }

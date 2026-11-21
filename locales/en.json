@@ -265,6 +265,10 @@
       "name": "Memory",
       "desc": "Find the pairs of story pictures: a game Constance can play on her own"
     },
+    "bucketList": {
+      "name": "Bucket list",
+      "desc": "Things to do in childhood: what Constance has done, and what is still to come"
+    },
     "administrative": {
       "name": "Administrative",
       "desc": "Upload and find administrative documents"
@@ -362,5 +366,30 @@
       "start": "Find the pairs!",
       "won": "Well done! You found all the pairs!"
     }
+  },
+  "bucket": {
+    "readIn": "Language of the list",
+    "back": "The whole list",
+    "progress": "Done so far: {{done}} of {{total}}",
+    "search": "Search",
+    "searchPlaceholder": "Search in any language…",
+    "show": "Show",
+    "shows": {
+      "all": "All",
+      "todo": "Not yet",
+      "done": "Done"
+    },
+    "none": "Nothing on the list matches.",
+    "notFound": "This is not on the list.",
+    "didIt": "Has Constance done it?",
+    "day": "Day she did it",
+    "markDone": "She did it!",
+    "saved": "Well done, Constance! 🎉",
+    "doneOn": "Done on {{date}}",
+    "undo": "Undo: not done yet",
+    "confirmUndo": "Mark this as not done yet?",
+    "saveError": "Could not save ({{message}}). Please try again.",
+    "undoError": "Could not undo ({{message}}).",
+    "loadError": "Could not load what Constance has done ({{message}}). The list can still be read."
   }
 }
