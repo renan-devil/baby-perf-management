@@ -36,7 +36,9 @@ One picture per item: `scripts/bucket-pictures/<id>.mjs` draws `bucket-list/<id>
 
 - It default-exports a drawing for `svg()` in `scripts/story-pictures/lib.mjs`: read the comment above
   `svg()` (washes, lines, fine, whites, fills, glints; helpers paths, hatch, tufts, rays, zed; palette
-  `PAL`). Import with `from '../story-pictures/lib.mjs'`.
+  `PAL`). Import with `from '../story-pictures/lib.mjs'`. `whites` takes bare path data, but `fills`
+  and `glints` take SVG elements (`<circle cx="…" cy="…" r="…"/>`, `<path d="…"/>`): bare path data
+  there silently draws nothing.
 - Use an existing bucket-list picture as your model (for example `scripts/bucket-pictures/see-the-sea.mjs`).
 - **Style**: loose, scratchy ink line, watercolour washes, plenty of cream paper; only `PAL` colours;
   original drawings, never copying an existing illustration. One clear subject (usually an object or a

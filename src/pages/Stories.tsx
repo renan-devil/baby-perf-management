@@ -30,7 +30,7 @@ function localToday(): string {
 /** "2026-11-07" → "7 Nov" (with the year when it is not this year), in the interface language. */
 function useFormatDay() {
   const { i18n } = useTranslation();
-  const locale = i18n.language === 'pt' ? 'pt-PT' : i18n.language;
+  const locale = i18n.language === 'pt' ? 'pt-PT' : i18n.language === 'en' ? 'en-GB' : i18n.language;
   return (iso: string) => {
     const d = new Date(`${iso}T12:00:00`);
     const thisYear = d.getFullYear() === new Date().getFullYear();

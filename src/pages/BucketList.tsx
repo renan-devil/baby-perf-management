@@ -24,7 +24,7 @@ function localToday(): string {
 /** "2025-07-14" → "14 Jul 2025", in the interface language. */
 function useFormatDay() {
   const { i18n } = useTranslation();
-  const locale = i18n.language === 'pt' ? 'pt-PT' : i18n.language;
+  const locale = i18n.language === 'pt' ? 'pt-PT' : i18n.language === 'en' ? 'en-GB' : i18n.language;
   return (iso: string) => new Date(`${iso}T12:00:00`).toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' });
 }
 

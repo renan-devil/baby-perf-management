@@ -1,6 +1,6 @@
 // Take the train: a little red steam train, an engine pulling two carriages, puffs along a track
 // through green hills, while a cow in the field watches it go by.
-import { PAL, paths, tufts } from '../story-pictures/lib.mjs';
+import { PAL, paths, transformPath, tufts } from '../story-pictures/lib.mjs';
 
 const f = (n) => Math.round(n * 10) / 10;
 const dot = (x, y, r, ry = r) => `M${f(x - r)} ${f(y)}a${r} ${ry} 0 1 0 ${f(2 * r)} 0a${r} ${ry} 0 1 0 ${f(-2 * r)} 0Z`;
@@ -16,7 +16,6 @@ let sleepers = '';
 for (let x = 6; x < 400; x += 17) sleepers += `M${x} 204L${x} 210`;
 // Paper left around the train and the cow, so their colours stay clean.
 const trainHalo = 'M28 204L28 118Q84 96 134 112Q184 96 232 102L232 98L300 98L312 112L312 94L352 94L354 130L374 204Z';
-const cowHalo = 'M30 238C34 224 64 222 92 224C100 208 132 206 144 218C150 232 140 246 116 252C116 272 110 294 98 296C80 298 48 298 38 290C28 280 26 252 30 238Z';
 
 // Engine, facing right
 const cab = rect(236, 110, 280, 172);
@@ -29,7 +28,6 @@ const chimney = 'M322 134L324 112L318 102L346 102L340 112L340 134Z';
 const dome = 'M296 134C296 122 312 122 312 134Z';
 const footplate = 'M232 172L354 172L354 178L232 178Z';
 const cowcatcher = 'M350 178L372 198L350 198Z';
-const lamp = 'M342 120L350 120L350 128L342 128Z';
 const wheels = [
   [256, 185, 15],
   [292, 185, 15],
@@ -61,18 +59,23 @@ const puff = (cx, cy, r) =>
 const puffs = `${puff(330, 86, 11)}${puff(302, 66, 15)}${puff(262, 50, 18)}${puff(220, 40, 14)}`;
 const speed = 'M6 132L26 132M2 148L22 148M8 164L26 164M210 30l-24 0M206 46l-18 0';
 
-// The cow, facing right, looking up at the train
-const cowBody = 'M46 244C46 234 58 230 72 232C84 230 96 231 102 236C108 242 108 256 102 264C92 270 62 270 52 266C46 262 44 252 46 244Z';
-const cowHead = 'M100 240C98 228 104 220 114 218C122 216 130 218 136 224C140 228 140 236 134 238C128 240 122 242 116 246C108 250 102 248 100 240Z';
-const muzzle = 'M126 222C134 220 140 226 139 232C138 238 132 240 127 238C122 234 122 226 126 222Z';
-const ear = 'M106 224C100 220 94 220 92 224C96 228 102 228 106 226Z';
-const horn = 'M110 218C110 212 114 208 118 208';
-const legShape = 'M51 262L57 262L57 287L51 287ZM57 264L63 264L63 289L57 289ZM89 264L95 264L95 289L89 289ZM95 262L101 262L101 287L95 287Z';
-const cowHooves = 'M51 284L57 284L57 288L51 288ZM57 286L63 286L63 290L57 290ZM89 286L95 286L95 290L89 290ZM95 284L101 284L101 288L95 288Z';
-const cowTail = 'M47 244C40 248 38 258 40 270';
-const tailTuft = 'M37 268C36 274 40 278 43 276C44 272 42 268 40 268Z';
-const patches = 'M60 236C68 234 76 238 74 246C72 254 62 254 58 248C54 244 56 238 60 236ZM86 248C94 246 100 252 98 258C94 264 84 262 82 256C80 252 82 248 86 248ZM104 222C108 218 114 218 116 222C114 228 108 230 104 226Z';
-const udder = 'M74 268C76 274 84 274 86 268Z';
+// The cow, facing right, looking up at the train (drawn at the left edge, then moved into the field)
+const CW = (d) => transformPath(d, 'translate(18 0)');
+// Paper left around the cow, so its patches and pink nose stay clean.
+const cowHalo = CW('M30 284C28 262 30 246 36 240C44 230 70 228 100 234C104 220 122 210 140 218C154 226 156 244 146 252C134 258 120 256 112 264L111 298L84 298L84 282L74 282L74 298L44 298L42 286Z');
+const cowBody = CW('M42 248C42 236 56 232 72 234C86 232 98 233 104 240C110 246 110 262 104 270C94 276 60 276 50 272C42 268 40 258 42 248Z');
+const cowHead = CW('M100 244C100 232 108 224 118 222C126 220 134 222 138 226L146 232C150 236 148 246 142 248C136 250 130 248 124 250C114 254 104 254 100 244Z');
+const muzzle = CW('M136 225C144 226 150 234 148 242C146 248 138 250 132 246C130 238 130 230 136 225Z');
+const ear = CW('M108 228C100 222 92 222 90 226C94 232 102 232 108 232Z');
+const earIn = CW('M104 228C99 225 95 225 94 227C97 230 101 230 104 230Z');
+const horn = CW('M113 223C113 219 115 216 119 215');
+const face = CW('M136 247q4 2 8 -1');
+const legShape = CW('M62 268L70 268L69 292L63 292ZM86 268L94 268L93 292L87 292ZM48 266L57 266L56 294L49 294ZM98 266L107 266L106 294L99 294Z');
+const cowHooves = CW('M63 288L69 288L69 292L63 292ZM87 288L93 288L93 292L87 292ZM49 290L56 290L56 294L49 294ZM99 290L106 290L106 294L99 294Z');
+const cowTail = CW('M44 246C36 250 34 262 36 274');
+const tailTuft = CW('M33 272C32 278 36 283 40 281C41 277 39 272 36 272Z');
+const patches = CW('M60 238C70 236 78 242 76 250C74 258 62 258 58 252C54 246 56 240 60 238ZM86 252C96 250 102 258 100 264C96 270 84 268 82 262C80 256 82 252 86 252ZM102 236C106 230 112 230 114 236C112 242 106 244 102 240Z');
+const udder = CW('M74 274C76 280 86 280 88 274Z');
 
 export default {
   title: 'Take the train',
@@ -89,11 +92,11 @@ export default {
     { c: PAL.slate, o: 0.6, d: `${cabRoof}${c1.roof}${c2.roof}${chimney}` },
     { c: PAL.ink, o: 0.55, d: `${footplate}${cowcatcher}${c1.under}${c2.under}` },
     { c: PAL.slate, o: 0.55, d: wheelRims },
-    { c: PAL.ochre, o: 0.85, d: `${dome}${lamp}M298 134L302 134L302 172L298 172ZM318 134L322 134L322 172L318 172Z${rect(138, 164, 226, 168)}${rect(38, 164, 126, 168)}` },
+    { c: PAL.ochre, o: 0.85, d: `${dome}M298 134L302 134L302 172L298 172ZM318 134L322 134L322 172L318 172Z${rect(138, 164, 226, 168)}${rect(38, 164, 126, 168)}` },
     // cow
     { c: PAL.ink, o: 0.75, d: `${patches}${tailTuft}${cowHooves}` },
-    { c: PAL.rose, o: 0.75, d: `${muzzle}${udder}` },
-    { c: PAL.green, o: 0.45, d: 'M30 288C40 280 110 280 122 288C112 296 40 296 30 288Z' },
+    { c: PAL.rose, o: 0.75, d: `${muzzle}${udder}${earIn}` },
+    { c: PAL.green, o: 0.45, d: CW('M30 292C40 286 116 286 126 294C112 299 40 299 30 292Z') },
   ],
   lines: paths([
     farHill,
@@ -121,7 +124,6 @@ export default {
     smokebox,
     bands,
     footplate,
-    lamp,
     c1.windows,
     c2.windows,
     c1.trim,
@@ -138,9 +140,11 @@ export default {
     patches,
     udder,
     tailTuft,
-    'M131 229l2 1M131 233l2 1',
-    tufts([[130, 290], [24, 292], [170, 240], [250, 252], [340, 236], [380, 270], [210, 280], [300, 284]], 9, 11),
+    face,
+    earIn,
+    tufts([[146, 290], [30, 292], [170, 240], [250, 252], [340, 236], [380, 270], [210, 280], [300, 284]], 9, 11),
   ]),
   once: `<path d="${speed}" stroke-dasharray="10 4"/>`,
-  fills: `<path d="${dot(117, 226, 2)}"/>`,
+  fills: `<path d="${CW(`${dot(121.5, 231, 2.3)}${dot(144, 234, 1.3)}`)}"/>`,
+  glints: `<path d="${CW(dot(120.8, 230.2, 0.7))}"/>`,
 };
