@@ -58,7 +58,7 @@ Elle regarda par terre. C’était un petit gland marron, avec son petit chapeau
 
 « SAUVONS-NOUS ! cria Coq Coquet. *Cocorico !* »
 
-![De retour à la ferme, les cinq oiseaux sont assis ensemble et rient, tandis que Poule Poulette montre le petit gland.](picture-5.svg)
+![De retour à la ferme, les amis sont assis ensemble et rient, tandis que Poule Poulette montre le petit gland.](picture-5.svg)
 
 Et ils se sauvèrent tous. *Trotte, flap, dandine, cacarde, glougloute !* Hors du bois, le long du sentier, et jusqu’à la cour de la ferme. Renard Roublard resta tout seul devant sa porte, sans rien du tout pour son dîner.
 

@@ -58,7 +58,7 @@ She looked down. It was a little brown acorn, with a little brown cap. Then she 
 
 “RUN!” shouted Cocky Locky. “*Cock-a-doodle-doo!*”
 
-![Back in the farmyard, the five birds sit together and laugh, while Henny Penny holds up the little acorn.](picture-5.svg)
+![Back in the farmyard, the friends sit together and laugh, while Henny Penny holds up the little acorn.](picture-5.svg)
 
 And they all ran. *Scurry, flap, waddle, honk, gobble!* Out of the wood, along the path, and all the way home to the farmyard. Foxy Loxy was left all alone at his door, with nothing at all for his dinner.
 

@@ -58,7 +58,7 @@ Olhou para o chão. Era uma bolotinha castanha, com o seu chapeuzinho castanho. 
 
 — FUJAM! — gritou o Galo Gonçalo. — *Cocorocó!*
 
-![De volta à quinta, as cinco aves estão sentadas juntas a rir, e a Galinha Mariquinha mostra a bolotinha.](picture-5.svg)
+![De volta à quinta, os amigos estão sentados juntos a rir, e a Galinha Mariquinha mostra a bolotinha.](picture-5.svg)
 
 E fugiram todos. *Corre, bate asas, bamboleia, grasna, glu-glu!* Para fora do bosque, pelo carreiro, e até ao pátio da quinta. A Raposa Manhosa ficou sozinha à porta, sem nada para o jantar.
 
