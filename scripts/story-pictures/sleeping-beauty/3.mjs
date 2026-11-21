@@ -14,7 +14,7 @@ export default compose({
   parts: [
     place(oldFairy({ point: 16 }), 'translate(78 266) scale(1.5)'),
     place(cradle({ mood: 'asleep' }), 'translate(252 264) scale(1.5)'),
-    place(fairyPeek(), 'translate(334 138) scale(1.6)'),
+    place(fairyPeek(), 'translate(334 136) scale(1.8)'),
     place(curtain({ w: 76, h: 236 }), 'translate(334 270)'),
   ],
 });

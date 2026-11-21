@@ -32,7 +32,7 @@ Everyone gasped. The Queen began to cry.
 
 But the youngest fairy had been hiding behind a curtain, because she had not given her gift yet. She stepped out. “Don’t cry,” she said gently. “I cannot undo the old fairy’s spell, but I can make it softer.”
 
-![The King’s men pile up all the spinning wheels of the kingdom on a big bonfire.](picture-4.svg)
+![The King points to a big bonfire where all the spinning wheels of the kingdom are burning.](picture-4.svg)
 
 “If the princess pricks her finger,” said the youngest fairy, “she will not be hurt. She will only fall into a deep, deep sleep. She will sleep for one hundred years, and then a King’s son will come and wake her.”
 

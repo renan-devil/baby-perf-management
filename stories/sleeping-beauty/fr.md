@@ -32,7 +32,7 @@ Tout le monde poussa un cri. La Reine se mit à pleurer.
 
 Mais la plus jeune fée s’était cachée derrière un rideau, car elle n’avait pas encore fait son don. Elle sortit. « Ne pleurez pas, dit-elle doucement. Je ne peux pas défaire le sort de la vieille fée, mais je peux l’adoucir. »
 
-![Les hommes du Roi entassent tous les rouets du royaume sur un grand feu de joie.](picture-4.svg)
+![Le Roi montre du doigt un grand feu de joie où brûlent tous les rouets du royaume.](picture-4.svg)
 
 « Si la princesse se pique le doigt, dit la plus jeune fée, elle n’aura aucun mal. Elle tombera seulement dans un sommeil profond, très profond. Elle dormira cent ans, et puis le fils d’un Roi viendra la réveiller. »
 

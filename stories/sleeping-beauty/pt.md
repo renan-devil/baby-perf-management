@@ -32,7 +32,7 @@ Todos soltaram um grito. A Rainha começou a chorar.
 
 Mas a fada mais nova tinha-se escondido atrás de uma cortina, porque ainda não tinha dado o seu dom. Saiu e disse com doçura: — Não chorem. Não consigo desfazer o feitiço da fada velha, mas consigo torná-lo mais suave.
 
-![Os homens do Rei empilham todas as rodas de fiar do reino numa grande fogueira.](picture-4.svg)
+![O Rei aponta para uma grande fogueira onde ardem todas as rodas de fiar do reino.](picture-4.svg)
 
 — Se a princesa picar o dedo — disse a fada mais nova — não se vai magoar. Vai só cair num sono profundo, muito profundo. Vai dormir cem anos, e depois o filho de um Rei virá acordá-la.
 

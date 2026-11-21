@@ -96,6 +96,16 @@ export const P_ARMS = {
     [[-13, -80, 6.5], [-19, -68, 6], [-12, -58, 6], [-5, -56, 6]],
     [[13, -80, 6.5], [19, -68, 6], [12, -58, 6], [5, -56, 6]],
   ],
+  // reaching out to the right (towards the spindle)
+  reach: [
+    [[-13, -80, 6.5], [-18, -68, 6], [-21, -56, 6], [-21, -50, 6]],
+    [[13, -80, 6.5], [26, -76, 6], [38, -72, 6], [46, -72, 6]],
+  ],
+  // both hands held out in front, to the right (sitting up, to the prince)
+  hold: [
+    [[-13, -80, 6.5], [-14, -66, 6], [-2, -60, 6], [10, -62, 6]],
+    [[13, -80, 6.5], [24, -72, 6], [36, -68, 6], [44, -70, 6]],
+  ],
 };
 export function princessHead({ mood = 'happy', look = 0, hair = 'long' } = {}) {
   const face = 'M-12 -2C-12.4 9 -6.5 14 0 14C6.5 14 12.4 9 12 -2';
@@ -153,6 +163,27 @@ function princessBody({ arms, upper = false }) {
 }
 export function princess({ mood = 'happy', look = 0, arms = P_ARMS.down, upper = false, hair = 'long' } = {}) {
   return merge(princessBody({ arms, upper }), place(princessHead({ mood, look, hair }), `translate(${P_HEAD[0]} ${P_HEAD[1]})`));
+}
+
+/**
+ * The princess lying asleep on her back on top of a bed, seen from the side: the mattress top is
+ * y = 0, her head (asleep, hair spread on the pillow) at (0, -16), her feet at x = 136, the skirt
+ * falling softly over the front of the mattress down to y = 14.
+ */
+export function princessLying() {
+  const dress = 'M11 -6C22 -14 38 -14 48 -9C70 -14 100 -22 122 -26C128 -16 130 0 127 13C100 15 70 14 30 4L14 2C10 0 9 -3 11 -6Z';
+  const sash = 'M38 -11.5L44 -10L44 6L38 4.5Z';
+  const folds = 'M116 -24C120 -12 122 0 120 13M62 -9q16 -2 26 -8M64 3q20 2 40 -2';
+  const sleeve = oval(18, -8, 6, 5);
+  const shoes = `${oval(136, -6, 2.6, 5)}${oval(136, 4, 2.6, 5)}`;
+  const armD = arm([[18, -10, 6], [30, -14, 6], [42, -16, 6], [52, -14, 6]], [W(PAL.rose, 0.45)], 4);
+  return merge(
+    { lines: [shoes], fine: ['M127 -6L133 -6M127 4L133 4'], washes: [W(PAL.slate, 0.8, shoes)] },
+    { lines: [dress], fine: [sash, folds], washes: [W(PAL.rose, 0.85, dress), W(PAL.red, 0.55, sash)] },
+    { lines: [sleeve], washes: [W(PAL.rose, 0.9, sleeve)] },
+    armD,
+    place(princessHead({ mood: 'asleep', hair: 'spread' }), 'translate(0 -16) rotate(-18)'),
+  );
 }
 
 // =============================================================================================
@@ -235,24 +266,23 @@ export function wandTip(arms = F_ARMS.wandOut, wandTo = null) {
  */
 export function fairyPeek() {
   const c = FAIRY.young;
-  const face = 'M0 -10C-6 -10 -10 -6 -10 -1C-10.3 8 -5.5 12 0 12';
-  const top = 'M0 -16C-7 -16 -12 -10 -11 1C-9 -5 -5 -7 0 -6';
-  const knot = 'M-2 -15C-5 -20 -3 -25 0 -24.6';
-  const wing = 'M0 -2C-8 -14 -26 -18 -24 -6C-22 4 -10 4 0 2';
-  const hand = dot(-1.5, 22, 3.4);
-  return {
+  const face = 'M0 -9.5C-3 -11 -7 -11.5 -10 -9.5C-15 -6 -17 0 -16 4C-14 10 -8 12 -3 11.5C-1.5 11.3 -0.5 11 0 10.6';
+  const top = 'M0 -13C-6 -18 -14 -16 -17 -8C-17.5 -4 -17 1 -16 3C-14 -4 -9 -7 -4 -7C-2 -6.6 -1 -6.6 0 -6.8';
+  const knot = 'M-12 -15C-14 -21 -9 -25 -5 -24C-2 -23 -1 -19 -3 -15.6';
+  const wing = 'M-4 -22C-10 -36 -26 -40 -28 -31C-30 -23 -16 -20 -6 -20';
+  const hand = dot(-2, 20, 3.6);
+  const m = place(faceMarks({ mood: 'wow', ex: 4, ey: 1, my: 5, w: 3 }), 'translate(-7 0)');
+  return merge(m, {
     lines: [face, top, knot, wing],
-    fine: [hand, 'M-7 6q2.5 -2.8 5 0', 'M-5.5 -3.5l4 -1.2', 'M-4 8q2 1.6 4 1'],
+    fine: [hand],
     washes: [
       W(PAL.rose, 0.3, `${face}Z`),
       W(c.hair, 0.9, `${top}Z${knot}Z`),
       W(PAL.sky, 0.4, `${wing}Z`),
-      W(PAL.rose, 0.7, dot(-6, 9, 2)),
+      W(PAL.rose, 0.7, dot(-14, 6, 2)),
       W(PAL.rose, 0.55, hand),
     ],
-    fills: [dot(-4.6, 1.4, 1.6)],
-    glints: [dot(-5.1, 0.8, 0.5)],
-  };
+  });
 }
 
 // =============================================================================================
@@ -264,17 +294,16 @@ export const O_HAND = [64, -92];
 export function oldFairy({ point = true } = {}) {
   const cloak =
     'M0 -134C-15 -134 -22 -122 -22 -106C-23 -90 -26 -70 -30 -42C-34 -22 -40 -8 -44 0L44 0C40 -8 34 -22 30 -42C26 -70 23 -90 22 -106C22 -122 15 -134 0 -134Z';
-  const faceHole = 'M-12 -108C-12 -118 -6 -122 0 -122C6 -122 12 -118 12 -108C12 -98 7 -92 0 -92C-7 -92 -12 -98 -12 -108Z';
+  const faceHole = 'M-12 -108C-12 -118 -6 -122 0 -122C6 -122 12 -118 12 -108C12 -97 7 -90 0 -90C-7 -90 -12 -97 -12 -108Z';
   const hair = 'M-12 -110C-14 -104 -15 -98 -13 -94M12 -110C14 -104 15 -98 13 -94M-9 -118q4 -2 8 0q4 -2 8 0';
-  const nose = 'M3 -110C6 -106 10 -102 11 -100C9 -98 6 -98 3 -100';
+  const nose = 'M0.5 -106C3 -103 7 -100 8 -98.5C6 -96.8 3 -97.4 1 -98.6';
   const folds = 'M-10 -86q-6 40 -18 80M8 -86q4 40 14 80M-2 -60l0 56';
-  const face = faceMarks({ mood: 'cross', ex: 4.4, ey: -108, my: -98, w: 3, r: 1.5 });
+  const face = faceMarks({ mood: 'cross', ex: 4.6, ey: -109, my: -97, w: 3, r: 1.5 });
   const parts = [
     {
       lines: [cloak, faceHole],
-      fine: [hair, nose, folds, ...face.fine.slice(0, 1), 'M-2.5 -96q2.5 -2.4 5 0'],
-      washes: [W(PAL.slate, 0.95, cloak), W(PAL.slate, 0.35, cloak), W(PAL.rose, 0.45, faceHole), W(PAL.grey, 0.9, 'M-12 -110C-14 -104 -15 -98 -13 -94L-11 -100ZM12 -110C14 -104 15 -98 13 -94L11 -100Z'), W(PAL.rose, 0.8, dot(-7, -102, 2) + dot(8, -102, 2))],
-      whites: [faceHole],
+      fine: [hair, nose, folds, ...face.fine.slice(0, 1), 'M-3.5 -93.5q3 -2.6 6 0'],
+      washes: [{ ...W(PAL.slate, 0.95, cloak + faceHole), rule: 'evenodd' }, { ...W(PAL.slate, 0.35, cloak + faceHole), rule: 'evenodd' }, W(PAL.rose, 0.4, faceHole), W(PAL.grey, 0.9, 'M-12 -110C-14 -104 -15 -98 -13 -94L-11 -100ZM12 -110C14 -104 15 -98 13 -94L11 -100Z'), W(PAL.rose, 0.8, dot(-7, -102, 2) + dot(8, -102, 2))],
       fills: face.fills,
       glints: face.glints,
     },
@@ -397,9 +426,9 @@ export function oldWomanHead({ mood = 'happy', look = 0 } = {}) {
 }
 export const S_ARMS = {
   spin: [
-    // left hand up, pulling the thread; right hand low, letting the spindle turn
+    // left hand up, drawing the thread from the distaff; right hand out, the spindle hanging from it
     [[-14, -76, 7], [-24, -78, 6.5], [-30, -90, 6.5], [-30, -98, 6.5]],
-    [[14, -76, 7], [22, -64, 6.5], [26, -54, 6.5], [28, -48, 6.5]],
+    [[14, -76, 7], [24, -70, 6.5], [34, -68, 6.5], [40, -70, 6.5]],
   ],
   cheeks: [
     [[-14, -76, 7], [-22, -70, 6.5], [-16, -84, 6.5], [-12, -88, 6.5]],
@@ -688,7 +717,7 @@ export function flames(w = 60, h = 90) {
   const k = (x, y) => `${f((x * w) / 60)} ${f((y * h) / 90)}`;
   const outer = `M${k(-60, 0)}C${k(-64, -24)} ${k(-50, -40)} ${k(-40, -56)}C${k(-38, -40)} ${k(-30, -36)} ${k(-26, -40)}C${k(-30, -60)} ${k(-14, -78)} ${k(-2, -90)}C${k(0, -70)} ${k(10, -62)} ${k(16, -58)}C${k(18, -70)} ${k(30, -76)} ${k(36, -80)}C${k(34, -60)} ${k(46, -48)} ${k(50, -40)}C${k(54, -46)} ${k(56, -50)} ${k(58, -54)}C${k(66, -36)} ${k(64, -18)} ${k(60, 0)}Z`;
   const inner = `M${k(-36, 0)}C${k(-40, -16)} ${k(-26, -26)} ${k(-18, -36)}C${k(-16, -24)} ${k(-8, -22)} ${k(-4, -24)}C${k(-6, -40)} ${k(4, -50)} ${k(10, -56)}C${k(12, -40)} ${k(24, -30)} ${k(28, -22)}C${k(32, -28)} ${k(34, -30)} ${k(36, -32)}C${k(42, -18)} ${k(40, -8)} ${k(36, 0)}Z`;
-  return { lines: [outer], fine: [inner], washes: [W(PAL.red, 0.7, outer), W(PAL.ochre, 0.95, inner), W(PAL.terracotta, 0.4, outer)] };
+  return { lines: [outer], fine: [inner], washes: [W(PAL.terracotta, 0.8, outer), W(PAL.ochre, 0.75, inner)] };
 }
 
 /** A curtain hanging from a rod at y = -h, from x = 0 (its left edge) to x = w, gathered at the foot. */
@@ -787,21 +816,20 @@ export function catAsleep() {
 /** A cushion (red with ochre tassels) lying on y = 0, about 70 wide. */
 export function cushion() {
   const d = 'M-34 0C-38 -6 -38 -14 -32 -18C-10 -22 10 -22 32 -18C38 -14 38 -6 34 0C10 3 -10 3 -34 0Z';
-  const edge = 'M-24 -19.5C-28 -19 -30 -18.6 -32 -18C-38 -14 -38 -6 -34 0C-10 3 10 3 34 0C38 -6 38 -14 32 -18C31 -18.5 30 -18.8 28 -19';
+  const edge = 'M-32 -18C-38 -14 -38 -6 -34 0C-10 3 10 3 34 0C38 -6 38 -14 32 -18';
   const tassels = 'M-34 -18l-6 -4M-34 0l-6 3M34 -18l6 -4M34 0l6 3';
-  return { lines: [edge], fine: [tassels, 'M-20 -10c6 2 34 2 40 0'], washes: [W(PAL.red, 0.7, d), W(PAL.ochre, 0.9, dot(-40, -22, 2) + dot(-40, 3, 2) + dot(40, -22, 2) + dot(40, 3, 2))] };
+  return { lines: [edge], fine: [tassels, 'M-28 -6c10 2 46 2 56 0'], washes: [W(PAL.red, 0.7, d), W(PAL.ochre, 0.9, dot(-40, -22, 2) + dot(-40, 3, 2) + dot(40, -22, 2) + dot(40, 3, 2))] };
 }
 
 /** An oval rug lying flat on y = 0, about 2w wide, with a fringe; its far edge is left out
  * between gap[0] and gap[1] (hidden behind whoever lies on it). */
 export function rug(w = 60, gap = [-46, 44]) {
-  const d = `M${-w} 0C${-w} -9 ${-w * 0.5} -12 0 -12C${w * 0.5} -12 ${w} -9 ${w} 0C${w} 9 ${w * 0.5} 12 0 12C${-w * 0.5} 12 ${-w} 9 ${-w} 0Z`;
   const front = `M${-w} 0C${-w} 9 ${-w * 0.5} 12 0 12C${w * 0.5} 12 ${w} 9 ${w} 0`;
   const backL = `M${-w} 0C${-w} -5 ${f(gap[0] - 10)} -9 ${gap[0]} -10`;
   const backR = `M${w} 0C${w} -5 ${f(gap[1] + 10)} -9 ${gap[1]} -10`;
   return {
     lines: [front, backL, backR],
     fine: [`M${-w + 12} 6C${-w * 0.4} 10 ${w * 0.4} 10 ${w - 12} 6`, `M${-w} -2l-6 0M${-w} 2l-6 1M${w} -2l6 0M${w} 2l6 1`],
-    washes: [W(PAL.green, 0.55, d), W(PAL.ochre, 0.45, `M${-w + 12} 6C${-w * 0.4} 10 ${w * 0.4} 10 ${w - 12} 6C${w * 0.4} 4 ${-w * 0.4} 4 ${-w + 12} 6Z`)],
+    washes: [W(PAL.green, 0.55, `${front}L${gap[1]} 1L${gap[0]} 1Z${backL}L${gap[0]} 1L${-w} 1Z${backR}L${gap[1]} 1L${w} 1Z`), W(PAL.ochre, 0.45, `M${-w + 12} 6C${-w * 0.4} 10 ${w * 0.4} 10 ${w - 12} 6C${w * 0.4} 4 ${-w * 0.4} 4 ${-w + 12} 6Z`)],
   };
 }
