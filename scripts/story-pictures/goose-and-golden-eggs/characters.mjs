@@ -1,4 +1,4 @@
-import { PAL, hatch } from '../lib.mjs';
+import { PAL, hatch, transformPath } from '../lib.mjs';
 import { dot, limb, merge, oval, place } from '../stone-soup/characters.mjs';
 
 // The Goose That Laid the Golden Eggs: the farmer, his wife, the white goose, her straw nest on a hay
@@ -75,10 +75,10 @@ export const F_ARMS = {
     [[-15, -102, 9], [-26, -86, 8], [-34, -72, 8]],
     [[15, -102, 9], [28, -110, 8], [34, -128, 8]],
   ],
-  // both hands grab the nest to his right (at about x 40 to 64, y -64)
+  // both hands grab the nest to his right (at about x 34 to 62, y -46)
   shake: [
-    [[-15, -102, 9], [2, -84, 8], [36, -68, 8]],
-    [[15, -102, 9], [34, -88, 8], [62, -66, 8]],
+    [[-15, -102, 9], [2, -76, 8], [34, -47, 8]],
+    [[15, -102, 9], [38, -80, 8], [62, -45, 8]],
   ],
 };
 const fSmock = 'M-12 -108C-20 -106 -22 -98 -22 -88C-24 -74 -26 -60 -28 -46C-10 -42 10 -42 28 -46C26 -60 24 -74 22 -88C22 -98 20 -106 12 -108C6 -105 -6 -105 -12 -108Z';
@@ -158,85 +158,98 @@ export function wife({ mood = 'wow', look = 0, tilt = 0, arms = W_ARMS.wow } = {
 
 // ---------------------------------------------------------------------------------------------
 // The goose's head (centre 0,0), beak to the right: a round white head, an orange beak with a knob,
-// a beady eye. honk: the beak wide open and the eye wide (frightened).
-const gHead = 'M8 -4C6 -10 -2 -11 -7 -7C-11 -3 -10 4 -5 7C0 9 6 7 8 3';
-function gooseHead({ honk = false } = {}) {
+// a beady eye. The outline is left open where the neck joins: neck 'up' (sitting, the neck below
+// the head, joining at (-8, 4) and (5, 6.5)) or 'back' (flying, the neck behind, joining at (-9, -2)
+// and (2, 8)). honk: the beak wide open and the eye wide (frightened).
+const gTop = 'M8 -4C6 -10 -2 -11 -7 -7';
+const gOpen = {
+  up: [`${gTop}C-10 -4 -10 1 -8 4`, 'M8 3C7 5 6 6 5 6.5'],
+  back: [`${gTop}C-9 -5 -9.5 -3.5 -9 -2`, 'M8 3C6 6 4 7 2 8'],
+};
+const gHeadFill = 'M8 -4C6 -10 -2 -11 -7 -7C-11 -3 -10 4 -5 7C0 9 6 7 8 3Z';
+function gooseHead({ honk = false, neck = 'up' } = {}) {
   const beak = honk ? 'M7 -4C13 -8 19 -10 24 -10C20 -6 14 -3 8 -1ZM8 2C14 3 19 6 23 9C18 9 12 7 7 4Z' : 'M7 -4C12 -5 18 -3 22 0C18 2 12 3 7 3Z';
   const knob = oval(8, -3.5, 2.6, 2.4);
   const eye = honk ? [dot(0, -2, 2.6)] : [];
   return {
-    lines: [gHead, beak],
-    fine: [knob, ...eye, honk ? 'M-3 -8q3 -4 7 -2' : ''].filter(Boolean),
+    lines: [...gOpen[neck], beak],
+    fine: [knob, ...eye, honk ? 'M-4 -8q3 -4 7 -2' : ''].filter(Boolean),
     washes: [{ c: PAL.terracotta, o: 0.9, d: beak }, { c: PAL.ochre, o: 0.9, d: beak }, { c: PAL.terracotta, o: 0.9, d: knob }],
-    whites: [`${gHead}Z`, ...eye],
+    whites: [gHeadFill, ...eye],
     fills: [dot(honk ? 0.5 : 0, -2, honk ? 1.4 : 1.7)],
     glints: [dot(-0.5, -2.6, 0.5)],
   };
 }
 
 // The goose sitting (the middle of her bottom at 0,0, where she sinks into the straw), facing right,
-// about 90 long and 84 tall: a plump white body with a tail flicked up behind, a folded wing and a
-// long curving neck.
-const sBody = 'M-36 -2C-42 -10 -42 -20 -38 -26L-50 -38C-40 -38 -32 -36 -26 -32C-14 -38 4 -38 16 -32C28 -26 34 -16 34 -6C34 -2 32 0 28 0L-30 0';
-const sNeck = limb([[18, -30, 16], [28, -46, 11], [22, -62, 10], [26, -76, 10]]);
-const sWing = 'M-30 -14C-24 -28 -4 -32 14 -24C8 -14 -10 -8 -30 -14Z';
-const sFeathers = 'M-20 -14q4 -4 8 -3M-10 -12q4 -4 8 -4M0 -14q4 -3 7 -4M-38 -30l6 2M-42 -34l5 2';
+// about 90 long and 90 tall: a plump white body with a little tail flicked up behind, a folded wing
+// and a long curving neck. The body's outline stops at the straw and where the neck joins.
+const sBack = 'M-34 2C-40 -6 -42 -14 -40 -20C-44 -24 -47 -30 -48 -34C-40 -34 -32 -34 -26 -32C-14 -38 0 -38 12 -33';
+const sBreast = 'M34 -24C37 -18 37 -10 35 -4C34 -1 32 0 29 0';
+const sNeckFront = 'M34 -26C40 -40 38 -52 32 -60C28 -66 30 -72 32.6 -76';
+const sNeckBack = 'M12 -33C20 -44 20 -54 16 -62C13 -68 15 -74 19.5 -77.2';
+const sFill = `${sBack}L34 -26C37 -18 37 -10 35 -4C34 -1 32 0 29 0L-34 2Z${sNeckFront}L19.5 -77.2C15 -74 13 -68 16 -62C20 -54 20 -44 12 -33Z`;
+const sWing = 'M24 -18C14 -30 -10 -32 -26 -22C-32 -18 -36 -15 -42 -15C-34 -10 -26 -8 -16 -8C-2 -8 14 -10 24 -18Z';
+const sFeathers = 'M-34 -14l8 -1M-26 -12l9 -1M-16 -12q8 -2 14 -6M-4 -12q8 -2 14 -6M-44 -30l6 2';
 export function gooseSitting() {
   return merge(
     {
-      lines: [sBody, sNeck, sWing],
-      fine: [sFeathers, hatch(-28, -6, 26, -6, 9, 6, 70, 41)],
-      whites: [`${sBody}Z`, `${sNeck}Z`],
+      lines: [sBack, sBreast, sNeckFront, sNeckBack, sWing],
+      fine: [sFeathers, 'M26 -6q-4 3 -10 3'],
+      whites: [sFill],
     },
-    place(gooseHead(), 'translate(28 -80) rotate(-6)'),
+    place(gooseHead(), 'translate(27 -82) rotate(-6)'),
   );
 }
 
 // The goose flying (the middle of her body at 0,0), heading right: neck stretched forward, big wings
-// beating up and orange feet tucked behind, about 140 long and 100 tall.
-const yBody = 'M-30 -4C-24 -12 -8 -14 10 -12C22 -10 28 -6 30 0C26 8 12 12 -6 12C-20 12 -28 8 -32 4L-46 -2C-40 -6 -34 -6 -30 -4Z';
-const yNeck = limb([[24, -4, 13], [38, -12, 9], [50, -18, 9]]);
-const yWingFar = 'M6 -10C10 -30 18 -50 30 -68C34 -56 32 -40 26 -30C30 -26 28 -18 22 -12Z';
+// beating up and orange feet tucked behind, about 130 long and 100 tall.
+const yBody = 'M18 -13C8 -18 -12 -18 -30 -6C-34 -8 -40 -8 -46 -4L-32 4C-28 10 -18 16 -4 16C12 16 24 10 30 2';
+const yNeckTop = 'M18 -13C24 -17 30 -20 36.8 -20.4';
+const yNeckBottom = 'M30 2C36 -2 44 -8 49.4 -12.5';
+const yFill = `${yBody}L49.4 -12.5L36.8 -20.4Z`;
+const yWingFar = 'M6 -12C10 -32 18 -52 30 -70C36 -58 34 -42 28 -32C32 -28 30 -20 24 -14Z';
 const yWingNear =
-  'M-14 -8C-18 -30 -28 -52 -44 -72C-40 -66 -34 -64 -30 -64C-30 -58 -26 -56 -22 -56C-22 -50 -18 -48 -14 -48C-12 -42 -8 -40 -4 -40C-2 -32 4 -22 6 -10Z';
-const yFeathers = 'M-34 -58L-24 -30M-26 -50L-16 -26M-16 -42L-8 -22M18 -50L18 -30M24 -40L20 -24';
-const yFeet = 'M-16 10L-30 18L-24 12L-32 14L-18 6ZM-6 12L-18 22L-14 14L-20 16L-8 8Z';
+  'M-18 -8C-24 -30 -36 -52 -50 -74C-44 -70 -38 -68 -34 -68C-32 -62 -28 -60 -22 -60C-20 -54 -16 -52 -10 -52C-8 -46 -2 -44 2 -44C4 -34 6 -22 6 -10Z';
+const yFeathers = 'M-36 -62L-24 -32M-24 -56L-14 -28M-12 -48L-6 -24M18 -50L18 -30M24 -40L20 -24';
+const yFeet = 'M-16 14L-30 22L-24 16L-32 18L-18 10ZM-6 16L-18 26L-14 18L-20 20L-8 12Z';
 export function gooseFlying({ honk = true } = {}) {
   return merge(
     {
-      lines: [yWingFar, yBody, yNeck, yWingNear, yFeet],
-      fine: [yFeathers, 'M-26 4q8 4 16 4', 'M-42 -2l6 0'],
+      lines: [yWingFar, yBody, yNeckTop, yNeckBottom, yWingNear, yFeet],
+      fine: [yFeathers, 'M-24 8q8 4 16 4', 'M-42 -2l6 0'],
       washes: [{ c: PAL.terracotta, o: 0.85, d: yFeet }, { c: PAL.ochre, o: 0.8, d: yFeet }, { c: PAL.grey, o: 0.35, d: yWingFar }],
-      whites: [yBody, `${yNeck}Z`, yWingNear],
+      whites: [yFill, yWingNear],
     },
-    place(gooseHead({ honk }), 'translate(54 -20) rotate(-10)'),
+    place(gooseHead({ honk, neck: 'back' }), 'translate(46 -20) rotate(-10)'),
   );
 }
 
 // ---------------------------------------------------------------------------------------------
 // The hay bale (the middle of its bottom at 0,0), 110 wide and 44 tall, with the round straw nest on
-// top (its rim at about y -56). The goose sits at (0, -54).
-export const NEST_SEAT = [0, -54];
+// top (its rim at about y -56), tipped by tilt degrees when shaken. The goose sits at NEST_SEAT.
+export const NEST_SEAT = [-8, -60];
 const bale = 'M-55 0L-53 -44L53 -44L55 0Z';
 const baleTop = 'M-53 -44C-46 -50 46 -50 53 -44';
 const baleTies = 'M-26 -46L-27 0M26 -46L27 0';
 // the nest: a thick ring of straw, its front lip in front of the goose
-const nestBack = 'M-50 -54C-46 -66 46 -66 50 -54';
-const nestFront = 'M-56 -52C-58 -46 -46 -40 0 -40C46 -40 58 -46 56 -52C40 -58 -40 -58 -56 -52Z';
-export function baleAndNest({ shaking = false } = {}) {
+const nestBack = 'M-54 -58C-50 -70 50 -70 54 -58';
+const nestFront = 'M-58 -56C-40 -63 40 -63 58 -56C61 -46 46 -38 0 -38C-46 -38 -61 -46 -58 -56Z';
+export function baleAndNest({ tilt = 0 } = {}) {
+  const nt = (d) => (tilt ? transformPath(d, `rotate(${tilt} 0 -50)`) : d);
   const straw = [
     hatch(-48, -24, 48, -24, 16, 12, 80, 51),
-    hatch(-50, -48, 50, -48, 14, 9, 160, 52, 0.5),
-    hatch(-52, -50, 52, -50, 14, 9, 20, 53, 0.5),
+    hatch(-50, -52, 50, -52, 14, 10, 160, 52, 0.5),
+    hatch(-52, -46, 52, -46, 14, 10, 20, 53, 0.5),
   ];
   return {
-    lines: [bale, nestFront, nestBack],
-    fine: [baleTop, baleTies, ...straw, shaking ? '' : ''].filter(Boolean),
+    lines: [bale, nt(nestFront), nt(nestBack)],
+    fine: [baleTop, baleTies, straw[0], nt(straw[1]), nt(straw[2])],
     washes: [
       { c: PAL.ochre, o: 0.55, d: bale },
-      { c: PAL.ochre, o: 0.75, d: nestFront },
-      { c: PAL.terracotta, o: 0.35, d: nestFront },
-      { c: PAL.ochre, o: 0.45, d: `${nestBack}C40 -56 -40 -56 -50 -54Z` },
+      { c: PAL.ochre, o: 0.75, d: nt(nestFront) },
+      { c: PAL.terracotta, o: 0.35, d: nt(nestFront) },
+      { c: PAL.ochre, o: 0.45, d: nt(`${nestBack}C40 -60 -40 -60 -54 -58Z`) },
     ],
   };
 }

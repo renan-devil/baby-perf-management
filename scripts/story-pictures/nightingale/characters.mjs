@@ -121,13 +121,14 @@ export function nightingale({ beak = 'closed', pose = 'perch' } = {}) {
     lines: [tail, nBody, wing, ...(wing2 ? [wing2] : [])],
     fine: [bill, pose === 'fly' ? 'M-3 -14l4 1M-2 -20l4 1M1 -26l4 1' : 'M-3 0l5 -1M0 2l5 -1', ...legs],
     washes: [
-      ...W(BROWN, nBody + tail + (wing2 ? Z(wing2) : '')),
+      ...W(BROWN, nBody + nBelly).map((w) => ({ ...w, rule: 'evenodd' })),
+      ...W(BROWN, tail + (wing2 ? Z(wing2) : '')),
+      { c: PAL.grey, o: 0.45, d: nBelly },
       { c: PAL.terracotta, o: 0.45, d: tail },
       ...W([{ c: PAL.terracotta, o: 0.4 }, { c: PAL.slate, o: 0.3 }], Z(wing)),
       { c: PAL.ochre, o: 0.35, d: nBelly },
       { c: PAL.slate, o: 0.6, d: bill },
     ],
-    whites: [transformPath(oval(3, 5, 6, 2), 'rotate(-12 3 5)')],
     fills: [dot(12.6, -9.8, 1.5)],
     glints: [dot(12.1, -10.4, 0.5)],
   };
@@ -207,21 +208,21 @@ export const E_ARMS = {
 };
 export function emperorHead({ mood = 'happy', pale = false, rosy = false, crown = true } = {}) {
   const face = 'M-13 -3C-13.5 9 -7 15.5 0 15.5C7 15.5 13.5 9 13 -3';
-  const faceFill = `${face}C10 -7 -10 -7 -13 -3Z`;
-  const hair = 'M-14 1C-16 -11 -9 -18 0 -18C9 -18 16 -11 14 1C12.5 -4 9 -6.5 0 -6.5C-9 -6.5 -12.5 -4 -14 1Z';
+  const faceFill = `${face}C10 -11 -10 -11 -13 -3Z`;
+  const hair = 'M-14 1C-16 -11 -9 -18 0 -18C9 -18 16 -11 14 1C12.5 -5 9 -9.5 0 -9.5C-9 -9.5 -12.5 -5 -14 1Z';
   const knot = oval(0, -21, 6, 5);
   const crownD = 'M-7.5 -18C-8.5 -25 -6 -31 0 -31C6 -31 8.5 -25 7.5 -18C3 -19.5 -3 -19.5 -7.5 -18Z';
-  const pin = 'M-14 -24.5L14 -26.5';
+  const pin = 'M-10 -24.5L10 -26';
   const m = faceMarks({ mood, ex: 5, ey: 1, my: 9, w: 4 });
   const cheeks = pale ? [] : [{ c: PAL.rose, o: rosy ? 0.85 : 0.5, d: dot(-8.5, 6, rosy ? 3 : 2.4) + dot(8.5, 6, rosy ? 3 : 2.4) }];
   return {
     lines: [face, hair, 'M-13 -3q-4 0 -3 6M13 -3q4 0 3 6', ...(crown ? [crownD] : [knot])],
-    fine: ['M0.4 3c1.6 1.2 1.6 2.6 -0.6 3', 'M-6 -18c3 -2 9 -2 12 0', ...(crown ? [pin, 'M-6 -24.5l12 -0.6', dot(-14.5, -24.5, 1.4), dot(14.5, -26.5, 1.4)] : []), ...m.fine],
+    fine: ['M0.4 3c1.6 1.2 1.6 2.6 -0.6 3', 'M-6 -18c3 -2 9 -2 12 0', ...(crown ? [pin, 'M-6 -24.5l12 -0.6'] : []), ...m.fine],
     washes: [
       { c: PAL.rose, o: pale ? 0.12 : 0.32, d: faceFill },
       ...(pale ? [{ c: PAL.slate, o: 0.28, d: faceFill }] : []),
       ...W(BLACK, hair + knot),
-      ...(crown ? [{ c: PAL.ochre, o: 0.95, d: crownD }, { c: PAL.red, o: 0.8, d: dot(-14.5, -24.5, 1.4) + dot(14.5, -26.5, 1.4) }] : []),
+      ...(crown ? [{ c: PAL.ochre, o: 0.95, d: crownD }] : []),
       ...cheeks,
       ...m.washes,
     ],
@@ -235,7 +236,7 @@ export function emperorHead({ mood = 'happy', pale = false, rosy = false, crown 
 export function emperorSeatedOutline() {
   const body =
     'M-11 -127C-23 -125 -29 -114 -30 -100C-31 -88 -34 -78 -40 -70C-46 -62 -46 -44 -42 -34L42 -34C46 -44 46 -62 40 -70C34 -78 31 -88 30 -100C29 -114 23 -125 11 -127C6 -130 -6 -130 -11 -127Z';
-  return body + oval(E_HEAD[0], E_HEAD[1] - 6, 16, 22);
+  return body + oval(E_HEAD[0], E_HEAD[1] - 1, 15, 17.5) + oval(E_HEAD[0], E_HEAD[1] - 24, 8.5, 8);
 }
 
 export function emperor({ mood = 'happy', tilt = 0, arms = E_ARMS.down, seated = false, upper = false, pale = false, rosy = false } = {}) {
@@ -256,7 +257,7 @@ export function emperor({ mood = 'happy', tilt = 0, arms = E_ARMS.down, seated =
   const collar = 'M-11 -127C-5 -118 1 -111 8 -105L12 -109C6 -115 3 -121 -1 -129C-5 -129 -8 -128 -11 -127Z';
   const sash = 'M-30 -88C-10 -84 10 -84 30 -88L30 -81C10 -77 -10 -77 -30 -81Z';
   const lines = [body];
-  const fine = [collar, sash, 'M-12 -100c3 -4 8 -3 8 1c0 3 -4 4 -5 1M14 -112c2 -3 6 -2 6 1c0 2 -3 3 -4 1'];
+  const fine = [collar, sash];
   const washes = [...W(YELLOW, fill), { c: PAL.red, o: 0.85, d: collar }, { c: PAL.red, o: 0.8, d: sash }];
   if (!upper) {
     const hem = seated ? 'M-40 -12C-14 -9 14 -9 40 -12L38 -2C12 1 -12 1 -38 -2Z' : 'M-39 -12C-14 -8 14 -8 39 -12L40 -2C14 2 -14 2 -40 -2Z';
@@ -414,9 +415,10 @@ export function palaceWindow(w, h) {
 
 // =============================================================================================
 // THE THRONE (middle of the seat front at 0,0): a tall golden back with a red panel, arms and a
-// red step. hole: path data (in picture coordinates after placing) kept free of its colours.
+// red step. hole: path data (in picture coordinates after placing) kept free of its colours, inside
+// the back; gap: half the width of the seat's middle left uncoloured (under the Emperor's lap).
 // =============================================================================================
-export function throne(t, hole = '') {
+export function throne(t, hole = '', gap = 46) {
   const back = 'M-76 -24L-76 -178C-76 -208 -46 -222 0 -222C46 -222 76 -208 76 -178L76 -24Z';
   const panel = 'M-60 -38L-60 -172C-60 -194 -36 -204 0 -204C36 -204 60 -194 60 -172L60 -38Z';
   const seat = 'M-86 -38L86 -38L90 -6L-90 -6Z';
@@ -430,7 +432,8 @@ export function throne(t, hole = '') {
     washes: [
       { c: PAL.ochre, o: 0.85, d: p(back) + hole, rule: 'evenodd' },
       { c: PAL.red, o: 0.7, d: p(panel) + hole, rule: 'evenodd' },
-      { c: PAL.ochre, o: 0.85, d: p(seat) + hole, rule: 'evenodd' },
+      // the seat is coloured only at the sides, so the Emperor's lap stays yellow
+      { c: PAL.red, o: 0.7, d: p(`M-86 -38L${-gap} -38L${-gap} -6L-90 -6ZM${gap} -38L86 -38L90 -6L${gap} -6Z`) },
       { c: PAL.ochre, o: 0.85, d: p(`${armL}Z${armR}Z`) },
       { c: PAL.red, o: 0.7, d: p(step) },
     ],
