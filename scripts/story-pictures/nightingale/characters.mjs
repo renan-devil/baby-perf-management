@@ -138,27 +138,27 @@ export function nightingale({ beak = 'closed', pose = 'perch' } = {}) {
 // THE GOLDEN BIRD (middle of the body at 0,0, looking right), about 80 long: a plump mechanical
 // bird of shining gold, studded with red, blue and pink jewels, with a crest of three jewelled
 // plumes, a fanned tail tipped with jewels and a silver wind-up key in its back. Its stiff feet
-// stand at y = 20. broken: a spring pops out of its side, its crest droops and its eye goes dull.
+// stand at y = 20 (feet: false hides them). broken: a spring pops out of its side, its crest droops and its eye goes dull.
 // =============================================================================================
 const gBody = 'M-16 2C-18 -8 -8 -15 4 -14C7 -19 12 -22 18 -22C25 -22 29 -17 28 -11C27 -6 24 -3 22 1C20 11 9 15 -2 14C-10 13 -15 9 -16 2Z';
 const gWing = 'M-10 -4C-4 -10 8 -10 14 -4C11 4 2 8 -8 7C-12 4 -12 0 -10 -4Z';
 const gScallops = 'M-8 -1q3 3 6 0q3 3 6 0q3 3 6 0M-6 4q3 3 6 0q3 3 6 0';
 const gBeak = 'M27.5 -14L36 -11.5L27.5 -9Z';
-const gFeathers = [-168, -150, -132, -114].map((a) => transformPath(oval(-31, 0, 15, 4.6), `rotate(${a} -15 0)`));
-const gTips = [-168, -150, -132, -114].map((a) => at(-44, 0, `rotate(${a} -15 0)`));
+const gFeathers = [8, 26, 44, 62].map((a) => transformPath(oval(-31, 0, 15, 4.6), `rotate(${a} -15 0)`));
+const gTips = [8, 26, 44, 62].map((a) => at(-44, 0, `rotate(${a} -15 0)`));
 const gJewels = [
-  [2, -9, PAL.red],
-  [-4, 10, PAL.sky],
-  [8, 10, PAL.red],
-  [17, 4, PAL.rose],
-  [20, -14, PAL.sky],
+  [-1, -11, PAL.red],
+  [-6, 10, PAL.sky],
+  [6, 11, PAL.red],
+  [17, 5, PAL.rose],
+  [22, -5, PAL.sky],
 ];
-export function goldenBird({ broken = false } = {}) {
+export function goldenBird({ broken = false, feet = true } = {}) {
   const crest = broken ? 'M15 -21C13 -27 9 -28 6 -26M19 -22C19 -28 17 -31 14 -32M23 -21C26 -25 28 -24 30 -21' : 'M15 -21L10 -31M19 -22L19 -34M23 -21L28 -30';
   const crestTips = broken ? [[6, -26, PAL.red], [14, -32, PAL.sky], [30, -21, PAL.red]] : [[10, -31, PAL.red], [19, -34, PAL.sky], [28, -30, PAL.red]];
-  const key = 'M-8 -11L-13 -21';
-  const bow = transformPath(oval(-17, -24, 5, 3), 'rotate(-30 -17 -24)') + transformPath(oval(-11, -27, 5, 3), 'rotate(-80 -11 -27)');
-  const legs = 'M2 14L0 20M8 13L9 20M-4 20L4 20M5 20L13 20';
+  const key = 'M-8 -11L-14 -22';
+  const bow = transformPath(oval(-18, -25, 6, 3.6), 'rotate(-30 -18 -25)') + transformPath(oval(-11, -29, 6, 3.6), 'rotate(-80 -11 -29)');
+  const legs = feet ? 'M2 14L0 20M8 13L9 20M-4 20L4 20M5 20L13 20' : '';
   const jewelDots = gJewels.map(([x, y]) => dot(x, y, 2.3));
   const tipDots = gTips.map(([x, y]) => dot(x, y, 2.6));
   const crestDots = crestTips.map(([x, y]) => dot(x, y, 2.2));
@@ -167,8 +167,11 @@ export function goldenBird({ broken = false } = {}) {
     lines: [...gFeathers, gBody, gWing, key, bow],
     fine: [crest, gBeak, gScallops, ...jewelDots, ...tipDots, ...crestDots, legs, dot(22.5, -14, 2.4)],
     washes: [
-      { c: PAL.ochre, o: 0.95, d: gBody + gFeathers.join('') + gBeak },
-      { c: PAL.ochre, o: 0.5, d: gWing + gFeathers.join('') },
+      // the gold leaves holes for the jewels, so they keep their own bright colours
+      { c: PAL.ochre, o: 0.95, d: gBody + jewelDots.join(''), rule: 'evenodd' },
+      ...gFeathers.map((d, i) => ({ c: PAL.ochre, o: 0.9, d: d + tipDots[i], rule: 'evenodd' })),
+      { c: PAL.ochre, o: 0.95, d: gBeak },
+      { c: PAL.ochre, o: 0.5, d: gWing },
       { c: PAL.terracotta, o: 0.4, d: gBeak + 'M-16 2C-15 9 -10 13 -2 14C9 15 20 11 22 1C14 9 0 10 -16 2Z' },
       { c: PAL.slate, o: 0.6, d: bow },
       { c: PAL.red, o: 0.9, d: jw(PAL.red, gJewels) + [tipDots[0], tipDots[2], crestDots[0], crestDots[2]].join('') },
@@ -275,8 +278,8 @@ export function emperor({ mood = 'happy', tilt = 0, arms = E_ARMS.down, seated =
 }
 
 // =============================================================================================
-// THE LITTLE KITCHEN GIRL (feet at 0,0), about 104 tall: black hair with a straight fringe and two
-// round buns tied with red ribbons, rosy cheeks, a terracotta jacket with a white apron, grey
+// THE LITTLE KITCHEN GIRL (feet at 0,0), about 100 tall: black hair with a straight fringe and two
+// short plaits tied with red ribbons, rosy cheeks, a terracotta jacket with a white apron, grey
 // trousers and black cloth shoes. Head at G_HEAD; arms from the shoulders (±13,-66).
 // =============================================================================================
 export const G_HEAD = [0, -84];
@@ -299,12 +302,14 @@ export function girl({ mood = 'happy', tilt = 0, arms = G_ARMS.down } = {}) {
   const shoes = oval(-9, -2.5, 6, 3.4) + oval(9, -2.5, 6, 3.4);
   const face = 'M-11 -3C-11.5 7 -6 12 0 12C6 12 11.5 7 11 -3';
   const hair = 'M-12 2C-14 -10 -8 -16 0 -16C8 -16 14 -10 12 2C11 -2 10 -4 7 -4.5C3 -5.5 -3 -5.5 -7 -4.5C-10 -4 -11 -2 -12 2Z';
-  const buns = oval(-12, -12, 5.2, 5) + oval(12, -12, 5.2, 5);
-  const ribbons = 'M-8 -15L-5 -18L-4 -13ZM8 -15L5 -18L4 -13Z';
+  const plaitL = limb([[-11, -2, 5.5], [-14, 6, 5], [-15, 14, 4.5]]);
+  const plaitR = limb([[11, -2, 5.5], [14, 6, 5], [15, 14, 4.5]]);
+  const buns = `${plaitL}Z${plaitR}Z`;
+  const ribbons = 'M-15 16L-20 20L-16 22ZM-15 16L-11 21L-14 22ZM15 16L20 20L16 22ZM15 16L11 21L14 22Z';
   const m = faceMarks({ mood, ex: 4.4, ey: 1.5, my: 7.5, w: 3.5, r: 1.6 });
   const head = {
-    lines: [face, buns, hair],
-    fine: [ribbons, 'M0.4 3.5c1.2 0.9 1.2 2 -0.5 2.3', ...m.fine],
+    lines: [plaitL, plaitR, face, hair],
+    fine: [ribbons, 'M-14 4l3 1M-15 9l3 1M14 4l-3 1M15 9l-3 1', 'M0.4 3.5c1.2 0.9 1.2 2 -0.5 2.3', ...m.fine],
     washes: [
       { c: PAL.rose, o: 0.3, d: Z(`${face}C9 -9 -9 -9 -11 -3`) },
       ...W(BLACK, hair + buns),
@@ -352,13 +357,13 @@ export function chamberlain({ mood = 'wow', tilt = 0, arms = C_ARMS.down } = {})
   const sash = 'M-27 -76C-9 -72 9 -72 27 -76L27 -69C9 -65 -9 -65 -27 -69Z';
   const shoes = 'M-20 0C-28 0 -30 6 -24 6L-8 6L-8 0ZM20 0C28 0 30 6 24 6L8 6L8 0Z';
   const face = 'M-12 -3C-12.5 8 -7 15 0 15C7 15 12.5 8 12 -3';
-  const hat = 'M-12 -4C-13 -16 -14 -32 -13 -44C-5 -47 5 -47 13 -44C14 -32 13 -16 12 -4C5 -6 -5 -6 -12 -4Z';
-  const band = 'M-12.4 -12C-5 -14 5 -14 12.4 -12L12.6 -8C5 -10 -5 -10 -12.6 -8Z';
-  const beard = 'M-3 13C-3 18 -1.5 21 0 22C1.5 21 3 18 3 13C1.5 14.5 -1.5 14.5 -3 13Z';
-  const tache = 'M0 8C-3 6.5 -6 7 -7.5 9.5C-5 9 -2.5 9 0 9.3C2.5 9 5 9 7.5 9.5C6 7 3 6.5 0 8Z';
-  const m = faceMarks({ mood, ex: 4.8, ey: 1, my: 11, w: 3.5 });
+  const hat = 'M-12 -8C-13 -20 -14 -36 -13 -48C-5 -51 5 -51 13 -48C14 -36 13 -20 12 -8C5 -10 -5 -10 -12 -8Z';
+  const band = 'M-12.4 -16C-5 -18 5 -18 12.4 -16L12.6 -12C5 -14 -5 -14 -12.6 -12Z';
+  const beard = 'M-3 16.5C-3 21 -1.5 24 0 25C1.5 24 3 21 3 16.5C1.5 17.5 -1.5 17.5 -3 16.5Z';
+  const tache = 'M0 7.5C-3 6 -6 6.5 -7.5 9C-5 8.5 -2.5 8.5 0 8.8C2.5 8.5 5 8.5 7.5 9C6 6.5 3 6 0 7.5Z';
+  const m = faceMarks({ mood, ex: 4.8, ey: 0, my: 11, w: 3.5 });
   if (mood === 'wow' || mood === 'frown') m.fills.pop();
-  if (mood === 'wow' || mood === 'frown') m.fills.push(oval(0, 12.5, 1.8, 2.2));
+  if (mood === 'wow' || mood === 'frown') m.fills.push(oval(0, 12, 1.8, 2));
   const head = {
     lines: [face, hat, 'M-12 -3q-4 0 -3 6M12 -3q4 0 3 6'],
     fine: [band, beard, tache, 'M0.4 3c1.6 1.2 1.6 2.6 -0.6 3', ...m.fine],
@@ -456,4 +461,48 @@ export function book() {
     washes: [{ c: PAL.red, o: 0.8, d: cover }],
     whites: [pageL + pageR],
   };
+}
+
+// =============================================================================================
+// THE EMPEROR IN BED (picture coordinates, shared by pictures 8 and 9): a big bed with a red
+// headboard on the left, a white pillow (BED_PILLOW, left free of colour by the picture), a rosy quilt over him and his head on the pillow (no
+// crown, just his topknot), one yellow sleeve resting on the quilt. mood, pale, rosy: his face.
+// =============================================================================================
+export const BED_HEAD = [136, 176];
+/** The pillow and his head: keep the room's dark washes off it (with fill-rule evenodd). */
+export const BED_PILLOW = 'M112 196C108 176 118 160 136 160C150 160 166 166 168 180C170 196 160 206 140 206C126 206 114 204 112 196Z';
+export function emperorInBed({ mood = 'ill', pale = true, rosy = false } = {}) {
+  const headboard = 'M84 252L84 132C84 116 112 112 120 128L122 252Z';
+  const frame = 'M104 226L372 226L372 248L104 248Z';
+  const legs = 'M110 248L110 272M366 248L366 272';
+  const foot = 'M352 226L352 176C352 168 372 168 372 176L372 226';
+  const pillow = BED_PILLOW;
+  const quilt = 'M150 222C150 196 166 186 190 184C230 180 280 182 320 190C340 194 352 204 354 226Z';
+  const quiltFill = `${quilt}Z`;
+  const fold = 'M160 200C200 196 240 196 300 200';
+  const flowers = 'M220 212c3 -4 7 -4 8 0c-1 4 -5 4 -8 0ZM270 210c3 -4 7 -4 8 0c-1 4 -5 4 -8 0ZM316 214c3 -4 7 -4 8 0c-1 4 -5 4 -8 0Z';
+  const sleeve = limb([[168, 196, 13], [200, 202, 13], [226, 200, 13]]);
+  const hand = dot(232, 200, 5);
+  return merge(
+    {
+      lines: [headboard, frame, legs, foot, pillow, quilt, sleeve],
+      fine: [fold, flowers, hand, 'M90 140c6 -6 18 -6 24 2'],
+      washes: [
+        { c: PAL.red, o: 0.8, d: headboard + `${foot}Z` },
+        { c: PAL.terracotta, o: 0.8, d: frame },
+        { c: PAL.rose, o: 0.6, d: quiltFill },
+        { c: PAL.red, o: 0.6, d: flowers },
+        { c: PAL.ochre, o: 0.72, d: `${sleeve}Z` },
+        { c: PAL.rose, o: pale ? 0.35 : 0.6, d: hand },
+      ],
+    },
+    place(emperorHead({ mood, pale, rosy, crown: false }), `translate(${BED_HEAD[0]} ${BED_HEAD[1]}) rotate(-58) scale(1.15)`),
+  );
+}
+
+/** A little round-topped bedside table (middle of its top at 0,0), 50 wide and 74 tall. */
+export function bedsideTable() {
+  const top = 'M-26 0L26 0L26 7L-26 7Z';
+  const legs = 'M-20 7L-22 74M20 7L22 74M-21 50L21 50';
+  return { lines: [top, legs], washes: [{ c: PAL.terracotta, o: 0.8, d: top }] };
 }
