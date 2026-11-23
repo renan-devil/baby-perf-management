@@ -1,7 +1,7 @@
 import { PAL } from '../lib.mjs';
-import { bed, boyHead, compose, dot, place, rabbit } from './characters.mjs';
+import { bed, boyHead, compose, place, rabbit } from './characters.mjs';
 
-// The Velveteen Rabbit, 7: the Boy is ill with scarlet fever, his face hot and his cheeks burning
+// The Velveteen Rabbit, 7: the Boy is ill in bed, his face hot and his cheeks burning
 // red; the velveteen rabbit snuggles beside him on the pillow and never leaves him. On the little
 // table stand his medicine and a spoon.
 const BT = 'translate(246 225) scale(1.55)';

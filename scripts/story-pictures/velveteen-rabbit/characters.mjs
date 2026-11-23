@@ -191,6 +191,51 @@ export function profileRabbit({ pose = 'hop', real = false, tint = 1, ears = 0 }
   };
 }
 
+/**
+ * The velveteen rabbit as a toy seen from the side (facing right, sitting, ground at y = 32): the
+ * profile head and pink-lined ears above, a plump sitting body with a round haunch, a front paw and a
+ * bobble tail, his brown spots, boot-button eye and thread whiskers. Used when he must turn his face
+ * to someone. mood: 'happy' or 'shut' (eye closed, smiling). shabby: as for rabbit().
+ */
+export function toyProfile({ mood = 'happy', shabby = false, ears = 22 } = {}) {
+  const e1 = `rotate(${ears} 24 -38)`;
+  const e2 = `rotate(${ears * 0.6} 29 -40)`;
+  const ear1 = transformPath(EAR1, e1);
+  const ear2 = transformPath(EAR2, e2);
+  const lin = transformPath(LINING1, e1) + 'Z' + transformPath(LINING2, e2) + 'Z';
+  const body = 'M19 -22C8 -16 -10 -4 -16 10C-20 20 -16 30 -6 32L42 32C44 26 42 18 38 10C35 2 34 -8 33 -18';
+  const bodyFill = `${body}C30 -20 24 -22 19 -22Z`;
+  const haunch = 'M-2 32C-8 18 2 6 14 10C22 14 24 24 20 32';
+  const paw = 'M30 32C28 22 30 12 34 6';
+  const tail = oval(-17, 20, 5.5, 5.5);
+  const spots = (shabby ? [[33, -31, 7, 6, 21], [8, 18, 7, 6, 23]] : [[33, -31, 7, 6, 21], [8, 18, 7, 6, 23], [4, -6, 6, 5, 25], [-10, 12, 5, 6, 27]]).map(([x, y, rx, ry, sd]) => blob(x, y, rx, ry, sd));
+  const tint = shabby ? PAL.grey : PAL.ochre;
+  const tintO = shabby ? 0.3 : 0.14;
+  const fine = [pFace, pNose, haunch, paw, tail, 'M47 -28l12 -4M47 -26l12 2'];
+  const fills = [];
+  const glints = [];
+  if (mood === 'shut') fine.push('M31.5 -33q3.2 2.8 6.4 0', 'M43 -24q-2 2 -5 1.5');
+  else {
+    fills.push(dot(35, -32, 2.5));
+    glints.push(dot(34.3, -32.8, 0.75));
+  }
+  if (shabby) fine.push('M-12 0l4 1M-14 5l4 1M-15 10l4 1', 'M40 20c6 2 6 8 12 8c4 0 5 4 9 3');
+  else fine.push(transformPath(LINING1, e1), transformPath(LINING2, e2));
+  return {
+    lines: [ear1, ear2, pHead, body],
+    fine,
+    washes: [
+      { c: tint, o: tintO, d: bodyFill + tail },
+      { c: tint, o: tintO, d: pHead + Z(ear1) + Z(ear2) },
+      { c: PAL.rose, o: shabby ? 0.45 : 0.85, d: lin },
+      { c: PAL.terracotta, o: shabby ? 0.5 : 0.82, d: spots.join('') },
+      { c: PAL.rose, o: shabby ? 0.5 : 0.9, d: pNose },
+    ],
+    fills,
+    glints,
+  };
+}
+
 // =============================================================================================
 // THE BOY's head (centre 0,0), about 32 wide: a round face, a mop of golden (ochre) hair with a
 // tuft on top, rosy cheeks. mood: 'happy', 'sleep' (eyes shut, a little smile), 'ill' (heavy
@@ -257,7 +302,7 @@ export function boy({ mood = 'happy', hands = [36, -44] } = {}) {
   const arm = boyArm([[2, -62, 10], [12, -54, 9], [24, -48, 8.5], [hx, hy, 8]]);
   const arm2 = boyArm([[-4, -60, 10], [6, -51, 9], [18, -46, 8.5], [hx - 4, hy + 2, 8]]);
   return merge(
-    place(arm2, ''),
+    arm2,
     {
       lines: [top, ...legs, feet],
       fine: [stripes],

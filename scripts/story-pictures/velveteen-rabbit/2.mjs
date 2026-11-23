@@ -1,4 +1,4 @@
-import { PAL, hatch } from '../lib.mjs';
+import { PAL } from '../lib.mjs';
 import { clockworkMouse, compose, dot, place, rabbit } from './characters.mjs';
 
 // The Velveteen Rabbit, 2: on the floor of the toy cupboard, the proud clockwork mouse, key in his
@@ -24,6 +24,6 @@ export default compose({
     { c: PAL.red, o: 0.75, d: ball },
   ],
   lines: [floor, wall, shelf, block, ball],
-  fine: [boards, ballBand, hatch(150, 286, 250, 286, 6, 6, 160, 4)],
+  fine: [boards, ballBand],
   parts: [place(rabbit({ mood: 'look', look: [1.4, -0.4] }), 'translate(122 264) scale(1.3)'), place(clockworkMouse(), 'translate(262 260) scale(1.7)')],
 });

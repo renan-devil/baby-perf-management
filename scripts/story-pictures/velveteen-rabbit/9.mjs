@@ -1,11 +1,11 @@
 import { PAL, transformPath, tufts } from '../lib.mjs';
-import { compose, dot, fairy, place, rabbit, sparkle } from './characters.mjs';
+import { compose, dot, fairy, place, sparkle, toyProfile } from './characters.mjs';
 
 // The Velveteen Rabbit, 9: where his tear fell, a wonderful flower has grown; out of it steps the tiny
 // nursery fairy, who stands on the open flower and kisses the shabby little rabbit on his nose.
 const ground = 'M0 270C90 267 200 271 300 268C340 267 370 269 400 268';
-const FX = 232;
-const FY = 228;
+const FX = 229;
+const FY = 214;
 // the open flower: five pointed petals fanning up round its heart, on a tall stem with two leaves
 const petal = 'M0 0C-6 -8 -6 -22 0 -30C6 -22 6 -8 0 0Z';
 const petals = [-70, -36, 0, 36, 70].map((a) => transformPath(petal, `translate(${FX} ${FY + 6}) rotate(${a}) scale(1.05 1)`)).join('');
@@ -26,7 +26,7 @@ export default compose({
   fine: [cup, leaves, sparkle(150, 90, 8), sparkle(330, 70, 6), sparkle(110, 160, 5), sparkle(190, 120, 4), sparkle(360, 160, 5), tufts([[40, 270], [120, 270], [380, 268]], 10, 5)],
   once: dot(170, 140, 0.8) + dot(140, 120, 0.8) + dot(180, 170, 0.8) + dot(206, 150, 0.8),
   parts: [
-    place(rabbit({ mood: 'shut', shabby: true }), 'translate(304 274) rotate(-18) scale(1.6)'),
-    place(fairy({ lean: 30 }), `translate(${FX} ${FY + 3}) scale(1.75)`),
+    place(toyProfile({ mood: 'shut', shabby: true }), 'translate(342 212) scale(-1.8 1.8)'),
+    place(fairy({ lean: 14 }), `translate(${FX} ${FY + 3}) scale(1.9)`),
   ],
 });
