@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+<title>The Boy asleep, hugging the velveteen rabbit</title>
+<defs>
+<filter id="grain" filterUnits="userSpaceOnUse" x="0" y="0" width="400" height="300" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" seed="4204"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.42 0 0 0 0 0.36 0 0 0 0 0.28 0.16 0 0 0 -0.05"/>
+</filter>
+<filter id="pen" filterUnits="userSpaceOnUse" x="-20" y="-20" width="440" height="340" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="4205" result="n"/>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+<filter id="pen2" filterUnits="userSpaceOnUse" x="-20" y="-20" width="440" height="340" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.07" numOctaves="2" seed="4211" result="n"/>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="6.5" xChannelSelector="G" yChannelSelector="B"/>
+</filter>
+<filter id="w0" filterUnits="userSpaceOnUse" x="-20" y="-20" width="440" height="340" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="4206" result="warp"/>
+<feDisplacementMap in="SourceGraphic" in2="warp" scale="12" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+<feGaussianBlur in="shape" stdDeviation="0.7" result="soft"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.11" numOctaves="2" seed="4226" result="grain"/>
+<feColorMatrix in="grain" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.1 1.3" result="grainA"/>
+<feComposite in="soft" in2="grainA" operator="in" result="tex"/>
+<feMorphology in="soft" operator="erode" radius="1.7" result="inner"/>
+<feComposite in="soft" in2="inner" operator="out" result="rim"/>
+<feMerge><feMergeNode in="tex"/><feMergeNode in="rim"/></feMerge>
+</filter>
+<filter id="w1" filterUnits="userSpaceOnUse" x="-20" y="-20" width="440" height="340" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="4209" result="warp"/>
+<feDisplacementMap in="SourceGraphic" in2="warp" scale="14" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+<feGaussianBlur in="shape" stdDeviation="0.7" result="soft"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.11" numOctaves="2" seed="4229" result="grain"/>
+<feColorMatrix in="grain" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.1 1.3" result="grainA"/>
+<feComposite in="soft" in2="grainA" operator="in" result="tex"/>
+<feMorphology in="soft" operator="erode" radius="1.7" result="inner"/>
+<feComposite in="soft" in2="inner" operator="out" result="rim"/>
+<feMerge><feMergeNode in="tex"/><feMergeNode in="rim"/></feMerge>
+</filter>
+<filter id="w2" filterUnits="userSpaceOnUse" x="-20" y="-20" width="440" height="340" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="4213" result="warp"/>
+<feDisplacementMap in="SourceGraphic" in2="warp" scale="11" xChannelSelector="R" yChannelSelector="G" result="shape"/>
+<feGaussianBlur in="shape" stdDeviation="0.7" result="soft"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.11" numOctaves="2" seed="4233" result="grain"/>
+<feColorMatrix in="grain" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.1 1.3" result="grainA"/>
+<feComposite in="soft" in2="grainA" operator="in" result="tex"/>
+<feMorphology in="soft" operator="erode" radius="1.7" result="inner"/>
+<feComposite in="soft" in2="inner" operator="out" result="rim"/>
+<feMerge><feMergeNode in="tex"/><feMergeNode in="rim"/></feMerge>
+</filter>
+<g id="lines"><path d="M300 20L378 20L378 96L300 96ZM339 20L339 96M300 58L378 58"/><path d="M 13.5 271.5 L 13.5 104.1 C 13.5 82.4 50.7 82.4 50.7 104.1 L 50.7 271.5"/><path d="M 385.5 271.5 L 385.5 178.5 C 385.5 163 357.6 163 357.6 178.5 L 357.6 271.5"/><path d="M 50.7 234.3 L 357.6 234.3 M 50.7 271.5 L 357.6 271.5 M 22.8 271.5 L 22.8 290.1 M 376.2 271.5 L 376.2 290.1"/><path d="M 53.8 215.7 C 47.6 184.7 63.1 163 97.2 163 C 122 163 146.8 166.1 159.2 175.4 C 168.5 184.7 162.3 209.5 153 218.8"/><path d="M 118.9 209.5 C 180.9 172.3 258.4 187.18 351.4 209.5 C 360.7 225 360.7 246.7 354.5 259.1 C 339 265.3 184 265.3 56.9 256 C 50.7 243.6 53.8 228.1 60 221.9 C 84.8 215.7 94.1 215.7 118.9 209.5 Z"/><path d="M 78.6 185.72 C 81.84 205.27 95.9 215.16 109.99 212.17 C 124.07 209.18 132.9 194.42 127.9 175.24"/><path d="M 77.46 193.32 C 68.57 173.13 77.9 156.42 97.26 152.31 C 116.63 148.19 131.95 159.66 132.04 181.72 C 127.15 171.72 118.8 167.05 112.13 170.31 C 105.91 167.03 95.16 168.4 90.82 173.92 C 83.4 173.66 77.48 180.44 77.46 193.32 Z"/><path d="M 93.93 153.94 C 90.48 146.39 94.64 139.98 100.3 140.62 C 97.53 144.89 98.28 148.41 100.78 151.56"/><path d="M 175.5 136.32 C 175.29 133.43 174.81 124.35 174.27 118.76 C 173.64 113.05 172.7 107.31 171.86 102.61 C 171.12 97.92 170.03 92.67 169.63 90.68 C 169.75 86.59 163.61 86.46 163.5 90.45 C 163.07 92.56 161.16 98.1 160.74 103.08 C 160.33 107.96 160.48 114.33 161.01 120.03 C 161.63 125.84 163.76 134.78 164.26 137.81"/><path d="M 190.46 142.31 C 192.32 140.24 197.81 133.85 201.47 130.23 C 205.04 126.51 209.1 123.03 212.27 120.19 C 215.34 117.33 218.94 114.33 220.29 113.13 C 223.87 111.25 220.96 105.82 217.38 107.7 C 215.48 108.22 210.09 108.68 205.86 110.9 C 201.63 113.12 196.01 116.84 192 120.83 C 187.98 124.92 183.45 132.85 181.77 135.24"/><path d="M 157.34 149.08 C 158.31 139.85 167.72 133.25 178.37 134.37 C 189.02 135.49 196.85 143.9 195.88 153.13 C 194.91 162.36 185.5 168.96 174.85 167.84 C 164.2 166.72 156.37 158.31 157.34 149.08 Z"/><path d="M 163.05 163.01 C 150.45 165.79 144.21 176.42 143.65 186.62 M 187.4 165.57 C 199.14 170.91 203.04 182.6 201.47 192.69"/><path d="M135.7 213.7C138.1 211.1 144.6 202.2 150.1 198.3C155.7 194.3 162.8 190.9 169 189.9C175.1 189 184.1 192.1 187.1 192.5C195.6 193.8 197.6 181 189.1 179.7C185.4 179.1 174.9 175.1 167 176.1C159.2 177.1 149 181.4 141.9 185.7C134.8 190.1 127.3 199.6 124.3 202.3"/></g>
+<g id="fine"><path d="M364 30C354 30 348 38 350 46C352 54 360 56 366 54C360 50 358 42 364 30Z"/><path d="M88 128.5L97 128L88.5 137L97.5 136.6"/><path d="M72 98.6L84 98L72.6 110L84.6 109.4"/><path d="M84 60.8L99 60L84.8 75L99.8 74.3"/><path d="M 118.9 209.5 C 103.4 221.9 78.6 231.2 60 221.9"/><path d="M 58.45 231.2 L 354.5 231.2"/><path d="M 72.4 231.2 L 115.8 231.2 L 115.8 257.55 L 72.4 257.55 Z M 137.5 231.2 L 180.9 231.2 L 180.9 257.55 L 137.5 257.55 Z M 202.6 231.2 L 246 231.2 L 246 257.55 L 202.6 257.55 Z M 267.7 231.2 L 311.1 231.2 L 311.1 257.55 L 267.7 257.55 Z"/><path d="M 32.1 132 L 32.1 163 M 32.1 194 L 32.1 240.5 M 371.55 197.1 L 371.55 221.9"/><path d="M 79.35 189.24 C 71.93 188.98 72.42 199.91 80.72 199.99 M 128.65 178.76 C 135.32 175.5 139.32 185.69 131.78 189.14"/><path d="M 105.12 189.28 C 108.14 190.48 108.66 192.95 105.29 194.4"/><path d="M 89.41 188.94 Q 95.66 192.4 99.97 186.7 M 108.78 184.83 Q 115.03 188.28 119.34 182.58"/><path d="M 102.27 201.85 Q 108.3 204.25 112.84 199.6"/><path d="M 169.29 132.9 C 171.54 131.09 173.56 131.3 175.49 132.53 M 181.47 134.18 C 183.6 133.38 185.63 133.59 187.45 135.84"/><path d="M 175.79 158.92 L 175.54 161.25 M 171.41 161.53 Q 173.26 163.47 175.54 161.25 Q 177.32 163.9 179.53 162.39"/><path d="M 169.83 157.06 L 156.91 153.14 M 169.62 159.09 L 157.18 160.35 M 182 158.34 L 195.46 157.19 M 181.79 160.37 L 193.7 164.18"/><path d="M 173.03 155.86 C 174.72 154.5 177.76 154.82 179.12 156.5 C 177.89 158.42 176.8 159.02 175.79 158.92 C 174.78 158.81 173.84 157.99 173.03 155.86 Z"/><path d="M 166.68 148.01 Q 169.42 151.17 172.77 148.65 M 180.88 149.5 Q 183.63 152.66 186.97 150.14"/><path d="M 171.38 161.84 Q 175.08 165.71 179.5 162.69"/><path d="M 171.59 129.55 C 171.5 127.49 171.53 121.34 171.17 117 C 170.7 112.64 169.83 107.32 169.28 103.77 C 168.63 100.22 167.83 97.06 167.56 95.7 C 167.5 94.36 165.45 94.34 165.51 95.68 C 165.26 97.09 164.3 100.38 164.12 104.05 C 164.04 107.73 163.96 113.37 164.53 117.73 C 165.1 122.1 167.14 128.06 167.63 130.16"/><path d="M 192.41 133.49 C 193.78 132.19 197.73 128.71 200.67 126.15 C 203.6 123.59 207.55 120.21 209.93 118.1 C 212.3 115.99 214.13 114.23 215.03 113.4 C 216.24 112.71 215.19 110.96 213.99 111.65 C 212.82 112.04 210.03 112.26 207.08 113.9 C 204.04 115.53 199.12 118.4 196.27 121.17 C 193.3 124.04 190.5 129.18 189.42 130.71"/><path d="M186.5 187a7.5 7.5 0 1 0 15 0a7.5 7.5 0 1 0 -15 0Z"/></g>
+
+</defs>
+<rect width="400" height="300" fill="#fbf6ea"/>
+<rect width="400" height="300" filter="url(#grain)"/>
+<g filter="url(#w0)" opacity="0.45" fill="#6b7a8f" style="mix-blend-mode:multiply"><path d="M300 20L378 20L378 96L300 96Z"/></g>
+<g filter="url(#w1)" opacity="0.9" fill="#e0a43a" style="mix-blend-mode:multiply"><path d="M364 30C354 30 348 38 350 46C352 54 360 56 366 54C360 50 358 42 364 30Z"/></g>
+<g filter="url(#w2)" opacity="0.55" fill="#e0a43a" style="mix-blend-mode:multiply"><path d="M 13.5 271.5 L 13.5 104.1 C 13.5 82.4 50.7 82.4 50.7 104.1 L 50.7 271.5 Z M 385.5 271.5 L 385.5 178.5 C 385.5 163 357.6 163 357.6 178.5 L 357.6 271.5 Z M 50.7 234.3 L 357.6 234.3 L 357.6 271.5 L 50.7 271.5 Z"/></g>
+<g filter="url(#w0)" opacity="0.3" fill="#d9774a" style="mix-blend-mode:multiply"><path d="M 13.5 271.5 L 13.5 104.1 C 13.5 82.4 50.7 82.4 50.7 104.1 L 50.7 271.5 Z M 385.5 271.5 L 385.5 178.5 C 385.5 163 357.6 163 357.6 178.5 L 357.6 271.5 Z M 50.7 234.3 L 357.6 234.3 L 357.6 271.5 L 50.7 271.5 Z"/></g>
+<g filter="url(#w1)" opacity="0.18" fill="#a9a39a" style="mix-blend-mode:multiply"><path d="M 53.8 215.7 C 47.6 184.7 63.1 163 97.2 163 C 122 163 146.8 166.1 159.2 175.4 C 168.5 184.7 162.3 209.5 153 218.8 Z"/></g>
+<g filter="url(#w2)" opacity="0.55" fill="#8fb36a" style="mix-blend-mode:multiply"><path d="M 118.9 209.5 C 180.9 172.3 258.4 187.18 351.4 209.5 C 360.7 225 360.7 246.7 354.5 259.1 C 339 265.3 184 265.3 56.9 256 C 50.7 243.6 53.8 228.1 60 221.9 C 84.8 215.7 94.1 215.7 118.9 209.5 Z"/></g>
+<g filter="url(#w0)" opacity="0.6" fill="#e58f8f" style="mix-blend-mode:multiply"><path d="M 72.4 231.2 L 115.8 231.2 L 115.8 257.55 L 72.4 257.55 Z M 202.6 231.2 L 246 231.2 L 246 257.55 L 202.6 257.55 Z"/></g>
+<g filter="url(#w1)" opacity="0.6" fill="#e0a43a" style="mix-blend-mode:multiply"><path d="M 137.5 231.2 L 180.9 231.2 L 180.9 257.55 L 137.5 257.55 Z M 267.7 231.2 L 311.1 231.2 L 311.1 257.55 L 267.7 257.55 Z"/></g>
+<g filter="url(#w2)" opacity="0.3" fill="#e58f8f" style="mix-blend-mode:multiply"><path d="M 78.6 185.72 C 81.84 205.27 95.9 215.16 109.99 212.17 C 124.07 209.18 132.9 194.42 127.9 175.24 C 120.64 158.38 78.38 167.36 78.6 185.72 Z"/></g>
+<g filter="url(#w0)" opacity="0.85" fill="#e0a43a" style="mix-blend-mode:multiply"><path d="M 77.46 193.32 C 68.57 173.13 77.9 156.42 97.26 152.31 C 116.63 148.19 131.95 159.66 132.04 181.72 C 127.15 171.72 118.8 167.05 112.13 170.31 C 105.91 167.03 95.16 168.4 90.82 173.92 C 83.4 173.66 77.48 180.44 77.46 193.32 Z M 93.93 153.94 C 90.48 146.39 94.64 139.98 100.3 140.62 C 97.53 144.89 98.28 148.41 100.78 151.56"/></g>
+<g filter="url(#w1)" opacity="0.55" fill="#e58f8f" style="mix-blend-mode:multiply"><path d="M 86.72 200.55 A 5.04 5.04 -12 1 0 96.58 198.46 A 5.04 5.04 -12 1 0 86.72 200.55 Z M 116.66 194.19 A 5.04 5.04 -12 1 0 126.52 192.1 A 5.04 5.04 -12 1 0 116.66 194.19 Z"/></g>
+<g filter="url(#w2)" opacity="0.14" fill="#e0a43a" style="mix-blend-mode:multiply"><path d="M 163.05 163.01 C 150.45 165.79 144.21 176.42 143.65 186.62 L 201.47 192.69 C 203.04 182.6 199.14 170.91 187.4 165.57 C 181.52 162.9 169.35 161.63 163.05 163.01 Z M 175.5 136.32 C 175.29 133.43 174.81 124.35 174.27 118.76 C 173.64 113.05 172.7 107.31 171.86 102.61 C 171.12 97.92 170.03 92.67 169.63 90.68 C 169.75 86.59 163.61 86.46 163.5 90.45 C 163.07 92.56 161.16 98.1 160.74 103.08 C 160.33 107.96 160.48 114.33 161.01 120.03 C 161.63 125.84 163.76 134.78 164.26 137.81 Z M 190.46 142.31 C 192.32 140.24 197.81 133.85 201.47 130.23 C 205.04 126.51 209.1 123.03 212.27 120.19 C 215.34 117.33 218.94 114.33 220.29 113.13 C 223.87 111.25 220.96 105.82 217.38 107.7 C 215.48 108.22 210.09 108.68 205.86 110.9 C 201.63 113.12 196.01 116.84 192 120.83 C 187.98 124.92 183.45 132.85 181.77 135.24 Z"/></g>
+<g filter="url(#w0)" opacity="0.14" fill="#e0a43a" style="mix-blend-mode:multiply"><path d="M 157.34 149.08 C 158.31 139.85 167.72 133.25 178.37 134.37 C 189.02 135.49 196.85 143.9 195.88 153.13 C 194.91 162.36 185.5 168.96 174.85 167.84 C 164.2 166.72 156.37 158.31 157.34 149.08 Z"/></g>
+<g filter="url(#w1)" opacity="0.85" fill="#e58f8f" style="mix-blend-mode:multiply"><path d="M 171.59 129.55 C 171.5 127.49 171.53 121.34 171.17 117 C 170.7 112.64 169.83 107.32 169.28 103.77 C 168.63 100.22 167.83 97.06 167.56 95.7 C 167.5 94.36 165.45 94.34 165.51 95.68 C 165.26 97.09 164.3 100.38 164.12 104.05 C 164.04 107.73 163.96 113.37 164.53 117.73 C 165.1 122.1 167.14 128.06 167.63 130.16 Z M 192.41 133.49 C 193.78 132.19 197.73 128.71 200.67 126.15 C 203.6 123.59 207.55 120.21 209.93 118.1 C 212.3 115.99 214.13 114.23 215.03 113.4 C 216.24 112.71 215.19 110.96 213.99 111.65 C 212.82 112.04 210.03 112.26 207.08 113.9 C 204.04 115.53 199.12 118.4 196.27 121.17 C 193.3 124.04 190.5 129.18 189.42 130.71 Z"/></g>
+<g filter="url(#w2)" opacity="0.82" fill="#d9774a" style="mix-blend-mode:multiply"><path d="M 191.18 146.18 Q 192.05 148.63 190.86 151.17 Q 189.68 153.61 186.18 153.75 Q 182.78 153.91 180.21 152 Q 177.65 149.99 177.66 147.01 Q 177.67 143.94 180.82 142.32 Q 183.97 140.6 187.09 142.16 Q 190.21 143.72 191.18 146.18 Z M 162.88 178.28 Q 163.47 180.49 162.71 182.88 Q 161.94 185.26 158.92 185.76 Q 155.9 186.16 154.29 183.94 Q 152.57 181.71 152.43 179.13 Q 152.4 176.56 154.95 175.7 Q 157.5 174.84 159.89 175.5 Q 162.28 176.16 162.88 178.28 Z M 171.27 173.62 Q 171.62 175.2 170.86 176.55 Q 170.11 177.81 168.3 178.44 Q 166.4 178.96 165.33 177.41 Q 164.36 175.97 164.03 174.19 Q 163.7 172.42 165.47 171.27 Q 167.32 170.23 169.17 171.14 Q 171.02 172.06 171.27 173.62 Z M 210.64 113.25 Q 210.8 114.7 210.43 116.2 Q 210.07 117.7 207.94 117.48 Q 205.91 117.26 204.16 116.36 Q 202.41 115.46 202.48 113.83 Q 202.56 112.09 204.55 111.68 Q 206.55 111.18 208.47 111.48 Q 210.38 111.79 210.64 113.25 Z"/></g>
+<g filter="url(#w0)" opacity="0.9" fill="#e58f8f" style="mix-blend-mode:multiply"><path d="M 173.03 155.86 C 174.72 154.5 177.76 154.82 179.12 156.5 C 177.89 158.42 176.8 159.02 175.79 158.92 C 174.78 158.81 173.84 157.99 173.03 155.86 Z"/></g>
+<g filter="url(#w1)" opacity="0.75" fill="#8ec5e6" style="mix-blend-mode:multiply"><path d="M135.7 213.7C138.1 211.1 144.6 202.2 150.1 198.3C155.7 194.3 162.8 190.9 169 189.9C175.1 189 184.1 192.1 187.1 192.5C195.6 193.8 197.6 181 189.1 179.7C185.4 179.1 174.9 175.1 167 176.1C159.2 177.1 149 181.4 141.9 185.7C134.8 190.1 127.3 199.6 124.3 202.3Z"/></g>
+<g filter="url(#w2)" opacity="0.5" fill="#e58f8f" style="mix-blend-mode:multiply"><path d="M186.5 187a7.5 7.5 0 1 0 15 0a7.5 7.5 0 1 0 -15 0Z"/></g>
+
+<g fill="none" stroke="#2b2622" stroke-linecap="round" stroke-linejoin="round">
+<use href="#lines" filter="url(#pen)" stroke-width="2.1"/>
+<use href="#lines" filter="url(#pen2)" stroke-width="1.05" opacity="0.7" stroke-dasharray="46 3 30 4 60 2" transform="translate(1.7 -1.3)"/>
+<use href="#fine" filter="url(#pen)" stroke-width="1.25"/>
+<use href="#fine" filter="url(#pen2)" stroke-width="0.7" opacity="0.55" transform="translate(1 0.9)"/>
+<g filter="url(#pen)" stroke-width="1.6">M313.4 34a0.6 0.6 0 1 0 1.2 0a0.6 0.6 0 1 0 -1.2 0ZM321.4 78a0.6 0.6 0 1 0 1.2 0a0.6 0.6 0 1 0 -1.2 0ZM365.4 82a0.6 0.6 0 1 0 1.2 0a0.6 0.6 0 1 0 -1.2 0Z</g>
+</g>
+<g fill="#2b2622" filter="url(#pen)"></g>
+<g fill="#fbf6ea"></g>
+</svg>
