@@ -87,7 +87,7 @@ function rabbitFace(mood, look) {
   }
   if (mood === 'sad') {
     fine.push('M-11 -69L-4 -71.5M11 -69L4 -71.5');
-    const t = tear(1.5, -53.5, 7);
+    const t = tear(2, -53.5, 9.5);
     fine.push(t);
     washes.push({ c: PAL.sky, o: 0.95, d: t });
   }
@@ -95,7 +95,7 @@ function rabbitFace(mood, look) {
 }
 
 export function rabbit({ mood = 'happy', look = [1.2, 0], shabby = false, upper = false } = {}) {
-  const spotO = shabby ? 0.42 : 0.82;
+  const spotO = shabby ? 0.5 : 0.82;
   const spots = SPOTS.filter((s, i) => (!shabby || SHABBY_SPOTS.includes(i)) && (!upper || s[1] < -26)).map(([x, y, rx, ry, s]) => blob(x, y, rx, ry, s));
   const body = upper ? rBodyUpper : rBody;
   const bodyFill = upper ? rBodyUpperFill : rBodyFill;
@@ -127,10 +127,10 @@ export function rabbit({ mood = 'happy', look = [1.2, 0], shabby = false, upper 
 // (head, ears and chest only, the rest hidden in bracken, chest bottom at y = 4).
 // =============================================================================================
 const pHead = 'M17 -28C16 -36 24 -41 32 -41C40 -41 46 -35 46 -29C46 -23 40 -18 32 -18C24 -18 18 -22 17 -28Z';
-const pEar1 = limb([[24, -38, 7], [14, -48, 8.5], [2, -54, 7], [-7, -56, 3.5]]);
-const pEar2 = limb([[29, -40, 7], [24, -53, 8.5], [17, -63, 7], [11, -68, 3.5]]);
-const pLining1 = limb([[20, -44, 2.5], [13, -49, 4], [3, -53, 3], [-3, -55, 1.2]]);
-const pLining2 = limb([[26, -47, 2.5], [22.5, -54, 4], [17, -61, 3], [13, -65, 1.2]]);
+const EAR1 = limb([[24, -38, 7], [14, -48, 8.5], [2, -54, 7], [-7, -56, 3.5]]);
+const EAR2 = limb([[29, -40, 7], [24, -53, 8.5], [17, -63, 7], [11, -68, 3.5]]);
+const LINING1 = limb([[20, -44, 2.5], [13, -49, 4], [3, -53, 3], [-3, -55, 1.2]]);
+const LINING2 = limb([[26, -47, 2.5], [22.5, -54, 4], [17, -61, 3], [13, -65, 1.2]]);
 const pHop =
   'M25 -19C30 -12 34 -4 38 1C42 5 48 6 46 10C42 12 32 10 22 6C10 10 -8 10 -20 7C-28 11 -40 16 -50 15C-53 12 -46 8 -36 2C-40 -5 -39 -13 -32 -19C-24 -26 -8 -28 6 -27C11 -27 15 -29 18 -32';
 const pHopFill = `${pHop}C18 -30 20 -22 25 -19Z`;
@@ -148,7 +148,14 @@ const P_SPOTS = [
   [10, -55, 4, 3, 29],
 ];
 
-export function profileRabbit({ pose = 'hop', real = false, tint = 1 } = {}) {
+export function profileRabbit({ pose = 'hop', real = false, tint = 1, ears = 0 } = {}) {
+  // ears: how far (degrees) the ears are turned up from lying back
+  const e1 = ears ? `rotate(${ears} 24 -38)` : '';
+  const e2 = ears ? `rotate(${ears * 0.6} 29 -40)` : '';
+  const pEar1 = e1 ? transformPath(EAR1, e1) : EAR1;
+  const pEar2 = e2 ? transformPath(EAR2, e2) : EAR2;
+  const pLining1 = e1 ? transformPath(LINING1, e1) : LINING1;
+  const pLining2 = e2 ? transformPath(LINING2, e2) : LINING2;
   const body = pose === 'hop' ? pHop : pPeep;
   const bodyFill = pose === 'hop' ? pHopFill : pPeepFill;
   const lines = [pEar1, pEar2, pHead, body];
@@ -156,7 +163,7 @@ export function profileRabbit({ pose = 'hop', real = false, tint = 1 } = {}) {
   const all = pHead + Z(pEar1) + Z(pEar2);
   let washes;
   if (real) {
-    const spots = P_SPOTS.filter((s) => pose === 'hop' || s[1] < -20).map(([x, y, rx, ry, s]) => blob(x, y, rx, ry, s));
+    const spots = P_SPOTS.filter((s) => pose === 'hop' || s[1] < -20).map(([x, y, rx, ry, s]) => (s === 29 && e1 ? transformPath(blob(x, y, rx, ry, s), e1) : blob(x, y, rx, ry, s)));
     washes = [
       { c: PAL.ochre, o: 0.12, d: bodyFill },
       { c: PAL.ochre, o: 0.12, d: all },

@@ -28,12 +28,17 @@ function frond(x0, y0, cx, cy, x1, y1, n = 9, w = 24) {
 }
 
 const fronds = [
-  frond(30, 262, 20, 170, 96, 130, 10, 30),
-  frond(80, 262, 70, 190, 170, 180, 9, 26),
-  frond(140, 262, 150, 200, 214, 214, 8, 22),
-  frond(10, 262, 0, 200, 40, 160, 7, 22),
-  frond(110, 262, 120, 150, 70, 96, 9, 26),
-  frond(60, 262, 50, 220, 134, 228, 7, 20),
+  // behind and around the rabbits
+  frond(20, 262, 0, 150, 52, 92, 11, 32),
+  frond(60, 262, 40, 150, 4, 112, 9, 26),
+  frond(176, 262, 200, 150, 150, 104, 10, 28),
+  frond(206, 262, 214, 180, 250, 150, 8, 22),
+  // in front of the rabbits' chests
+  frond(36, 262, 60, 200, 160, 210, 10, 30),
+  frond(90, 262, 110, 220, 220, 226, 10, 30),
+  frond(150, 262, 120, 230, 30, 222, 9, 26),
+  frond(10, 262, 40, 236, 120, 240, 8, 26),
+  frond(196, 262, 180, 236, 110, 214, 8, 24),
 ];
 
 export default compose({
@@ -46,8 +51,8 @@ export default compose({
   lines: [ground, ...fronds.map((fr) => fr.stem)],
   fine: [...fronds.map((fr) => fr.leaflets), tufts([[230, 262], [380, 260], [270, 286], [180, 288]], 9, 5)],
   parts: [
-    place(profileRabbit({ pose: 'peep' }), 'translate(58 214) scale(1.55)'),
-    place(profileRabbit({ pose: 'peep', tint: 0.85 }), 'translate(118 236) scale(1.4)'),
-    place(rabbit({ mood: 'look', look: [-1.5, -0.3] }), 'translate(312 264) scale(1.2)'),
+    place(profileRabbit({ pose: 'peep', ears: 38 }), 'translate(52 216) scale(1.55)'),
+    place(profileRabbit({ pose: 'peep', tint: 0.85, ears: 30 }), 'translate(120 238) scale(1.4)'),
+    place(rabbit({ mood: 'look', look: [-1.5, -0.3] }), 'translate(298 264) scale(1.2)'),
   ],
 });

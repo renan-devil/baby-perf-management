@@ -23,8 +23,6 @@ const mFace = 'M0 -38C-3 -43.5 -10 -42.5 -9 -35C-9 -28 -5 -24.5 0 -24.5C5 -24.5 
 const mTuft = 'M-3 -44.5C-2 -48 1 -49.5 3 -47.5M0 -45C1 -48 4 -48.5 5 -46.5';
 const mBody = 'M-7 -24C-12 -18 -12.5 -5 -9 -1C-4 1.5 4 1.5 9 -1C12.5 -5 12 -18 7 -24';
 const mTummy = oval(0, -9, 5.2, 7);
-const SH = [[-8, -19], [8, -19]];
-const HIP = [[-6, -3], [6, -3]];
 
 export const M_POSE = {
   // holding on with one hand, the other waving high; legs astride
@@ -41,7 +39,7 @@ export const M_POSE = {
   },
   // finger on chin, the other hand holding on
   think: {
-    arms: [[[-8, -19, 4], [-15, -11, 3.6], [-14, -2, 3.4]], [[8, -19, 4], [12, -13, 3.6], [6, -22, 3.4]]],
+    arms: [[[-8, -19, 4], [-15, -11, 3.6], [-14, -2, 3.4]], [[8, -19, 4], [13, -14, 3.6], [5, -24.5, 3.2]]],
     legs: [[[-6, -3, 5], [-14, 2, 4], [-17, 11, 3.6]], [[6, -3, 5], [14, 2, 4], [17, 11, 3.6]]],
     tail: [[-7, -3, 3.4], [-22, -2, 3], [-34, -8, 2.8], [-38, -18, 2.6], [-32, -24, 2.4], [-26, -20, 2.2], [-29, -15, 2]],
   },
@@ -173,7 +171,7 @@ export function crocHead({ mood = 'smile', mrs = false, look = [0.6, 0] } = {}) 
 // ---------------------------------------------------------------------------------------------
 // The crocodile swimming (facing right, waterline at y = 10, the head's neck at 0,0), about 200 long:
 // a long knobbly green back above the water and the tip of the tail flicking up behind.
-// head: the transform of the head (default: in place); neck: extra path for a turned head.
+// head: the transform of the head (default: in place); neck, neckFill: ink and wash for a turned head.
 // BACK(x) gives a point on his back, where the monkey sits.
 const backA = [[2, -15], [-14, -27], [-40, -33], [-66, -32]];
 const backB = [[-66, -32], [-92, -31], [-122, -20], [-152, 10]];
@@ -212,21 +210,22 @@ const scutesShort = [-12, -26, -40, -54, -68]
   })
   .join('');
 
-export function swimCroc({ mood = 'smile', look, head = '', neck = '', mrs = false, short = false } = {}) {
+export function swimCroc({ mood = 'smile', look, head = '', neck = '', neckFill = '', mrs = false, short = false } = {}) {
   const h = place(crocHead({ mood, mrs, look }), head || 'translate(0 0)');
-  // the head's green goes in the same wash as the back, so no darker seam shows where they meet
-  const headGreen = h.washes.shift().d;
+  // the head's green goes in the same wash as the back, so no darker seam shows where they meet (not
+  // for a turned head: mirrored, its outline runs the other way and the overlap would cancel out)
+  const headGreen = neck ? '' : h.washes.shift().d;
   const body = {
-    lines: short ? [cBackShort, cTailShort] : [cBack, cTail, ...(neck ? [neck] : [])],
+    // with a turned head, the back's ink stops where the neck rises
+    lines: short ? [cBackShort, cTailShort] : [neck ? cBack.replace('M2 -15C-14 -27 -40 -33', 'M-8 -21.6C-24 -29 -44 -33') : cBack, cTail, ...(neck ? [neck] : [])],
     fine: short ? [scutesShort, 'M-30 -14c5 2.5 10 2.5 15 0M-62 -14c5 2.5 10 2.5 15 0M-46 -2c5 2.5 10 2.5 15 0'] : [scutes, flank],
     washes: [
       {
         c: PAL.green,
         o: 0.85,
-        d: `${short ? 'M6 10L-104 10C-96 -12 -80 -27 -60 -30C-40 -33 -14 -27 2 -15L6 -14Z' : 'M6 10L-152 10C-122 -20 -92 -31 -66 -32C-40 -33 -14 -27 2 -15L6 -14Z'}${headGreen}`,
+        d: `${short ? 'M6 10L-104 10C-96 -12 -80 -27 -60 -30C-40 -33 -14 -27 2 -15L6 -14Z' : 'M6 10L-152 10C-122 -20 -92 -31 -66 -32C-40 -33 -14 -27 2 -15L6 -14Z'}${headGreen}${neckFill}`,
       },
       { c: PAL.green, o: 0.85, d: short ? `${cTailShort}Z` : cTailFill },
-      ...(neck ? [{ c: PAL.green, o: 0.85, d: `${neck}Z` }] : []),
     ],
   };
   return merge(body, h);
@@ -284,7 +283,7 @@ export function uprightCroc({ mood = 'smile', mrs = false, arms = 'folded', tilt
 const fruitD = 'M-3.2 -3C-4.4 0 -4.4 3.4 -2.4 4.4C-0.8 3.6 0.8 3.6 2.4 4.4C4.4 3.4 4.4 0 3.2 -3C2 -4.4 -2 -4.4 -3.2 -3Z';
 export function fruit(s = 1) {
   const t = `scale(${s})`;
-  const d = place({ lines: [], fine: [fruitD, 'M0 -4l1 -3'], washes: [{ c: PAL.rose, o: 0.9, d: fruitD }, { c: PAL.slate, o: 0.45, d: fruitD }] }, t);
+  const d = place({ lines: [], fine: [fruitD, 'M0 -4l1 -3'], washes: [{ c: PAL.rose, o: 0.95, d: fruitD }, { c: PAL.slate, o: 0.3, d: fruitD }] }, t);
   return d;
 }
 
