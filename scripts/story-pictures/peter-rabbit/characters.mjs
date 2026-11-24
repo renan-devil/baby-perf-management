@@ -198,7 +198,7 @@ export const PETER_POSES = {
 };
 
 export function peter({ pose = 'sit', mood = 'happy', head = undefined, ears = undefined, buttonR = 2.4 } = {}) {
-  const P = PETER_POSES[pose];
+  const P = typeof pose === 'string' ? PETER_POSES[pose] : pose; // a name, or a pose of the same shape
   const legParts = P.legs.map((l) => {
     const d = limb(l);
     return { lines: [d], washes: [{ c: PAL.grey, o: 0.6, d: `${d}Z` }, { c: PAL.ochre, o: 0.22, d: `${d}Z` }] };
