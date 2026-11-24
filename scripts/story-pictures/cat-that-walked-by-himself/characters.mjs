@@ -47,7 +47,7 @@ export function catHead({ mood = 'open', tongue = false } = {}) {
     }
   }
   if (tongue) {
-    const t = 'M3 7.5C2.6 12 6.4 12 6 7.5Z';
+    const t = 'M2.8 7.5C2 15 7 15 6.2 7.5Z';
     washes.push(wash(PAL.rose, 0.95, t));
     fine.push(t);
   }
@@ -106,10 +106,10 @@ const CAT_POSES = {
   sit: {
     body: 'M-18 0C-25 -8 -23 -24 -13 -34C-7 -42 4 -48 12 -44C18 -36 18 -16 15 0Z',
     stripes: 'M-17 -6C-16 -18 -6 -22 0 -12M-14 -31q5 2 8 -2M-19 -22q4 2 7 -1M-4 -42q3 2 6 -1',
-    far: [[[4, -32, 7], [4, -16, 6], [4, -3, 5.5]]],
-    near: [[[11, -32, 7.5], [11, -16, 6.5], [12, -3, 5.5]]],
+    far: [],
+    near: [[[9, -32, 8.5], [9, -16, 7.5], [10, -3, 6.5]]],
     head: 'translate(8 -52)',
-    tail: [[-19, -6, 6], [-14, 1, 5.5], [0, 3.5, 5], [16, 2.5, 4.5], [25, -3, 4]],
+    tail: [[-19, -9, 7], [-14, -3, 6.5], [0, -1.5, 6], [16, -2.5, 5.5], [26, -8, 5], [28, -15, 4]],
     tailFront: true,
   },
   crouch: {
@@ -126,6 +126,21 @@ const CAT_POSES = {
     head: 'translate(35 -31) rotate(-4)',
     tail: [[-26, -28, 6], [-40, -36, 5.5], [-46, -52, 5], [-42, -68, 4.5], [-34, -72, 4]],
   },
+  // creeping up, one front paw lifted, as he peeps round the door
+  peep: {
+    body: 'M-28 -24C-29 -32 -14 -35 2 -34C16 -34 24 -30 25 -24C26 -16 18 -12 2 -12C-14 -12 -28 -15 -28 -24Z',
+    stripes: 'M-18 -33q3 6 0 10M-9 -34q3 6 0 10M0 -34q3 6 0 10M9 -34q3 6 0 9',
+    far: [
+      [[14, -18, 7], [20, -10, 6], [22, -3, 5.5]],
+      [[-20, -18, 10], [-28, -9, 7], [-20, -3, 5.5]],
+    ],
+    near: [
+      [[18, -18, 7.5], [28, -18, 6.5], [33, -12, 5.5]],
+      [[-15, -18, 11], [-24, -8, 7], [-13, -3, 5.5]],
+    ],
+    head: 'translate(36 -32) rotate(-4)',
+    tail: [[-26, -28, 6], [-40, -36, 5.5], [-46, -52, 5], [-42, -68, 4.5], [-34, -72, 4]],
+  },
   lap: {
     body: 'M-28 -26C-29 -34 -14 -37 2 -34C14 -32 22 -26 23 -20C24 -14 16 -11 2 -12C-14 -12 -28 -16 -28 -26Z',
     stripes: 'M-18 -35q3 6 0 10M-9 -35q3 6 0 10M0 -34q3 6 0 10M9 -32q3 6 0 9',
@@ -137,7 +152,7 @@ const CAT_POSES = {
       [[17, -15, 7.5], [24, -6, 6.5], [31, -3, 5.5]],
       [[-15, -20, 11], [-24, -9, 7], [-13, -3, 5.5]],
     ],
-    head: 'translate(34 -15) rotate(28)',
+    head: 'translate(35 -12) rotate(30)',
     tail: [[-26, -30, 6], [-38, -40, 5.5], [-42, -56, 5], [-38, -70, 4.5], [-30, -72, 4]],
   },
   roll: {
@@ -146,11 +161,11 @@ const CAT_POSES = {
     stripes: 'M-16 -6q2 -5 0 -9M-6 -4q2 -5 0 -9M4 -4q2 -5 0 -9M14 -6q2 -5 0 -8',
     far: [
       [[-20, -22, 9], [-30, -30, 6.5], [-34, -40, 5.5]],
-      [[8, -25, 7], [8, -38, 6], [4, -48, 5.5]],
+      [[8, -25, 7], [12, -40, 6], [16, -50, 5.5]],
     ],
     near: [
       [[-12, -24, 10], [-18, -36, 6.5], [-14, -46, 5.5]],
-      [[15, -24, 7], [24, -36, 6], [32, -44, 5.5]],
+      [[10, -26, 7], [27, -42, 6], [49, -46, 5.5]],
     ],
     pad: 'round',
     head: 'translate(34 -15) rotate(14)',
@@ -222,24 +237,31 @@ export const WOMAN_ARMS = {
 
 /**
  * The Woman: long auburn hair, an ochre skin dress over one shoulder. Feet on y = 0. arms: two limb
- * centrelines in hip coordinates (back arm, front arm), the shoulders being near (±6, -54).
+ * centrelines in hip coordinates (back arm, front arm; null leaves one out), the shoulders being near
+ * (±6, -54). pose: 'stand' or 'sit'; lean tips the upper body forward by that many degrees.
  */
-export function woman({ pose = 'stand', mood = 'smile', arms = WOMAN_ARMS.down, headTilt = 0 } = {}) {
+export function woman({ pose = 'stand', mood = 'smile', arms = WOMAN_ARMS.down, headTilt = 0, lean = 0 } = {}) {
   const hipY = pose === 'stand' ? -54 : -28;
   const skirt = pose === 'stand' ? wSkirtStand : wSkirtSit;
-  const dress = wTorso + skirt;
   const legs =
     pose === 'stand'
       ? [personLeg([[-5, 22, 8.5], [-6, 38, 7.5], [-6, 50, 6.5]], footAt(-6, 53)), personLeg([[5, 22, 8.5], [6, 38, 7.5], [7, 50, 6.5]], footAt(7, 53))]
       : [personLeg([[20, 8, 8.5], [22, 18, 7.5], [23, 24, 6.5]], footAt(23, 27)), personLeg([[25, 8, 8.5], [28, 18, 7.5], [29, 24, 6.5]], footAt(29, 27))];
-  const body = {
-    lines: [wTorso, skirt],
+  // the upper body (torso, head and arms) can lean forward about the hips
+  const up = (part) => (lean ? place(part, `rotate(${lean})`) : part);
+  const torso = up({
+    lines: [wTorso],
     fine: [wStrap, wBelt],
-    washes: [wash(PAL.ochre, 0.62, dress), wash(PAL.terracotta, 0.18, dress), wash(PAL.terracotta, 0.6, spots([[-4, -40], [6, -24], [-6, -18], [4, 14], [-8, 12]]))],
+    washes: [wash(PAL.ochre, 0.62, wTorso), wash(PAL.terracotta, 0.18, wTorso), wash(PAL.terracotta, 0.6, spots([[-4, -40], [6, -24], [-6, -18]]))],
+  });
+  const skirtPart = {
+    lines: [skirt],
+    washes: [wash(PAL.ochre, 0.62, skirt), wash(PAL.terracotta, 0.18, skirt), wash(PAL.terracotta, 0.6, spots(pose === 'stand' ? [[4, 14], [-8, 12]] : [[8, 4], [20, 2]]))],
   };
-  const neck = { washes: [wash(SKIN, 0.45, 'M-2 -60L-2 -68L6 -68L6 -60Z')] };
-  const head = place(womanHead({ mood }), `translate(3 -76) rotate(${headTilt})`);
-  const inner = merge(...(arms[0] ? [personArm(arms[0])] : []), ...legs, neck, body, head, ...(arms[1] ? [personArm(arms[1])] : []));
+  const neck = up({ washes: [wash(SKIN, 0.45, 'M-2 -60L-2 -68L6 -68L6 -60Z')] });
+  const head = up(place(womanHead({ mood }), `translate(3 -76) rotate(${headTilt})`));
+  const arm = (a) => (a ? [up(personArm(a))] : []);
+  const inner = merge(...arm(arms[0]), ...legs, neck, skirtPart, torso, head, ...arm(arms[1]));
   return place(inner, `translate(0 ${hipY})`);
 }
 
@@ -435,11 +457,14 @@ function cowLeg(pts) {
   const hoof = `M${f(x - 6)} ${f(y - 3)}L${f(x - 7)} ${f(y + 3)}L${f(x + 7)} ${f(y + 3)}L${f(x + 6)} ${f(y - 3)}Z`;
   return { lines: [d, hoof], washes: [wash(PAL.grey, 0.3, closed(d)), wash(PAL.slate, 0.75, hoof)] };
 }
-export function cow() {
+export function cow({ nearHind = true, tail = 'down' } = {}) {
   const udder = 'M-38 -53C-38 -42 -32 -38 -26 -38C-20 -38 -14 -42 -14 -53Z';
   const teats = 'M-33 -41l-1 6M-27 -39l0 6M-20 -41l1 6';
-  const tailD = limb([[-54, -98, 5], [-62, -80, 4], [-64, -56, 3.5]]);
-  const tuft = 'M-64 -58C-70 -52 -68 -44 -64 -40C-60 -44 -58 -52 -64 -58Z';
+  // the tail hangs down (or is hidden: 'none')
+  const tailPts = [[-54, -98, 5], [-62, -80, 4], [-64, -56, 3.5]];
+  const tailD = limb(tailPts);
+  const [tx, ty] = tailPts[2];
+  const tuft = `M${tx} ${ty - 2}C${tx - 6} ${ty + 4} ${tx - 4} ${ty + 12} ${tx} ${ty + 16}C${tx + 4} ${ty + 12} ${tx + 6} ${ty + 4} ${tx} ${ty - 2}Z`;
   const legs = (list) => list.map(cowLeg);
   const far = legs([
     [[34, -60, 13], [36, -30, 10], [36, -3, 10]],
@@ -448,10 +473,10 @@ export function cow() {
   const near = legs([
     [[42, -60, 14], [44, -30, 11], [44, -3, 11]],
     [[-48, -60, 16], [-48, -30, 11], [-48, -3, 11]],
-  ]);
+  ]).slice(0, nearHind ? 2 : 1);
   const neck = 'M40 -104C52 -108 62 -104 66 -96L62 -74C54 -70 46 -72 44 -78Z';
   return merge(
-    { lines: [tailD, tuft], washes: [wash(PAL.grey, 0.4, closed(tailD)), wash(PAL.terracotta, 0.6, tuft)] },
+    tail === 'none' ? {} : { lines: [tailD, tuft], washes: [wash(PAL.grey, 0.4, closed(tailD)), wash(PAL.terracotta, 0.6, tuft)] },
     ...far,
     {
       lines: [cowBody, neck, udder],
@@ -481,20 +506,27 @@ export function bat() {
 }
 
 // ---------------------------------------------------------------------------------------------
-// The Baby: lying on his back (head on the right), wrapped in a little ochre skin, his fat legs
-// kicking up to the left and his arms waving, laughing with his eyes shut tight.
-export function baby({ mood = 'laugh' } = {}) {
-  const head = oval(0, 0, 13, 12);
-  const curl = 'M-2 -12c-4 -5 3 -8 4 -3';
-  const wrap = 'M-32 6C-34 -6 -22 -10 -10 -8C-4 -6 0 2 -2 10C-4 16 -20 18 -28 14C-31 12 -32 9 -32 6Z';
+// The Baby: sitting on his bottom (feet on y = 0, facing right), wrapped in a little ochre skin,
+// one fat leg stretched out and one kicked up high, his arms waving, laughing with his eyes shut tight.
+export function baby() {
+  const head = oval(4, -48, 15, 14);
+  const curl = 'M2 -62c-4 -5 3 -9 5 -4';
+  const face = ['M-3 -50q2.5 -3.5 5 0M8 -50q2.5 -3.5 5 0'];
+  const mouth = 'M1 -43Q5.5 -33 10 -43Q5.5 -41 1 -43Z';
+  const wrap = 'M-14 -2C-20 -10 -18 -28 -8 -34C0 -38 12 -36 16 -28C20 -18 18 -6 12 -2C4 1 -8 1 -14 -2Z';
   const legs = [
-    [[-28, 2, 10], [-38, -10, 9], [-42, -22, 8]],
-    [[-26, 8, 10], [-42, 2, 9], [-52, -8, 8]],
+    [[14, -6, 11], [24, -6, 10], [34, -6, 9]],
+    [[13, -16, 11], [24, -26, 10], [34, -38, 9]],
   ].map((l) => {
     const d = limb(l);
     const [x, y] = l[l.length - 1];
-    const foot = oval(x - 1, y - 3, 5, 6.5);
-    const toes = dot(x - 4, y - 8.5, 1.4) + dot(x - 1, y - 9.5, 1.4) + dot(x + 2, y - 9, 1.4);
+    const [px, py] = l[l.length - 2];
+    const u = [(x - px) / Math.hypot(x - px, y - py), (y - py) / Math.hypot(x - px, y - py)];
+    // the sole faces forward along the leg, the toes peep up over the end of the foot
+    const foot = oval(x + u[0] * 3, y + u[1] * 3 - 3, 5, 6.5);
+    const tx = x + u[0] * 4;
+    const ty = y + u[1] * 4 - 9;
+    const toes = dot(tx - 3, ty + 1, 1.5) + dot(tx, ty, 1.5) + dot(tx + 3, ty + 1, 1.5);
     return { lines: [d], fine: [foot, toes], washes: [wash(SKIN, 0.5, closed(d)), wash(SKIN, 0.55, foot + toes)] };
   });
   const arm = (pts) => {
@@ -502,31 +534,24 @@ export function baby({ mood = 'laugh' } = {}) {
     const [x, y] = pts[pts.length - 1];
     return { lines: [d], fine: [dot(x, y, 3.8)], washes: [wash(SKIN, 0.5, closed(d)), wash(SKIN, 0.5, dot(x, y, 3.8))] };
   };
-  const fine = [curl];
-  const fills = [];
-  if (mood === 'laugh') {
-    fine.push('M-7 -3q2.5 -3.5 5 0M2 -3q2.5 -3.5 5 0');
-    fills.push('M-4 4Q0.5 12 5 4Q0.5 6 -4 4Z');
-  } else {
-    fine.push('M-7 -3q2.5 2.5 5 0M2 -3q2.5 2.5 5 0', 'M-2 5q2.5 2 5 0');
-  }
   return merge(
-    arm([[-10, -4, 6], [-12, -16, 5.5], [-8, -24, 5]]),
+    arm([[-8, -30, 7], [-16, -40, 6], [-20, -52, 5.5]]),
+    { lines: [wrap], washes: [wash(PAL.ochre, 0.62, wrap), wash(PAL.terracotta, 0.5, spots([[-8, -22], [6, -12]]))] },
     ...legs,
-    { lines: [wrap], washes: [wash(PAL.ochre, 0.62, wrap), wash(PAL.terracotta, 0.5, spots([[-22, 0], [-12, 8]]))] },
-    { lines: [head], fine, washes: [wash(SKIN, 0.45, head), wash(PAL.rose, 0.6, dot(-8, 4, 2.6) + dot(9, 4, 2.6))], fills },
-    arm([[-4, 6, 6], [6, 14, 5.5], [14, 12, 5]]),
+    { lines: [head], fine: [curl, ...face], washes: [wash(SKIN, 0.45, head), wash(PAL.rose, 0.6, dot(-5, -44, 2.8) + dot(15, -44, 2.8))], fills: [mouth] },
+    arm([[10, -30, 7], [20, -40, 6], [26, -52, 5.5]]),
   );
 }
 
 // ---------------------------------------------------------------------------------------------
 // The Cave mouth: a hump of grey rock with an arched door (dark inside), the ground at y = 0 and
 // the door's middle at x = 0. curtain: the curtain of skins hung on a pole across the door, drawn
-// to the 'left' or 'right' side, or 'none'. dark: how dark the inside is (0 for no shade).
+// to the 'left' or 'right' side, or 'none'; narrow (0 to 1) bunches it up tighter against the side.
+// dark: how dark the inside is (0 for no shade).
 const caveOuter = 'M-130 0C-134 -70 -118 -150 -64 -186C-24 -210 40 -206 82 -176C120 -148 134 -76 132 0';
 const caveDoor = 'M-70 0C-72 -70 -62 -132 0 -138C62 -132 72 -70 70 0';
 export const CAVE_DOOR = caveDoor;
-export function cave({ curtain = 'left', dark = 0.3 } = {}) {
+export function cave({ curtain = 'left', dark = 0.3, narrow = 1 } = {}) {
   const rock = `${caveOuter}Z${caveDoor}Z`;
   const cracks = 'M-104 -120l14 10l4 14M-120 -40l12 4M96 -150l-10 14l2 12M110 -60l12 -6M-30 -196l6 12M40 -192l-4 14';
   const part = {
@@ -536,15 +561,17 @@ export function cave({ curtain = 'left', dark = 0.3 } = {}) {
   };
   if (dark) part.washes.push(wash(PAL.slate, dark, `${caveDoor}Z`));
   if (curtain !== 'none') {
-    const pole = 'M-54 -116C-20 -120 20 -120 56 -114';
-    const skins = 'M-50 -116L-6 -119C-12 -80 -20 -40 -24 0L-66 0C-66 -46 -60 -86 -50 -116Z';
-    const seams = 'M-28 -118C-34 -80 -42 -40 -46 0M-56 -76l16 2M-50 -34l20 2';
-    const stitches = hatch(-28, -118, -46, 0, 9, 4, 0, 7);
-    const c = {
-      lines: [pole, skins],
-      fine: [seams, stitches, 'M-6 -119C-2 -122 4 -122 8 -118'],
-      washes: [wash(PAL.ochre, 0.7, skins), wash(PAL.terracotta, 0.3, skins), wash(PAL.terracotta, 0.7, 'M-20 -112l8 -2l-1 8l-8 1ZM-46 -60l6 0l0 7l-6 0ZM-36 -20l7 0l0 6l-7 0Z')],
+    const pole = 'M-48 -126C-20 -130 20 -130 50 -124';
+    const skins = 'M-44 -126L-6 -129C-12 -86 -20 -40 -24 0L-66 0C-66 -50 -58 -94 -44 -126Z';
+    const seams = 'M-26 -128C-34 -84 -42 -40 -46 0M-56 -76l16 2M-50 -34l20 2';
+    const stitches = hatch(-26, -128, -46, 0, 9, 4, 0, 7);
+    part.lines.push(pole);
+    const c0 = {
+      lines: [skins],
+      fine: [seams, stitches],
+      washes: [wash(PAL.ochre, 0.7, skins), wash(PAL.terracotta, 0.3, skins), wash(PAL.terracotta, 0.7, 'M-20 -118l8 -2l-1 8l-8 1ZM-46 -60l6 0l0 7l-6 0ZM-36 -20l7 0l0 6l-7 0Z')],
     };
+    const c = narrow === 1 ? c0 : place(c0, `translate(-64 0) scale(${narrow} 1) translate(64 0)`);
     const m = curtain === 'right' ? place(c, 'scale(-1 1)') : c;
     part.lines.push(...m.lines);
     part.fine.push(...m.fine);
@@ -580,26 +607,28 @@ export function fire({ size = 1, glow = true } = {}) {
 
 // ---------------------------------------------------------------------------------------------
 // The milk pot: a round terracotta clay pot (base centre 0,0) full of frothing white milk. split:
-// the pot cracked in two, its halves fallen apart, with the milk in a puddle between them.
+// the pot cracked in two, its halves fallen apart to the right, and the milk spread in a puddle
+// out to the left of them.
 const potLeft = 'M-15 -30C-20 -20 -19 -6 -10 0L-1 0L2 -8L-2 -14L3 -22L0 -30Z';
 const potRight = 'M0 -30L3 -22L-2 -14L2 -8L-1 0L10 0C19 -6 20 -20 15 -30Z';
 const potRim = 'M-17 -30C-8 -33 8 -33 17 -30';
-const froth = 'M-15 -30C-14 -36 -7 -38 -3 -35C1 -40 8 -39 10 -35C14 -37 18 -33 16 -30C8 -28 -8 -28 -15 -30Z';
+const froth = 'M-16 -30C-17 -37 -10 -41 -5 -38C-2 -44 7 -44 9 -39C14 -42 20 -37 17 -30C8 -28 -8 -28 -16 -30Z';
 export function milkPot({ split = false } = {}) {
   const potBand = 'M-17 -22C-6 -19 6 -19 17 -22';
   if (!split) {
     const pot = 'M-15 -30C-20 -20 -19 -6 -10 0L10 0C19 -6 20 -20 15 -30Z';
     return {
       lines: [pot, potRim],
-      fine: [potBand, froth, dot(-6, -34, 1.2), dot(5, -35, 1.4), 'M-2 -40c-2 -3 2 -5 0 -8M6 -41c-2 -3 2 -5 0 -8'],
-      washes: [wash(PAL.terracotta, 0.7, pot), wash(PAL.ochre, 0.3, pot)],
+      fine: [potBand, froth, dot(-7, -34, 1.4), dot(4, -36, 1.6), dot(11, -33, 1.1)],
+      washes: [wash(PAL.terracotta, 0.7, pot), wash(PAL.ochre, 0.3, pot), wash(PAL.sky, 0.18, froth)],
       whites: [froth],
     };
   }
-  const L = place({ lines: [potLeft], fine: ['M-17 -22C-10 -20 -4 -19 0 -19'], washes: [wash(PAL.terracotta, 0.7, potLeft), wash(PAL.ochre, 0.3, potLeft)] }, 'translate(-10 0) rotate(-24 -10 0)');
-  const R = place({ lines: [potRight], fine: ['M1 -19C5 -19 10 -20 17 -22'], washes: [wash(PAL.terracotta, 0.7, potRight), wash(PAL.ochre, 0.3, potRight)] }, 'translate(12 0) rotate(26 10 0)');
-  const puddle = 'M-22 2C-26 -4 -10 -8 2 -7C16 -6 28 -4 26 2C24 7 8 8 -4 8C-14 8 -20 6 -22 2Z';
-  return merge(L, R, { fine: [puddle, 'M-24 -20l-6 -4M24 -22l6 -4M-2 -24l0 -7'], washes: [wash(PAL.sky, 0.22, puddle)], whites: [puddle] });
+  const L = place({ lines: [potLeft], fine: ['M-17 -22C-10 -20 -4 -19 0 -19'], washes: [wash(PAL.terracotta, 0.7, potLeft), wash(PAL.ochre, 0.3, potLeft)] }, 'translate(-4 0) rotate(-14 -10 0)');
+  const R = place({ lines: [potRight], fine: ['M1 -19C5 -19 10 -20 17 -22'], washes: [wash(PAL.terracotta, 0.7, potRight), wash(PAL.ochre, 0.3, potRight)] }, 'translate(16 0) rotate(16 10 0)');
+  const puddle = 'M-50 4C-54 -2 -34 -5 -16 -4C4 -3 26 -2 30 3C32 9 8 11 -16 11C-34 11 -48 9 -50 4Z';
+  const crack = 'M-4 -40l-4 -6M16 -40l4 -6M6 -44l0 -7';
+  return merge({ fine: [puddle], washes: [wash(PAL.sky, 0.22, puddle)], whites: [puddle] }, L, R, { fine: [crack] });
 }
 
 // ---------------------------------------------------------------------------------------------
