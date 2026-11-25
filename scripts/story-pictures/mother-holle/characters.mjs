@@ -63,7 +63,8 @@ export function snowflake(x, y, s = 6) {
 
 /**
  * Feathers turning into snow inside the box [x1, y1, x2, y2]: feathers on the side nearest the
- * pillow (from = 'left' or 'top'), snowflakes further away. n: how many.
+ * pillow (from = 'left' or 'top'), snowflakes further away; or from = the share of snowflakes (0 to
+ * 1). n: how many.
  */
 export function flurry(x1, y1, x2, y2, n, seed = 1, from = 'left', gap = 20) {
   const r = rng(seed);
@@ -74,8 +75,8 @@ export function flurry(x1, y1, x2, y2, n, seed = 1, from = 'left', gap = 20) {
     const y = y1 + r() * (y2 - y1);
     if (placed.some(([px, py]) => Math.hypot(px - x, py - y) < gap)) continue;
     placed.push([x, y]);
-    const k = from === 'left' ? (x - x1) / (x2 - x1) : (y - y1) / (y2 - y1);
-    if (r() < k * 1.2 - 0.1) parts.push(snowflake(x, y, 4.5 + r() * 3));
+    const k = typeof from === 'number' ? from : from === 'left' ? (x - x1) / (x2 - x1) : (y - y1) / (y2 - y1);
+    if (r() < (typeof from === 'number' ? k : k * 1.2 - 0.1)) parts.push(snowflake(x, y, 4.5 + r() * 3));
     else parts.push(feather(x, y, 15 + r() * 7, -70 + r() * 140));
   }
   return merge(...parts);
@@ -173,7 +174,8 @@ function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4, look = 0, up = 0 }) {
 // MARIE (feet at 0,0), about 118 tall: a kind girl with ochre hair parted in the middle and one
 // long plait over her shoulder tied with a sky ribbon, rosy cheeks, a plain sky-blue dress with a
 // little white collar and a slate belt, slate shoes. Head at M_HEAD; arms from the shoulders
-// (±12, -80). gold: covered all over in shining gold (picture 7, 8).
+// (±12, -80). gold: covered all over in shining gold (picture 7, 8). bust: only down to the
+// waist (y = -48), for leaning out of a window.
 // =============================================================================================
 export const M_HEAD = [0, -98];
 export const M_ARMS = {
@@ -217,15 +219,18 @@ export function marieHead({ mood = 'happy', look = 0, up = 0, gold = false } = {
     glints: [...m.glints, ...(gold ? [dot(-6, -14, 1.2), dot(7, -12, 1)] : [])],
   });
 }
-export function marie({ mood = 'happy', look = 0, up = 0, tilt = 0, arms = M_ARMS.down, legs = M_LEGS, gold = false } = {}) {
+export function marie({ mood = 'happy', look = 0, up = 0, tilt = 0, arms = M_ARMS.down, legs = M_LEGS, gold = false, bust = false } = {}) {
   const parts = [];
-  const dressCol = [{ c: PAL.sky, o: 0.8 }, { c: PAL.slate, o: 0.12 }];
-  parts.push(legsAndShoes(legs, PAL.slate));
-  const dress = 'M-8 -84C-14 -82 -16 -76 -16 -68C-16 -60 -18 -50 -20 -40C-22 -28 -24 -18 -26 -8C-10 -4 10 -4 26 -8C24 -18 22 -28 20 -40C18 -50 16 -60 16 -68C16 -76 14 -82 8 -84';
+  // all golden: the gold has turned her dress to gold
+  const dressCol = gold ? [{ c: PAL.ochre, o: 0.75 }] : [{ c: PAL.sky, o: 0.8 }, { c: PAL.slate, o: 0.12 }];
+  if (!bust) parts.push(legsAndShoes(legs, PAL.slate));
+  const dress = bust
+    ? 'M-8 -84C-14 -82 -16 -76 -16 -68C-16 -60 -17 -54 -17.5 -48L17.5 -48C17 -54 16 -60 16 -68C16 -76 14 -82 8 -84'
+    : 'M-8 -84C-14 -82 -16 -76 -16 -68C-16 -60 -18 -50 -20 -40C-22 -28 -24 -18 -26 -8C-10 -4 10 -4 26 -8C24 -18 22 -28 20 -40C18 -50 16 -60 16 -68C16 -76 14 -82 8 -84';
   const belt = 'M-16.4 -62C-6 -59.5 6 -59.5 16.4 -62L16.8 -57C6 -54.5 -6 -54.5 -16.8 -57Z';
   parts.push({
     lines: [dress],
-    fine: [belt, 'M-7 -50q-5 18 -10 38M7 -50q5 18 10 38', 'M-26 -8C-10 -4 10 -4 26 -8'],
+    fine: [belt, ...(bust ? [] : ['M-7 -50q-5 18 -10 38M7 -50q5 18 10 38', 'M-26 -8C-10 -4 10 -4 26 -8'])],
     washes: [...dressCol.map((w) => ({ ...w, d: Z(dress) })), { c: PAL.slate, o: 0.6, d: belt }],
   });
   parts.push(...arms.map((p) => arm(p, dressCol, 3.8)));
@@ -235,15 +240,15 @@ export function marie({ mood = 'happy', look = 0, up = 0, tilt = 0, arms = M_ARM
     // gold all over: coins and glints on her dress and hair
     const r = rng(77);
     const spots = [];
-    for (let i = 0; i < 26; i++) {
+    for (let i = 0; i < 22; i++) {
       const y = -82 + r() * 76;
       const half = 9 + ((y + 84) / 76) * 15;
       spots.push([(r() * 2 - 1) * half, y]);
     }
     parts.push({
-      washes: [{ c: PAL.ochre, o: 0.95, d: spots.map(([x, y]) => dot(x, y, 2.3)).join('') }],
-      fine: spots.slice(0, 10).map(([x, y]) => dot(x, y, 2.3)),
-      glints: spots.map(([x, y]) => dot(x - 0.6, y - 0.6, 0.7)),
+      washes: [{ c: PAL.ochre, o: 1, d: spots.map(([x, y]) => dot(x, y, 3)).join('') }, { c: PAL.terracotta, o: 0.3, d: spots.map(([x, y]) => dot(x + 0.8, y + 0.8, 2)).join('') }],
+      fine: spots.map(([x, y]) => dot(x, y, 3)),
+      glints: spots.map(([x, y]) => dot(x - 0.8, y - 0.8, 0.8)),
     });
   }
   parts.push(place(marieHead({ mood, look, up, gold }), `translate(${M_HEAD[0]} ${M_HEAD[1]}) rotate(${tilt})`));
@@ -319,12 +324,19 @@ export function lotte({ mood = 'proud', look = 0, up = 0, tilt = 0, arms = L_ARM
   parts.push({ fine: [collar], whites: soot ? [] : [collar] });
   parts.push(place(lotteHead({ mood, look, up, soot }), `translate(${L_HEAD[0]} ${L_HEAD[1]}) rotate(${tilt})`));
   if (soot) {
-    // sticky black soot all over: a dark coat from the head down, dripping off her elbows and hem
-    const coat =
-      'M-18 -118C-20 -128 -8 -134 2 -132C14 -134 22 -124 18 -112C17 -104 15 -96 14 -86C18 -82 22 -78 24 -74L28 -62C24 -58 20 -58 18 -60C22 -50 30 -36 34 -20' +
-      'C35 -16 34 -12 32 -12C31 -4 28 -4 28 -10C25 -8 22 -8 21 -10C20 -2 16 -2 16 -9C12 -7 8 -8 6 -9C5 -1 1 -1 1 -9C-3 -7 -8 -8 -11 -9C-12 -3 -16 -3 -16 -10C-20 -8 -24 -9 -26 -11C-27 -5 -31 -5 -31 -12C-34 -14 -35 -18 -33 -22C-29 -36 -22 -50 -18 -60C-20 -58 -25 -58 -28 -62L-24 -74C-22 -78 -18 -82 -14 -86C-15 -96 -17 -106 -18 -118Z';
-    const drips = 'M-36 -112l0 10M36 -112l0 8M-38 -96l0 9M32 -96l-1 9M-8 2l0 6M12 2l0 5';
-    parts.push({ fine: [drips], washes: [{ c: PAL.ink, o: 0.55, d: coat }, { c: PAL.slate, o: 0.6, d: coat }, { c: PAL.ink, o: 0.6, d: 'M-37 -108c-2 3 -2 6 0 6c2 0 2 -3 0 -6ZM35 -108c-2 3 -2 6 0 6c2 0 2 -3 0 -6Z' }] });
+    // sticky black soot all over: a dark coat on her dress and arms, a drippy cap on her curls, and
+    // drips hanging from her hem
+    const arms2 = arms.map((p) => limb(p)).map(Z).join('');
+    const cap = 'M-16 -100C-18 -114 -10 -122 0 -122C10 -122 18 -114 16 -100C14 -96 13 -92 12 -96C11 -101 9 -104 7 -101C6 -96 4 -95 3 -100C2 -105 -2 -106 -3 -101C-4 -95 -7 -95 -8 -100C-9 -104 -12 -103 -12 -98C-13 -94 -15 -95 -16 -100Z';
+    const drips = [-30, -18, -6, 6, 18, 30].map((x, i) => `M${x - 2} -9C${x - 2} ${-2 + (i % 3) * 2} ${x + 2} ${-2 + (i % 3) * 2} ${x + 2} -9Z`).join('');
+    parts.push({
+      fine: [drips],
+      washes: [
+        { c: PAL.ink, o: 0.5, d: `${Z(dress)}${arms2}${drips}` },
+        { c: PAL.slate, o: 0.5, d: `${Z(dress)}${arms2}${drips}` },
+        { c: PAL.ink, o: 0.6, d: cap },
+      ],
+    });
   }
   return merge(...parts);
 }

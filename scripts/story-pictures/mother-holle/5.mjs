@@ -8,7 +8,7 @@ const ground = 'M14 268C120 265 290 265 390 268';
 const wall = 'M156 268L156 116L384 116L384 268';
 const roof = 'M140 120L200 52L340 52L398 120Z';
 const chimney = 'M310 52L310 28L332 28L332 52';
-const smoke = 'M318 22C310 16 324 10 316 2M330 20C338 14 330 8 340 2';
+const smoke = 'M318 22C310 17 324 13 317 8M330 21C337 16 331 12 339 8';
 const door = 'M182 268L182 164C182 124 290 124 290 164L290 268';
 const step = 'M178 268L294 268L296 277L176 277Z';
 const win = 'M314 160L364 160L364 204L314 204ZM339 160L339 204M314 182L364 182';
@@ -27,7 +27,7 @@ export default compose({
     { c: PAL.grey, o: 0.5, d: step },
     { c: PAL.sky, o: 0.45, d: 'M314 160L364 160L364 204L314 204Z' },
     { c: PAL.terracotta, o: 0.7, d: flowerBox },
-    { c: PAL.grey, o: 0.25, d: 'M312 24C304 16 320 10 312 2L342 2C334 8 342 16 332 22C328 26 318 26 312 24Z' },
+    { c: PAL.grey, o: 0.25, d: 'M312 24C305 18 320 13 314 8L340 8C333 12 341 17 332 22C328 26 318 26 312 24Z' },
   ],
   lines: [ground, wall, roof, chimney, door, win, flowerBox],
   fine: [
