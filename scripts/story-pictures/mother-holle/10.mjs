@@ -2,8 +2,8 @@ import { PAL, tufts } from '../lib.mjs';
 import { L_ARMS, cockerel, compose, crowMarks, gate, lotte, oval, place } from './characters.mjs';
 
 // Mother Holle, 10: as Lotte walks under the gate, SPLOSH! a big pot of sticky black soot pours
-// down all over her. She stands there with her arms up, all black except for her big round eyes,
-// while the cockerel crows, "Our sooty girl's come home to you!"
+// down all over her. She stands there with her arms up, sticky black soot dripping from her hair,
+// her shoulders, her arms and her dress, looking very cross and surprised, while the cockerel crows, "Our sooty girl's come home to you!"
 const GT = 'translate(176 276) scale(1.1)';
 const LT = 'translate(176 274) scale(1.2)';
 const ground = 'M20 276C120 273 290 273 386 276';
@@ -28,7 +28,7 @@ export default compose({
   fine: [stream, puddle, splosh, ...drops, 'M168 84q2 14 0 30M184 82q-2 14 0 32', tufts([[40, 276], [96, 276], [370, 276]], 9, 7)],
   parts: [
     place(gate(), GT),
-    place(lotte({ mood: 'sooty', soot: true, arms: L_ARMS.up }), LT),
+    place(lotte({ mood: 'cross', soot: true, arms: L_ARMS.up }), LT),
     place(cockerel({ crow: true }), 'translate(312 276) scale(0.95)'),
     { fine: [crowMarks(360, 206)] },
   ],

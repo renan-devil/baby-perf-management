@@ -118,7 +118,7 @@ function legsAndShoes(legs, shoeCol) {
  * up: 1 (looking up), -1 (looking down). mood: happy (dot eyes, smile), smile (eyes shut in a
  * pleased curve, smile), laugh (eyes shut, open mouth), wow (round eyes, mouth an "o"), worried
  * (round eyes, brows up, wobbly mouth), proud (eyes shut with lashes, brows high, a smug little
- * mouth: nose in the air), sooty (big white eyes and a white "o" in a black face).
+ * mouth: nose in the air), cross (dot eyes, frowning brows, a small tight "o" mouth).
  */
 function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4, look = 0, up = 0 }) {
   const fine = [];
@@ -139,8 +139,8 @@ function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4, look = 0, up = 0 }) {
     const mouth = `M${-w - 1} ${my - 1}C${-w} ${my + 8} ${w} ${my + 8} ${w + 1} ${my - 1}C${w / 2} ${my} ${-w / 2} ${my} ${-w - 1} ${my - 1}Z`;
     fine.push(mouth);
     washes.push({ c: PAL.red, o: 0.75, d: mouth });
-  } else if (mood === 'wow' || mood === 'worried' || mood === 'sooty') {
-    const rw = mood === 'sooty' ? 3.8 : 3.2;
+  } else if (mood === 'wow' || mood === 'worried') {
+    const rw = 3.2;
     whites.push(dot(-ex, ey, rw), dot(ex, ey, rw));
     fine.push(dot(-ex, ey, rw), dot(ex, ey, rw));
     pupils(1.5);
@@ -151,11 +151,15 @@ function faceMarks({ mood, ex, ey, my, r = 1.8, w = 4, look = 0, up = 0 }) {
       fine.push(`M${-ex - 3} ${ey - 6}q3 -2.4 6 0M${ex - 3} ${ey - 6}q3 -2.4 6 0`);
       const o = oval(0, my + 2, 2.8, 3.6);
       fine.push(o);
-      if (mood === 'sooty') {
-        whites.push(o);
-        washes.push({ c: PAL.red, o: 0.5, d: oval(0, my + 2.6, 1.8, 2.2) });
-      } else washes.push({ c: PAL.red, o: 0.8, d: o });
+      washes.push({ c: PAL.red, o: 0.8, d: o });
     }
+  } else if (mood === 'cross') {
+    // cross and surprised: dot eyes under frowning brows, a small tight "o" of a mouth
+    pupils(r);
+    fine.push(`M${-ex - 3.5} ${ey - 6}l6 2M${ex + 3.5} ${ey - 6}l-6 2`);
+    const o = oval(0, my + 1.5, 1.8, 2.2);
+    fine.push(o);
+    washes.push({ c: PAL.red, o: 0.6, d: o });
   } else if (mood === 'proud') {
     // eyes shut in a smug downward curve with lashes, brows arched high, a pursed little mouth
     fine.push(`M${-ex - 3} ${ey - 0.5}q3 2.8 6 0M${ex - 3} ${ey - 0.5}q3 2.8 6 0`);
@@ -294,7 +298,8 @@ export function lotteHead({ mood = 'proud', look = 0, up = 0, soot = false } = {
       { c: PAL.ink, o: 0.35, d: curls },
       { c: PAL.red, o: 0.9, d: bow },
       { c: PAL.rose, o: 0.75, d: dot(-8, 5, 2.4) + dot(8, 5, 2.4) },
-      ...(soot ? [{ c: PAL.ink, o: 0.75, d: `${faceFill}` }] : []),
+      // a couple of little grey smudges of soot on her cheek and nose
+      ...(soot ? [{ c: PAL.slate, o: 0.55, d: oval(-8.5, 9, 2.6, 1.6) + oval(1.5, 3.5, 1.6, 1.2) + oval(9, 1, 1.6, 1.1) }] : []),
       ...m.washes,
     ],
     whites: m.whites,
@@ -324,17 +329,26 @@ export function lotte({ mood = 'proud', look = 0, up = 0, tilt = 0, arms = L_ARM
   parts.push({ fine: [collar], whites: soot ? [] : [collar] });
   parts.push(place(lotteHead({ mood, look, up, soot }), `translate(${L_HEAD[0]} ${L_HEAD[1]}) rotate(${tilt})`));
   if (soot) {
-    // sticky black soot all over: a dark coat on her dress and arms, a drippy cap on her curls, and
-    // drips hanging from her hem
+    // thick dripping splodges of soot on her hair and bow, her shoulders, arms and dress; her face
+    // keeps its colour (only a few smudges, drawn with her head)
     const arms2 = arms.map((p) => limb(p)).map(Z).join('');
-    const cap = 'M-16 -100C-18 -114 -10 -122 0 -122C10 -122 18 -114 16 -100C14 -96 13 -92 12 -96C11 -101 9 -104 7 -101C6 -96 4 -95 3 -100C2 -105 -2 -106 -3 -101C-4 -95 -7 -95 -8 -100C-9 -104 -12 -103 -12 -98C-13 -94 -15 -95 -16 -100Z';
+    const cap =
+      'M-17 -100C-20 -116 -10 -126 0 -126C12 -128 22 -120 19 -102C18 -97 16 -94 15 -99C14 -104 13 -106 12.5 -102C12 -98 10 -98 10 -103' +
+      'C9 -109 4 -111 0 -111C-4 -111 -9 -109 -10 -104C-10 -99 -12 -98 -12.5 -103C-13 -106 -14 -104 -15 -98C-16 -93 -17 -95 -17 -100Z';
+    const capeDrips = 'M-22 -84C-14 -88 14 -88 22 -84C24 -78 21 -70 19 -76C18 -80 16 -78 15 -72C14 -66 11 -68 11 -74C10 -79 6 -79 5 -72C4 -68 1 -68 1 -74C0 -79 -4 -79 -5 -70C-6 -65 -9 -66 -9 -72C-10 -78 -14 -78 -15 -74C-16 -69 -19 -70 -19 -76C-20 -79 -23 -78 -22 -84Z';
+    const splodges =
+      [oval(-12, -40, 6, 8), oval(10, -30, 7, 6), oval(-4, -20, 5, 4), oval(20, -16, 5, 4), oval(-22, -20, 5, 5), oval(2, -48, 5, 4)].join('') +
+      'M-14 -33C-14 -26 -10 -26 -10 -33ZM8 -25C8 -18 12 -18 12 -25Z';
     const drips = [-30, -18, -6, 6, 18, 30].map((x, i) => `M${x - 2} -9C${x - 2} ${-2 + (i % 3) * 2} ${x + 2} ${-2 + (i % 3) * 2} ${x + 2} -9Z`).join('');
+    const armDrips = arms.map((p) => { const [x, y] = p[p.length - 2]; return `M${x - 2} ${y}C${x - 2} ${y + 8} ${x + 2} ${y + 8} ${x + 2} ${y}Z`; }).join('');
+    const soot = `${arms2}${capeDrips}${splodges}${drips}${armDrips}`;
     parts.push({
-      fine: [drips],
+      fine: [cap, capeDrips, splodges, drips, armDrips],
       washes: [
-        { c: PAL.ink, o: 0.5, d: `${Z(dress)}${arms2}${drips}` },
-        { c: PAL.slate, o: 0.5, d: `${Z(dress)}${arms2}${drips}` },
-        { c: PAL.ink, o: 0.6, d: cap },
+        { c: PAL.ink, o: 0.45, d: soot },
+        { c: PAL.slate, o: 0.55, d: soot },
+        { c: PAL.ink, o: 0.55, d: cap },
+        { c: PAL.slate, o: 0.5, d: cap },
       ],
     });
   }
