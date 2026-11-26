@@ -116,8 +116,10 @@ export function tortoise({ mouth = 'smile', legs = 'stand', down = 90, head = 0 
     legParts.lines.push(legsStand);
     legParts.fill = legsStandFill;
   } else if (legs === 'dangle') {
+    // between straight down and straight out from her belly, so the legs splay and show
     const a = (down * Math.PI) / 180;
-    const [dx, dy] = [Math.cos(a), Math.sin(a)];
+    const [ux, uy] = [Math.cos(a) * 0.7, Math.sin(a) * 0.7 + 0.8];
+    const [dx, dy] = [ux / Math.hypot(ux, uy), uy / Math.hypot(ux, uy)];
     for (const [x, y, len] of [[30, -5, 17], [20, -3, 14], [-28, -5, 17], [-18, -3, 14]]) {
       const l = limb([[x, y, 9], [x + dx * len * 0.5, y + dy * len * 0.5, 8.5], [x + dx * len, y + dy * len, 7.5]]);
       legParts.lines.push(l);
@@ -126,7 +128,7 @@ export function tortoise({ mouth = 'smile', legs = 'stand', down = 90, head = 0 
   }
   return {
     lines: [...legParts.lines, shell, neck, tTail, h(HEADS[m.head])],
-    fine: [shellRim, plates, h(eye), ...(mouth === 'sad' ? [h('M66 -32Q71 -34.5 76 -32')] : []), ...(m.line ? [h(m.line)] : []), ...(brow ? [h(brow)] : []), ...petals.map(h)],
+    fine: [shellRim, plates, h(eye), ...(mouth === 'sad' ? [h('M66 -32Q71 -34.5 76 -32')] : []), ...(m.line ? [h(m.line)] : []), ...(brow ? [h(brow)] : []), ...(mouth === 'sad' ? [h('M72 -24C70 -20 70 -17 72.5 -16.5C75 -17 75 -20 72 -24Z')] : []), ...petals.map(h)],
     washes: [
       { c: PAL.green, o: 0.7, d: shellFill },
       { c: PAL.ochre, o: 0.6, d: `${plateFill}${h(HEADS[m.head])}${neckFill}${legParts.fill}` },
@@ -140,10 +142,11 @@ export function tortoise({ mouth = 'smile', legs = 'stand', down = 90, head = 0 
     glints: [h(mouth === 'sad' ? dot(70.8, -30.4, 0.7) : dot(72.2, -34, 0.8))],
   };
 }
-/** Her outline above the waterline (shell, neck and head), to cut out of a water wash. */
-export const tortoiseCut = `${shell}${neckFill}${HEADS.closed}`;
 /** Her shell and standing legs, to cut out of a ground wash. */
-export const tortoiseHeadCut = (head = 0) => tr(`${neckFill}${HEADS.closed}`, head ? `rotate(${head} 56 -24)` : '');
+// (the pieces of a cut must not overlap, or the overlap fills in again under fill-rule evenodd)
+export const tortoiseHeadCut = (head = 0) => `M41 -19C47 -23 51 -25 54.5 -26L55 -20C50 -15 45 -11 41 -9Z${tr(HEADS.closed, head ? `rotate(${head} 56 -24)` : '')}`;
+/** Her outline above the waterline (shell, neck and head), to cut out of a water wash. */
+export const tortoiseCut = () => `${shell}${tortoiseHeadCut()}`;
 export const tortoiseBodyCut = 'M-42 -6C-40 -36 -20 -48 0 -48C22 -48 40 -34 42 -6L36 -3L36 8L24 8L26 -2L-20 -2L-22 8L-34 7L-30 -3Z';
 
 // ---------------------------------------------------------------------------------------------
@@ -187,10 +190,10 @@ const FLY_NECKS = {
     tip: [85, -7],
   },
   down: {
-    front: 'M36 -9C46 -6 52 4 56 16C58 24 62 28 62 32C61 37 55 39 51 36C47 33 46 26 44 20C42 14 38 10 30 10',
-    beak: 'M60 34C63 38 64 42 64 46C60 44 57 41 55 38Z',
-    eye: dot(56, 28, 1.7),
-    tip: [64, 46],
+    front: 'M36 -9C46 -6 50 2 52 12C54 18 58 19 62 22C67 26 67 35 61 38C55 41 48 37 47 31C46 24 42 14 30 10',
+    beak: 'M62 35C66 39 68 43 68 48C64 46 60 43 57 39Z',
+    eye: dot(58, 27, 1.7),
+    tip: [68, 48],
   },
 };
 const flBelly = 'M30 10C10 18 -28 16 -48 0';
@@ -210,14 +213,14 @@ const WINGS = {
     marks: 'M-40 -24l-8 6M-30 -20l-10 5',
   },
 };
-const flFeet = 'M-34 10C-42 14 -50 16 -58 16C-52 12 -46 10 -40 8Z';
+const flFeet = 'M-30 11C-38 15 -46 18 -56 18C-50 13 -44 11 -38 9Z';
 
 export function flyingGoose({ neck = 'straight', wings = 'up' } = {}) {
   const n = FLY_NECKS[neck];
   const w = WINGS[wings];
   return {
     lines: [flyBody(neck), flTail, w.near, w.far, n.beak],
-    fine: [w.marks, 'M-40 2l10 2M-30 4l10 2'],
+    fine: [w.marks, flFeet],
     washes: [
       { c: PAL.grey, o: 0.55, d: w.tips + flTail },
       { c: PAL.grey, o: 0.2, d: `${w.far}Z${flBelly}C-30 10 10 12 30 10Z` },

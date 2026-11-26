@@ -18,8 +18,10 @@ const Z = (d) => `${d}Z`;
 /** An arm (limb along pts) ending in a round hand of colour hc. */
 export function arm(pts, c, o, r = 4.2, hc = PAL.rose, ho = 0.6) {
   const d = limb(pts);
-  const [x, y] = pts[pts.length - 1];
-  const h = dot(x, y, r);
+  const [x, y, w] = pts[pts.length - 1];
+  const [px, py] = pts[pts.length - 2];
+  const l = Math.hypot(x - px, y - py);
+  const h = dot(f(x + ((x - px) / l) * w * 0.45), f(y + ((y - py) / l) * w * 0.45), r);
   return { lines: [d], fine: [h], washes: [{ c, o, d: Z(d) }, { c: hc, o: ho, d: h }] };
 }
 
@@ -85,13 +87,13 @@ export const D_ARMS = {
   knee: [[-17, -40, 8], [-22, -26, 7.5], [-18, -12, 7.5], [-13, -4, 7.5]],
 };
 
-const dickHair = 'M-14 -1C-19 -6 -17 -14 -12 -16C-15 -22 -9 -26 -4 -22C-3 -28 5 -29 6 -23C10 -27 16 -23 13 -17C18 -15 19 -7 14 -1C12 -6 9 -9 5 -8C3 -11 -2 -11 -4 -8C-8 -9 -12 -7 -14 -1Z';
+const dickHair = 'M-14 -1C-19 -6 -18 -12 -14 -15L-19 -20L-10 -20C-10 -26 -4 -27 -1 -24L2 -31L6 -23C11 -25 16 -22 14 -16L20 -15L15 -10C17 -7 16 -4 14 -1L11 -7L8 -4L6 -9L2 -5L-1 -9L-4 -5L-7 -9L-10 -5Z';
 export function dickHead({ mood = 'happy', look = [0, 0] } = {}) {
   const face = 'M-12.5 -3C-13 8 -7 14 0 14C7 14 13 8 12.5 -3C12 -10 7 -15 0 -15C-7 -15 -12 -10 -12.5 -3Z';
   const m = faceMarks({ mood, ex: 4.8, ey: 0, my: 7, w: 4, look });
   return {
     lines: [face, dickHair],
-    fine: ['M-12.5 0q-4 1 -2 6M12.5 0q4 1 2 6', 'M0.5 1.5c1.6 1.2 1.6 2.6 -0.6 3', 'M-8 -15q2 -3 5 -3M1 -17q3 -2 5 0M-15 -6l-4 -1M15 -6l4 -2', ...m.fine],
+    fine: ['M-12.5 0q-4 1 -2 6M12.5 0q4 1 2 6', 'M0.5 1.5c1.6 1.2 1.6 2.6 -0.6 3', 'M-8 -15q2 -3 5 -3M1 -17q3 -2 5 0', ...m.fine],
     washes: [
       { c: PAL.rose, o: 0.32, d: face },
       { c: PAL.ochre, o: 0.9, d: dickHair },
@@ -135,8 +137,8 @@ const bareFoot = (x, s) => {
   };
 };
 
-/** Dick. pose 'stand' (feet at 0,0) or 'sit' (seat at 0,0). */
-export function dick({ pose = 'stand', mood = 'happy', tilt = 0, arms = D_ARMS.down, look = [0, 0], lean = 0 } = {}) {
+/** Dick. pose 'stand' (feet at 0,0) or 'sit' (seat at 0,0). feet: false leaves his feet out (stuck in mud). */
+export function dick({ pose = 'stand', mood = 'happy', tilt = 0, arms = D_ARMS.down, look = [0, 0], lean = 0, feet = true } = {}) {
   const upper = dickUpper({ mood, tilt, arms, look, lean });
   if (pose === 'sit') {
     const breeches = 'M-20 -2C-22 4 -20 10 -14 10C-10 10 -6 8 -4 4L4 4C6 8 10 10 14 10C20 10 22 4 20 -2Z';
@@ -154,8 +156,7 @@ export function dick({ pose = 'stand', mood = 'happy', tilt = 0, arms = D_ARMS.d
   return merge(
     { lines: shins, washes: shins.map((d) => ({ c: PAL.rose, o: 0.45, d: Z(d) })) },
     { lines: [breeches], washes: [{ c: PAL.grey, o: 0.85, d: breeches }] },
-    bareFoot(-12, -1),
-    bareFoot(12, 1),
+    ...(feet ? [bareFoot(-12, -1), bareFoot(12, 1)] : []),
     place(upper, 'translate(0 -44)'),
   );
 }
@@ -167,7 +168,6 @@ export function bundle() {
   const knot = 'M38 -51L42 -58L46 -51Z';
   return {
     lines: [cloth, stick, knot],
-    fine: ['M36 -34q4 4 10 2'],
     washes: [
       { c: PAL.red, o: 0.8, d: cloth + knot },
       { c: PAL.ochre, o: 0.7, d: Z(stick) },
@@ -260,7 +260,9 @@ export function catSit({ mood = 'happy', look = [0, 0], tail = 'right', tilt = 0
   const chest = 'M-6 -28C-9 -20 -8 -12 -4 -8L4 -8C8 -12 9 -20 6 -28C2 -30 -2 -30 -6 -28Z';
   const legs = 'M-6 -16L-6 -1M4 -16L4 -1';
   const tailD =
-    tail === 'right'
+    tail === 'down'
+      ? limb([[8, -4, 6], [13, 6, 5.5], [12, 18, 5], [16, 28, 4.5]])
+      : tail === 'right'
       ? limb([[9, -3, 6], [20, -2, 5.5], [30, -6, 5], [34, -16, 4.5], [31, -24, 4]])
       : limb([[-9, -3, 6], [-20, -2, 5.5], [-30, -6, 5], [-34, -16, 4.5], [-31, -24, 4]]);
   const paws = oval(-7, -1, 4.5, 2.4) + oval(5, -1, 4.5, 2.4);
@@ -276,9 +278,13 @@ export function catSit({ mood = 'happy', look = [0, 0], tail = 'right', tilt = 0
     stripe('M-16 -10q4 -1 6 2q-3 -1 -6 1Z'),
     stripe('M15 -18q-4 -1 -6 2q3 -1 6 1Z'),
     stripe('M16 -10q-4 -1 -6 2q3 -1 6 1Z'),
-    stripe(`M${20 * s} -6q${2 * s} 3 ${-1 * s} 6q${1 * s} -3 ${1 * s} -6Z`),
-    stripe(`M${29 * s} -11q${3 * s} 2 ${2 * s} 6q${-0.5 * s} -3 ${-2 * s} -6Z`),
-    stripe(`M${30 * s} -21q${3 * s} 1 ${4 * s} 5q${-1.5 * s} -2.5 ${-4 * s} -5Z`),
+    ...(tail === 'down'
+      ? [stripe('M10 4q3 1 6 0q-3 2 -6 0Z'), stripe('M9 14q3 1 6 0q-3 2 -6 0Z'), stripe('M11 24q3 1 6 0q-3 2 -6 0Z')]
+      : [
+          stripe(`M${20 * s} -6q${2 * s} 3 ${-1 * s} 6q${1 * s} -3 ${1 * s} -6Z`),
+          stripe(`M${29 * s} -11q${3 * s} 2 ${2 * s} 6q${-0.5 * s} -3 ${-2 * s} -6Z`),
+          stripe(`M${30 * s} -21q${3 * s} 1 ${4 * s} 5q${-1.5 * s} -2.5 ${-4 * s} -5Z`),
+        ]),
     place(catHead({ mood, look }), `translate(0 -40) rotate(${tilt})`),
   );
 }
@@ -329,11 +335,12 @@ export function mouse({ big = false } = {}) {
 
 // =============================================================================================
 // THE GIRL who sells the cat (feet at 0,0), about 112 tall: a rose dress, a white apron, two brown
-// plaits and a green headscarf. Head centre (0,-96); arms from the shoulders (±14,-76).
+// plaits and a green headscarf (apron: false leaves the apron off). Head centre (0,-96); arms from
+// the shoulders (±14,-76).
 // =============================================================================================
-export function girl({ mood = 'happy', arms, look = [0, 0] } = {}) {
+export function girl({ mood = 'happy', arms, look = [0, 0], apron = true } = {}) {
   const dress = 'M-8 -82C-16 -80 -18 -72 -18 -62C-20 -40 -24 -20 -28 -6C-10 -3 10 -3 28 -6C24 -20 20 -40 18 -62C18 -72 16 -80 8 -82';
-  const apron = 'M-12 -50C-14 -32 -16 -18 -16 -6L16 -6C16 -18 14 -32 12 -50C4 -48 -4 -48 -12 -50Z';
+  const apronD = 'M-12 -50C-14 -32 -16 -18 -16 -6L16 -6C16 -18 14 -32 12 -50C4 -48 -4 -48 -12 -50Z';
   const legs = 'M-9 -5L-9 -3M9 -5L9 -3';
   const shoes = oval(-10, -2, 6, 3) + oval(10, -2, 6, 3);
   const face = 'M-11.5 -2C-12 7 -6 13 0 13C6 13 12 7 11.5 -2C11 -9 6 -13 0 -13C-6 -13 -11 -9 -11.5 -2Z';
@@ -362,11 +369,11 @@ export function girl({ mood = 'happy', arms, look = [0, 0] } = {}) {
   return merge(
     {
       lines: [dress, shoes],
-      fine: [apron, legs],
-      washes: [{ c: PAL.rose, o: 0.85, d: Z(dress) }, { c: PAL.terracotta, o: 0.25, d: Z(dress) }, { c: PAL.slate, o: 0.8, d: shoes }],
-      whites: [apron],
+      fine: [...(apron ? [apronD] : []), legs],
+      washes: [{ c: PAL.rose, o: 0.6, d: Z(dress) }, { c: PAL.slate, o: 0.8, d: shoes }],
+      whites: apron ? [apronD] : [],
     },
-    ...a.map((p) => arm(p, PAL.rose, 0.85, 3.8)),
+    ...a.map((p) => arm(p, PAL.rose, 0.6, 3.8)),
     place(head, 'translate(0 -96)'),
   );
 }
@@ -598,7 +605,7 @@ export const hill = {
     { c: PAL.green, o: 0.75, d: 'M-10 252C70 250 140 236 210 222C280 210 340 210 410 216L410 310L-10 310Z' },
     { c: PAL.green, o: 0.35, d: 'M-10 278C80 262 200 256 410 266L410 310L-10 310Z' },
   ],
-  lines: ['M8 250C70 248 140 234 210 221C270 211 330 210 392 215'],
+  lines: ['M8 250C60 248 110 241 148 234M318 210C340 210 366 212 392 215'],
   fine: [tufts([[40, 250], [130, 238], [196, 225], [360, 213], [70, 284], [180, 280], [350, 284]], 9, 5)],
 };
 
@@ -609,14 +616,14 @@ export const SIT = 'scale(1.45)';
 export default compose({
   title: 'Dick Whittington and His Cat',
   seed: 211,
-  washes: [...hill.washes],
-  lines: hill.lines,
+  washes: [{ c: PAL.green, o: 0.35, d: 'M6 207C50 203 120 203 166 209C130 216 60 218 6 215Z' }, ...hill.washes],
+  lines: ['M8 207C50 203 120 203 166 209', ...hill.lines],
   fine: [...hill.fine],
   parts: [
-    place(london(), 'translate(20 246) scale(0.85)'),
+    place(london(), 'translate(16 206) scale(0.85)'),
     place(milestone(), STONE),
     place(bundle(), `translate(${SEAT[0]} ${SEAT[1]}) ${SIT} translate(30 -40)`),
     place(dick({ pose: 'sit', mood: 'happy', arms: [D_ARMS.knee, D_ARMS.stick], look: [-1, 0] }), `translate(${SEAT[0]} ${SEAT[1]}) ${SIT}`),
-    place(catSit({ mood: 'happy', tail: 'left', look: [1, 0] }), 'translate(196 262)'),
+    place(catSit({ mood: 'happy', tail: 'left', look: [1, 0] }), 'translate(194 262) scale(1.2)'),
   ],
 });
