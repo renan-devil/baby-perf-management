@@ -52,16 +52,16 @@ export function sweep(x0, y0, a0, len, bend, widths, power = 1.4) {
   return out;
 }
 
-/** The Reed (base at 0,0): a slender stem with a brown cattail head and two long blades. bend curls her over. */
-export function reed(bend = 6, bladeBend = 0) {
-  const stemPts = sweep(0, 0, 2, 158, bend, [5, 4.6, 4.2, 4, 3.8, 3.6, 3.4, 3.2, 3, 2.6, 2]);
+/** The Reed (base at 0,0): a slender stem with a brown cattail head and two long blades. lean and bend curl her over. */
+export function reed(bend = 6, bladeBend = 0, lean = 2) {
+  const stemPts = sweep(0, 0, lean, 158, bend, [5, 4.6, 4.2, 4, 3.8, 3.6, 3.4, 3.2, 3, 2.6, 2]);
   // the head sits on the stem from point 6 to point 9; the stem runs on above it as a little spike
   const head = band(stemPts.slice(6, 10).map(([x, y], i) => [x, y, [9, 13, 13, 9][i]]), true);
   const stem = band(stemPts.slice(0, 7));
   const spike = `M${pt(stemPts[9])}L${pt(stemPts[10])}`;
   const blades =
-    band(sweep(-2, 0, -14, 92, 26 + bladeBend * 0.7, [6, 6, 5, 4, 3, 1.6]), false) +
-    band(sweep(2, 0, 16, 74, 30 + bladeBend * 0.5, [5, 5, 4, 3, 1.4]), false);
+    band(sweep(-2, 0, -14 + bladeBend * 0.3, 92, 26 + bladeBend * 0.7, [6, 6, 5, 4, 3, 1.6]), false) +
+    band(sweep(2, 0, 16 + bladeBend * 0.3, 74, 30 + bladeBend * 0.5, [5, 5, 4, 3, 1.4]), false);
   const headMarks = stemPts
     .slice(6, 9)
     .map(([x, y], i) => {
@@ -112,7 +112,7 @@ export const oakProudFace = 'M-11 -58q4 -4 8 0M3 -58q4 -4 8 0M-6 -45q6 4 12 0';
 export const oakShadeHatch = hatch(-60, -110, 60, -100, 9, 9, 125, 11);
 
 // ---- The scene
-const OT = 'translate(126 252) scale(1.15)';
+const OT = 'translate(134 252) scale(1.15)';
 const RT = 'translate(268 254)';
 const R = reed(6, 0);
 const ground = 'M0 252C60 250 110 254 170 252C200 251 222 252 240 254';
