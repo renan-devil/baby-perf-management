@@ -1,4 +1,4 @@
-import { PAL, parseTransform, transformPath } from '../lib.mjs';
+import { PAL, parseTransform } from '../lib.mjs';
 import { beakTip, compose, flyingGoose, place, tortoise } from './characters.mjs';
 
 // The Talkative Tortoise, 3: up, up, up over the trees. The two geese fly side by side, each with

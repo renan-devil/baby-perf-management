@@ -88,16 +88,19 @@ export const D_ARMS = {
 };
 
 const dickHair = 'M-14 -1C-19 -6 -18 -12 -14 -15L-19 -20L-10 -20C-10 -26 -4 -27 -1 -24L2 -31L6 -23C11 -25 16 -22 14 -16L20 -15L15 -10C17 -7 16 -4 14 -1L11 -7L8 -4L6 -9L2 -5L-1 -9L-4 -5L-7 -9L-10 -5Z';
-export function dickHead({ mood = 'happy', look = [0, 0] } = {}) {
+// under a hat only the fringe and the side tufts show
+const dickHairUnderHat = 'M-14 -1C-19 -6 -18 -12 -14 -14L14 -14C17 -12 18 -6 14 -1L11 -7L8 -4L6 -9L2 -5L-1 -9L-4 -5L-7 -9L-10 -5Z';
+export function dickHead({ mood = 'happy', look = [0, 0], hat = false } = {}) {
+  const hair = hat ? dickHairUnderHat : dickHair;
   const face = 'M-12.5 -3C-13 8 -7 14 0 14C7 14 13 8 12.5 -3C12 -10 7 -15 0 -15C-7 -15 -12 -10 -12.5 -3Z';
   const m = faceMarks({ mood, ex: 4.8, ey: 0, my: 7, w: 4, look });
   return {
-    lines: [face, dickHair],
-    fine: ['M-12.5 0q-4 1 -2 6M12.5 0q4 1 2 6', 'M0.5 1.5c1.6 1.2 1.6 2.6 -0.6 3', 'M-8 -15q2 -3 5 -3M1 -17q3 -2 5 0', ...m.fine],
+    lines: [face, hair],
+    fine: ['M-12.5 0q-4 1 -2 6M12.5 0q4 1 2 6', 'M0.5 1.5c1.6 1.2 1.6 2.6 -0.6 3', ...(hat ? [] : ['M-8 -15q2 -3 5 -3M1 -17q3 -2 5 0']), ...m.fine],
     washes: [
       { c: PAL.rose, o: 0.32, d: face },
-      { c: PAL.ochre, o: 0.9, d: dickHair },
-      { c: PAL.terracotta, o: 0.45, d: dickHair },
+      { c: PAL.ochre, o: 0.9, d: hair },
+      { c: PAL.terracotta, o: 0.45, d: hair },
       { c: PAL.rose, o: 0.6, d: dot(-8.5, 5, 2.5) + dot(8.5, 5, 2.5) },
       ...m.washes,
     ],
@@ -183,33 +186,33 @@ export function bundle() {
 // =============================================================================================
 export function mayor({ mood = 'happy', arms } = {}) {
   const robe = 'M-12 -78C-28 -76 -34 -64 -34 -48C-34 -30 -36 -12 -40 0C-44 14 -42 34 -38 46C-14 50 14 50 38 46C42 34 44 14 40 0C36 -12 34 -30 34 -48C34 -64 28 -76 12 -78';
-  const trim = 'M-12 -78C-6 -70 -4 -50 -6 -30L-6 46L6 46L6 -30C4 -50 6 -70 12 -78C6 -75 -6 -75 -12 -78Z';
-  const lap = 'M-34 -2C-20 4 20 4 34 -2';
+  const trim = 'M-12 -78C-6 -70 -4 -50 -7 -30L-20 46L20 46L7 -30C4 -50 6 -70 12 -78C6 -75 -6 -75 -12 -78Z';
+  const lap = 'M-34 -2C-30 0 -26 1 -22 1.5M22 1.5C26 1 30 0 34 -2';
   const feet = 'M-26 46C-34 46 -35 52 -29 52L-12 52L-12 46ZM26 46C34 46 35 52 29 52L12 52L12 46Z';
   const links = [];
   for (let i = 0; i <= 8; i++) {
     const t = i / 8;
     const x = -24 + 48 * t;
-    const y = -72 + 26 * Math.sin(Math.PI * t);
+    const y = -76 + 16 * Math.sin(Math.PI * t);
     links.push(dot(f(x), f(y), 2.6));
   }
-  const pendant = 'M0 -44L6 -38L0 -30L-6 -38Z';
+  const pendant = 'M0 -62L4 -58L0 -54L-4 -58Z';
   const a = arms ?? [
-    [[-26, -68, 11], [-36, -50, 10], [-30, -30, 10], [-18, -16, 10]],
-    [[26, -68, 11], [36, -50, 10], [30, -30, 10], [18, -16, 10]],
+    [[-26, -68, 11], [-38, -50, 10], [-36, -28, 10], [-24, -10, 10]],
+    [[26, -68, 11], [38, -50, 10], [36, -28, 10], [24, -10, 10]],
   ];
   const sleeves = a.map((p) => arm(p, PAL.red, 0.75, 5));
   const cuffs = a.map((p) => {
     const [x, y] = p[p.length - 2];
     return { fine: [dot(x, y, 6)], whites: [dot(x, y, 6)] };
   });
-  const head = dickHead({ mood });
+  const head = dickHead({ mood, hat: true });
   const hat = 'M-17 -15C-24 -18 -22 -28 -12 -30C-6 -36 6 -36 12 -30C22 -28 24 -18 17 -15C8 -18 -8 -18 -17 -15Z';
   return merge(
     {
       lines: [robe, lap, feet],
-      washes: [{ c: PAL.red, o: 0.78, d: Z(robe) }, { c: PAL.slate, o: 0.9, d: feet }],
-      whites: [trim],
+      // the white fur down the front is left as paper (a hole in the red), so a kitten on his lap keeps its colours
+      washes: [{ c: PAL.red, o: 0.78, d: Z(robe) + trim, rule: 'evenodd' }, { c: PAL.slate, o: 0.9, d: feet }],
     },
     { fine: [trim] },
     { lines: links, washes: [{ c: PAL.ochre, o: 0.95, d: links.join('') + pendant }], fine: [pendant] },
@@ -330,7 +333,7 @@ export function mouse({ big = false } = {}) {
     ],
     fills: [dot(9, -8, 1.2)],
   };
-  return big ? place(merge(m, { fine: ['M-30 -6C-38 -4 -46 -12 -56 -8'] }), 'scale(1.5)') : m;
+  return big ? place(m, 'scale(1.5)') : m;
 }
 
 // =============================================================================================
@@ -580,7 +583,7 @@ export function milestone() {
 }
 
 /** London far away: little rooftops, a dome and church spires, the ground line at y = 0, from x = 0 to about 150. */
-export function london({ bells = false } = {}) {
+export function london() {
   const roofs =
     'M0 0L0 -10L8 -16L16 -10L16 -14L26 -14L26 -8L34 -8L34 -18L40 -24L46 -18L46 -6L56 -6L56 -12L66 -12L66 -4' +
     'M88 -4L88 -14L96 -20L104 -14L104 -8L114 -8L114 -16L124 -16L124 -6L134 -6L134 -12L142 -18L150 -12L150 0';
