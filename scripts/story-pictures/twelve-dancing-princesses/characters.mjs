@@ -1,5 +1,5 @@
 import { PAL } from '../lib.mjs';
-import { at, compose, dot, f, limb, merge, oval, place } from '../stone-soup/characters.mjs';
+import { at, compose, dot, f, merge, oval, place } from '../stone-soup/characters.mjs';
 import { arm, faceMarks } from '../sleeping-beauty/characters.mjs';
 import { sparkles, star5, twinkle } from '../cinderella/characters.mjs';
 
@@ -13,8 +13,6 @@ export { at, compose, dot, merge, oval, place, sparkles, star5, twinkle };
 const Z = (d) => `${d}Z`;
 const W = (c, o, d) => ({ c, o, d });
 const cheeks = (x = 7.5, y = 5, r = 2.3, o = 0.7) => W(PAL.rose, o, dot(-x, y, r) + dot(x, y, r));
-const shift = (pts, dx = 0, dy = 0) => pts.map(([x, y, w]) => [x + dx, y + dy, w]);
-const mirror = (pts) => pts.map(([x, y, w]) => [-x, y, w]);
 
 /**
  * Eyes and mouth. Moods from Sleeping Beauty (happy, asleep, smile, cross, worried, wow) and these:
@@ -96,7 +94,7 @@ export function kingHead({ mood = 'happy', look = 0, tilt = 0 } = {}) {
   const brows = mood === 'puzzled' ? '' : 'M-9.5 -9q4 -3 7.5 -1M2 -10q4 -2 7.5 1';
   return {
     lines: [top, beard, tp(crown)],
-    fine: [moust, hair, brows, 'M-7 17q-1 5 1 9M6 17q1 5 -1 9M0 19l0 8', ...m.fine.filter((d) => !d.includes('q') || mood !== 'happy' || true)],
+    fine: [moust, hair, brows, 'M-7 17q-1 5 1 9M6 17q1 5 -1 9M0 19l0 8', ...m.fine],
     washes: [
       W(PAL.rose, 0.35, Z(`${top}C9 6 -9 6 -13 3`)),
       W(PAL.rose, 0.6, oval(0, 2.4, 2.8, 2.4)),
@@ -166,8 +164,8 @@ export const S_ARMS = {
   ],
   // dancing: both arms up and out
   dance: [
-    [[-19, -109, 8], [-32, -118, 7], [-40, -132, 7], [-42, -140, 7]],
-    [[19, -109, 8], [32, -118, 7], [40, -132, 7], [42, -140, 7]],
+    [[-19, -109, 8], [-27, -122, 7], [-30, -136, 7], [-30, -144, 7]],
+    [[19, -109, 8], [27, -122, 7], [30, -136, 7], [30, -144, 7]],
   ],
   // reaching up to the right, snapping a twig
   snap: [
@@ -267,6 +265,11 @@ export const P_ARMS = {
     [[-13, -83, 6], [-19, -70, 5.5], [-12, -60, 5.5], [-5, -58, 5.5]],
     [[13, -83, 6], [19, -70, 5.5], [12, -60, 5.5], [5, -58, 5.5]],
   ],
+  // right hand held out to the side (carrying something that dangles), left arm down
+  carry: [
+    [[-13, -83, 6], [-18, -70, 5.5], [-21, -58, 5.5], [-21, -52, 5.5]],
+    [[13, -83, 6], [25, -80, 5.5], [34, -74, 5.5], [38, -72, 5.5]],
+  ],
   // right arm pointing down to the right (tapping), left arm down
   tap: [
     [[-13, -83, 6], [-18, -70, 5.5], [-21, -58, 5.5], [-21, -52, 5.5]],
@@ -275,7 +278,7 @@ export const P_ARMS = {
   // both arms out, the left one up (dancing with someone on her right)
   danceR: [
     [[-13, -83, 6], [-24, -92, 5.5], [-30, -104, 5.5], [-31, -111, 5.5]],
-    [[13, -83, 6], [25, -84, 5.5], [36, -88, 5.5], [42, -91, 5.5]],
+    [[13, -83, 6], [25, -86, 5.5], [36, -92, 5.5], [42, -96, 5.5]],
   ],
   // hands clapped together in front of her chest (laughing)
   clap: [
@@ -390,10 +393,10 @@ export const R_ARMS = {
     [[-16, -99, 7.5], [-23, -86, 6.5], [-14, -74, 6.5], [-5, -73, 6.5]],
     [[16, -99, 7.5], [23, -86, 6.5], [14, -74, 6.5], [5, -73, 6.5]],
   ],
-  // dancing with someone on his left: left arm out to her, right arm up
+  // dancing with someone on his left: left arm out to her, right hand on his hip
   danceL: [
-    [[-16, -99, 7.5], [-28, -98, 6.5], [-40, -100, 6.5], [-46, -102, 6.5]],
-    [[16, -99, 7.5], [27, -108, 6.5], [33, -120, 6.5], [34, -127, 6.5]],
+    [[-16, -99, 7.5], [-28, -97, 6.5], [-40, -96, 6.5], [-46, -96, 6.5]],
+    [[16, -99, 7.5], [28, -90, 6.5], [27, -77, 6.5], [21, -72, 6.5]],
   ],
   // rowing: both fists forward and low on the oars
   row: [
@@ -506,13 +509,6 @@ export function cloak(x1, y1, x2, y2, drop = 80) {
   };
 }
 
-/** A bundle of sticks tied with string, lying on the ground at y = 0, about 60 long. */
-export function sticks() {
-  const s = 'M-30 -4L30 -10M-30 -10L32 -4M-28 -16L30 -14M-32 -2L28 -2M-29 -8L33 -16';
-  const tie = 'M-6 -20q-2 10 0 20M8 -20q2 10 0 20';
-  return { lines: [s], fine: [tie], washes: [W(PAL.terracotta, 0.45, 'M-32 -18L33 -18L33 0L-32 0Z')] };
-}
-
 // =============================================================================================
 // PROPS
 // =============================================================================================
@@ -529,12 +525,12 @@ export function chair({ gap = 0, back = true, cutR } = {}) {
   return { lines: [posts, seatEdge, legs].filter(Boolean), fine: [knobs].filter(Boolean), washes: [W(PAL.ochre, 0.6, wood), W(PAL.terracotta, 0.25, wood), W(PAL.ochre, 0.9, knobs || 'M0 0Z')] };
 }
 
-/** A cup, base at y = 0, about 12 wide; tip: degrees to tip it (around its base); milk inside. */
+/** A cup, base at y = 0, about 12 wide; milk: white milk showing at the rim. */
 export function cup({ milk = true } = {}) {
   const body = 'M-6 -13L-5 0L5 0L6 -13';
   const rim = oval(0, -13, 6, 1.8);
   const handle = 'M5.6 -10C10 -10 10 -3 5.2 -3';
-  return { lines: [body, rim], fine: [handle], washes: [W(PAL.sky, 0.55, Z(body)), ...(milk ? [] : [])], whites: milk ? [rim] : [] };
+  return { lines: [body, rim], fine: [handle], washes: [W(PAL.sky, 0.55, Z(body))], whites: milk ? [rim] : [] };
 }
 
 /** A flowerpot with a little plant and a red flower, base at y = 0, about 34 wide. */
@@ -606,14 +602,14 @@ export function sole({ c = PAL.red } = {}) {
 /** A little twig with leaves of a colour (slate: silver, ochre: gold, sky: diamond), base at (0,0),
  * pointing up, about 40 long. */
 export function twig(c = PAL.slate, sparkle = true) {
-  const stem = 'M0 0C1 -12 -1 -26 2 -40M1 -16C5 -20 9 -22 12 -22M0 -28C-4 -31 -8 -32 -11 -32';
-  const leaf = (x, y, a) => place({ lines: ['M0 0C2 -4 6 -5 9 -4C7 -1 3 1 0 0Z'] }, `translate(${x} ${y}) rotate(${a})`).lines[0];
-  const leaves = [leaf(12, -22, -20), leaf(-11, -32, 200), leaf(2, -40, -70), leaf(1, -10, -30), leaf(0, -20, 210)].join('');
+  const stem = 'M0 0C1 -14 -1 -28 1 -46';
+  const leaf = (x, y, a) => place({ lines: ['M0 0C3 -6 9 -7 13 -5C10 -1 4 2 0 0Z'] }, `translate(${x} ${y}) rotate(${a})`).lines[0];
+  const leaves = [leaf(0.5, -12, -30), leaf(0, -20, 210), leaf(0.2, -29, -40), leaf(0, -36, 220), leaf(1, -46, -80)].join('');
   return {
     lines: [stem],
     fine: [leaves],
-    washes: [W(c, 0.9, leaves)],
-    glints: sparkle ? [dot(13.5, -24, 0.9), dot(-13, -33.5, 0.9), dot(1.4, -44, 0.9)] : [],
+    washes: [W(c, 0.95, leaves)],
+    glints: sparkle ? [dot(7, -18, 0.9), dot(-6, -31, 0.9), dot(2.5, -54, 0.9)] : [],
   };
 }
 
@@ -662,6 +658,23 @@ export function note(x, y, s = 1) {
   return { fine: [stem], fills: [head] };
 }
 
+/** A chandelier hanging from the top of the picture at x = 0: a ring of five candles; its ring is
+ * at y = 0 (place it with a transform). */
+export function chandelier() {
+  const rod = 'M0 -60L0 -6';
+  const ring = oval(0, 0, 54, 9);
+  const xs = [-44, -22, 0, 22, 44];
+  const candles = xs.map((x) => `M${x - 3} ${-2 + Math.abs(x) / 8}L${x - 3} ${-16 + Math.abs(x) / 8}L${x + 3} ${-16 + Math.abs(x) / 8}L${x + 3} ${-2 + Math.abs(x) / 8}`).join('');
+  const flames = xs.map((x) => { const y = -16 + Math.abs(x) / 8; return `M${x} ${y - 1}C${x - 4} ${y - 5} ${x - 1} ${y - 9} ${x} ${y - 12}C${x + 1} ${y - 9} ${x + 4} ${y - 5} ${x} ${y - 1}Z`; }).join('');
+  const drops = 'M-30 8L-28 16M0 9L0 18M30 8L28 16';
+  return {
+    lines: [ring, rod],
+    fine: [candles, flames, drops],
+    washes: [W(PAL.ochre, 0.9, ring), W(PAL.ochre, 0.55, flames), W(PAL.red, 0.3, flames), W(PAL.ochre, 0.18, oval(0, -14, 80, 34))],
+    glints: [dot(-30, 17, 1.2), dot(0, 19, 1.2), dot(30, 17, 1.2)],
+  };
+}
+
 /** "Crack!" burst lines around (x, y). */
 export const crack = (x, y, s = 1) =>
   [[-1, -1], [1, -1.2], [1.3, 0.3], [-1.3, 0.2], [0.2, -1.5]]
@@ -675,5 +688,3 @@ export function boat({ c = PAL.terracotta } = {}) {
   return { lines: [hull], fine: [plank], washes: [W(c, 0.7, hull), W(PAL.ochre, 0.3, hull)] };
 }
 
-/** Little "tip-toe" lines and a scattering of sparkles are drawn in the pictures. */
-export { limb, f };

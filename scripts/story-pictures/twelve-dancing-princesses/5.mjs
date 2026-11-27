@@ -15,8 +15,8 @@ const hole = 'M162 198L256 198L274 256L144 256Z';
 const xl = (y) => 162 - ((y - 198) * 18) / 58; // left edge of the hole at height y
 const xr = (y) => 256 + ((y - 198) * 18) / 58;
 const rows = [[198, 208, 211], [211, 221, 224], [224, 234, 237], [237, 247, 250]]; // riser top, tread top, next
-const stepLines = rows.map(([a, t, n]) => `M${xl(t) + 8} ${t}L${xr(t) - 8} ${t}M${xl(n) + 8} ${n}L${xr(n) - 8} ${n}`).join('');
-const stepWashes = rows.map(([a, t, n], i) => ({ c: PAL.ink, o: 0.12 + i * 0.13, d: `M${xl(a)} ${a}L${xr(a)} ${a}L${xr(n)} ${n}L${xl(n)} ${n}Z` }));
+const stepLines = rows.map(([, t, n]) => `M${xl(t) + 8} ${t}L${xr(t) - 8} ${t}M${xl(n) + 8} ${n}L${xr(n) - 8} ${n}`).join('');
+const stepWashes = rows.map(([a, , n], i) => ({ c: PAL.ink, o: 0.12 + i * 0.13, d: `M${xl(a)} ${a}L${xr(a)} ${a}L${xr(n)} ${n}L${xl(n)} ${n}Z` }));
 const walls = `M${xl(198)} 198L${xl(198) + 8} 206L${xl(256) + 8} 256M${xr(198)} 198L${xr(198) - 8} 206L${xr(256) - 8} 256`;
 const wallWash = `M162 198L170 206L${xl(256) + 8} 256L144 256ZM256 198L248 206L${xr(256) - 8} 256L274 256Z`;
 const taps = `M${tx + 6} ${ty - 6}l5 -5M${tx + 9} ${ty + 1}l7 0M${tx + 6} ${ty + 8}l5 5`;

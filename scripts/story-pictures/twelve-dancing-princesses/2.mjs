@@ -12,7 +12,7 @@ export default compose({
     { c: PAL.grey, o: 0.3, d: 'M70 262C90 254 220 254 240 262C220 270 90 270 70 262Z' },
   ],
   lines: ['M30 262L380 262'],
-  fine: [zed(112, 96, 10), zed(88, 70, 13), zed(60, 38, 17), hatch(40, 270, 370, 270, 10, 6, 180, 6)],
+  fine: [zed(166, 78, 10), zed(184, 52, 13), zed(208, 20, 17), hatch(40, 270, 370, 270, 10, 6, 180, 6)],
   parts: [
     place(chair({ gap: 30 }), P),
     place(prince({ sit: true, mood: 'snore', arms: R_ARMS.fold, tilt: -14 }), P),
